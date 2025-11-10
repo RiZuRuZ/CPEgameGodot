@@ -15,5 +15,5 @@ script = ExtResource("1_ig7tw")
 shape = SubResource("CircleShape2D_h2yge")
 
 [node name="Icon" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(321, 210)
+position = Vector2(532, 51)
 texture = ExtResource("2_0xm2m")
