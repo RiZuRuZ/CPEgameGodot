@@ -2,39 +2,40 @@ extends Node2D
 
 const SPEED = 100
 var motion = Vector2()
-var animation
-var sprite
+var animation: AnimationPlayer
+var sprite: Sprite2D  # Explicit type helps with debugging
 
 func _ready() -> void:
-	animation = $AnimationPlayer
-	sprite = $Soldier   # Make sure your Sprite2D node is named “Soldier”
+	# Make sure these nodes exist in your scene tree
+	animation = $AnimationSoldier
+	sprite = $Soldier
 
-func _physics_process(delta):
-	# Reset motion every frame
+	if sprite == null:
+		push_error("❌ Sprite2D node not found! Make sure the node is named 'Soldier'.")
+	if animation == null:
+		push_error("❌ AnimationPlayer node not found! Make sure it's named 'AnimationPlayer'.")
+
+func _physics_process(delta: float) -> void:
 	motion = Vector2()
 
 	# Movement input
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("d"):
 		motion.x += 1
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("a"):
 		motion.x -= 1
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("ui_down") or Input.is_action_pressed("s"):
 		motion.y += 1
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("w"):
 		motion.y -= 1
 
-	# Normalize so diagonal movement isn't faster
 	if motion.length() > 0:
 		motion = motion.normalized() * SPEED
 		animation.play("walk")
 
-		# Flip horizontally
-		if motion.x > 0:
-			sprite.flip_h = false
-		elif motion.x < 0:
-			sprite.flip_h = true
+		# Flip horizontally (check if sprite exists)
+		if sprite:
+			sprite.flip_h = motion.x < 0
 	else:
 		animation.play("idle")
 
-	# Move character
 	position += motion * delta
