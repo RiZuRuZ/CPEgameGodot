@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_start_pressed() -> void:
-	#get_tree().change_scene_to_file() # Replace with function body.
+	get_tree().change_scene_to_file("res://main.tscn") # Replace with function body.
 	print("Start pressed")
 
 
