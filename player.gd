@@ -19,13 +19,13 @@ func _physics_process(delta: float) -> void:
 	motion = Vector2()
 
 	# Movement input
-	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("d"):
+	if Input.is_action_pressed("right"):
 		motion.x += 1
-	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("a"):
+	if Input.is_action_pressed("left"):
 		motion.x -= 1
-	if Input.is_action_pressed("ui_down") or Input.is_action_pressed("s"):
+	if Input.is_action_pressed("down"):
 		motion.y += 1
-	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("w"):
+	if Input.is_action_pressed("up"):
 		motion.y -= 1
 
 	if motion.length() > 0:
