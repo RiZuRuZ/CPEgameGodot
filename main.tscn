@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cg16fec0xpjae"]
+[gd_scene load_steps=36 format=4 uid="uid://cg16fec0xpjae"]
 
 [ext_resource type="Texture2D" uid="uid://7k4gyfuee0gc" path="res://RPG_Asset/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier with shadows/Soldier-Idle.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://bicxouwpl5cik" path="res://RPG_Asset/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="2_0xm2m"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c7taw5sxo28en" path="res://ExampleAsset/Bocchi Sprite Sheet02-Picsart-BackgroundRemover.png" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bdxdbc5g0btap" path="res://Bocchi.gd" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://dao3kryrv4qen" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Priest/Priest with shadows/Priest.png" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://ddlxqnmgnkiru" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Slime/Slime with shadows/Slime.png" id="9_kek77"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_7mycd")
@@ -357,6 +358,166 @@ _data = {
 &"walk": SubResource("Animation_4c57u")
 }
 
+[sub_resource type="Animation" id="Animation_efxa6"]
+resource_name = "idle"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slime:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_dg77c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slime:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_ycdy4"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_w48qg"]
+resource_name = "attack1"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [24, 25, 26, 27, 28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_vivmo"]
+resource_name = "attack2"
+length = 1.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]
+}
+
+[sub_resource type="Animation" id="Animation_2cqfq"]
+resource_name = "attack3"
+length = 0.4
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_yaehf"]
+resource_name = "hurt"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [48, 49, 50, 51]
+}
+
+[sub_resource type="Animation" id="Animation_074og"]
+resource_name = "death"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [60, 61, 62, 63]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cegan"]
+_data = {
+&"RESET": SubResource("Animation_dg77c"),
+&"attack1": SubResource("Animation_w48qg"),
+&"attack2": SubResource("Animation_vivmo"),
+&"attack3": SubResource("Animation_2cqfq"),
+&"death": SubResource("Animation_074og"),
+&"hurt": SubResource("Animation_yaehf"),
+&"idle": SubResource("Animation_efxa6"),
+&"walk": SubResource("Animation_ycdy4")
+}
+
 [node name="Node2D" type="Node2D"]
 position = Vector2(31, -15)
 
@@ -421,17 +582,32 @@ libraries = {
 &"": SubResource("AnimationLibrary_272bh")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="PlayerPriest" type="CharacterBody2D" parent="."]
 
-[node name="Priest" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Priest" type="Sprite2D" parent="PlayerPriest"]
 texture_filter = 1
-position = Vector2(535, 284)
+position = Vector2(537, 251)
 scale = Vector2(1.5600014, 1.5600014)
 texture = ExtResource("8_5vw27")
 hframes = 9
 vframes = 10
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerPriest"]
 libraries = {
 &"": SubResource("AnimationLibrary_kek77")
+}
+
+[node name="EnemySlime" type="CharacterBody2D" parent="."]
+
+[node name="Slime" type="Sprite2D" parent="EnemySlime"]
+texture_filter = 1
+position = Vector2(284, 198)
+scale = Vector2(2.0349998, 2.0349998)
+texture = ExtResource("9_kek77")
+hframes = 12
+vframes = 6
+
+[node name="AnimationSlime" type="AnimationPlayer" parent="EnemySlime"]
+libraries = {
+&"": SubResource("AnimationLibrary_cegan")
 }
