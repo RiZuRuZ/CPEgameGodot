@@ -1,6 +1,6 @@
 extends Node2D
 
-const SPEED = 300
+const SPEED = 100
 var motion = Vector2()
 var animation
 var sprite
