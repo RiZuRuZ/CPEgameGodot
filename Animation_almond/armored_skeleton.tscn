@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://daxw1ldvibnfv"]
 
-[ext_resource type="Texture2D" uid="uid://djenho8af6xde" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Skeleton/Armored Skeleton/Armored Skeleton.png" id="1_xysdc"]
+[ext_resource type="Texture2D" uid="uid://djenho8af6xde" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Skeleton/Armored Skeleton/Armored Skeleton.png" id="1_2f0oa"]
 
 [sub_resource type="Animation" id="Animation_nlgr8"]
 resource_name = "idel"
@@ -143,7 +143,7 @@ _data = {
 
 [node name="Sprite2D" type="Sprite2D" parent="armored skeleton"]
 texture_filter = 1
-texture = ExtResource("1_xysdc")
+texture = ExtResource("1_2f0oa")
 hframes = 9
 vframes = 6
 frame = 1
