@@ -19,6 +19,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("click"):
 		if animation and animation.current_animation != "attack1":
 			animation.play("attack1")
+			
 		return
 
 	if motion != Vector2.ZERO:
