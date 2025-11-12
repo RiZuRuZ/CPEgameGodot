@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c1sj5mhwcmfv4"]
 
-[ext_resource type="Texture2D" uid="uid://ba4q8v5nicvss" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton Archer/Skeleton Archer with shadows/Skeleton Archer.png" id="1_idf1l"]
+[ext_resource type="Texture2D" uid="uid://ba4q8v5nicvss" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton Archer/Skeleton Archer with shadows/Skeleton Archer.png" id="1_lqxxp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_el4sk"]
 
@@ -120,7 +120,7 @@ _data = {
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-texture = ExtResource("1_idf1l")
+texture = ExtResource("1_lqxxp")
 hframes = 9
 vframes = 5
 
