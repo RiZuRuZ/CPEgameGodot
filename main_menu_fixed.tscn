@@ -235,8 +235,8 @@ theme_override_styles/slider = SubResource("StyleBoxLine_fu7sn")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_jix8l")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_jix8l")
 max_value = 1.0
-step = 0.05
-value = 1.0
+step = 0.01
+value = 0.5
 script = ExtResource("4_jix8l")
 audio_bus_name = "Music"
 
