@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cncns3br8x555"]
+[gd_scene load_steps=12 format=3 uid="uid://spod8r75d0uy"]
 
-[ext_resource type="Texture2D" uid="uid://cx7c8u77jfgg" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton/Skeleton.png" id="1_luw2k"]
+[ext_resource type="Texture2D" uid="uid://dhi3akyfqtyok" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Greatsword Skeleton/Greatsword Skeleton/Greatsword Skeleton.png" id="1_luw2k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57jlr"]
 
-[sub_resource type="Animation" id="Animation_w8yc4"]
+[sub_resource type="Animation" id="Animation_luw2k"]
 resource_name = "idel"
 length = 0.5
 step = 0.1
@@ -13,7 +13,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
@@ -21,7 +21,7 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_dn4e0"]
+[sub_resource type="Animation" id="Animation_w8yc4"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -36,8 +36,59 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_mnyqd"]
+[sub_resource type="Animation" id="Animation_dn4e0"]
 resource_name = "walk"
+length = 0.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17, 18, 19, 20]
+}
+
+[sub_resource type="Animation" id="Animation_mnyqd"]
+resource_name = "attack1"
+length = 0.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29, 30, 31, 32]
+}
+
+[sub_resource type="Animation" id="Animation_pgf6n"]
+resource_name = "attack2"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]
+}
+
+[sub_resource type="Animation" id="Animation_ldtjo"]
+resource_name = "attack3"
 length = 0.8
 step = 0.1
 tracks/0/type = "value"
@@ -50,61 +101,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 11, 12, 13, 14, 15]
-}
-
-[sub_resource type="Animation" id="Animation_pgf6n"]
-resource_name = "attack1"
-length = 0.6
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [16, 17, 18, 19, 20, 21]
-}
-
-[sub_resource type="Animation" id="Animation_ldtjo"]
-resource_name = "attack2"
-length = 0.7
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [24, 25, 26, 27, 28, 29, 30]
+"values": [48, 49, 50, 51, 52, 53, 54, 55]
 }
 
 [sub_resource type="Animation" id="Animation_r8hvd"]
-resource_name = "block"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [32, 33, 34, 35]
-}
-
-[sub_resource type="Animation" id="Animation_nan7d"]
 resource_name = "hurt"
 length = 0.4
 step = 0.1
@@ -118,10 +118,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [40, 41, 42, 43]
+"values": [60, 61, 62, 63]
 }
 
-[sub_resource type="Animation" id="Animation_e4loa"]
+[sub_resource type="Animation" id="Animation_nan7d"]
 resource_name = "death"
 length = 0.4
 step = 0.1
@@ -135,19 +135,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [48, 49, 50, 51]
+"values": [72, 73, 74, 75]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5qj8s"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pgf6n"]
 _data = {
-&"RESET": SubResource("Animation_dn4e0"),
-&"attack1": SubResource("Animation_pgf6n"),
-&"attack2": SubResource("Animation_ldtjo"),
-&"block": SubResource("Animation_r8hvd"),
-&"death": SubResource("Animation_e4loa"),
-&"hurt": SubResource("Animation_nan7d"),
-&"idel": SubResource("Animation_w8yc4"),
-&"walk": SubResource("Animation_mnyqd")
+&"RESET": SubResource("Animation_w8yc4"),
+&"attack1": SubResource("Animation_mnyqd"),
+&"attack2": SubResource("Animation_pgf6n"),
+&"attack3": SubResource("Animation_ldtjo"),
+&"death": SubResource("Animation_nan7d"),
+&"hurt": SubResource("Animation_r8hvd"),
+&"idel": SubResource("Animation_luw2k"),
+&"walk": SubResource("Animation_dn4e0")
 }
 
 [node name="GreatswordSkeleton" type="Node2D"]
@@ -157,7 +157,7 @@ _data = {
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 texture = ExtResource("1_luw2k")
-hframes = 8
+hframes = 12
 vframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -166,5 +166,5 @@ shape = SubResource("RectangleShape2D_57jlr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 libraries = {
-&"": SubResource("AnimationLibrary_5qj8s")
+&"": SubResource("AnimationLibrary_pgf6n")
 }
