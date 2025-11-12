@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6qq8f3snq6mr"]
+[gd_scene load_steps=9 format=3 uid="uid://b6qq8f3snq6mr"]
 
 [ext_resource type="FontFile" uid="uid://dv1qrtldk3rbw" path="res://Font/GrapeSoda.ttf" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://dlabiyv802coo" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://dvgf2rjtonlyr" path="res://drawbua.jpg" id="2_fu7sn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
 
@@ -45,6 +46,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7vrkn")
+
+[node name="Drawbua" type="Sprite2D" parent="."]
+texture_filter = 6
+position = Vector2(578.8889, 326.5)
+scale = Vector2(3.6055558, 3.6055555)
+texture = ExtResource("2_fu7sn")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

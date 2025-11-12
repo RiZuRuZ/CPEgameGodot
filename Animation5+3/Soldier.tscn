@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvjntbls4eaxg"]
+[gd_scene load_steps=12 format=3 uid="uid://dvjntbls4eaxg"]
 
+[ext_resource type="Script" uid="uid://cr6mvo33nnxa2" path="res://player.gd" id="1_lqgdd"]
 [ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="1_pytxw"]
 
 [sub_resource type="Animation" id="Animation_7wbn6"]
@@ -149,6 +150,9 @@ _data = {
 }
 
 [node name="Soldier" type="Node2D" groups=["player"]]
+script = ExtResource("1_lqgdd")
+gfx_path = NodePath("CharacterBody2D/Soldier")
+anim_path = NodePath("CharacterBody2D/AnimationPlayer")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
@@ -162,3 +166,6 @@ vframes = 7
 libraries = {
 &"": SubResource("AnimationLibrary_sp2n4")
 }
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(5.015, 5.015)
