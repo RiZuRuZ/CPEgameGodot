@@ -1,41 +1,47 @@
 extends Node2D
 
-const SPEED = 100
-var motion = Vector2()
-var animation: AnimationPlayer
-var sprite: Sprite2D  # Explicit type helps with debugging
+@export var SPEED: float = 100.0
+var motion: Vector2 = Vector2.ZERO
+
+@onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var sprite: Sprite2D = $Sprite2D
 
 func _ready() -> void:
-	# Make sure these nodes exist in your scene tree
-	animation = $AnimationSoldier
-	sprite = $Soldier
-
-	if sprite == null:
-		push_error("❌ Sprite2D node not found! Make sure the node is named 'Soldier'.")
 	if animation == null:
-		push_error("❌ AnimationPlayer node not found! Make sure it's named 'AnimationPlayer'.")
+		push_error("AnimationPlayer node not found! Make sure node is named 'AnimationPlayer'.")
+	if sprite == null:
+		push_error("Sprite2D node not found! Make sure node is named 'Sprite2D'.")
 
 func _physics_process(delta: float) -> void:
-	motion = Vector2()
+	motion = Vector2.ZERO
 
-	# Movement input
-	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("d"):
+	# Input movement
+	if Input.is_action_pressed("right"):
 		motion.x += 1
-	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("a"):
+	if Input.is_action_pressed("left"):
 		motion.x -= 1
-	if Input.is_action_pressed("ui_down") or Input.is_action_pressed("s"):
+	if Input.is_action_pressed("down"):
 		motion.y += 1
-	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("w"):
+	if Input.is_action_pressed("up"):
 		motion.y -= 1
 
+	# Attack input (click)
+	if Input.is_action_just_pressed("click"):
+		if animation and animation.current_animation != "attack1":
+			animation.play("attack1")
+		return  # stop movement while attacking
+
+	# Movement and animation control
 	if motion.length() > 0:
 		motion = motion.normalized() * SPEED
-		animation.play("walk")
+		position += motion * delta
 
-		# Flip horizontally (check if sprite exists)
-		if sprite:
+		if animation and animation.current_animation != "walk":
+			animation.play("walk")
+
+		# Flip sprite horizontally
+		if sprite and abs(motion.x) > 0.01:
 			sprite.flip_h = motion.x < 0
 	else:
-		animation.play("idle")
-
-	position += motion * delta
+		if animation and animation.current_animation != "idle":
+			animation.play("idle")
