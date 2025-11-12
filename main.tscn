@@ -242,8 +242,18 @@ position = Vector2(-30, 32)
 tile_map_data = PackedByteArray("AAANAAMAAAACAAEAAAAUAAMAAAACAAEAAAAOAAcAAAABAAEAAAAPAAQAAAABAAEAAAAYAAkAAAABAAEAAAAYAAQAAAAGAAEAAAANAAsAAAAGAAEAAAAKAAYAAAAGAAEAAAALAAoAAAAHAAEAAAAMAAcAAAAHAAEAAAAVAAkAAAAHAAEAAAATAAUAAAAHAAEAAAATAAsAAAAHAAUAAAAQAAkAAAAHAAUAAAAXAAcAAAAHAAUAAAAMAAQAAAAHAAUAAAAWAAMAAAAFAAUAAAAYAAsAAAACAAcAAAAYAAwAAAAEAAcAAAAXAAwAAAADAAcAAAAUAAwAAAAIAAcAAAA=")
 tile_set = SubResource("TileSet_4c57u")
 
+[node name="Soldier" parent="." instance=ExtResource("6_5vw27")]
+position = Vector2(185, 118)
+script = ExtResource("2_h2yge")
+
+[node name="Camera2D" type="Camera2D" parent="Soldier"]
+position = Vector2(0, 3)
+zoom = Vector2(3.41, 3.41)
+
+[node name="Slime" parent="." instance=ExtResource("5_272bh")]
+position = Vector2(249, 84)
+
 [node name="BOCCHI" type="CharacterBody2D" parent="."]
-visible = false
 position = Vector2(974, 787)
 script = ExtResource("4_lquwl")
 
@@ -259,14 +269,3 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_272bh")
 }
-
-[node name="Slime" parent="." instance=ExtResource("5_272bh")]
-position = Vector2(249, 84)
-
-[node name="Soldier" parent="." instance=ExtResource("6_5vw27")]
-position = Vector2(185, 118)
-script = ExtResource("2_h2yge")
-
-[node name="Camera2D" type="Camera2D" parent="Soldier"]
-position = Vector2(0, 3)
-zoom = Vector2(3.41, 3.41)
