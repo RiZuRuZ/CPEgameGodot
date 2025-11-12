@@ -1,0 +1,164 @@
+[gd_scene load_steps=11 format=3 uid="uid://cnaiuv73tcihs"]
+
+[ext_resource type="Texture2D" uid="uid://dao3kryrv4qen" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Priest/Priest with shadows/Priest.png" id="1_oxqbr"]
+[ext_resource type="Script" uid="uid://dsug6y5sg4nkx" path="res://playerclass.gd" id="1_t22tp"]
+
+[sub_resource type="Animation" id="Animation_hpt6j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Priest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Priest:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5pk06"]
+resource_name = "attack1"
+length = 0.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Priest:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_xscru"]
+resource_name = "death"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Priest:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 9), Vector2i(1, 9), Vector2i(2, 9), Vector2i(3, 9)]
+}
+
+[sub_resource type="Animation" id="Animation_stobd"]
+resource_name = "heal"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Priest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [45, 46, 47, 48, 49, 50]
+}
+
+[sub_resource type="Animation" id="Animation_e36ip"]
+resource_name = "hurt"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Priest:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(2, 8), Vector2i(3, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_fq8ev"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Priest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_esujj"]
+resource_name = "walk"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Priest:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7cfxn"]
+_data = {
+&"RESET": SubResource("Animation_hpt6j"),
+&"attack1": SubResource("Animation_5pk06"),
+&"death": SubResource("Animation_xscru"),
+&"heal": SubResource("Animation_stobd"),
+&"hurt": SubResource("Animation_e36ip"),
+&"idle": SubResource("Animation_fq8ev"),
+&"walk": SubResource("Animation_esujj")
+}
+
+[node name="Priest" type="Node2D" groups=["player"]]
+script = ExtResource("1_t22tp")
+gfx_path = NodePath("CharacterBody2D/Priest")
+anim_path = NodePath("CharacterBody2D/AnimationPlayer")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Priest" type="Sprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+texture = ExtResource("1_oxqbr")
+hframes = 9
+vframes = 10
+frame = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_7cfxn")
+}
