@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="CPEGame"
-run/main_scene="uid://b6qq8f3snq6mr"
+run/main_scene="uid://cf8bawxqbd3wt"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
-[global_group]
+[display]
 
-player=""
+window/stretch/mode="canvas_items"
 
 [input]
 
