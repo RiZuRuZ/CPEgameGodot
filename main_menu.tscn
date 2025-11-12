@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=13 format=3 uid="uid://cf8bawxqbd3wt"]
 
 [ext_resource type="Script" uid="uid://ck2jde4vwhbgy" path="res://main_menu.gd" id="1_7vrkn"]
@@ -252,3 +253,8 @@ script = ExtResource("5_glbon")
 [connection signal="pressed" from="Options/Back" to="." method="_on_back_options_pressed"]
 [connection signal="value_changed" from="Options/VBoxContainer/HBoxContainer/AudioControl" to="Options/VBoxContainer/HBoxContainer/AudioControl" method="_on_value_changed"]
 [connection signal="toggled" from="Options/VBoxContainer/FullscreenControl" to="Options/VBoxContainer/FullscreenControl" method="_on_toggled"]
+=======
+[gd_scene format=3 uid="uid://cf8bawxqbd3wt"]
+
+[node name="MainMenu" type="Node2D"]
+>>>>>>> Stashed changes
