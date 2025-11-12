@@ -1,47 +1,36 @@
 extends Node2D
 
 @export var SPEED: float = 100.0
-var motion: Vector2 = Vector2.ZERO
+var motion := Vector2.ZERO
 
-@onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var sprite: Sprite2D = $Sprite2D
+@export var gfx_path: NodePath
+@export var anim_path: NodePath
 
-func _ready() -> void:
-	if animation == null:
-		push_error("AnimationPlayer node not found! Make sure node is named 'AnimationPlayer'.")
-	if sprite == null:
-		push_error("Sprite2D node not found! Make sure node is named 'Sprite2D'.")
+@onready var gfx: Node2D = $"CharacterBody2D/Soldier"        # your Sprite2D
+@onready var animation: AnimationPlayer = $"CharacterBody2D/AnimationPlayer"  # sibling of CharacterBody2D
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	motion = Vector2.ZERO
+	if Input.is_action_pressed("right"): motion.x += 1
+	if Input.is_action_pressed("left"):  motion.x -= 1
+	if Input.is_action_pressed("down"):  motion.y += 1
+	if Input.is_action_pressed("up"):    motion.y -= 1
 
-	# Input movement
-	if Input.is_action_pressed("right"):
-		motion.x += 1
-	if Input.is_action_pressed("left"):
-		motion.x -= 1
-	if Input.is_action_pressed("down"):
-		motion.y += 1
-	if Input.is_action_pressed("up"):
-		motion.y -= 1
-
-	# Attack input (click)
 	if Input.is_action_just_pressed("click"):
 		if animation and animation.current_animation != "attack1":
 			animation.play("attack1")
-		return  # stop movement while attacking
+		return
 
-	# Movement and animation control
-	if motion.length() > 0:
+	if motion != Vector2.ZERO:
 		motion = motion.normalized() * SPEED
-		position += motion * delta
+		position += motion * _delta
 
-		if animation and animation.current_animation != "walk":
+		if gfx and abs(motion.x) > 0.01:
+			var sx: float = abs(gfx.scale.x)
+			gfx.scale.x = -sx if motion.x < 0 else sx
+
+		if animation and animation.current_animation not in ["walk", "attack1"]:
 			animation.play("walk")
-
-		# Flip sprite horizontally
-		if sprite and abs(motion.x) > 0.01:
-			sprite.flip_h = motion.x < 0
 	else:
-		if animation and animation.current_animation != "idle":
+		if animation and animation.current_animation not in ["idle", "attack1"]:
 			animation.play("idle")
