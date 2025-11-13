@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://oa6rrve84tyk"]
 
-[ext_resource type="Texture2D" uid="uid://csrmb1kiyiolf" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Slime/Slime/Slime.png" id="1_3y7i3"]
 [ext_resource type="Script" uid="uid://c2w3cd8dpymok" path="res://aifollow.gd" id="1_oor1w"]
+[ext_resource type="Texture2D" uid="uid://ddlxqnmgnkiru" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Slime/Slime with shadows/Slime.png" id="2_oor1w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oor1w"]
 radius = 5.0
@@ -174,7 +174,7 @@ shape = SubResource("CapsuleShape2D_oor1w")
 
 [node name="Slime" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-texture = ExtResource("1_3y7i3")
+texture = ExtResource("2_oor1w")
 hframes = 12
 vframes = 6
 
