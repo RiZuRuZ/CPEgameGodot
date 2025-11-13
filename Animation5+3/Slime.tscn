@@ -1,7 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://oa6rrve84tyk"]
+[gd_scene load_steps=12 format=3 uid="uid://oa6rrve84tyk"]
 
 [ext_resource type="Texture2D" uid="uid://csrmb1kiyiolf" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Slime/Slime/Slime.png" id="1_3y7i3"]
 [ext_resource type="Script" uid="uid://c2w3cd8dpymok" path="res://aifollow.gd" id="1_oor1w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oor1w"]
+radius = 5.0
+height = 20.0
 
 [sub_resource type="Animation" id="Animation_dg77c"]
 length = 0.001
@@ -159,6 +163,13 @@ _data = {
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_oor1w")
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_oor1w")
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="Slime" type="Sprite2D" parent="CharacterBody2D"]
@@ -171,3 +182,11 @@ vframes = 6
 libraries = {
 &"": SubResource("AnimationLibrary_cegan")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_oor1w")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="CharacterBody2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
