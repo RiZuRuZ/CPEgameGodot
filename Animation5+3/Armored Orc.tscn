@@ -186,3 +186,8 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_7dm8c")
+
+[node name="HBArea2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HBArea2D"]
+polygon = PackedVector2Array(14, -14, 18, -9, 17, 0, 11, 9, 9, 13, 19, 12, 22, 7, 23, -1, 22, -8, 21, -12, 17, -13)

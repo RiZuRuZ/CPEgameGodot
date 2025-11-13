@@ -168,3 +168,8 @@ texture_filter = 1
 texture = ExtResource("1_u0vs0")
 hframes = 12
 vframes = 7
+
+[node name="HBArea2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HBArea2D"]
+polygon = PackedVector2Array(-9, -12, -1, -16, 8, -12, 13, -3, 14, 7, 11, 11, 21, 11, 27, 7, 24, -3, 17, -12, 8, -18, 0, -21, -14, -19, -14, -16)
