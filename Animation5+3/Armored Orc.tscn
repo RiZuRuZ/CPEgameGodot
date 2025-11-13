@@ -189,5 +189,11 @@ shape = SubResource("RectangleShape2D_7dm8c")
 
 [node name="HBArea2D" type="Area2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk1" type="CollisionPolygon2D" parent="HBArea2D"]
 polygon = PackedVector2Array(14, -14, 18, -9, 17, 0, 11, 9, 9, 13, 19, 12, 22, 7, 23, -1, 22, -8, 21, -12, 17, -13)
+
+[node name="atk2" type="CollisionPolygon2D" parent="HBArea2D"]
+polygon = PackedVector2Array(7, 3, 19, 4, 30, 1, 19, -3, 7, 0)
+
+[node name="atk3" type="CollisionPolygon2D" parent="HBArea2D"]
+polygon = PackedVector2Array(-29, 7, 29, 7, 6, -14, 6, 0, -11, 0, -11, -16)
