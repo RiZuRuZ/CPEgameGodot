@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bxxr8ojys2mll"]
+[gd_scene load_steps=20 format=4 uid="uid://bxxr8ojys2mll"]
 
 [ext_resource type="Script" uid="uid://bj24n1nplccc" path="res://mainscript.gd" id="1_5vw27"]
 [ext_resource type="Texture2D" uid="uid://b4i8t0f8lh35y" path="res://Scene Asset/forest_/forestPath_.png" id="2_7mycd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b0aoiusmrktq7" path="res://Animation5+3/swordman.gd" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://dxcugiolp3tiu" path="res://Animation5+3/Knight.tscn" id="9_4c57u"]
 [ext_resource type="Script" uid="uid://cde8c0jxnwdab" path="res://Animation5+3/knight.gd" id="10_efxa6"]
+[ext_resource type="PackedScene" uid="uid://bmsfme3fl4725" path="res://Animation5+3/Werebare.tscn" id="11_efxa6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_7mycd")
@@ -273,3 +274,6 @@ script = ExtResource("8_kek77")
 [node name="Knight" parent="." instance=ExtResource("9_4c57u")]
 position = Vector2(254, 171)
 script = ExtResource("10_efxa6")
+
+[node name="Werebare" parent="." instance=ExtResource("11_efxa6")]
+position = Vector2(246, 203)
