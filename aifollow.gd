@@ -9,6 +9,7 @@ extends Node2D
 @onready var animation: AnimationPlayer = $"CharacterBody2D/AnimationPlayer"
 @onready var area: Area2D = $Area2D
 
+var health = 100
 var player: Node2D = null
 var last_dir := Vector2.RIGHT
 var can_attack := true
@@ -33,8 +34,9 @@ func _ready() -> void:
 		animation.animation_finished.connect(_on_animation_player_animation_finished)
 	else:
 		push_error("Slime: AnimationPlayer missing")
-
+	$Bar.max_value = health
 func _physics_process(delta: float) -> void:
+	$Bar.value = health
 	if death:
 		return
 
@@ -98,9 +100,12 @@ func _start_attack(axis_side: bool) -> void:
 # --- Collision handler ---
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("Slime: area_entered ->", area.name, "groups:", area.get_groups())
-	if area.is_in_group("Hitbox") and not death:
-		death = true
-		play_anim("death")
+	if area.is_in_group("Hitbox") and not death :
+		health -= 20
+
+		if health == 0 : 
+			death = true
+			play_anim("death")
 
 # --- Animation finished handler ---
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
