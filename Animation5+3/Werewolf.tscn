@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b3iwu252m0eaq"]
 
-[ext_resource type="Texture2D" uid="uid://batnrjo5vkk2h" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Werewolf/Werewolf/Werewolf.png" id="1_5esf4"]
+[ext_resource type="Texture2D" uid="uid://ca1t7pocxi3sm" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Werewolf/Werewolf with shadows/Werewolf.png" id="1_nm0wn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_el4sk"]
 
@@ -138,7 +138,7 @@ _data = {
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-texture = ExtResource("1_5esf4")
+texture = ExtResource("1_nm0wn")
 hframes = 13
 vframes = 6
 
