@@ -1,3 +1,24 @@
 [gd_scene load_steps=0 format=3 uid="uid://dsdcsdvv2063l"]
 
-[node name="Bar" type="Node2D"]
+[ext_resource type="Script" uid="uid://b01l7ke2ws8y5" path="res://Animation5+3/bar.gd" id="1_yo48e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kj554"]
+bg_color = Color(0.4, 0.4, 0.4, 0.5647059)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yo48e"]
+bg_color = Color(0, 0.71468747, 0.41904217, 1)
+
+[node name="Bar" type="ProgressBar"]
+clip_contents = true
+custom_minimum_size = Vector2(240, 20)
+theme_override_styles/background = SubResource("StyleBoxFlat_kj554")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yo48e")
+value = 36.85
+show_percentage = false
+script = ExtResource("1_yo48e")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+show_percentage = false

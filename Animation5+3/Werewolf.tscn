@@ -142,7 +142,7 @@ script = ExtResource("1_6pkav")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-texture = ExtResource("1_5esf4")
+texture = ExtResource("1_nm0wn")
 hframes = 13
 vframes = 6
 

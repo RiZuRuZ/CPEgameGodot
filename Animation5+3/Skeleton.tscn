@@ -80,10 +80,27 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [48, 49, 50, 51]
+"values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_yg5o5"]
+resource_name = "walk"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
 }
 
 [sub_resource type="Animation" id="Animation_mlow4"]
@@ -160,7 +177,7 @@ script = ExtResource("1_sf5dj")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-texture = ExtResource("1_0ycq7")
+texture = ExtResource("1_cn0fg")
 hframes = 8
 vframes = 7
 
