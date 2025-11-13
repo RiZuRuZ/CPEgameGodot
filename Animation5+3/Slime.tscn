@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://oa6rrve84tyk"]
+[gd_scene load_steps=14 format=3 uid="uid://oa6rrve84tyk"]
 
 [ext_resource type="Script" uid="uid://c2w3cd8dpymok" path="res://aifollow.gd" id="1_oor1w"]
 [ext_resource type="Texture2D" uid="uid://ddlxqnmgnkiru" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Slime/Slime with shadows/Slime.png" id="2_oor1w"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_y6xts"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oor1w"]
 radius = 5.0
@@ -160,6 +161,8 @@ _data = {
 &"walk": SubResource("Animation_ycdy4")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6xts"]
+
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_oor1w")
 
@@ -187,6 +190,14 @@ libraries = {
 position = Vector2(0, 2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_oor1w")
+
+[node name="Bar" parent="." instance=ExtResource("3_y6xts")]
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 217.0
+offset_bottom = 6.0
+scale = Vector2(0.21237649, 0.23785089)
+theme_override_styles/background = SubResource("StyleBoxFlat_y6xts")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="animation_finished" from="CharacterBody2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
