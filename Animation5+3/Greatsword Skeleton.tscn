@@ -168,3 +168,14 @@ shape = SubResource("RectangleShape2D_57jlr")
 libraries = {
 &"": SubResource("AnimationLibrary_r6dwm")
 }
+
+[node name="HBArea2D" type="Area2D" parent="."]
+
+[node name="atk1" type="CollisionPolygon2D" parent="HBArea2D"]
+polygon = PackedVector2Array(14, 13, 30, 12, 41, 4, 38, -6, 29, -13, 13, -6, 11, -5, 12, 2)
+
+[node name="atk2" type="CollisionPolygon2D" parent="HBArea2D"]
+polygon = PackedVector2Array(11, -15, 11, -1, 12, 8, 48, 8, 41, -1, 40, -12, 31, -23, 17, -29)
+
+[node name="atk3" type="CollisionPolygon2D" parent="HBArea2D"]
+polygon = PackedVector2Array(7, 1, 22, -2, 39, 3, 22, 7, 7, 6)

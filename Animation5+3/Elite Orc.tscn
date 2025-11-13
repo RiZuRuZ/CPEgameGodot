@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ygkbw58jhurr"]
+[gd_scene load_steps=13 format=3 uid="uid://ygkbw58jhurr"]
 
 [ext_resource type="Texture2D" uid="uid://spa06wnumoj0" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Elite Orc/Elite Orc with shadows/Elite Orc.png" id="1_7ral1"]
 
@@ -17,23 +17,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_ejc07"]
-resource_name = "ataack2"
-length = 1.1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43]
 }
 
 [sub_resource type="Animation" id="Animation_0vaxa"]
@@ -138,17 +121,37 @@ tracks/0/keys = {
 "values": [11, 12, 13, 14, 15, 16, 17, 18]
 }
 
+[sub_resource type="Animation" id="Animation_ejc07"]
+resource_name = "attack2"
+length = 1.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0csw6"]
 _data = {
 &"RESET": SubResource("Animation_q1xrs"),
-&"ataack2": SubResource("Animation_ejc07"),
 &"attack1": SubResource("Animation_0vaxa"),
+&"attack2": SubResource("Animation_ejc07"),
 &"attack3": SubResource("Animation_yhdgr"),
 &"death": SubResource("Animation_2sksn"),
 &"hurt": SubResource("Animation_kxwyy"),
 &"idel": SubResource("Animation_b1aap"),
 &"walk": SubResource("Animation_rngoj")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ral1"]
+size = Vector2(53, 22)
 
 [node name="EliteOrc" type="Node2D"]
 
@@ -161,10 +164,25 @@ hframes = 11
 vframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(3, -3)
+visible = false
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_o80q2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 libraries = {
 &"": SubResource("AnimationLibrary_0csw6")
 }
+
+[node name="HBArea2D" type="Area2D" parent="."]
+
+[node name="atk1" type="CollisionPolygon2D" parent="HBArea2D"]
+visible = false
+polygon = PackedVector2Array(23, -5, 25, -2, 12, 5, 2, 6, -4, 3, -10, 9, 0, 16, 12, 15, 24, 9, 31, 2, 29, -6)
+
+[node name="atk2" type="CollisionShape2D" parent="HBArea2D"]
+visible = false
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_7ral1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HBArea2D"]
+polygon = PackedVector2Array(11, -33, 18, -23, 20, -11, 15, 0, 11, 7, 18, 10, 34, 9, 29, 4, 31, -14, 30, -22, 27, -30, 16, -35, 10, -36)

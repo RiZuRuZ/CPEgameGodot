@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://daxw1ldvibnfv"]
+[gd_scene load_steps=12 format=3 uid="uid://daxw1ldvibnfv"]
 
 [ext_resource type="Texture2D" uid="uid://b1ru11sd8gncs" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Skeleton/Armored Skeleton with shadows/Armored Skeleton.png" id="1_piqvp"]
 
@@ -132,6 +132,9 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpcml"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_piqvp"]
+radius = 19.026299
+
 [node name="Armored skeleton" type="Node2D"]
 
 [node name="armored skeleton" type="CharacterBody2D" parent="."]
@@ -151,3 +154,12 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="armored skeleton"]
 position = Vector2(4, -2)
 shape = SubResource("RectangleShape2D_vpcml")
+
+[node name="HBArea2D" type="Area2D" parent="."]
+
+[node name="atk1" type="CollisionPolygon2D" parent="HBArea2D"]
+polygon = PackedVector2Array(10, 2, 24, 0, 35, 4, 23, 8, 10, 5)
+
+[node name="atk2" type="CollisionShape2D" parent="HBArea2D"]
+position = Vector2(5, -1)
+shape = SubResource("CircleShape2D_piqvp")
