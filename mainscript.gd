@@ -6,7 +6,7 @@ func _ready() -> void:
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	player.add_to_group("player")
-	player.position = Vector2(400, 300)
+	player.position = Vector2(250, 150)
 
 	# optional if your scene structure matches
 	#player.gfx_path = "CharacterBody2D/Soldier"
