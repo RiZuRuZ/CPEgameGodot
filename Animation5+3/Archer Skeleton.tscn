@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1sj5mhwcmfv4"]
+[gd_scene load_steps=11 format=3 uid="uid://c1sj5mhwcmfv4"]
 
+[ext_resource type="Script" uid="uid://snixfh2s7nb6" path="res://AAAACharacterscript/Archer Skeleton.gd" id="1_eug4y"]
 [ext_resource type="Texture2D" uid="uid://ba4q8v5nicvss" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton Archer/Skeleton Archer with shadows/Skeleton Archer.png" id="1_idf1l"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_el4sk"]
 
 [sub_resource type="Animation" id="Animation_el4sk"]
 length = 0.001
@@ -114,7 +113,12 @@ _data = {
 &"walk": SubResource("Animation_y43re")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cj7im"]
+radius = 5.0
+height = 18.0
+
 [node name="ArcherSkeleton" type="Node2D"]
+script = ExtResource("1_eug4y")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
@@ -124,11 +128,17 @@ texture = ExtResource("1_idf1l")
 hframes = 9
 vframes = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(1, -2)
-shape = SubResource("RectangleShape2D_el4sk")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 libraries = {
 &"": SubResource("AnimationLibrary_mjl7q")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(3, -1)
+shape = SubResource("CapsuleShape2D_cj7im")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, -1)
+shape = SubResource("CapsuleShape2D_cj7im")

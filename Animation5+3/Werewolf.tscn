@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3iwu252m0eaq"]
+[gd_scene load_steps=12 format=3 uid="uid://b3iwu252m0eaq"]
 
 [ext_resource type="Texture2D" uid="uid://batnrjo5vkk2h" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Werewolf/Werewolf/Werewolf.png" id="1_5esf4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_el4sk"]
+[ext_resource type="Script" uid="uid://byc8q1cnjcjga" path="res://AAAACharacterscript/Werewolf.gd" id="1_6pkav"]
 
 [sub_resource type="Animation" id="Animation_pvhr6"]
 length = 0.001
@@ -132,7 +131,12 @@ _data = {
 &"walk": SubResource("Animation_tbfs5")
 }
 
-[node name="ArcherSkeleton2" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rf1h1"]
+radius = 5.0
+height = 16.0
+
+[node name="Werewolf" type="Node2D"]
+script = ExtResource("1_6pkav")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
@@ -142,11 +146,17 @@ texture = ExtResource("1_5esf4")
 hframes = 13
 vframes = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(1, -2)
-shape = SubResource("RectangleShape2D_el4sk")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 libraries = {
 &"": SubResource("AnimationLibrary_dnwna")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(3, 0)
+shape = SubResource("CapsuleShape2D_rf1h1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, 0)
+shape = SubResource("CapsuleShape2D_rf1h1")

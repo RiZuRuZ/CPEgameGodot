@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://ygkbw58jhurr"]
+[gd_scene load_steps=13 format=3 uid="uid://ygkbw58jhurr"]
 
 [ext_resource type="Texture2D" uid="uid://spa06wnumoj0" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Elite Orc/Elite Orc with shadows/Elite Orc.png" id="1_7ral1"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o80q2"]
+[ext_resource type="Script" uid="uid://d1820lyrkerhy" path="res://AAAACharacterscript/Elite Orc.gd" id="1_o80q2"]
 
 [sub_resource type="Animation" id="Animation_q1xrs"]
 length = 0.001
@@ -150,7 +149,12 @@ _data = {
 &"walk": SubResource("Animation_rngoj")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1aap"]
+radius = 6.0
+height = 20.0
+
 [node name="EliteOrc" type="Node2D"]
+script = ExtResource("1_o80q2")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
@@ -160,11 +164,17 @@ texture = ExtResource("1_7ral1")
 hframes = 11
 vframes = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(3, -3)
-shape = SubResource("RectangleShape2D_o80q2")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 libraries = {
 &"": SubResource("AnimationLibrary_0csw6")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_b1aap")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_b1aap")
