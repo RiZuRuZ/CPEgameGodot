@@ -204,3 +204,8 @@ shape = SubResource("RectangleShape2D_vfx4s")
 libraries = {
 &"": SubResource("AnimationLibrary_u2ryj")
 }
+
+[node name="HBArea2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HBArea2D"]
+polygon = PackedVector2Array(10, 3, 19, 4, 31, 1, 19, -3, 10, -1)
