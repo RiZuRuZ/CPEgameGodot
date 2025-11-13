@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://daxw1ldvibnfv"]
 
-[ext_resource type="Texture2D" uid="uid://djenho8af6xde" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Skeleton/Armored Skeleton/Armored Skeleton.png" id="1_piqvp"]
+[ext_resource type="Texture2D" uid="uid://b1ru11sd8gncs" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Skeleton/Armored Skeleton with shadows/Armored Skeleton.png" id="1_piqvp"]
 
 [sub_resource type="Animation" id="Animation_sryvc"]
 resource_name = "Death"
@@ -149,6 +149,5 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="armored skeleton"]
-visible = false
 position = Vector2(4, -2)
 shape = SubResource("RectangleShape2D_vpcml")
