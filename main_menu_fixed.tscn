@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://iagdsij26rmw"]
+[gd_scene load_steps=14 format=3 uid="uid://iagdsij26rmw"]
 
 [ext_resource type="Script" uid="uid://ck2jde4vwhbgy" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="2_ekbyn"]
 [ext_resource type="FontFile" uid="uid://bty22o7674q5x" path="res://GrapeSoda.ttf" id="2_jix8l"]
 [ext_resource type="AudioStream" uid="uid://c33gh2j5ek0rg" path="res://Music/Ambient (Loop Room) _ MiSide [vHn_1JZ-3k8].mp3" id="3_fu7sn"]
 [ext_resource type="Script" uid="uid://biluaio40o2uo" path="res://audio.gd" id="4_ekbyn"]
@@ -58,7 +59,6 @@ grow_vertical = 2
 script = ExtResource("1_7vrkn")
 
 [node name="Background" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,7 +68,6 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_7vrkn")
 
 [node name="MainButtons" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,7 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 9
 
-[node name="Button" type="Button" parent="MainButtons"]
+[node name="Start Game" type="Button" parent="MainButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -91,14 +90,15 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_ekbyn")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_fu7sn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/hover = SubResource("StyleBoxFlat_glbon")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
 text = "Start Game"
 
-[node name="Button2" type="Button" parent="MainButtons"]
+[node name="Options" type="Button" parent="MainButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -106,14 +106,15 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_ekbyn")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_fu7sn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/hover = SubResource("StyleBoxFlat_glbon")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
 text = "Options"
 
-[node name="Button3" type="Button" parent="MainButtons"]
+[node name="Exit" type="Button" parent="MainButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -121,7 +122,8 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_ekbyn")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_fu7sn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/hover = SubResource("StyleBoxFlat_glbon")
@@ -158,6 +160,7 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="Options" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -177,7 +180,8 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 99.5
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 37
+theme_override_fonts/font = ExtResource("2_ekbyn")
+theme_override_font_sizes/font_size = 45
 text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -194,7 +198,8 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_ekbyn")
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_fu7sn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/hover = SubResource("StyleBoxFlat_glbon")
@@ -226,7 +231,8 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="Options/Audio/Master volume"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("2_ekbyn")
+theme_override_font_sizes/font_size = 29
 text = "Master volume"
 
 [node name="Master" type="HSlider" parent="Options/Audio/Master volume"]
@@ -243,8 +249,9 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="Options/Audio/Music volume"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Music volume  "
+theme_override_fonts/font = ExtResource("2_ekbyn")
+theme_override_font_sizes/font_size = 29
+text = "Music volume "
 
 [node name="Music" type="HSlider" parent="Options/Audio/Music volume"]
 layout_mode = 2
@@ -260,8 +267,9 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="Options/Audio/SFX volume"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "SFX volume      "
+theme_override_fonts/font = ExtResource("2_ekbyn")
+theme_override_font_sizes/font_size = 29
+text = "SFX volume   "
 
 [node name="SFX" type="HSlider" parent="Options/Audio/SFX volume"]
 layout_mode = 2
@@ -273,12 +281,13 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_jix8l")
 
 [node name="FullscreenControl" type="CheckButton" parent="Options/Audio"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("2_ekbyn")
+theme_override_font_sizes/font_size = 29
 text = "Fullscreen"
 script = ExtResource("5_glbon")
 
-[connection signal="pressed" from="MainButtons/Button" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="MainButtons/Button2" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="MainButtons/Button3" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MainButtons/Start Game" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainButtons/Options" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainButtons/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Options/Back" to="." method="_on_back_options_pressed"]
 [connection signal="toggled" from="Options/Audio/FullscreenControl" to="Options/Audio/FullscreenControl" method="_on_toggled"]
