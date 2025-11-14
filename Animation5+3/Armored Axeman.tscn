@@ -18,6 +18,102 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HBArea2D/atk1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HBArea2D/atk1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../HBArea2D/atk2:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../HBArea2D/atk2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../HBArea2D/atk3_1:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../HBArea2D/atk3_1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../HBArea2D/CollisionPolygon2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../HBArea2D/CollisionPolygon2D:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_jlwfv"]
 resource_name = "attack1"
@@ -34,6 +130,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [24, 25, 26, 27, 28, 29, 30, 31, 32]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HBArea2D/atk1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.42186207, 0.68001646),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HBArea2D/atk1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.42186207, 0.68159056),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_62m4f"]
@@ -52,6 +172,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [36, 37, 38, 39, 40, 41, 42, 43, 44]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HBArea2D/atk2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3856575, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HBArea2D/atk2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3872316, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_jm8oo"]
 resource_name = "attack3"
@@ -68,6 +212,54 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HBArea2D/atk3_1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35732347, 0.561958, 0.71464694, 0.93974495),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HBArea2D/atk3_1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.35732347, 0.561958, 0.71622103, 0.94131905),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../HBArea2D/CollisionPolygon2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.827983, 1.1254902),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../HBArea2D/CollisionPolygon2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.82640886, 1.1270643),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_tw8ma"]
@@ -158,6 +350,7 @@ size = Vector2(51, 21)
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+visible = false
 position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_jlwfv")
 
@@ -175,7 +368,6 @@ vframes = 7
 [node name="HBArea2D" type="Area2D" parent="."]
 
 [node name="atk1" type="CollisionPolygon2D" parent="HBArea2D"]
-visible = false
 polygon = PackedVector2Array(-9, -12, -1, -16, 8, -12, 13, -3, 14, 7, 11, 11, 21, 11, 27, 7, 24, -3, 17, -12, 8, -18, 0, -21, -14, -19, -14, -16)
 
 [node name="atk2" type="CollisionShape2D" parent="HBArea2D"]
@@ -183,6 +375,12 @@ visible = false
 position = Vector2(2.5, 0.5)
 shape = SubResource("RectangleShape2D_u0vs0")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk3_1" type="CollisionPolygon2D" parent="HBArea2D"]
+visible = false
 position = Vector2(0, 1)
-polygon = PackedVector2Array(-12, 6, -4, 6, 9, 5, 14, 1, 11, -10, 3, -16, -13, -19, 10, -19, 22, -8, 24, 0, 29, 0, 38, -4, 43, 10, 19, 10, 11, 10, -1, 10)
+polygon = PackedVector2Array(-12, 6, -4, 6, 9, 5, 14, 1, 11, -10, 3, -16, -13, -19, 10, -19, 22, -8, 24, 0, 19, 10, 11, 10, -1, 10)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HBArea2D"]
+visible = false
+polygon = PackedVector2Array(11, 10, 20, 8, 36, -4, 36, 3, 42, 3, 43, 10, 36, 12)
+disabled = true
