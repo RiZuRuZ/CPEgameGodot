@@ -2,28 +2,44 @@ extends Node2D
 
 @export var SPEED: float = 50.0
 @export var STOP_RADIUS: float = 18.0
-@export var ATTACK_RADIUS: float = 22.0
+@export var ATTACK_RADIUS: float = 23.0
 @export var ATTACK_DELAY: float = 0.5
 
-@onready var gfx: Node2D = $"CharacterBody2D/Slime"
-@onready var animation: AnimationPlayer = $"CharacterBody2D/AnimationPlayer"
-@onready var area: Area2D = $Area2D
+# --- Exposed NodePaths (set these in the Inspector) ---
+@export var gfx_path: NodePath
+@export var anim_path: NodePath
+@export var area_path: NodePath
 
-var health = 100
+# --- Auto-assigned references ---
+var gfx: Node2D
+var animation: AnimationPlayer
+var area: Area2D
+
+var health := 100
 var player: Node2D = null
 var last_dir := Vector2.RIGHT
 var can_attack := true
 var death := false
 
 func _ready() -> void:
-	await get_tree().process_frame
-	var players := get_tree().get_nodes_in_group("player")
-	if players.size() > 0:
-		player = players[0] as Node2D
+	# Resolve exported paths
+	$CharacterBody2D/Slime/Area2D/CollisionShape2D.disabled = true
+	if gfx_path != NodePath():
+		gfx = get_node(gfx_path) as Node2D
 	else:
-		push_error("Slime: no node in group 'player'")
+		push_warning("Slime: 'gfx_path' not assigned.")
 
-	# --- connect signals ---
+	if anim_path != NodePath():
+		animation = get_node(anim_path) as AnimationPlayer
+	else:
+		push_warning("Slime: 'anim_path' not assigned.")
+
+	if area_path != NodePath():
+		area = get_node(area_path) as Area2D
+	else:
+		push_warning("Slime: 'area_path' not assigned.")
+
+	# Connect signals AFTER nodes are resolved
 	if area:
 		print("Slime: Area2D found ->", area.name)
 		area.area_entered.connect(_on_area_2d_area_entered)
@@ -34,9 +50,21 @@ func _ready() -> void:
 		animation.animation_finished.connect(_on_animation_player_animation_finished)
 	else:
 		push_error("Slime: AnimationPlayer missing")
+
+	# Find player (wait one frame so player can spawn from main scene)
+	await get_tree().process_frame
+	var players := get_tree().get_nodes_in_group("player")
+	if players.size() > 0:
+		player = players[0] as Node2D
+	else:
+		push_error("Slime: no node in group 'player'")
+
 	$Bar.max_value = health
+
+
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
+
 	if death:
 		return
 
@@ -49,7 +77,9 @@ func _physics_process(delta: float) -> void:
 
 	var to_player := player.global_position - global_position
 	var dist := to_player.length()
-	var axis_side: bool = abs(to_player.x) >= abs(to_player.y)
+	var temp_xaxis =  abs(to_player.x)-10
+	var axis_side: bool = temp_xaxis >= abs(to_player.y)
+	#var axis_side: bool = abs(to_player.x)-10 >= abs(to_player.y)
 
 	# --- Facing / flip ---
 	if abs(to_player.x) > 0.01 and gfx:
@@ -77,11 +107,12 @@ func _physics_process(delta: float) -> void:
 			else:
 				play_anim("idle")
 
+
 # --- Attack handler ---
 func _start_attack(axis_side: bool) -> void:
 	play_anim("idle")  # brief pause
 	await get_tree().create_timer(ATTACK_DELAY).timeout
-	if player == null || death:
+	if player == null or death:
 		can_attack = true
 		return
 
@@ -97,23 +128,27 @@ func _start_attack(axis_side: bool) -> void:
 
 	can_attack = true
 
+
 # --- Collision handler ---
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("Slime: area_entered ->", area.name, "groups:", area.get_groups())
-	if area.is_in_group("Hitbox1") and not death :
+func _on_area_2d_area_entered(hit: Area2D) -> void:
+	print("Slime: area_entered ->", hit.name, "groups:", hit.get_groups())
+
+	if hit.is_in_group("Hitbox1") and not death:
 		health -= 20
-		
-	if area.is_in_group("Hitbox2") and not death :
+
+	if hit.is_in_group("Hitbox2") and not death:
 		health -= 40
-		
-	if health <= 0 : 
+
+	if health <= 0:
 		death = true
 		play_anim("death")
+
 
 # --- Animation finished handler ---
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
 		queue_free()
+
 
 # --- Animation control ---
 func play_anim(name: String) -> void:

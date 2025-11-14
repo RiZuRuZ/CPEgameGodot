@@ -1,7 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvjntbls4eaxg"]
+[gd_scene load_steps=15 format=3 uid="uid://dvjntbls4eaxg"]
 
 [ext_resource type="Script" uid="uid://cr6mvo33nnxa2" path="res://player.gd" id="1_lqgdd"]
 [ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="1_pytxw"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="2_t18l3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lqgdd"]
+radius = 4.0
+height = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqgdd"]
 size = Vector2(12, 27)
@@ -200,16 +205,18 @@ _data = {
 &"walk": SubResource("Animation_7jbo1")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lqgdd"]
-radius = 4.0
-height = 14.0
-
 [node name="Soldier" type="Node2D" groups=["player"]]
 script = ExtResource("1_lqgdd")
 gfx_path = NodePath("CharacterBody2D/Soldier")
 anim_path = NodePath("CharacterBody2D/AnimationPlayer")
 hitbox1_path = NodePath("CharacterBody2D/Soldier/Area2D")
 hitbox2_path = NodePath("CharacterBody2D/Soldier/Area2D2")
+area_path = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_lqgdd")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
@@ -241,3 +248,12 @@ zoom = Vector2(5.015, 5.015)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_lqgdd")
+
+[node name="Bar" parent="." instance=ExtResource("2_t18l3")]
+offset_left = -36.000008
+offset_top = -22.0
+offset_right = 204.0
+offset_bottom = -2.0
+scale = Vector2(0.30339333, 0.30339333)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

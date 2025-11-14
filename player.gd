@@ -8,6 +8,7 @@ var motion := Vector2.ZERO
 @export var anim_path: NodePath
 @export var hitbox1_path: NodePath
 @export var hitbox2_path: NodePath
+@export var area_path: NodePath
 
 # Auto-assigned references
 var gfx: Node2D
@@ -16,10 +17,12 @@ var hitbox1: Area2D
 var hitbox2: Area2D
 var hitshape1: CollisionShape2D
 var hitshape2: CollisionShape2D
-
+var area: Area2D
 # Movement control
 var can_move := true
 var is_attacking := false
+var health := 100
+var death := false
 
 func _ready() -> void:
 	if gfx_path != NodePath():
@@ -50,11 +53,16 @@ func _ready() -> void:
 
 	# Disable both hitboxes at start
 	_disable_all_hitboxes()
+	$Bar.max_value = health
 
 
 func _physics_process(delta: float) -> void:
+	$Bar.value = health
 	motion = Vector2.ZERO
-
+	
+	if death:
+		return
+	
 	# === BLOCK MOVEMENT ONLY IF can_move == false ===
 	if not can_move:
 		return
@@ -89,7 +97,9 @@ func _physics_process(delta: float) -> void:
 		if animation and animation.current_animation not in ["idle", "attack1", "attack2"]:
 			animation.play("idle")
 
-
+# ------------------------------------------------------
+# Hitbox helpers
+# ------------------------------------------------------
 func _disable_all_hitboxes() -> void:
 	if hitbox1:
 		hitbox1.monitoring = false
@@ -140,3 +150,27 @@ func _on_anim_finished(anim_name: String) -> void:
 		can_move = true
 		_disable_all_hitboxes()
 		
+# ------------------------------------------------------
+# Hurtbox handling (player takes damage)
+# ------------------------------------------------------
+
+func _on_area_2d_area_entered(hit: Area2D) -> void:
+	# Adjust group names and damage to match your enemy hitboxes
+	if death:
+		return
+
+	# Example: enemy attack areas are in group "EnemyHitbox1" / "EnemyHitbox2"
+	if hit.is_in_group("EnemyHitbox1"):
+		health -= 20
+	if hit.is_in_group("EnemyHitbox2"):
+		health -= 25
+
+	print("Player hit! Health:", health)
+
+	if health <= 0 and not death:
+		death = true
+		can_move = false
+		_disable_all_hitboxes()
+
+		if animation:
+			animation.play("death")
