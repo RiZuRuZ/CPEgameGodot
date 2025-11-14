@@ -271,3 +271,15 @@ anchor_bottom = 0.5
 
 [node name="Slime2" parent="." instance=ExtResource("7_272bh")]
 position = Vector2(249, 93)
+
+[node name="Slime3" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(173, 107)
+
+[node name="Slime4" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(206, 77)
+
+[node name="Slime5" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(247, 66)
+
+[node name="Slime6" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(175, 75)
