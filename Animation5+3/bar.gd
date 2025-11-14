@@ -1,11 +1,13 @@
-extends Node2D
-
-
+extends ProgressBar
+@onready var bar = $Bar
+var health = 100
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	max_value = health
+	value = health
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$CharacterBody2D/AnimatedSprite2D.play("attack3")
+	pass
+	

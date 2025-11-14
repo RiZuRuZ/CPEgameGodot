@@ -1,16 +1,10 @@
-[gd_scene load_steps=20 format=4 uid="uid://bxxr8ojys2mll"]
+[gd_scene load_steps=14 format=4 uid="uid://bxxr8ojys2mll"]
 
 [ext_resource type="Script" uid="uid://bj24n1nplccc" path="res://mainscript.gd" id="1_5vw27"]
 [ext_resource type="Texture2D" uid="uid://b4i8t0f8lh35y" path="res://Scene Asset/forest_/forestPath_.png" id="2_7mycd"]
 [ext_resource type="Texture2D" uid="uid://bqdbe0w2hunk8" path="res://Scene Asset/forest_/forest_ [resources].png" id="3_272bh"]
 [ext_resource type="Texture2D" uid="uid://c7taw5sxo28en" path="res://ExampleAsset/Bocchi Sprite Sheet02-Picsart-BackgroundRemover.png" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bdxdbc5g0btap" path="res://Bocchi.gd" id="4_lquwl"]
-[ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Slime.tscn" id="5_272bh"]
-[ext_resource type="PackedScene" uid="uid://dpcr50t48un4x" path="res://Animation5+3/Swordman.tscn" id="7_5vw27"]
-[ext_resource type="Script" uid="uid://b0aoiusmrktq7" path="res://Animation5+3/swordman.gd" id="8_kek77"]
-[ext_resource type="PackedScene" uid="uid://dxcugiolp3tiu" path="res://Animation5+3/Knight.tscn" id="9_4c57u"]
-[ext_resource type="Script" uid="uid://cde8c0jxnwdab" path="res://Animation5+3/knight.gd" id="10_efxa6"]
-[ext_resource type="PackedScene" uid="uid://bmsfme3fl4725" path="res://Animation5+3/Werebare.tscn" id="11_efxa6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_7mycd")
@@ -247,9 +241,6 @@ position = Vector2(-30, 32)
 tile_map_data = PackedByteArray("AAANAAMAAAACAAEAAAAUAAMAAAACAAEAAAAOAAcAAAABAAEAAAAPAAQAAAABAAEAAAAYAAkAAAABAAEAAAAYAAQAAAAGAAEAAAANAAsAAAAGAAEAAAAKAAYAAAAGAAEAAAALAAoAAAAHAAEAAAAMAAcAAAAHAAEAAAAVAAkAAAAHAAEAAAATAAUAAAAHAAEAAAATAAsAAAAHAAUAAAAQAAkAAAAHAAUAAAAXAAcAAAAHAAUAAAAMAAQAAAAHAAUAAAAWAAMAAAAFAAUAAAAYAAsAAAACAAcAAAAYAAwAAAAEAAcAAAAXAAwAAAADAAcAAAAUAAwAAAAIAAcAAAA=")
 tile_set = SubResource("TileSet_4c57u")
 
-[node name="Slime" parent="." instance=ExtResource("5_272bh")]
-position = Vector2(249, 84)
-
 [node name="BOCCHI" type="CharacterBody2D" parent="."]
 position = Vector2(974, 787)
 script = ExtResource("4_lquwl")
@@ -266,14 +257,3 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_272bh")
 }
-
-[node name="Swordman" parent="." instance=ExtResource("7_5vw27")]
-position = Vector2(256, 145)
-script = ExtResource("8_kek77")
-
-[node name="Knight" parent="." instance=ExtResource("9_4c57u")]
-position = Vector2(254, 171)
-script = ExtResource("10_efxa6")
-
-[node name="Werebare" parent="." instance=ExtResource("11_efxa6")]
-position = Vector2(246, 203)
