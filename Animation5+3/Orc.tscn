@@ -19,7 +19,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Area2D/atk1:disabled")
+tracks/1/path = NodePath("../HBArea2D/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -31,7 +31,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Area2D/atk1:visible")
+tracks/2/path = NodePath("../HBArea2D/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -43,7 +43,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Area2D/atk2:visible")
+tracks/3/path = NodePath("../HBArea2D/atk2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -55,7 +55,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Area2D/atk2:disabled")
+tracks/4/path = NodePath("../HBArea2D/atk2:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -84,7 +84,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Area2D/atk1:disabled")
+tracks/1/path = NodePath("../HBArea2D/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -96,7 +96,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Area2D/atk1:visible")
+tracks/2/path = NodePath("../HBArea2D/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -125,7 +125,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Area2D/atk2:visible")
+tracks/1/path = NodePath("../HBArea2D/atk2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -137,7 +137,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Area2D/atk2:disabled")
+tracks/2/path = NodePath("../HBArea2D/atk2:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -248,12 +248,12 @@ libraries = {
 visible = false
 shape = SubResource("RectangleShape2D_kech8")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HBArea2D" type="Area2D" parent="."]
 
-[node name="atk1" type="CollisionPolygon2D" parent="Area2D"]
+[node name="atk1" type="CollisionPolygon2D" parent="HBArea2D"]
 visible = false
 polygon = PackedVector2Array(3, -14, 12, -7, 15, 4, 12, 12, 21, 14, 23, 2, 17, -13, 6, -17)
 disabled = true
 
-[node name="atk2" type="CollisionPolygon2D" parent="Area2D"]
+[node name="atk2" type="CollisionPolygon2D" parent="HBArea2D"]
 polygon = PackedVector2Array(9, -15, 18, -4, 2, 8, 12, 17, 26, -1, 20, -12)
