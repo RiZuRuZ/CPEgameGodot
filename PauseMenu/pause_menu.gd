@@ -34,6 +34,7 @@ func _on_resume_pressed() -> void:
 
 func _on_option_pressed() -> void:
 	pause_button.visible = false
+	print(pause_button.visible)
 	options.visible = true
 
 func _on_quiz_pressed() -> void:
