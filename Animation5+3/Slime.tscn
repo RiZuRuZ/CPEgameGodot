@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://oa6rrve84tyk"]
+[gd_scene load_steps=15 format=3 uid="uid://oa6rrve84tyk"]
 
 [ext_resource type="Script" uid="uid://c2w3cd8dpymok" path="res://aifollow.gd" id="1_oor1w"]
 [ext_resource type="Texture2D" uid="uid://ddlxqnmgnkiru" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Slime/Slime with shadows/Slime.png" id="2_oor1w"]
@@ -7,6 +7,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oor1w"]
 radius = 5.0
 height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6xts"]
+size = Vector2(20, 4)
 
 [sub_resource type="Animation" id="Animation_dg77c"]
 length = 0.001
@@ -34,6 +37,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [6]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slime/Area2D/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Slime/Area2D2/CollisionPolygon2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_w48qg"]
 resource_name = "attack1"
@@ -51,6 +78,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [24, 25, 26, 27, 28, 29]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slime/Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4597901),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_vivmo"]
 resource_name = "attack2"
@@ -67,6 +106,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slime/Area2D2/CollisionPolygon2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75119454, 0.96050566),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_074og"]
@@ -165,6 +216,9 @@ _data = {
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_oor1w")
+gfx_path = NodePath("CharacterBody2D/Slime")
+anim_path = NodePath("CharacterBody2D/AnimationPlayer")
+area_path = NodePath("Area2D")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -180,6 +234,18 @@ texture_filter = 1
 texture = ExtResource("2_oor1w")
 hframes = 12
 vframes = 6
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D/Slime" groups=["EnemyHitbox1"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Slime/Area2D"]
+position = Vector2(22, 1)
+shape = SubResource("RectangleShape2D_y6xts")
+
+[node name="Area2D2" type="Area2D" parent="CharacterBody2D/Slime" groups=["EnemyHitbox2"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D/Slime/Area2D2"]
+polygon = PackedVector2Array(11, -7, 26, 0, 19, 14, 7, 15, 21, 22, 33, 20, 48, 7, 46, -1, 38, -8, 23, -10)
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 libraries = {
