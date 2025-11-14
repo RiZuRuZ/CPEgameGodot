@@ -261,11 +261,11 @@ shape = SubResource("CapsuleShape2D_oor1w")
 
 [node name="Bar" parent="." instance=ExtResource("3_y6xts")]
 custom_minimum_size = Vector2(240, 20)
-offset_left = -25.0
-offset_top = -14.0
-offset_right = 215.0
-offset_bottom = 6.0
-scale = Vector2(0.21237649, 0.23785089)
+offset_left = -12.0
+offset_top = -10.0
+offset_right = 228.0
+offset_bottom = 10.0
+scale = Vector2(0.09906104, 0.13246784)
 theme_override_styles/background = SubResource("StyleBoxFlat_y6xts")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
