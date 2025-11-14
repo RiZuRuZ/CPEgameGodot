@@ -192,9 +192,9 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_oor1w")
 
 [node name="Bar" parent="." instance=ExtResource("3_y6xts")]
-offset_left = -23.0
+offset_left = -25.0
 offset_top = -14.0
-offset_right = 217.0
+offset_right = 215.0
 offset_bottom = 6.0
 scale = Vector2(0.21237649, 0.23785089)
 theme_override_styles/background = SubResource("StyleBoxFlat_y6xts")
