@@ -18,13 +18,18 @@ var hitbox2: Area2D
 var hitshape1: CollisionShape2D
 var hitshape2: CollisionShape2D
 var area: Area2D
-# Movement control
+
+# Movement / state control
 var can_move := true
 var is_attacking := false
+var is_hurt := false
 var health := 100
 var death := false
+@export var INVINCIBLE_TIME: float = 1.0   # ระยะเวลาอมตะ (วินาที)
+var is_invincible := false                 # ตอนนี้อมตะอยู่ไหม
 
 func _ready() -> void:
+	# --- gfx / anim ---
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
 	else:
@@ -51,18 +56,29 @@ func _ready() -> void:
 	else:
 		push_warning("⚠️ 'hitbox2_path' not assigned.")
 
-	# Disable both hitboxes at start
 	_disable_all_hitboxes()
+
+	# --- Hurtbox (player’s body) ---
+	if area_path != NodePath():
+		area = get_node(area_path) as Area2D
+		area.area_entered.connect(_on_area_2d_area_entered)
+	else:
+		push_warning("⚠️ 'area_path' not assigned for player hurtbox.")
+
 	$Bar.max_value = health
 
 
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	motion = Vector2.ZERO
-	
+
 	if death:
 		return
-	
+
+	# NEW: while hurt, do nothing (let hurt animationเล่นจนจบ)
+	if is_hurt:
+		return
+
 	# === BLOCK MOVEMENT ONLY IF can_move == false ===
 	if not can_move:
 		return
@@ -73,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("down"):  motion.y += 1
 	if Input.is_action_pressed("up"):    motion.y -= 1
 
-# Attack input (left click - can still move)
+	# Attack input (left click - can still move)
 	if Input.is_action_just_pressed("m1"):
 		_start_attack("attack1", false, 1)  # use Hitbox1
 
@@ -97,6 +113,7 @@ func _physics_process(delta: float) -> void:
 		if animation and animation.current_animation not in ["idle", "attack1", "attack2"]:
 			animation.play("idle")
 
+
 # ------------------------------------------------------
 # Hitbox helpers
 # ------------------------------------------------------
@@ -114,9 +131,7 @@ func _disable_all_hitboxes() -> void:
 		hitshape2.disabled = true
 
 
-
 func _enable_hitbox(which: int) -> void:
-	# Turn everything off first
 	_disable_all_hitboxes()
 
 	if which == 1 and hitbox1:
@@ -131,6 +146,7 @@ func _enable_hitbox(which: int) -> void:
 		if hitshape2:
 			hitshape2.disabled = false
 
+
 # ======================================================
 # ATTACK HANDLING
 # ======================================================
@@ -138,7 +154,7 @@ func _start_attack(anim_name: String, lock_movement: bool, which_hitbox: int) ->
 	is_attacking = true
 	can_move = not lock_movement
 
-	_enable_hitbox(which_hitbox)   # <--- activate the correct hitbox
+	_enable_hitbox(which_hitbox)
 
 	if animation:
 		animation.play(anim_name)
@@ -149,28 +165,65 @@ func _on_anim_finished(anim_name: String) -> void:
 		is_attacking = false
 		can_move = true
 		_disable_all_hitboxes()
-		
+
+	if anim_name == "hurt":          # NEW
+		is_hurt = false
+		if not death:
+			can_move = true
+
+
 # ------------------------------------------------------
 # Hurtbox handling (player takes damage)
 # ------------------------------------------------------
-
 func _on_area_2d_area_entered(hit: Area2D) -> void:
-	# Adjust group names and damage to match your enemy hitboxes
-	if death:
+	# ถ้าตายแล้ว หรือกำลังอยู่ในช่วงอมตะ → ไม่โดนดาเมจ
+	if death or is_invincible:
 		return
 
-	# Example: enemy attack areas are in group "EnemyHitbox1" / "EnemyHitbox2"
+	var damaged := false
+
 	if hit.is_in_group("EnemyHitbox1"):
 		health -= 20
-	if hit.is_in_group("EnemyHitbox2"):
+		damaged = true
+	elif hit.is_in_group("EnemyHitbox2"):
 		health -= 25
+		damaged = true
+	# ถ้าไม่อยากให้ทุกอย่างตีเราได้ ลบ else ออกไปเลย
 
-	print("Player hit! Health:", health)
+	if damaged:
+		print("Player hit! Health:", health)
 
-	if health <= 0 and not death:
-		death = true
-		can_move = false
-		_disable_all_hitboxes()
+		if health <= 0 and not death:
+			death = true
+			can_move = false
+			is_hurt = false
+			_disable_all_hitboxes()
+			if animation:
+				animation.play("death")
+		else:
+			is_hurt = true
+			can_move = false
+			if animation:
+				animation.play("hurt")
+			_start_invincibility() 
+			
+func _start_invincibility() -> void:
+	if is_invincible:
+		return  # ป้องกันเรียกซ้ำ
 
-		if animation:
-			animation.play("death")
+	is_invincible = true
+
+	# ถ้าอยากให้ตัวกระพริบตอนอมตะ
+	if gfx:
+		var original_modulate := gfx.modulate
+		var blink_time := INVINCIBLE_TIME / 8.0  # กระพริบ 4 ครั้ง
+
+		for i in range(4):
+			gfx.modulate.a = 0.3
+			await get_tree().create_timer(blink_time).timeout
+			gfx.modulate.a = 1.0
+			await get_tree().create_timer(blink_time).timeout
+
+		gfx.modulate = original_modulate
+
+	is_invincible = false
