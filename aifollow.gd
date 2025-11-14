@@ -100,12 +100,15 @@ func _start_attack(axis_side: bool) -> void:
 # --- Collision handler ---
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("Slime: area_entered ->", area.name, "groups:", area.get_groups())
-	if area.is_in_group("Hitbox") and not death :
+	if area.is_in_group("Hitbox1") and not death :
 		health -= 20
-
-		if health == 0 : 
-			death = true
-			play_anim("death")
+		
+	if area.is_in_group("Hitbox2") and not death :
+		health -= 40
+		
+	if health <= 0 : 
+		death = true
+		play_anim("death")
 
 # --- Animation finished handler ---
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

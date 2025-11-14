@@ -1,7 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvjntbls4eaxg"]
+[gd_scene load_steps=14 format=3 uid="uid://dvjntbls4eaxg"]
 
 [ext_resource type="Script" uid="uid://cr6mvo33nnxa2" path="res://player.gd" id="1_lqgdd"]
 [ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="1_pytxw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqgdd"]
+size = Vector2(12, 27)
 
 [sub_resource type="Animation" id="Animation_7wbn6"]
 length = 0.001
@@ -28,6 +31,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Soldier/Area2D2/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_k0vnf"]
@@ -74,6 +89,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [27, 28, 29, 30, 31, 32]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Soldier/Area2D2/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_cdnk1"]
@@ -181,6 +208,8 @@ height = 14.0
 script = ExtResource("1_lqgdd")
 gfx_path = NodePath("CharacterBody2D/Soldier")
 anim_path = NodePath("CharacterBody2D/AnimationPlayer")
+hitbox1_path = NodePath("CharacterBody2D/Soldier/Area2D")
+hitbox2_path = NodePath("CharacterBody2D/Soldier/Area2D2")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
@@ -190,11 +219,17 @@ texture = ExtResource("1_pytxw")
 hframes = 9
 vframes = 7
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D/Soldier" groups=["Hitbox"]]
+[node name="Area2D" type="Area2D" parent="CharacterBody2D/Soldier" groups=["Hitbox1"]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D/Soldier/Area2D"]
 polygon = PackedVector2Array(-12, 2, 0, 9, 15, -1, 5, -12, 21, -10, 21, 6, 11, 12, -7, 10)
 disabled = true
+
+[node name="Area2D2" type="Area2D" parent="CharacterBody2D/Soldier" groups=["Hitbox2"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Soldier/Area2D2"]
+position = Vector2(14, -3.5)
+shape = SubResource("RectangleShape2D_lqgdd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 libraries = {
