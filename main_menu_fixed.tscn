@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://ck2jde4vwhbgy" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="FontFile" uid="uid://bty22o7674q5x" path="res://GrapeSoda.ttf" id="2_jix8l"]
 [ext_resource type="AudioStream" uid="uid://c33gh2j5ek0rg" path="res://Music/Ambient (Loop Room) _ MiSide [vHn_1JZ-3k8].mp3" id="3_fu7sn"]
-[ext_resource type="Script" path="res://audio_control.gd" id="4_jix8l"]
-[ext_resource type="Script" path="res://fullscreen_control.gd" id="5_glbon"]
+[ext_resource type="Script" uid="uid://biluaio40o2uo" path="res://audio.gd" id="4_ekbyn"]
+[ext_resource type="Script" uid="uid://df6117kbn8al5" path="res://fullscreen_control.gd" id="5_glbon"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
 
@@ -40,7 +40,7 @@ shadow_offset = Vector2(0, 3.41)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06t4h"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_fu7sn"]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7evux"]
 color = Color(1, 1, 1, 1)
 thickness = 6
 
@@ -58,6 +58,7 @@ grow_vertical = 2
 script = ExtResource("1_7vrkn")
 
 [node name="Background" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -200,47 +201,77 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_glbon")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
 text = "Back"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Options"]
+[node name="Audio" type="VBoxContainer" parent="Options" node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -173.5
-offset_top = -67.25
-offset_right = 173.5
-offset_bottom = 67.25
+offset_left = -204.5
+offset_top = -115.0
+offset_right = 202.26111
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
+script = ExtResource("4_ekbyn")
+master_slider = NodePath("Master volume/Master")
+music_slider = NodePath("Music volume/Music")
+sfx_slider = NodePath("SFX volume/SFX")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Options/VBoxContainer"]
+[node name="Master volume" type="HBoxContainer" parent="Options/Audio"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="Options/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Options/Audio/Master volume"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Music volume"
+text = "Master volume"
 
-[node name="AudioControl" type="HSlider" parent="Options/VBoxContainer/HBoxContainer"]
+[node name="Master" type="HSlider" parent="Options/Audio/Master volume"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_constants/center_grabber = 0
-theme_override_constants/grabber_offset = 0
-theme_override_constants/tick_offset = 0
-theme_override_styles/slider = SubResource("StyleBoxLine_fu7sn")
+theme_override_styles/slider = SubResource("StyleBoxLine_7evux")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_jix8l")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_jix8l")
-max_value = 1.0
-step = 0.01
-value = 0.5
-script = ExtResource("4_jix8l")
-audio_bus_name = "Music"
 
-[node name="FullscreenControl" type="CheckButton" parent="Options/VBoxContainer"]
+[node name="Music volume" type="HBoxContainer" parent="Options/Audio"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Options/Audio/Music volume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Music volume  "
+
+[node name="Music" type="HSlider" parent="Options/Audio/Music volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxLine_7evux")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_jix8l")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_jix8l")
+
+[node name="SFX volume" type="HBoxContainer" parent="Options/Audio"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Options/Audio/SFX volume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SFX volume      "
+
+[node name="SFX" type="HSlider" parent="Options/Audio/SFX volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxLine_7evux")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_jix8l")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_jix8l")
+
+[node name="FullscreenControl" type="CheckButton" parent="Options/Audio"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Fullscreen"
@@ -250,5 +281,4 @@ script = ExtResource("5_glbon")
 [connection signal="pressed" from="MainButtons/Button2" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainButtons/Button3" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Options/Back" to="." method="_on_back_options_pressed"]
-[connection signal="value_changed" from="Options/VBoxContainer/HBoxContainer/AudioControl" to="Options/VBoxContainer/HBoxContainer/AudioControl" method="_on_value_changed"]
-[connection signal="toggled" from="Options/VBoxContainer/FullscreenControl" to="Options/VBoxContainer/FullscreenControl" method="_on_toggled"]
+[connection signal="toggled" from="Options/Audio/FullscreenControl" to="Options/Audio/FullscreenControl" method="_on_toggled"]
