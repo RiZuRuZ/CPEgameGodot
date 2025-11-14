@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @export var SPEED: float = 50.0
 @export var STOP_RADIUS: float = 18.0
@@ -21,9 +21,13 @@ var last_dir := Vector2.RIGHT
 var can_attack := true
 var death := false
 
+
 func _ready() -> void:
-	# Resolve exported paths
+	# ปิดคอลลิชันของ hitbox (ถ้าต้องการ)
+	# *** ถ้าปิดบรรทัดนี้ ศัตรูจะโดนดาเมจไม่ได้ ***
 	$CharacterBody2D/Slime/Area2D/CollisionShape2D.disabled = true
+
+	# Resolve exported paths
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
 	else:
@@ -66,34 +70,39 @@ func _physics_process(delta: float) -> void:
 	$Bar.value = health
 
 	if death:
+		velocity = Vector2.ZERO
+		move_and_slide()
 		return
 
 	if player == null:
-		var players = get_tree().get_nodes_in_group("player")
+		var players := get_tree().get_nodes_in_group("player")
 		if players.size() > 0:
 			player = players[0]
 		else:
+			velocity = Vector2.ZERO
+			move_and_slide()
 			return
 
 	var to_player := player.global_position - global_position
 	var dist := to_player.length()
-	var temp_xaxis =  abs(to_player.x)-10
-	var axis_side: bool = temp_xaxis >= abs(to_player.y)
-	#var axis_side: bool = abs(to_player.x)-10 >= abs(to_player.y)
+
+	# ใช้ float แบบชัดเจน + boolean เปรียบเทียบแนวนอน/แนวตั้ง
+	var axis_side: bool = (absf(to_player.x) - 10.0) >= absf(to_player.y)
 
 	# --- Facing / flip ---
-	if abs(to_player.x) > 0.01 and gfx:
-		var sx: float = abs(gfx.scale.x)
-		gfx.scale.x = -sx if to_player.x < 0 else sx
+	if absf(to_player.x) > 0.01 and gfx:
+		var sx: float = absf(gfx.scale.x)
+		gfx.scale.x = -sx if to_player.x < 0.0 else sx
 
-	# --- Movement ---
+	# --- Movement (ใช้ velocity + move_and_slide) ---
 	if dist > STOP_RADIUS and can_attack:
-		var step := to_player.normalized() * SPEED * delta
-		if step.length() > dist:
-			step = to_player
-		position += step
-		if step != Vector2.ZERO:
-			last_dir = step.normalized()
+		velocity = to_player.normalized() * SPEED
+		if velocity != Vector2.ZERO:
+			last_dir = velocity.normalized()
+	else:
+		velocity = Vector2.ZERO
+
+	move_and_slide()
 
 	# --- Animation state ---
 	if dist <= ATTACK_RADIUS:
@@ -131,16 +140,19 @@ func _start_attack(axis_side: bool) -> void:
 
 # --- Collision handler ---
 func _on_area_2d_area_entered(hit: Area2D) -> void:
+	if death:
+		return
+
 	print("Slime: area_entered ->", hit.name, "groups:", hit.get_groups())
 
-	if hit.is_in_group("Hitbox1") and not death:
+	if hit.is_in_group("Hitbox1"):
 		health -= 20
-
-	if hit.is_in_group("Hitbox2") and not death:
+	elif hit.is_in_group("Hitbox2"):
 		health -= 40
 
-	if health <= 0:
+	if health <= 0 and not death:
 		death = true
+		can_attack = false
 		play_anim("death")
 
 

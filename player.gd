@@ -188,7 +188,9 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 	elif hit.is_in_group("EnemyHitbox2"):
 		health -= 25
 		damaged = true
-	# ถ้าไม่อยากให้ทุกอย่างตีเราได้ ลบ else ออกไปเลย
+	elif (!hit.is_in_group("EnemyHitbox1") and !hit.is_in_group("EnemyHitbox2")):
+		health -= 10
+		damaged = true
 
 	if damaged:
 		print("Player hit! Health:", health)
