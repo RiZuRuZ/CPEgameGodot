@@ -178,6 +178,7 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 			
 			if animation:
 				animation.play("death")
+				get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
 
 		else:
 			is_hurt = true
