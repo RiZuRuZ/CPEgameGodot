@@ -28,6 +28,8 @@ var death := false
 @export var INVINCIBLE_TIME: float = 1.0   # ระยะเวลาอมตะ (วินาที)
 var is_invincible := false                 # ตอนนี้อมตะอยู่ไหม
 
+@onready var arrow_scene = preload("res://AProjectile/Arrow1.tscn")
+
 func _ready() -> void:
 	# --- gfx / anim ---
 	if gfx_path != NodePath():
@@ -92,11 +94,16 @@ func _physics_process(delta: float) -> void:
 	# Attack input (left click - can still move)
 	if Input.is_action_just_pressed("m1"):
 		_start_attack("attack1", false, 1)  # use Hitbox1
+		print("attack")
 
 	# Attack input (Q - lock movement)
 	if Input.is_action_just_pressed("q"):
 		_start_attack("attack2", true, 2)   # use Hitbox2
 		return   # stop movement during attack2
+	
+	if Input.is_action_just_pressed("m2"):
+		print("shoot")
+		shoot_arrow()
 
 	# Movement + walk animation
 	if motion != Vector2.ZERO:
@@ -229,3 +236,11 @@ func _start_invincibility() -> void:
 		gfx.modulate = original_modulate
 
 	is_invincible = false
+
+func shoot_arrow():
+	var arrow = arrow_scene.instantiate()
+	arrow.global_position = global_position
+	var dir = (get_global_mouse_position() - global_position).normalized()
+	arrow.setup(dir)
+	get_parent().add_child(arrow)
+	

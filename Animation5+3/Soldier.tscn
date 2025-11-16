@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dvjntbls4eaxg"]
+[gd_scene load_steps=16 format=3 uid="uid://dvjntbls4eaxg"]
 
-[ext_resource type="Script" uid="uid://cr6mvo33nnxa2" path="res://player.gd" id="1_lqgdd"]
 [ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="1_pytxw"]
+[ext_resource type="Script" uid="uid://c3mhf5q7j70kk" path="res://playermouselook.gd" id="1_t18l3"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="2_t18l3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lqgdd"]
@@ -73,10 +73,10 @@ tracks/1/path = NodePath("Soldier/Area2D/CollisionPolygon2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [true, false, true, true]
 }
 
 [sub_resource type="Animation" id="Animation_wumdd"]
@@ -102,10 +102,10 @@ tracks/1/path = NodePath("Soldier/Area2D2/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [true, false, true, true]
 }
 
 [sub_resource type="Animation" id="Animation_cdnk1"]
@@ -123,6 +123,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [36, 37, 38, 39, 40, 41, 42, 43, 44]
+}
+
+[sub_resource type="Animation" id="Animation_t18l3"]
+resource_name = "attack3faster"
+length = 0.6
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soldier:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.22500001, 0.3, 0.375, 0.45000002, 0.52500004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [36, 37, 38, 39, 40, 41, 42, 43]
 }
 
 [sub_resource type="Animation" id="Animation_50vd6"]
@@ -199,6 +216,7 @@ _data = {
 &"attack1": SubResource("Animation_k0vnf"),
 &"attack2": SubResource("Animation_wumdd"),
 &"attack3": SubResource("Animation_cdnk1"),
+&"attack3faster": SubResource("Animation_t18l3"),
 &"death": SubResource("Animation_50vd6"),
 &"hurt": SubResource("Animation_a8ecf"),
 &"idle": SubResource("Animation_l4hte"),
@@ -206,12 +224,12 @@ _data = {
 }
 
 [node name="Soldier" type="Node2D" groups=["player"]]
-script = ExtResource("1_lqgdd")
+script = ExtResource("1_t18l3")
 gfx_path = NodePath("CharacterBody2D/Soldier")
 anim_path = NodePath("CharacterBody2D/AnimationPlayer")
-hitbox1_path = NodePath("CharacterBody2D/Soldier/Area2D")
-hitbox2_path = NodePath("CharacterBody2D/Soldier/Area2D2")
 area_path = NodePath("Area2D")
+arrow_spawnR_path = NodePath("ArrowSpawnR")
+arrow_spawnL_path = NodePath("ArrowSpawnL")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -244,7 +262,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-zoom = Vector2(5.015, 5.015)
+zoom = Vector2(3.465, 3.465)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_lqgdd")
@@ -255,5 +273,11 @@ offset_top = -15.0
 offset_right = 69.78955
 offset_bottom = -4.888153
 scale = Vector2(0.30339333, 0.30339333)
+
+[node name="ArrowSpawnR" type="Marker2D" parent="."]
+position = Vector2(9, 0)
+
+[node name="ArrowSpawnL" type="Marker2D" parent="."]
+position = Vector2(-9, 0)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

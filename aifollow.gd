@@ -20,6 +20,8 @@ var player: Node2D = null
 var last_dir := Vector2.RIGHT
 var can_attack := true
 var death := false
+var is_hurt := false
+var can_move := true
 
 
 func _ready() -> void:
@@ -69,11 +71,15 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 
-	if death:
+	if death or is_hurt:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
-
+	
+	if not can_move:
+		return
+	
+	
 	if player == null:
 		var players := get_tree().get_nodes_in_group("player")
 		if players.size() > 0:
@@ -121,7 +127,7 @@ func _physics_process(delta: float) -> void:
 func _start_attack(axis_side: bool) -> void:
 	play_anim("idle")  # brief pause
 	await get_tree().create_timer(ATTACK_DELAY).timeout
-	if player == null or death:
+	if player == null or death or is_hurt:
 		can_attack = true
 		return
 
@@ -140,26 +146,48 @@ func _start_attack(axis_side: bool) -> void:
 
 # --- Collision handler ---
 func _on_area_2d_area_entered(hit: Area2D) -> void:
-	if death:
+	if death or is_hurt:
 		return
-
-	print("Slime: area_entered ->", hit.name, "groups:", hit.get_groups())
+	
+	var damaged := false
+	#print("Slime: area_entered ->", hit.name, "groups:", hit.get_groups())
 
 	if hit.is_in_group("Hitbox1"):
 		health -= 20
+		damaged = true
 	elif hit.is_in_group("Hitbox2"):
 		health -= 40
-
-	if health <= 0 and not death:
-		death = true
-		can_attack = false
-		play_anim("death")
+		damaged = true
+	elif hit.is_in_group("Projectile1"):
+		health -= 20
+		damaged = true
+	
+	if damaged:
+		print("Slime hit! Health:", health)
+		
+		if health <= 0 and not death:
+			death = true
+			is_hurt = false
+			can_attack = false
+			can_move = false
+			play_anim("death")
+		else:
+			is_hurt = true
+			can_move = false
+			can_attack = false
+			if animation:
+				animation.play("hurt")
 
 
 # --- Animation finished handler ---
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
 		queue_free()
+	if anim_name == "hurt":          # NEW
+		is_hurt = false
+		if not death:
+			can_move = true
+			can_attack = true
 
 
 # --- Animation control ---
