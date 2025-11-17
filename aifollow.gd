@@ -27,7 +27,8 @@ var can_move := true
 func _ready() -> void:
 	# ปิดคอลลิชันของ hitbox (ถ้าต้องการ)
 	# *** ถ้าปิดบรรทัดนี้ ศัตรูจะโดนดาเมจไม่ได้ ***
-	$CharacterBody2D/Slime/Area2D/CollisionShape2D.disabled = true
+	$CharacterBody2D/Sprite2D/Area2D/atk2.disabled = true
+	$CharacterBody2D/Sprite2D/HBArea2D/atk1.disabled = true
 
 	# Resolve exported paths
 	if gfx_path != NodePath():

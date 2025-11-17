@@ -388,7 +388,9 @@ _data = {
 &"walk": SubResource("Animation_au8vn")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aual"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_au8vn"]
+radius = 4.0
+height = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_au8vn"]
 size = Vector2(33, 15)
@@ -409,9 +411,8 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-visible = false
 position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_1aual")
+shape = SubResource("CapsuleShape2D_au8vn")
 
 [node name="HBArea2D" type="Area2D" parent="."]
 
