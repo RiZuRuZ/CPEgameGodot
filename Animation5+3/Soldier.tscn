@@ -223,7 +223,9 @@ _data = {
 &"walk": SubResource("Animation_7jbo1")
 }
 
-[node name="Soldier" type="Node2D" groups=["player"]]
+[node name="Soldier" type="CharacterBody2D" groups=["player"]]
+disable_mode = 2
+collision_mask = 4
 script = ExtResource("1_t18l3")
 gfx_path = NodePath("CharacterBody2D/Soldier")
 anim_path = NodePath("CharacterBody2D/AnimationPlayer")
@@ -262,10 +264,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-zoom = Vector2(3.465, 3.465)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CapsuleShape2D_lqgdd")
+zoom = Vector2(2.29, 2.29)
 
 [node name="Bar" parent="." instance=ExtResource("2_t18l3")]
 offset_left = -12.0
@@ -279,5 +278,8 @@ position = Vector2(9, 0)
 
 [node name="ArrowSpawnL" type="Marker2D" parent="."]
 position = Vector2(-9, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_lqgdd")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @export var SPEED: float = 100.0
 var motion := Vector2.ZERO
@@ -69,7 +69,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
 	$Bar.value = health
 	motion = Vector2.ZERO
 
@@ -80,6 +79,8 @@ func _physics_process(delta: float) -> void:
 		return
 
 	if not can_move:
+		velocity = Vector2.ZERO
+		move_and_slide()
 		return
 	
 	# หันตามเมาส์ทุกเฟรม (ถ้ายังมีชีวิตและขยับได้)
@@ -87,9 +88,9 @@ func _physics_process(delta: float) -> void:
 	
 	# --- movement input ---
 	if Input.is_action_pressed("right"): motion.x += 1
-	if Input.is_action_pressed("left"): motion.x -= 1
-	if Input.is_action_pressed("down"): motion.y += 1
-	if Input.is_action_pressed("up"): motion.y -= 1
+	if Input.is_action_pressed("left"):  motion.x -= 1
+	if Input.is_action_pressed("down"):  motion.y += 1
+	if Input.is_action_pressed("up"):    motion.y -= 1
 
 	# --- attack inputs ---
 	if Input.is_action_just_pressed("m1"):
@@ -103,10 +104,14 @@ func _physics_process(delta: float) -> void:
 		_start_attack("attack3", true)
 		_delayed_shoot()
 
-	# --- movement ---
+	# --- movement (ใช้ velocity + move_and_slide) ---
 	if motion != Vector2.ZERO:
-		motion = motion.normalized() * SPEED
-		position += motion * delta
+		motion = motion.normalized()
+		velocity = motion * SPEED
+	else:
+		velocity = Vector2.ZERO
+
+	move_and_slide()
 
 	# --- walk / idle animation ---
 	if motion != Vector2.ZERO:
