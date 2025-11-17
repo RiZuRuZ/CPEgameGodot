@@ -250,6 +250,16 @@ _data = {
 
 [node name="Skeleton" type="Node2D"]
 script = ExtResource("1_yg5o5")
+SPEED = null
+STOP_RADIUS = null
+ATTACK_RADIUS = null
+ATTACK_DELAY = null
+DETECT_RADIUS = null
+IDLE_CHANGE_TIME = null
+gfx_path = null
+anim_path = NodePath("CharacterBody2D/AnimationPlayer")
+area_path = NodePath("CharacterBody2D/CollisionShape2D")
+health = null
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 

@@ -225,7 +225,6 @@ _data = {
 position = Vector2(31, -15)
 script = ExtResource("1_5vw27")
 Wave_time = 60
-FirstWave_time = 10
 SafeZone = 70
 SpawnZone = 70
 metadata/_edit_vertical_guides_ = [-299.0]
