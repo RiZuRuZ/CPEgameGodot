@@ -2,6 +2,10 @@ extends Node2D
 
 @export var SPEED: float = 100.0
 var motion := Vector2.ZERO
+#monter,position
+var SlimeScene = preload("res://Animation5+3/Slime.tscn")
+var SkeletonScene = preload("res://Animation5+3/Skeleton.tscn")
+
 
 # Exposed NodePaths (set in the Inspector)
 @export var gfx_path: NodePath
@@ -61,9 +65,11 @@ func _ready() -> void:
 	arrow_spawnL = get_node(arrow_spawnL_path)
 
 	$Bar.max_value = health
+	
 
 
 func _physics_process(delta: float) -> void:
+	
 	$Bar.value = health
 	motion = Vector2.ZERO
 
@@ -247,3 +253,5 @@ func shoot_arrow():
 func _disable_collision():
 	$CharacterBody2D/Soldier/Area2D/CollisionPolygon2D.disabled = true
 	$CharacterBody2D/Soldier/Area2D2/CollisionShape2D.disabled = true
+	
+	
