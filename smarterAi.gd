@@ -12,12 +12,15 @@ extends CharacterBody2D
 @export var anim_path: NodePath
 @export var area_path: NodePath
 
+#--- Monster Setup -----
+@export var health := 100
+
 # --- Auto refs ---
 var gfx: Node2D
 var animation: AnimationPlayer
 var area: Area2D
 
-var health := 100
+
 var player: Node2D = null
 var last_dir := Vector2.RIGHT
 
@@ -69,7 +72,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
-
 	if death:
 		velocity = Vector2.ZERO
 		move_and_slide()
