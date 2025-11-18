@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxm3620kjgnt5"]
+
+[ext_resource type="Script" uid="uid://casmjpw38smig" path="res://wave.gd" id="1_8asc4"]
+
+[node name="wave" type="CanvasLayer"]
+script = ExtResource("1_8asc4")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(6.1002865, 4.7343383)
+text = "hjkl"
+
+[node name="time" type="Label" parent="."]
+texture_filter = 1
+offset_left = 532.00006
+offset_top = -2.0
+offset_right = 600.00006
+offset_bottom = 21.0
+scale = Vector2(3.9709148, 3.9709148)
+text = "-------------"
+horizontal_alignment = 2
