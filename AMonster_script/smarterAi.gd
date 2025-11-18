@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 @export var SPEED: float = 50.0
-@export var STOP_RADIUS: float = 18.0          # ระยะที่หยุด ไม่ยืนทับผู้เล่น
-@export var ATTACK_RADIUS: float = 23.0        # ระยะโจมตี
+@export var STOP_RADIUS: float = 15.0          # ระยะที่หยุด ไม่ยืนทับผู้เล่น
+@export var ATTACK_RADIUS: float = 20.0        # ระยะโจมตี
 @export var ATTACK_DELAY: float = 0.5          # หน่วงก่อนฟัน
-@export var DETECT_RADIUS: float = 120.0       # ระยะที่เริ่มเห็นผู้เล่น
+@export var DETECT_RADIUS: float = 220.0       # ระยะที่เริ่มเห็นผู้เล่น
 @export var IDLE_CHANGE_TIME: float = 1.5      # เปลี่ยนทิศเดินมั่วทุกกี่วิ
 
 # --- Exposed NodePaths ---

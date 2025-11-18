@@ -50,7 +50,7 @@ func start_stage(stage_number:int):
 # ------------------------------
 func start_wave_loop():
 	var timer := Timer.new()
-	timer.wait_time = 20.0
+	timer.wait_time = 5.0
 	timer.autostart = true
 	timer.one_shot = false
 	add_child(timer)

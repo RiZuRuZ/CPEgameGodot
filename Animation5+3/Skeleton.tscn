@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dfijgvchbwh6y"]
 
 [ext_resource type="Texture2D" uid="uid://4aeghp21ew5v" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton.png" id="1_cn0fg"]
-[ext_resource type="Script" uid="uid://c2w3cd8dpymok" path="res://aifollow.gd" id="1_yg5o5"]
+[ext_resource type="Script" uid="uid://l50hkxgpayge" path="res://AMonster_script/Skeleton.gd" id="1_yg5o5"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_7yny7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gyjj6"]

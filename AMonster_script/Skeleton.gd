@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var STOP_RADIUS: float = 18.0          # ระยะที่หยุด ไม่ยืนทับผู้เล่น
 @export var ATTACK_RADIUS: float = 23.0        # ระยะโจมตี
 @export var ATTACK_DELAY: float = 0.5          # หน่วงก่อนฟัน
-@export var DETECT_RADIUS: float = 120.0       # ระยะที่เริ่มเห็นผู้เล่น
+@export var DETECT_RADIUS: float = 220.0       # ระยะที่เริ่มเห็นผู้เล่น
 @export var IDLE_CHANGE_TIME: float = 1.5      # เปลี่ยนทิศเดินมั่วทุกกี่วิ
 
 # --- Exposed NodePaths ---
@@ -39,21 +39,22 @@ var idle_timer := 0.0
 func _ready() -> void:
 	randomize()
 	$CharacterBody2D/Sprite2D/Area2D/atk2.disabled = true
+	$CharacterBody2D/Sprite2D/HBArea2D/atk1.disabled = true
 
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
 	else:
-		push_warning("Slime: 'gfx_path' not assigned.")
+		push_warning("Skeleton: 'gfx_path' not assigned.")
 
 	if anim_path != NodePath():
 		animation = get_node(anim_path) as AnimationPlayer
 	else:
-		push_warning("Slime: 'anim_path' not assigned.")
+		push_warning("Skeleton: 'anim_path' not assigned.")
 
 	if area_path != NodePath():
 		area = get_node(area_path) as Area2D
 	else:
-		push_warning("Slime: 'area_path' not assigned.")
+		push_warning("Skeleton: 'area_path' not assigned.")
 
 	if area:
 		area.area_entered.connect(_on_area_2d_area_entered)
@@ -190,7 +191,7 @@ func attack_coroutine(axis_side: bool) -> void:
 		can_move = true
 		return
 
-	if axis_side:
+	if to_player.y < -2:
 		play_anim("attack1")
 	else:
 		play_anim("attack2")
