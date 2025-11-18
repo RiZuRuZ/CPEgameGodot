@@ -1,10 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://dfijgvchbwh6y"]
 
 [ext_resource type="Texture2D" uid="uid://4aeghp21ew5v" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton/Skeleton with shadows/Skeleton.png" id="1_cn0fg"]
-[ext_resource type="Script" uid="uid://mqd6yi02wkgn" path="res://skeleton.gd" id="1_yg5o5"]
+[ext_resource type="Script" uid="uid://c2w3cd8dpymok" path="res://aifollow.gd" id="1_yg5o5"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_7yny7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_el4sk"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gyjj6"]
+radius = 5.0
+height = 18.0
 
 [sub_resource type="Animation" id="Animation_sf5dj"]
 length = 0.001
@@ -23,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HBArea2D/atk1:disabled")
+tracks/1/path = NodePath("Sprite2D/HBArea2D/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,7 +37,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HBArea2D/atk1:visible")
+tracks/2/path = NodePath("Sprite2D/HBArea2D/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -47,7 +49,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HBArea2D/atk2:disabled")
+tracks/3/path = NodePath("Sprite2D/Area2D/atk2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -59,7 +61,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HBArea2D/atk2:visible")
+tracks/4/path = NodePath("Sprite2D/Area2D/atk2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -88,7 +90,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HBArea2D/atk1:disabled")
+tracks/1/path = NodePath("Sprite2D/HBArea2D/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -100,7 +102,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HBArea2D/atk1:visible")
+tracks/2/path = NodePath("Sprite2D/HBArea2D/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -129,7 +131,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HBArea2D/atk2:disabled")
+tracks/1/path = NodePath("Sprite2D/Area2D/atk2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -141,7 +143,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HBArea2D/atk2:visible")
+tracks/2/path = NodePath("Sprite2D/Area2D/atk2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -248,8 +250,13 @@ _data = {
 &"walk": SubResource("Animation_yg5o5")
 }
 
-[node name="Skeleton" type="Node2D"]
+[node name="ArcherSkeleton3" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_yg5o5")
+gfx_path = NodePath("CharacterBody2D/Sprite2D")
+anim_path = NodePath("CharacterBody2D/AnimationPlayer")
+area_path = NodePath("Area2D")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
@@ -259,26 +266,40 @@ texture = ExtResource("1_cn0fg")
 hframes = 8
 vframes = 7
 
+[node name="HBArea2D" type="Area2D" parent="CharacterBody2D/Sprite2D" groups=["EnemyHitbox1"]]
+
+[node name="atk1" type="CollisionPolygon2D" parent="CharacterBody2D/Sprite2D/HBArea2D"]
+polygon = PackedVector2Array(1, -14, 11, -13, 14, -5, 5, 2, 9, 6, 22, 4, 24, -8, 19, -18, 10, -21)
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D/Sprite2D" groups=["EnemyHitbox2"]]
+
+[node name="atk2" type="CollisionPolygon2D" parent="CharacterBody2D/Sprite2D/Area2D"]
+polygon = PackedVector2Array(7, -2, 10, 5, -10, 8, 4, 12, 21, 9, 32, 4, 18, -5, 9, -5)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(1, -2)
-shape = SubResource("RectangleShape2D_el4sk")
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_gyjj6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 libraries = {
 &"": SubResource("AnimationLibrary_gyjj6")
 }
 
-[node name="HBArea2D" type="Area2D" parent="CharacterBody2D"]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="atk1" type="CollisionPolygon2D" parent="CharacterBody2D/HBArea2D"]
-polygon = PackedVector2Array(1, -14, 11, -13, 14, -5, 5, 2, 9, 6, 22, 4, 24, -8, 19, -18, 10, -21)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_gyjj6")
 
-[node name="atk2" type="CollisionPolygon2D" parent="CharacterBody2D/HBArea2D"]
-polygon = PackedVector2Array(7, -2, 10, 5, -10, 8, 4, 12, 21, 9, 32, 4, 18, -5, 9, -5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_gyjj6")
 
-[node name="Bar" parent="CharacterBody2D" instance=ExtResource("3_7yny7")]
-offset_left = -9.000001
-offset_top = -14.000001
-offset_right = 72.78955
-offset_bottom = -3.888154
-scale = Vector2(0.30339333, 0.30339333)
+[node name="Bar" parent="." instance=ExtResource("3_7yny7")]
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 10.375
+offset_bottom = -10.0
+
+[connection signal="animation_finished" from="CharacterBody2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

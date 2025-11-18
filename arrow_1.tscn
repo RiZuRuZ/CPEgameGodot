@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx4swio7yaavp"]
+
+[ext_resource type="Script" uid="uid://dnx4x0cnuhcre" path="res://AProjectile/AProjectileGD/Arrow1.gd" id="1_xsyil"]
+[ext_resource type="Texture2D" uid="uid://debcqo4w65r6h" path="res://AProjectile/Arrow01(100x100).png" id="2_ni3wx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq8w7"]
+size = Vector2(20, 7)
+
+[node name="Arrow1" type="Area2D" groups=["Projectile1"]]
+script = ExtResource("1_xsyil")
+
+[node name="Arrow01(100x100)" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_ni3wx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_jq8w7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -23,6 +23,12 @@ Wave="*res://wave.tscn"
 
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+EnemyHitbox1=""
+EnemyHitbox2=""
+slow=""
+
 [input]
 
 left={
