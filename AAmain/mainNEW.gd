@@ -1,5 +1,7 @@
 extends Node
 
+var wave_timer: Timer = null
+
 # โหลดมอน
 const PlayerScene = preload("res://Animation5+3/Soldier.tscn")
 const SLIME     = preload("res://Animation5+3/Slime.tscn")
@@ -33,7 +35,8 @@ func _ready():
 	player.add_to_group("player")
 	player.position = Vector2(250, 150)
 	start_stage(current_stage)
-	
+	$"/root/Wave".visible = true
+	$"/root/Wave".wave = current_wave	
 
 # ------------------------------
 # เริ่ม Stage
@@ -49,12 +52,12 @@ func start_stage(stage_number:int):
 # วน Wave ทุก 10 วิ หรือจนมอนตายหมด
 # ------------------------------
 func start_wave_loop():
-	var timer := Timer.new()
-	timer.wait_time = 5.0
-	timer.autostart = true
-	timer.one_shot = false
-	add_child(timer)
-	timer.timeout.connect(_on_next_wave)
+	wave_timer = Timer.new()
+	wave_timer.wait_time = 5.0
+	wave_timer.autostart = true
+	wave_timer.one_shot = false
+	add_child(wave_timer)
+	wave_timer.timeout.connect(_on_next_wave)
 
 
 func _on_next_wave():
@@ -63,11 +66,13 @@ func _on_next_wave():
 	if not wave_data.has(current_wave):
 		print("Stage", current_stage, "Complete!")
 		current_stage += 1
+		#start_stage(current_stage)
 		return
 
 	print("Wave", current_wave, "start!")
 	spawn_wave(current_stage, current_wave)
 	current_wave += 1
+	#$"/root/Wave".wave = current_wave	
 
 
 # ------------------------------
@@ -104,3 +109,10 @@ func random_spawn_position() -> Vector2:
 		cos(angle) * radius,
 		sin(angle) * radius
 	)
+	
+func _physics_process(delta: float) -> void:
+	if is_instance_valid(wave_timer):
+		$"/root/Wave".nextwave = wave_timer.time_left
+		$"/root/Wave".wave = current_wave-1
+	else:
+		print("not found")
