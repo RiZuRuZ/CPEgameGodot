@@ -2399,7 +2399,7 @@ tile_set = SubResource("TileSet_c02x3")
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="Node2D"]
+[node name="Area2D" type="Area2D" parent="Node2D" groups=["slow"]]
 position = Vector2(47, -44)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]

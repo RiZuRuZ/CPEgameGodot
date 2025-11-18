@@ -23,6 +23,7 @@ window/stretch/mode="canvas_items"
 
 EnemyHitbox1=""
 EnemyHitbox2=""
+slow=""
 
 [input]
 

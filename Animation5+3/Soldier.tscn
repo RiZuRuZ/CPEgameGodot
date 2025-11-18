@@ -234,6 +234,7 @@ arrow_spawnR_path = NodePath("ArrowSpawnR")
 arrow_spawnL_path = NodePath("ArrowSpawnL")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_lqgdd")
@@ -283,3 +284,4 @@ position = Vector2(-9, 0)
 shape = SubResource("CapsuleShape2D_lqgdd")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

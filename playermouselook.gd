@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@export var SPEED: float = 100.0
+var SPEED: float = 100.0
+
 var motion := Vector2.ZERO
 #monter,position
 var SlimeScene = preload("res://Animation5+3/Slime.tscn")
@@ -92,6 +93,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("down"):  motion.y += 1
 	if Input.is_action_pressed("up"):    motion.y -= 1
 
+
 	# --- attack inputs ---
 	if Input.is_action_just_pressed("m1"):
 		_start_attack("attack1", false)
@@ -112,7 +114,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 
 	move_and_slide()
-
+	
 	# --- walk / idle animation ---
 	if motion != Vector2.ZERO:
 		if animation and animation.current_animation not in ["walk", "attack1", "attack2", "attack3", "hurt", "death"]:
@@ -178,6 +180,9 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 	elif hit.is_in_group("EnemyBody"):
 		health -= 10
 		damaged = true
+	elif hit.is_in_group("slow"):
+		SPEED = 50
+		return   # ไม่ต้องไปเช็คดาเมจต่อ (ถ้า slow เป็นโซนสิ่งแวดล้อมธรรมดา)
 
 	if damaged:
 		print("Player hit! Health:", health)
@@ -202,7 +207,9 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 				
 			_start_invincibility()
 
-
+func _on_area_2d_area_exited(hit: Area2D) -> void:
+	SPEED = 100
+			
 func _start_invincibility() -> void:
 	if is_invincible:
 		return
@@ -255,6 +262,7 @@ func shoot_arrow():
 	var dir := (mouse_pos - spawn_pos).normalized()
 	arrow.setup(dir) 
 
+	
 func _disable_collision():
 	$CharacterBody2D/Soldier/Area2D/CollisionPolygon2D.disabled = true
 	$CharacterBody2D/Soldier/Area2D2/CollisionShape2D.disabled = true

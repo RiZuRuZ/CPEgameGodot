@@ -8,9 +8,9 @@ const SKELETON  = preload("res://Animation5+3/Skeleton.tscn")
 # --- เก็บข้อมูล Stage → Waves --
 var stages := {
 	1: {
-		1: [ [SLIME, 50], [SKELETON, 3] ],
-		2: [ [SLIME, 7], [SKELETON, 6] ],
-		3: [ [SLIME, 10], [SKELETON, 12] ],
+		1: [ [SLIME, 3], [SKELETON, 2] ],
+		2: [ [SLIME, 3], [SKELETON, 3] ],
+		3: [ [SLIME, 4], [SKELETON, 5] ],
 	},
 	2: {
 		1: [ [SLIME, 5], [SKELETON, 3] ],
@@ -50,7 +50,7 @@ func start_stage(stage_number:int):
 # ------------------------------
 func start_wave_loop():
 	var timer := Timer.new()
-	timer.wait_time = 10.0
+	timer.wait_time = 20.0
 	timer.autostart = true
 	timer.one_shot = false
 	add_child(timer)
