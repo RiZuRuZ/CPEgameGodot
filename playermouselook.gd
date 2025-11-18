@@ -4,8 +4,8 @@ var SPEED: float = 100.0
 
 var motion := Vector2.ZERO
 #monter,position
-var SlimeScene = preload("res://Animation5+3/Slime.tscn")
-var SkeletonScene = preload("res://Animation5+3/Skeleton.tscn")
+#var SlimeScene = preload("res://Animation5+3/Slime.tscn")
+#var SkeletonScene = preload("res://Animation5+3/Skeleton.tscn")
 
 
 # Exposed NodePaths (set in the Inspector)
@@ -171,11 +171,26 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 
 	var damaged := false
 
-	if hit.is_in_group("EnemyHitbox1"):
+	if hit.is_in_group("Enemy10DMG"):
+		health -= 10
+		damaged = true
+	elif hit.is_in_group("Enemy15DMG"):
+		health -= 15
+		damaged = true
+	elif hit.is_in_group("Enemy20DMG"):
 		health -= 20
 		damaged = true
-	elif hit.is_in_group("EnemyHitbox2"):
+	elif hit.is_in_group("Enemy25DMG"):
 		health -= 25
+		damaged = true
+	elif hit.is_in_group("Enemy30DMG"):
+		health -= 30
+		damaged = true
+	elif hit.is_in_group("Enemy35DMG"):
+		health -= 35
+		damaged = true
+	elif hit.is_in_group("Enemy40DMG"):
+		health -= 40
 		damaged = true
 	elif hit.is_in_group("EnemyBody"):
 		health -= 10

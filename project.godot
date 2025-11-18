@@ -27,6 +27,12 @@ window/stretch/mode="canvas_items"
 
 slow=""
 Enemy20DMG=""
+EnemyBody=""
+Enemy25DMG=""
+Enemy30DMG=""
+Enemy35DMG=""
+Enemy15DMG=""
+Enemy10DMG=""
 Enemy40DMG=""
 
 [input]
