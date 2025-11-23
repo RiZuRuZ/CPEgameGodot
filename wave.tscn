@@ -45,3 +45,13 @@ theme_override_font_sizes/font_size = 10
 text = "hjkl"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 1015.0
+offset_top = 527.0
+offset_right = 1115.0
+offset_bottom = 627.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

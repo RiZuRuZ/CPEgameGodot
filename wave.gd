@@ -5,6 +5,7 @@ var state = "he;;p"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer.visible = false
+	$Button.visible = false
 	$CanvasLayer/Label.text = "wave" + str(wave)
 	$CanvasLayer/time.text = "Next Wave: " + str(nextwave) + " s"
 
@@ -20,3 +21,7 @@ func _process(delta: float) -> void:
 		tweem.tween_property($CanvasLayer/victory,"modulate",Color(modulate.r, modulate.g,modulate.b, 0.0),1)
 		await tweem.finished
 		$CanvasLayer/victory.visible = false
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://state2.tscn")

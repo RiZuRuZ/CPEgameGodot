@@ -1,6 +1,7 @@
 extends Node
 
 var wave_timer: Timer = null
+var state_time: Timer = null
 
 # โหลดมอน
 const PlayerScene = preload("res://Animation5+3/Soldier.tscn")
@@ -66,26 +67,15 @@ func start_wave_loop():
 func _on_next_wave():
 	var wave_data = stages[current_stage]
 	if wave_data != null:
-		if not wave_data.has(current_wave):
-			print("Stage", current_stage, "Complete!")
-			$"/root/Wave".state = current_stage
-			current_stage += 1
-			$"/root/Wave/CanvasLayer/Label".visible = false
-			$"/root/Wave/CanvasLayer/time".visible = false
-			wave_timer.stop()
-			$"/root/Wave/CanvasLayer/victory".visible = true
-			
-			await get_tree().create_timer(20).timeout
-			wave_timer.stop()
-			start_stage(current_stage)
-			return
-
 		print("Wave", current_wave, "start!")
 		spawn_wave(current_stage, current_wave)
 		current_wave += 1
 		#$"/root/Wave".wave = current_wave	
 	else:
 		get_tree().quit()
+#func Next_state():
+	
+		
 
 # ------------------------------
 # spawn wave
@@ -129,3 +119,14 @@ func _physics_process(delta: float) -> void:
 		
 	else:
 		print("not found")
+		
+	var monster = get_tree().get_node_count_in_group("EnemyBody")
+	if monster == 0 and current_stage == 1 and current_wave > 3:
+		print("Stage", current_stage, "Complete!")
+		$"/root/Wave".state = current_stage
+		$"/root/Wave/CanvasLayer/Label".visible = false
+		$"/root/Wave/CanvasLayer/time".visible = false
+		wave_timer.stop()
+		$"/root/Wave/CanvasLayer/victory".visible = true
+		$"/root/Wave/button".visible = true
+		current_stage +=1
