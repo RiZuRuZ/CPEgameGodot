@@ -4,7 +4,7 @@ var wave_timer: Timer = null
 var state_time: Timer = null
 
 # โหลดมอน
-const PlayerScene = preload("res://Animation5+3/Swordman.tscn")
+var PlayerScene
 const SLIME     = preload("res://Animation5+3/Slime.tscn")
 const SKELETON  = preload("res://Animation5+3/Skeleton.tscn")
 
@@ -31,6 +31,10 @@ var current_wave := 1
 
 
 func _ready():
+	if $"/root/Wave".selection == 0:
+		PlayerScene = preload("res://Animation5+3/Soldier.tscn")
+	elif $"/root/Wave".selection == 1:
+		PlayerScene = preload("res://Animation5+3/Swordman.tscn")
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	player.add_to_group("player")

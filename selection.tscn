@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://chrkclcsr7163"]
+
+[ext_resource type="Script" uid="uid://cagxt68g5p6j7" path="res://selection.gd" id="1_b8hy4"]
+[ext_resource type="Texture2D" uid="uid://b8oyk65xvxkau" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Swordsman/Swordsman with shadows/Swordsman.png" id="2_lcv4y"]
+[ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="3_umr4q"]
+
+[sub_resource type="Animation" id="Animation_lcv4y"]
+resource_name = "idel"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_umr4q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7b2rf"]
+_data = {
+&"RESET": SubResource("Animation_umr4q"),
+&"idel": SubResource("Animation_lcv4y")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b8hy4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 445.99997
+offset_top = 218.99998
+offset_right = 538.0
+offset_bottom = 285.0
+scale = Vector2(3.0873253, 3.0873253)
+alignment = 1
+
+[node name="swordman" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Swordman"
+
+[node name="soldier" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Soldier"
+
+[node name="swordman" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(860.99994, 331)
+scale = Vector2(8.902885, 8.902885)
+texture = ExtResource("2_lcv4y")
+hframes = 15
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="swordman"]
+libraries = {
+&"": SubResource("AnimationLibrary_7b2rf")
+}
+
+[node name="soldier" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(860.99994, 331)
+scale = Vector2(8.902885, 8.902885)
+texture = ExtResource("3_umr4q")
+hframes = 9
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="soldier"]
+libraries = {
+&"": SubResource("AnimationLibrary_7b2rf")
+}
+
+[connection signal="mouse_entered" from="VBoxContainer/swordman" to="." method="_on_swordman_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/swordman" to="." method="_on_swordman_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/swordman" to="." method="_on_swordman_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/soldier" to="." method="_on_soldier_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/soldier" to="." method="_on_soldier_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/soldier" to="." method="_on_soldier_pressed"]

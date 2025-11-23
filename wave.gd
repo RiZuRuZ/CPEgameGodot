@@ -2,6 +2,7 @@ extends Control
 var wave = 0
 var nextwave: int = 0
 var state = "he;;p"
+var selection
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer.visible = false
