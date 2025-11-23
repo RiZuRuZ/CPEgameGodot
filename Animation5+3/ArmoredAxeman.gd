@@ -38,23 +38,25 @@ var idle_timer := 0.0
 
 func _ready() -> void:
 	randomize()
-	$CharacterBody2D/Sprite2D/Area2D/atk2.disabled = true
-	$CharacterBody2D/Sprite2D/HBArea2D/atk1.disabled = true
+	$Sprite2D/ATK1/atk1.disabled = true
+	$Sprite2D/ATK2/atk2.disabled = true
+	$Sprite2D/ATK3/atk3_1.disabled = true
+	$Sprite2D/ATK3/atk3_2.disabled = true
 
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
 	else:
-		push_warning("Skeleton: 'gfx_path' not assigned.")
+		push_warning("ArmoredAxeman: 'gfx_path' not assigned.")
 
 	if anim_path != NodePath():
 		animation = get_node(anim_path) as AnimationPlayer
 	else:
-		push_warning("Skeleton: 'anim_path' not assigned.")
+		push_warning("ArmoredAxeman: 'anim_path' not assigned.")
 
 	if area_path != NodePath():
 		area = get_node(area_path) as Area2D
 	else:
-		push_warning("Skeleton: 'area_path' not assigned.")
+		push_warning("ArmoredAxeman: 'area_path' not assigned.")
 
 	if area:
 		area.area_entered.connect(_on_area_2d_area_entered)

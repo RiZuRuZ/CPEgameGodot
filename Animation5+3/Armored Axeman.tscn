@@ -1,8 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://ct0tcuxspt3d"]
+[gd_scene load_steps=15 format=3 uid="uid://ct0tcuxspt3d"]
 
+[ext_resource type="Script" uid="uid://crwa5svu53ly4" path="res://Animation5+3/ArmoredAxeman.gd" id="1_jlwfv"]
 [ext_resource type="Texture2D" uid="uid://diog3qwoe5woj" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Axeman/Armored Axeman with shadows/Armored Axeman.png" id="1_u0vs0"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_1keir"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlwfv"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u0vs0"]
+radius = 7.0
+height = 20.0
 
 [sub_resource type="Animation" id="Animation_r4xxk"]
 length = 0.001
@@ -21,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk1:disabled")
+tracks/1/path = NodePath("Sprite2D/ATK1/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -33,7 +37,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk1:visible")
+tracks/2/path = NodePath("Sprite2D/ATK1/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -45,7 +49,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../HBArea2D/atk2:disabled")
+tracks/3/path = NodePath("Sprite2D/ATK2/atk2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -57,7 +61,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../HBArea2D/atk2:visible")
+tracks/4/path = NodePath("Sprite2D/ATK2/atk2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -69,7 +73,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../HBArea2D/atk3_1:disabled")
+tracks/5/path = NodePath("Sprite2D/ATK3/atk3_1:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -81,7 +85,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../HBArea2D/atk3_1:visible")
+tracks/6/path = NodePath("Sprite2D/ATK3/atk3_1:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -93,7 +97,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../HBArea2D/CollisionPolygon2D:disabled")
+tracks/7/path = NodePath("Sprite2D/ATK3/atk3_2:disabled")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -105,7 +109,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../HBArea2D/CollisionPolygon2D:visible")
+tracks/8/path = NodePath("Sprite2D/ATK3/atk3_2:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -134,7 +138,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk1:disabled")
+tracks/1/path = NodePath("Sprite2D/ATK1/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -146,7 +150,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk1:visible")
+tracks/2/path = NodePath("Sprite2D/ATK1/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -175,7 +179,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk2:disabled")
+tracks/1/path = NodePath("Sprite2D/ATK2/atk2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -187,7 +191,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk2:visible")
+tracks/2/path = NodePath("Sprite2D/ATK2/atk2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -216,7 +220,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk3_1:disabled")
+tracks/1/path = NodePath("Sprite2D/ATK3/atk3_1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -228,7 +232,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk3_1:visible")
+tracks/2/path = NodePath("Sprite2D/ATK3/atk3_1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -240,7 +244,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../HBArea2D/CollisionPolygon2D:disabled")
+tracks/3/path = NodePath("Sprite2D/ATK3/atk3_2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -252,7 +256,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../HBArea2D/CollisionPolygon2D:visible")
+tracks/4/path = NodePath("Sprite2D/ATK3/atk3_2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -296,23 +300,6 @@ tracks/0/keys = {
 "values": [60, 61, 62, 63]
 }
 
-[sub_resource type="Animation" id="Animation_1keir"]
-resource_name = "idel"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5]
-}
-
 [sub_resource type="Animation" id="Animation_u0vs0"]
 resource_name = "walk"
 length = 0.8
@@ -330,6 +317,23 @@ tracks/0/keys = {
 "values": [12, 13, 14, 15, 16, 17, 18, 19]
 }
 
+[sub_resource type="Animation" id="Animation_1keir"]
+resource_name = "idle"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_62m4f"]
 _data = {
 &"RESET": SubResource("Animation_r4xxk"),
@@ -338,7 +342,7 @@ _data = {
 &"attack3": SubResource("Animation_jm8oo"),
 &"death": SubResource("Animation_tw8ma"),
 &"hurt": SubResource("Animation_l8l08"),
-&"idel": SubResource("Animation_1keir"),
+&"idle": SubResource("Animation_1keir"),
 &"walk": SubResource("Animation_u0vs0")
 }
 
@@ -348,11 +352,14 @@ size = Vector2(51, 21)
 [node name="ArmoredAxeman" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_jlwfv")
+gfx_path = NodePath("Sprite2D")
+anim_path = NodePath("AnimationPlayer")
+area_path = NodePath("Body")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-visible = false
-position = Vector2(1, -2)
-shape = SubResource("RectangleShape2D_jlwfv")
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_u0vs0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 libraries = {
@@ -365,22 +372,34 @@ texture = ExtResource("1_u0vs0")
 hframes = 12
 vframes = 7
 
-[node name="HBArea2D" type="Area2D" parent="."]
+[node name="ATK1" type="Area2D" parent="CharacterBody2D/Sprite2D" groups=["Enemy20DMG"]]
 
-[node name="atk1" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk1" type="CollisionPolygon2D" parent="CharacterBody2D/Sprite2D/ATK1"]
 polygon = PackedVector2Array(-9, -12, -1, -16, 8, -12, 13, -3, 14, 7, 11, 11, 21, 11, 27, 7, 24, -3, 17, -12, 8, -18, 0, -21, -14, -19, -14, -16)
 
-[node name="atk2" type="CollisionShape2D" parent="HBArea2D"]
+[node name="ATK2" type="Area2D" parent="CharacterBody2D/Sprite2D" groups=["Enemy30DMG"]]
+
+[node name="atk2" type="CollisionShape2D" parent="CharacterBody2D/Sprite2D/ATK2"]
 visible = false
 position = Vector2(2.5, 0.5)
 shape = SubResource("RectangleShape2D_u0vs0")
 
-[node name="atk3_1" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="ATK3" type="Area2D" parent="CharacterBody2D/Sprite2D"]
+
+[node name="atk3_1" type="CollisionPolygon2D" parent="CharacterBody2D/Sprite2D/ATK3"]
 visible = false
 position = Vector2(0, 1)
 polygon = PackedVector2Array(-12, 6, -4, 6, 9, 5, 14, 1, 11, -10, 3, -16, -13, -19, 10, -19, 22, -8, 24, 0, 19, 10, 11, 10, -1, 10)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk3_2" type="CollisionPolygon2D" parent="CharacterBody2D/Sprite2D/ATK3"]
 visible = false
 polygon = PackedVector2Array(11, 10, 20, 8, 36, -4, 36, 3, 42, 3, 43, 10, 36, 12)
 disabled = true
+
+[node name="Body" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Body"]
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_u0vs0")
+
+[node name="Bar" parent="CharacterBody2D" instance=ExtResource("3_1keir")]

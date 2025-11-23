@@ -2,22 +2,46 @@
 
 [ext_resource type="Script" uid="uid://casmjpw38smig" path="res://wave.gd" id="1_8asc4"]
 
-[node name="wave" type="CanvasLayer"]
+[node name="wave" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_8asc4")
 
-[node name="Label" type="Label" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
 texture_filter = 1
 offset_right = 40.0
 offset_bottom = 23.0
 scale = Vector2(6.1002865, 4.7343383)
 text = "hjkl"
 
-[node name="time" type="Label" parent="."]
+[node name="time" type="Label" parent="CanvasLayer"]
 texture_filter = 1
-offset_left = 532.00006
-offset_top = -2.0
-offset_right = 600.00006
-offset_bottom = 21.0
+layout_direction = 3
+offset_left = 339.0
+offset_top = 24.0
+offset_right = 446.0
+offset_bottom = 47.0
 scale = Vector2(3.9709148, 3.9709148)
-text = "-------------"
+text = "Nextwave: 3 s"
 horizontal_alignment = 2
+text_direction = 2
+
+[node name="victory" type="Label" parent="CanvasLayer"]
+visible = false
+texture_filter = 1
+layout_direction = 2
+offset_left = 191.00003
+offset_top = 286.0
+offset_right = 231.00003
+offset_bottom = 309.0
+scale = Vector2(6.1002865, 4.7343383)
+theme_override_font_sizes/font_size = 10
+text = "hjkl"
+horizontal_alignment = 1
+vertical_alignment = 1
