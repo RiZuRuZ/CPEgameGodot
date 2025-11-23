@@ -46,12 +46,12 @@ text = "hjkl"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="CanvasLayer"]
 custom_minimum_size = Vector2(100, 100)
-layout_mode = 0
-offset_left = 1015.0
-offset_top = 527.0
-offset_right = 1115.0
-offset_bottom = 627.0
+offset_left = 1004.0
+offset_top = 525.0
+offset_right = 1104.0
+offset_bottom = 625.0
+text = "click"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

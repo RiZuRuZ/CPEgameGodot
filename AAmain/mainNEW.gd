@@ -44,8 +44,6 @@ func _ready():
 # เริ่ม Stage
 # ------------------------------
 func start_stage(stage_number:int):
-	$"/root/Wave/CanvasLayer/Label".visible = true
-	$"/root/Wave/CanvasLayer/time".visible = true
 	current_stage = stage_number
 	current_wave = 1
 	print("Start Stage:", stage_number)
@@ -65,14 +63,20 @@ func start_wave_loop():
 
 
 func _on_next_wave():
+	$"/root/Wave/CanvasLayer/Label".visible = true
+	$"/root/Wave/CanvasLayer/time".visible = true
 	var wave_data = stages[current_stage]
-	if wave_data != null:
-		print("Wave", current_wave, "start!")
-		spawn_wave(current_stage, current_wave)
-		current_wave += 1
-		#$"/root/Wave".wave = current_wave	
+	if not wave_data.has(current_wave):
+		wave_timer.stop()
+		$"/root/Wave/CanvasLayer/time".visible = false
 	else:
-		get_tree().quit()
+		if wave_data != null:
+			print("Wave", current_wave, "start!")
+			spawn_wave(current_stage, current_wave)
+			current_wave += 1
+			#$"/root/Wave".wave = current_wave	
+		else:
+			get_tree().quit()
 #func Next_state():
 	
 		
@@ -113,20 +117,20 @@ func random_spawn_position() -> Vector2:
 	)
 	
 func _physics_process(delta: float) -> void:
-	if is_instance_valid(wave_timer):
+	var monster = get_tree().get_node_count_in_group("EnemyBody")
+	if is_instance_valid(wave_timer) and monster != 0:
 		$"/root/Wave".nextwave = wave_timer.time_left
 		$"/root/Wave".wave = current_wave-1
 		
 	else:
 		print("not found")
 		
-	var monster = get_tree().get_node_count_in_group("EnemyBody")
+	
 	if monster == 0 and current_stage == 1 and current_wave > 3:
 		print("Stage", current_stage, "Complete!")
 		$"/root/Wave".state = current_stage
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
-		wave_timer.stop()
 		$"/root/Wave/CanvasLayer/victory".visible = true
-		$"/root/Wave/button".visible = true
+		$"/root/Wave/CanvasLayer/Button".visible = true
 		current_stage +=1

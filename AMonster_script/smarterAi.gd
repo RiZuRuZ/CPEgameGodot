@@ -212,7 +212,7 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 	var damaged := false
 
 	if hit.is_in_group("Hitbox1"):
-		health -= 20
+		health -= 1000
 		damaged = true
 	elif hit.is_in_group("Hitbox2"):
 		health -= 40
