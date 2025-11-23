@@ -34,6 +34,7 @@ Enemy35DMG=""
 Enemy15DMG=""
 Enemy10DMG=""
 Enemy40DMG=""
+player=""
 
 [input]
 

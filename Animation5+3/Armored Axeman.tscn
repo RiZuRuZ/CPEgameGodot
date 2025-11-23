@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://ct0tcuxspt3d"]
 
-[ext_resource type="Script" path="res://Animation5+3/ArmoredAxeman.gd" id="1_jlwfv"]
+[ext_resource type="Script" uid="uid://crwa5svu53ly4" path="res://Animation5+3/ArmoredAxeman.gd" id="1_jlwfv"]
 [ext_resource type="Texture2D" uid="uid://diog3qwoe5woj" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Axeman/Armored Axeman with shadows/Armored Axeman.png" id="1_u0vs0"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_1keir"]
 

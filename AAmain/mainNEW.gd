@@ -4,7 +4,7 @@ var wave_timer: Timer = null
 var state_time: Timer = null
 
 # โหลดมอน
-const PlayerScene = preload("res://Animation5+3/Soldier.tscn")
+const PlayerScene = preload("res://Animation5+3/Swordman.tscn")
 const SLIME     = preload("res://Animation5+3/Slime.tscn")
 const SKELETON  = preload("res://Animation5+3/Skeleton.tscn")
 

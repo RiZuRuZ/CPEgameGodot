@@ -65,6 +65,7 @@ func _ready() -> void:
 
 	await get_tree().process_frame
 	var players := get_tree().get_nodes_in_group("player")
+	print(players)
 	if players.size() > 0:
 		player = players[0] as Node2D
 
