@@ -220,6 +220,9 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 	elif hit.is_in_group("Projectile1"):
 		health -= 20
 		damaged = true
+	elif hit.is_in_group("Hitbox3"):
+		health -= 30
+		damaged = true
 
 	if damaged:
 		print("Slime hit! Health:", health)

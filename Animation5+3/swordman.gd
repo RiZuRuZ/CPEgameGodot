@@ -102,8 +102,8 @@ func _physics_process(delta: float) -> void:
 		_start_attack("attack2", true)
 		return
 
-	#if Input.is_action_just_pressed("m2") and not is_attacking:
-		#_start_attack("attack3", true)
+	if Input.is_action_just_pressed("m2") and not is_attacking:
+		_start_attack("attack3", true)
 		#_delayed_shoot()
 
 	# --- movement (ใช้ velocity + move_and_slide) ---
@@ -149,7 +149,7 @@ func _start_attack(anim_name: String, lock_movement: bool) -> void:
 
 
 func _on_anim_finished(anim_name: String) -> void:
-	if anim_name in ["attack1", "attack2"]:
+	if anim_name in ["attack1", "attack2","attack3"]:
 		is_attacking = false
 		can_move = true
 		_disable_collision()
@@ -283,5 +283,5 @@ func _disable_collision():
 	$Sprite2D/ATK2/atk2_1.disabled = true
 	$Sprite2D/ATK2/atk2_2.disabled = true
 	$Sprite2D/ATK2/atk2_3.disabled = true
-	
+	$Sprite2D/ATK3/atk3.disabled=true
 	
