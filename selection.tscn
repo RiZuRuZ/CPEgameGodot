@@ -4,6 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://b8oyk65xvxkau" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Swordsman/Swordsman with shadows/Swordsman.png" id="2_lcv4y"]
 [ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="3_umr4q"]
 
+[sub_resource type="Animation" id="Animation_umr4q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_lcv4y"]
 resource_name = "idel"
 length = 0.5
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_umr4q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7b2rf"]
@@ -53,10 +53,10 @@ script = ExtResource("1_b8hy4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 445.99997
-offset_top = 218.99998
-offset_right = 538.0
-offset_bottom = 285.0
+offset_left = 422.9999
+offset_top = 223.0
+offset_right = 514.99994
+offset_bottom = 289.0
 scale = Vector2(3.0873253, 3.0873253)
 alignment = 1
 
@@ -64,7 +64,16 @@ alignment = 1
 layout_mode = 2
 text = "Swordman"
 
-[node name="soldier" type="Button" parent="VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 4234.1436
+offset_top = 223.0
+offset_right = 4326.1436
+offset_bottom = 289.0
+scale = Vector2(3.0873253, 3.0873253)
+alignment = 1
+
+[node name="soldier" type="Button" parent="VBoxContainer2"]
 layout_mode = 2
 text = "Soldier"
 
@@ -81,10 +90,51 @@ libraries = {
 &"": SubResource("AnimationLibrary_7b2rf")
 }
 
-[node name="soldier" type="Sprite2D" parent="."]
-visible = false
+[node name="prop1" type="Sprite2D" parent="."]
+modulate = Color(0.2231029, 0.2231029, 0.22310287, 1)
 texture_filter = 1
-position = Vector2(860.99994, 331)
+position = Vector2(1461, 331)
+scale = Vector2(8.902885, 8.902885)
+texture = ExtResource("2_lcv4y")
+hframes = 15
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prop1"]
+libraries = {
+&"": SubResource("AnimationLibrary_7b2rf")
+}
+
+[node name="prop2" type="Sprite2D" parent="."]
+modulate = Color(0.23031491, 0.23031494, 0.23031494, 1)
+texture_filter = 1
+position = Vector2(2640, 331)
+scale = Vector2(8.902885, 8.902885)
+texture = ExtResource("2_lcv4y")
+hframes = 15
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prop2"]
+libraries = {
+&"": SubResource("AnimationLibrary_7b2rf")
+}
+
+[node name="prop3" type="Sprite2D" parent="."]
+modulate = Color(0.2520276, 0.25202766, 0.25202763, 1)
+texture_filter = 1
+position = Vector2(3913, 331)
+scale = Vector2(8.902885, 8.902885)
+texture = ExtResource("2_lcv4y")
+hframes = 15
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prop3"]
+libraries = {
+&"": SubResource("AnimationLibrary_7b2rf")
+}
+
+[node name="soldier" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(4672.1445, 331)
 scale = Vector2(8.902885, 8.902885)
 texture = ExtResource("3_umr4q")
 hframes = 9
@@ -95,9 +145,71 @@ libraries = {
 &"": SubResource("AnimationLibrary_7b2rf")
 }
 
+[node name="prop4" type="Sprite2D" parent="."]
+modulate = Color(0.29219002, 0.29219005, 0.29219002, 1)
+texture_filter = 1
+position = Vector2(2045.9995, 331)
+scale = Vector2(8.902885, 8.902885)
+texture = ExtResource("3_umr4q")
+hframes = 9
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prop4"]
+libraries = {
+&"": SubResource("AnimationLibrary_7b2rf")
+}
+
+[node name="prop5" type="Sprite2D" parent="."]
+modulate = Color(0.23392546, 0.23392546, 0.23392543, 1)
+texture_filter = 1
+position = Vector2(3230, 331)
+scale = Vector2(8.902885, 8.902885)
+texture = ExtResource("3_umr4q")
+hframes = 9
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prop5"]
+libraries = {
+&"": SubResource("AnimationLibrary_7b2rf")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(688, 320)
+zoom = Vector2(1.74, 1.74)
+
+[node name="next" type="VBoxContainer" parent="Camera2D"]
+offset_left = 188.00003
+offset_top = 110.99999
+offset_right = 280.00003
+offset_bottom = 177.0
+scale = Vector2(1.5795025, 1.5795025)
+alignment = 1
+
+[node name="nextButt" type="Button" parent="Camera2D/next"]
+layout_mode = 2
+text = "next
+"
+
+[node name="prev" type="VBoxContainer" parent="Camera2D"]
+offset_left = -330.99997
+offset_top = 110.99999
+offset_right = -238.99997
+offset_bottom = 177.0
+scale = Vector2(1.5795025, 1.5795025)
+alignment = 1
+
+[node name="prevbutt" type="Button" parent="Camera2D/prev"]
+layout_mode = 2
+text = "prev
+"
+
 [connection signal="mouse_entered" from="VBoxContainer/swordman" to="." method="_on_swordman_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/swordman" to="." method="_on_swordman_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/swordman" to="." method="_on_swordman_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/soldier" to="." method="_on_soldier_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer/soldier" to="." method="_on_soldier_mouse_exited"]
-[connection signal="pressed" from="VBoxContainer/soldier" to="." method="_on_soldier_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer2/soldier" to="." method="_on_soldier_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer2/soldier" to="." method="_on_soldier_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer2/soldier" to="." method="_on_soldier_pressed"]
+[connection signal="pressed" from="Camera2D/next/nextButt" to="." method="_on_next_butt_pressed"]
+[connection signal="pressed" from="Camera2D/prev/prevbutt" to="." method="_on_prevbutt_pressed"]
