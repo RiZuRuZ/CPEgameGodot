@@ -12,8 +12,8 @@ var motion := Vector2.ZERO
 @export var gfx_path: NodePath
 @export var anim_path: NodePath
 @export var area_path: NodePath
-@export var arrow_spawnR_path: NodePath
-@export var arrow_spawnL_path: NodePath
+#@export var arrow_spawnR_path: NodePath
+#@export var arrow_spawnL_path: NodePath
 
 # Auto-assigned references
 var gfx: Node2D
@@ -30,7 +30,7 @@ var death := false
 @export var INVINCIBLE_TIME: float = 1.0
 var is_invincible := false   # อมตะ?
 
-@onready var arrow_scene = preload("res://AProjectile/Arrow1.tscn")
+#@onready var arrow_scene = preload("res://AProjectile/Arrow1.tscn")
 var arrow_spawnR: Marker2D
 var arrow_spawnL: Marker2D
 var pending_shot := false
@@ -62,8 +62,8 @@ func _ready() -> void:
 	else:
 		push_warning("⚠️ 'area_path' not assigned for player hurtbox.")
 
-	arrow_spawnR = get_node(arrow_spawnR_path)
-	arrow_spawnL = get_node(arrow_spawnL_path)
+	#arrow_spawnR = get_node(arrow_spawnR_path)
+	#arrow_spawnL = get_node(arrow_spawnL_path)
 
 	$Bar.max_value = health
 	
@@ -104,7 +104,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("m2") and not is_attacking:
 		_start_attack("attack3", true)
-		_delayed_shoot()
+		#_delayed_shoot()
 
 	# --- movement (ใช้ velocity + move_and_slide) ---
 	if motion != Vector2.ZERO:
@@ -149,7 +149,7 @@ func _start_attack(anim_name: String, lock_movement: bool) -> void:
 
 
 func _on_anim_finished(anim_name: String) -> void:
-	if anim_name in ["attack1", "attack2", "attack3"]:
+	if anim_name in ["attack1", "attack2","attack3"]:
 		is_attacking = false
 		can_move = true
 		_disable_collision()
@@ -209,7 +209,6 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 			
 			if animation:
 				animation.play("death")
-				$"/root/Wave/CanvasLayer".visible = false
 				get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
 
 		else:
@@ -248,39 +247,41 @@ func _start_invincibility() -> void:
 	is_invincible = false
 	_disable_collision()
 
-func _delayed_shoot() -> void:
-	await get_tree().create_timer(0.7).timeout
-
-	# เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
-	if death or is_hurt:
-		return
-
-	shoot_arrow()
+#func _delayed_shoot() -> void:
+	#await get_tree().create_timer(0.7).timeout
+#
+	## เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
+	#if death or is_hurt:
+		#return
+#
+	#shoot_arrow()
 	
-func shoot_arrow():
-	var arrow := arrow_scene.instantiate() as Area2D
-	var mouse_pos: Vector2 = get_global_mouse_position()
-
-	# ใส่ลูกศรเข้า scene ก่อน
-	get_parent().add_child(arrow)
-
-	# เลือกจุด spawn ซ้าย/ขวา
-	var spawn_pos: Vector2
-	if mouse_pos.x < global_position.x:
-		spawn_pos = arrow_spawnL.global_position
-	else:
-		spawn_pos = arrow_spawnR.global_position
-
-	# เซ็ตตำแหน่งเริ่ม
-	arrow.global_position = spawn_pos
-
-	# ให้ทิศทางยิงออกจากจุด spawn จริง ๆ
-	var dir := (mouse_pos - spawn_pos).normalized()
-	arrow.setup(dir) 
+#func shoot_arrow():
+	#var arrow := arrow_scene.instantiate() as Area2D
+	#var mouse_pos: Vector2 = get_global_mouse_position()
+#
+	## ใส่ลูกศรเข้า scene ก่อน
+	#get_parent().add_child(arrow)
+#
+	## เลือกจุด spawn ซ้าย/ขวา
+	#var spawn_pos: Vector2
+	#if mouse_pos.x < global_position.x:
+		#spawn_pos = arrow_spawnL.global_position
+	#else:
+		#spawn_pos = arrow_spawnR.global_position
+#
+	## เซ็ตตำแหน่งเริ่ม
+	#arrow.global_position = spawn_pos
+#
+	## ให้ทิศทางยิงออกจากจุด spawn จริง ๆ
+	#var dir := (mouse_pos - spawn_pos).normalized()
+	#arrow.setup(dir) 
 
 	
 func _disable_collision():
-	$CharacterBody2D/Soldier/Area2D/CollisionPolygon2D.disabled = true
-	$CharacterBody2D/Soldier/Area2D2/CollisionShape2D.disabled = true
-	
+	$Sprite2D/ATK1/atk1.disabled = true
+	$Sprite2D/ATK2/atk2_1.disabled = true
+	$Sprite2D/ATK2/atk2_2.disabled = true
+	$Sprite2D/ATK2/atk2_3.disabled = true
+	$Sprite2D/ATK3/atk3.disabled=true
 	

@@ -1,9 +1,10 @@
 extends Node
 
 var wave_timer: Timer = null
+var state_time: Timer = null
 
 # โหลดมอน
-const PlayerScene = preload("res://Animation5+3/Soldier.tscn")
+var PlayerScene
 const SLIME     = preload("res://Animation5+3/Slime.tscn")
 const SKELETON  = preload("res://Animation5+3/Skeleton.tscn")
 
@@ -30,13 +31,18 @@ var current_wave := 1
 
 
 func _ready():
+	if $"/root/Wave".selection == 0:
+		PlayerScene = preload("res://Animation5+3/Soldier.tscn")
+	elif $"/root/Wave".selection == 1:
+		PlayerScene = preload("res://Animation5+3/Swordman.tscn")
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	player.add_to_group("player")
 	player.position = Vector2(250, 150)
+	$"/root/Wave/CanvasLayer".visible = true
+	$"/root/Wave".wave = current_wave
 	start_stage(current_stage)
-	$"/root/Wave".visible = true
-	$"/root/Wave".wave = current_wave	
+		
 
 # ------------------------------
 # เริ่ม Stage
@@ -61,19 +67,23 @@ func start_wave_loop():
 
 
 func _on_next_wave():
+	$"/root/Wave/CanvasLayer/Label".visible = true
+	$"/root/Wave/CanvasLayer/time".visible = true
 	var wave_data = stages[current_stage]
-
 	if not wave_data.has(current_wave):
-		print("Stage", current_stage, "Complete!")
-		current_stage += 1
-		#start_stage(current_stage)
-		return
-
-	print("Wave", current_wave, "start!")
-	spawn_wave(current_stage, current_wave)
-	current_wave += 1
-	#$"/root/Wave".wave = current_wave	
-
+		wave_timer.stop()
+		$"/root/Wave/CanvasLayer/time".visible = false
+	else:
+		if wave_data != null:
+			print("Wave", current_wave, "start!")
+			spawn_wave(current_stage, current_wave)
+			current_wave += 1
+			#$"/root/Wave".wave = current_wave	
+		else:
+			get_tree().quit()
+#func Next_state():
+	
+		
 
 # ------------------------------
 # spawn wave
@@ -111,8 +121,20 @@ func random_spawn_position() -> Vector2:
 	)
 	
 func _physics_process(delta: float) -> void:
-	if is_instance_valid(wave_timer):
+	var monster = get_tree().get_node_count_in_group("EnemyBody")
+	if is_instance_valid(wave_timer) and monster != 0:
 		$"/root/Wave".nextwave = wave_timer.time_left
 		$"/root/Wave".wave = current_wave-1
+		
 	else:
 		print("not found")
+		
+	
+	if monster == 0 and current_stage == 1 and current_wave > 3:
+		print("Stage", current_stage, "Complete!")
+		$"/root/Wave".state = current_stage
+		$"/root/Wave/CanvasLayer/Label".visible = false
+		$"/root/Wave/CanvasLayer/time".visible = false
+		$"/root/Wave/CanvasLayer/victory".visible = true
+		$"/root/Wave/CanvasLayer/Button".visible = true
+		current_stage +=1

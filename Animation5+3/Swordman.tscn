@@ -1,13 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpcr50t48un4x"]
+[gd_scene load_steps=15 format=3 uid="uid://dpcr50t48un4x"]
 
+[ext_resource type="Script" uid="uid://d4hsqcdu6ymyu" path="res://Animation5+3/swordman.gd" id="1_282yd"]
 [ext_resource type="Texture2D" uid="uid://b8oyk65xvxkau" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Swordsman/Swordsman with shadows/Swordsman.png" id="1_au8vn"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_wmx7i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_au8vn"]
+radius = 4.0
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_282yd"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Swordman/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -19,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk1:disabled")
+tracks/1/path = NodePath("../Swordman/Sprite2D/ATK1/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -31,7 +37,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk1:visible")
+tracks/2/path = NodePath("../Swordman/Sprite2D/ATK1/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -43,7 +49,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../HBArea2D/atk2_1:disabled")
+tracks/3/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_1:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -55,7 +61,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../HBArea2D/atk2_1:visible")
+tracks/4/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_1:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -67,7 +73,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../HBArea2D/atk2_2:disabled")
+tracks/5/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_2:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -79,7 +85,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../HBArea2D/atk2_2:visible")
+tracks/6/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_2:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -91,7 +97,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../HBArea2D/atk2_3:disabled")
+tracks/7/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_3:disabled")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -103,7 +109,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../HBArea2D/atk2_3:visible")
+tracks/8/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_3:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -115,7 +121,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../HBArea2D/atk3:disabled")
+tracks/9/path = NodePath("../Swordman/Sprite2D/ATK3/atk3:disabled")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -127,7 +133,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../HBArea2D/atk3:visible")
+tracks/10/path = NodePath("../Swordman/Sprite2D/ATK3/atk3:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -144,7 +150,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Swordman/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -156,7 +162,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk1:disabled")
+tracks/1/path = NodePath("../Swordman/Sprite2D/ATK1/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -168,7 +174,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk1:visible")
+tracks/2/path = NodePath("../Swordman/Sprite2D/ATK1/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -185,7 +191,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Swordman/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -197,7 +203,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk2_1:disabled")
+tracks/1/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -209,7 +215,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk2_1:visible")
+tracks/2/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -221,7 +227,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../HBArea2D/atk2_2:disabled")
+tracks/3/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -233,7 +239,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../HBArea2D/atk2_2:visible")
+tracks/4/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -245,7 +251,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../HBArea2D/atk2_3:disabled")
+tracks/5/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_3:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -257,7 +263,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../HBArea2D/atk2_3:visible")
+tracks/6/path = NodePath("../Swordman/Sprite2D/ATK2/atk2_3:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -274,7 +280,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Swordman/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -286,7 +292,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk3:disabled")
+tracks/1/path = NodePath("../Swordman/Sprite2D/ATK3/atk3:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -298,7 +304,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk3:visible")
+tracks/2/path = NodePath("../Swordman/Sprite2D/ATK3/atk3:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -315,7 +321,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Swordman/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -332,7 +338,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Swordman/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -343,13 +349,13 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_3il2c"]
-resource_name = "idel"
+resource_name = "idle"
 length = 0.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Swordman/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -366,7 +372,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Swordman/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -384,50 +390,70 @@ _data = {
 &"attack3": SubResource("Animation_im2gr"),
 &"death": SubResource("Animation_tvbty"),
 &"hurt": SubResource("Animation_reykc"),
-&"idel": SubResource("Animation_3il2c"),
+&"idle": SubResource("Animation_3il2c"),
 &"walk": SubResource("Animation_au8vn")
 }
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_au8vn"]
-radius = 4.0
-height = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_au8vn"]
 size = Vector2(33, 15)
 
-[node name="Swordman" type="Node2D"]
+[node name="Swordman" type="CharacterBody2D" groups=["player"]]
+collision_mask = 4
+script = ExtResource("1_282yd")
+gfx_path = NodePath("Sprite2D")
+anim_path = NodePath("AnimationPlayer")
+area_path = NodePath("Area2D")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_au8vn")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_au8vn")
+
+[node name="Bar" parent="." instance=ExtResource("3_wmx7i")]
+offset_left = -12.0
+offset_top = -15.0
+offset_right = 69.78955
+offset_bottom = -4.888153
+scale = Vector2(0.30339333, 0.30339333)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.29, 2.29)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wmx7i")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_au8vn")
 hframes = 15
 vframes = 7
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_wmx7i")
-}
+[node name="ATK1" type="Area2D" parent="Sprite2D" groups=["Hitbox1"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_au8vn")
-
-[node name="HBArea2D" type="Area2D" parent="."]
-
-[node name="atk1" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk1" type="CollisionPolygon2D" parent="Sprite2D/ATK1"]
 polygon = PackedVector2Array(20, -5, 21, -4, 5, 4, -2, 4, -10, 9, -9, 10, 4, 10, 13, 10, 18, 9, 22, 6, 28, 1, 30, -4, 30, -7, 20, -7)
 
-[node name="atk2_1" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="ATK2" type="Area2D" parent="Sprite2D" groups=["Hitbox2"]]
+
+[node name="atk2_1" type="CollisionPolygon2D" parent="Sprite2D/ATK2"]
 polygon = PackedVector2Array(9, 11, 37, 9, 23, -20, 6, -7, 8, -5, 16, -3)
 
-[node name="atk2_2" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk2_2" type="CollisionPolygon2D" parent="Sprite2D/ATK2"]
 polygon = PackedVector2Array(25, -8, 26, -5, 7, 4, -2, 5, -8, 9, -10, 10, 8, 10, 17, 9, 21, 11, 30, 4, 39, -8, 28, -7)
 
-[node name="atk2_3" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk2_3" type="CollisionPolygon2D" parent="Sprite2D/ATK2"]
 polygon = PackedVector2Array(7, 2, 27, 5, 37, 0, 21, -4, 7, -1, 7, 3)
 
-[node name="atk3" type="CollisionShape2D" parent="HBArea2D"]
+[node name="ATK3" type="Area2D" parent="Sprite2D" groups=["Hitbox3"]]
+
+[node name="atk3" type="CollisionShape2D" parent="Sprite2D/ATK3"]
 position = Vector2(25.5, 0.5)
 shape = SubResource("RectangleShape2D_au8vn")

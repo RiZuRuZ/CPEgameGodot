@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @export var SPEED: float = 50.0
-@export var STOP_RADIUS: float = 15.0          # ระยะที่หยุด ไม่ยืนทับผู้เล่น
-@export var ATTACK_RADIUS: float = 20.0        # ระยะโจมตี
+@export var STOP_RADIUS: float = 18.0          # ระยะที่หยุด ไม่ยืนทับผู้เล่น
+@export var ATTACK_RADIUS: float = 18.0        # ระยะโจมตี
 @export var ATTACK_DELAY: float = 0.5          # หน่วงก่อนฟัน
 @export var DETECT_RADIUS: float = 220.0       # ระยะที่เริ่มเห็นผู้เล่น
 @export var IDLE_CHANGE_TIME: float = 1.5      # เปลี่ยนทิศเดินมั่วทุกกี่วิ
@@ -38,22 +38,25 @@ var idle_timer := 0.0
 
 func _ready() -> void:
 	randomize()
-	$CharacterBody2D/Slime/Area2D/CollisionShape2D.disabled = true
+	$Sprite2D/ATK1/atk1.disabled = true
+	$Sprite2D/ATK2/atk2.disabled = true
+	$Sprite2D/ATK3/atk3_1.disabled = true
+	$Sprite2D/ATK3/atk3_2.disabled = true
 
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
 	else:
-		push_warning("Slime: 'gfx_path' not assigned.")
+		push_warning("ArmoredAxeman: 'gfx_path' not assigned.")
 
 	if anim_path != NodePath():
 		animation = get_node(anim_path) as AnimationPlayer
 	else:
-		push_warning("Slime: 'anim_path' not assigned.")
+		push_warning("ArmoredAxeman: 'anim_path' not assigned.")
 
 	if area_path != NodePath():
 		area = get_node(area_path) as Area2D
 	else:
-		push_warning("Slime: 'area_path' not assigned.")
+		push_warning("ArmoredAxeman: 'area_path' not assigned.")
 
 	if area:
 		area.area_entered.connect(_on_area_2d_area_entered)
@@ -62,10 +65,13 @@ func _ready() -> void:
 
 	await get_tree().process_frame
 	var players := get_tree().get_nodes_in_group("player")
+	print(players)
 	if players.size() > 0:
 		player = players[0] as Node2D
 
 	$Bar.max_value = health
+	$Bar.size = Vector2(20.375,2.0)
+	$Bar.position = Vector2(-10.0,-12.0)
 	_set_idle_dir()
 	play_anim("idle")
 
@@ -190,7 +196,7 @@ func attack_coroutine(axis_side: bool) -> void:
 		can_move = true
 		return
 
-	if axis_side:
+	if to_player.y < -2:
 		play_anim("attack1")
 	else:
 		play_anim("attack2")
@@ -212,18 +218,17 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 	var damaged := false
 
 	if hit.is_in_group("Hitbox1"):
-		health -= 1000
+		health -= 20
 		damaged = true
 	elif hit.is_in_group("Hitbox2"):
 		health -= 40
 		damaged = true
+	elif hit.is_in_group("Hitbox3"):
+		health -= 20
+		damaged = true
 	elif hit.is_in_group("Projectile1"):
 		health -= 20
 		damaged = true
-	elif hit.is_in_group("Hitbox3"):
-		health -= 30
-		damaged = true
-
 	if damaged:
 		print("Slime hit! Health:", health)
 		if health <= 0 and not death:

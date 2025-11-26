@@ -67,6 +67,8 @@ func _ready() -> void:
 		player = players[0] as Node2D
 
 	$Bar.max_value = health
+	$Bar.size = Vector2(20.375,2.0)
+	$Bar.position = Vector2(-10.0,-12.0)
 	_set_idle_dir()
 	play_anim("idle")
 
@@ -213,13 +215,16 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 	var damaged := false
 
 	if hit.is_in_group("Hitbox1"):
-		health -= 20
+		health -= 1000
 		damaged = true
 	elif hit.is_in_group("Hitbox2"):
 		health -= 40
 		damaged = true
 	elif hit.is_in_group("Projectile1"):
 		health -= 20
+		damaged = true
+	elif hit.is_in_group("Hitbox3"):
+		health -= 30
 		damaged = true
 
 	if damaged:
