@@ -7,11 +7,11 @@ var state_time: Timer = null
 var PlayerScene
 const SLIME     = preload("res://Animation5+3/Slime.tscn")
 const SKELETON  = preload("res://Animation5+3/Skeleton.tscn")
-
+const ORC		= preload("res://Animation5+3/Orc.tscn")
 # --- เก็บข้อมูล Stage → Waves --
 var stages := {
 	1: {
-		1: [ [SLIME, 3], [SKELETON, 2] ],
+		1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2] ],
 		2: [ [SLIME, 3], [SKELETON, 3] ],
 		3: [ [SLIME, 4], [SKELETON, 5] ],
 	},
