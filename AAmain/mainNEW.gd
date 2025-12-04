@@ -32,12 +32,14 @@ var current_wave := 1
 
 func _ready():
 	if $"/root/Wave".selection == 0:
-		PlayerScene = preload("res://Animation5+3/Soldier.tscn")
+		PlayerScene = preload("res://Animation5+3/Archer.tscn")
 	elif $"/root/Wave".selection == 1:
 		PlayerScene = preload("res://Animation5+3/Swordman.tscn")
+	elif $"/root/Wave".selection == 2:
+		PlayerScene = preload("res://Animation5+3/Armored Axeman.tscn")
 	var player = PlayerScene.instantiate()
 	add_child(player)
-	player.add_to_group("player")
+	#player.add_to_group("player")
 	player.position = Vector2(250, 150)
 	$"/root/Wave/CanvasLayer".visible = true
 	$"/root/Wave".wave = current_wave
@@ -127,7 +129,7 @@ func _physics_process(delta: float) -> void:
 		$"/root/Wave".wave = current_wave-1
 		
 	else:
-		print("not found")
+		pass
 		
 	
 	if monster == 0 and current_stage == 1 and current_wave > 3:

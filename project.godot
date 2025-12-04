@@ -38,6 +38,8 @@ player=""
 Hitbox1=""
 Hitbox2=""
 Hitbox3=""
+Projectile1=""
+Projectile2=""
 
 [input]
 

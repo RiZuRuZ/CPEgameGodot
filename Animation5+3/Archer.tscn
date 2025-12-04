@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://bq85v41cdhuh2"]
+[gd_scene load_steps=13 format=3 uid="uid://bq85v41cdhuh2"]
 
+[ext_resource type="Script" uid="uid://bc0kb7bs5wcs3" path="res://Animation5+3/archer.gd" id="1_5x7qr"]
 [ext_resource type="Texture2D" uid="uid://bc4wuocpbn6su" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Archer/Archer with shadows/Archer.png" id="1_od3fw"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_nrx7j"]
 
 [sub_resource type="Animation" id="Animation_nrx7j"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Archer/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +26,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Archer/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -41,7 +43,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Archer/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -58,7 +60,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Archer/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -75,7 +77,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Archer/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -92,7 +94,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Archer/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -109,7 +111,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("../Archer/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -130,24 +132,48 @@ _data = {
 &"walk": SubResource("Animation_yvnjr")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtgnc"]
-size = Vector2(20, 17)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_od3fw"]
+radius = 6.0
+height = 17.0
 
-[node name="Anim" type="Node2D"]
+[node name="Archer" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_5x7qr")
+gfx_path = NodePath("Sprite2D")
+anim_path = NodePath("AnimationPlayer")
+area_path = NodePath("Area2D")
+arrow_spawnR_path = NodePath("ArrowSpawnR")
+arrow_spawnL_path = NodePath("ArrowSpawnL")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_bxvgd")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_od3fw")
 hframes = 12
 vframes = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.5)
-shape = SubResource("RectangleShape2D_rtgnc")
+shape = SubResource("CapsuleShape2D_od3fw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1.5)
+shape = SubResource("CapsuleShape2D_od3fw")
+
+[node name="ArrowSpawnR" type="Marker2D" parent="."]
+position = Vector2(9, 0)
+
+[node name="ArrowSpawnL" type="Marker2D" parent="."]
+position = Vector2(-9, 0)
+
+[node name="Bar" parent="." instance=ExtResource("3_nrx7j")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.29, 2.29)
+
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
