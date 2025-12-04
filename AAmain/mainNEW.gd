@@ -32,11 +32,13 @@ var current_wave := 1
 
 func _ready():
 	if $"/root/Wave".selection == 0:
-		PlayerScene = preload("res://Animation5+3/Archer.tscn")
+		PlayerScene = preload("res://Animation5+3/Soldier.tscn")
 	elif $"/root/Wave".selection == 1:
 		PlayerScene = preload("res://Animation5+3/Swordman.tscn")
 	elif $"/root/Wave".selection == 2:
 		PlayerScene = preload("res://Animation5+3/Armored Axeman.tscn")
+	elif $"/root/Wave".selection == 3:
+		PlayerScene = preload("res://Animation5+3/Archer.tscn")
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	#player.add_to_group("player")
