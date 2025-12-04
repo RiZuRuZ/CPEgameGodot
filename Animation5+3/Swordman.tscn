@@ -459,3 +459,4 @@ position = Vector2(25.5, 0.5)
 shape = SubResource("RectangleShape2D_au8vn")
 
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Sprite2D/ATK1" to="." method="_on_atk_1_area_entered"]
