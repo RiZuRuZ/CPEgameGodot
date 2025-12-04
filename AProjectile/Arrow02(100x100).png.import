@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0c8hnfgr7tai"
-path="res://.godot/imported/Arrow02(100x100).png-6196330a26fcab0350b37b545d928b42.ctex"
+path="res://.godot/imported/Arrow02(100x100).png-daf6ac178ea5bda91390f0491e0fdc63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Arrow(Projectile)/Arrow02(100x100).png"
-dest_files=["res://.godot/imported/Arrow02(100x100).png-6196330a26fcab0350b37b545d928b42.ctex"]
+source_file="res://AProjectile/Arrow02(100x100).png"
+dest_files=["res://.godot/imported/Arrow02(100x100).png-daf6ac178ea5bda91390f0491e0fdc63.ctex"]
 
 [params]
 

@@ -32,7 +32,7 @@ var current_wave := 1
 
 func _ready():
 	if $"/root/Wave".selection == 0:
-		PlayerScene = preload("res://Animation5+3/Soldier.tscn")
+		PlayerScene = preload("res://Animation5+3/Archer.tscn")
 	elif $"/root/Wave".selection == 1:
 		PlayerScene = preload("res://Animation5+3/Swordman.tscn")
 	elif $"/root/Wave".selection == 2:
