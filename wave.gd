@@ -2,7 +2,7 @@ extends Control
 var wave = 0
 var nextwave: int = 0
 var state = "he;;p"
-var selection
+var selection = -1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer.visible = false
@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 		tweem.tween_property($CanvasLayer/victory,"modulate",Color(modulate.r, modulate.g,modulate.b, 0.0),1)
 		await tweem.finished
 		$CanvasLayer/victory.visible = false
-
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://state2.tscn")

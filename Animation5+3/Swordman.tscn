@@ -457,3 +457,5 @@ polygon = PackedVector2Array(7, 2, 27, 5, 37, 0, 21, -4, 7, -1, 7, 3)
 [node name="atk3" type="CollisionShape2D" parent="Sprite2D/ATK3"]
 position = Vector2(25.5, 0.5)
 shape = SubResource("RectangleShape2D_au8vn")
+
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

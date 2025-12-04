@@ -1,11 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bum00eo8qpkpy"]
 
 [ext_resource type="PackedScene" uid="uid://62pk3llg7rli" path="res://Ascenes/levels/level2.tscn" id="1_2akkl"]
-[ext_resource type="PackedScene" uid="uid://dvjntbls4eaxg" path="res://Animation5+3/Soldier.tscn" id="2_e5sag"]
+[ext_resource type="Script" uid="uid://cbpttglhgrtfs" path="res://state_2.gd" id="1_e5sag"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_e5sag")
 
 [node name="Level2" parent="." instance=ExtResource("1_2akkl")]
-
-[node name="Soldier" parent="." instance=ExtResource("2_e5sag")]
-position = Vector2(-2, -5)

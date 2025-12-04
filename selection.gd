@@ -1,27 +1,45 @@
 extends Control
 
-var player = 0
+
+
+
+@export var numberofplayer: int
+
+var player = 10*numberofplayer
 var tween :Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var Vboxandspritrlenght = 861.0-423.0
 	$VBoxContainer2/soldier.pivot_offset = Vector2($VBoxContainer2/soldier.size.x/2,$VBoxContainer2/soldier.size.y/2)
 	$VBoxContainer/swordman.pivot_offset = Vector2($VBoxContainer/swordman.size.x/2,$VBoxContainer/swordman.size.y/2)
-	#$swordman.visible=false
-	#$soldier.visible=false
+	$VBoxContainer3/Axeman.pivot_offset = Vector2($VBoxContainer3/Axeman.size.x/2,$VBoxContainer3/Axeman.size.y/2)
+	$VBoxContainer.position.x = $swordman.position.x-Vboxandspritrlenght
+	$VBoxContainer2.position.x = $soldier.position.x-Vboxandspritrlenght
+	$VBoxContainer3.position.x = $axeman.position.x-Vboxandspritrlenght
 	$Camera2D.position.x = $swordman.position.x-173
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$swordman/AnimationPlayer.play("idel")
 	$soldier/AnimationPlayer.play("idel")
-	if player%2 == 0 and $Camera2D.position.x != $swordman.position.x-173:
+	$axeman/AnimationPlayer.play("idel")
+	if player == 0:
+		player = 10*numberofplayer
+	if player%3 == 0 and $Camera2D.position.x != $swordman.position.x-173:
 		tween = create_tween()
 		tween.tween_property($Camera2D,"position", Vector2($swordman.position.x-173,320),1)
-	elif player%2 == 1 and $Camera2D.position.x != $soldier.position.x-173:
+	elif player%3 == 1 and $Camera2D.position.x != $soldier.position.x-173:
 		tween = create_tween()
 		tween.tween_property($Camera2D,"position", Vector2($soldier.position.x-173,320),1)
+	elif player%3 == 2 and $Camera2D.position.x != $axeman.position.x-173:
+		tween = create_tween()
+		tween.tween_property($Camera2D,"position", Vector2($axeman.position.x-173,320),1)
+func _on_next_butt_pressed() -> void:
+	player += 1
 
+
+func _on_prevbutt_pressed() -> void:
+	player -=1
 
 func _on_swordman_pressed() -> void:
 	$"/root/Wave".selection = 1
@@ -50,9 +68,6 @@ func _on_swordman_mouse_exited() -> void:
 	#$swordman.visible=false
 
 
-func _on_next_butt_pressed() -> void:
-	player += 1
-
-
-func _on_prevbutt_pressed() -> void:
-	player -=1
+func _on_axeman_pressed() -> void:
+	$"/root/Wave".selection = 2
+	get_tree().change_scene_to_file("res://main.tscn")
