@@ -38,8 +38,8 @@ var idle_timer := 0.0
 
 func _ready() -> void:
 	randomize()
-	$CharacterBody2D/Sprite2D/Area2D/atk2.disabled = true
-	$CharacterBody2D/Sprite2D/HBArea2D/atk1.disabled = true
+	$CharacterBody2D/Sprite2D/Area2D/atk2.set_deferred("disabled",true)
+	$CharacterBody2D/Sprite2D/HBArea2D/atk1.set_deferred("disabled",true)
 
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D

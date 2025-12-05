@@ -399,7 +399,7 @@ zoom = Vector2(2.29, 2.29)
 
 [node name="Bar" parent="." instance=ExtResource("3_1keir")]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["PlayerBody"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, -1)

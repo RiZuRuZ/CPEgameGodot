@@ -408,7 +408,7 @@ area_path = NodePath("Area2D")
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_au8vn")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["PlayerBody"]]
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -459,3 +459,6 @@ position = Vector2(25.5, 0.5)
 shape = SubResource("RectangleShape2D_au8vn")
 
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Sprite2D/ATK1" to="." method="_on_atk_1_area_entered"]
+[connection signal="area_entered" from="Sprite2D/ATK2" to="." method="_on_atk_2_area_entered"]
+[connection signal="area_entered" from="Sprite2D/ATK3" to="." method="_on_atk_3_area_entered"]

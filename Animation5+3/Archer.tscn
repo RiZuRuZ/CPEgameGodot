@@ -160,7 +160,7 @@ vframes = 6
 position = Vector2(0, -1.5)
 shape = SubResource("CapsuleShape2D_od3fw")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["PlayerBody"]]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1.5)
