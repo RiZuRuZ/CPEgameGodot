@@ -6,7 +6,8 @@ extends CharacterBody2D
 @export var ATTACK_DELAY: float = 0.5          # หน่วงก่อนฟัน
 @export var DETECT_RADIUS: float = 220.0       # ระยะที่เริ่มเห็นผู้เล่น
 @export var IDLE_CHANGE_TIME: float = 1.5      # เปลี่ยนทิศเดินมั่วทุกกี่วิ
-
+var PreHealth = 0
+var damaged := false
 # --- Exposed NodePaths ---
 @export var gfx_path: NodePath
 @export var anim_path: NodePath
@@ -38,6 +39,7 @@ var idle_timer := 0.0
 
 func _ready() -> void:
 	randomize()
+	PreHealth = health
 	$CharacterBody2D/Sprite2D/Area2D/atk2.set_deferred("disabled",true)
 	$CharacterBody2D/Sprite2D/HBArea2D/atk1.set_deferred("disabled",true)
 
@@ -75,6 +77,30 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
+	damaged= false
+	if PreHealth != health:
+		damaged= true
+		PreHealth=health
+		if damaged:
+			print("Slime hit! Health:", health)
+			if health <= 0 and not death:
+				death = true
+				is_hurt = false
+				can_attack = false
+				can_move = false
+				play_anim("death")
+			else:
+				is_hurt = true
+				can_move = false
+				can_attack = false
+				if animation:
+					animation.play("hurt")
+	if health <= 0:
+			death = true
+			is_hurt = false
+			can_attack = false
+			can_move = false
+			play_anim("death")
 	if death:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -209,38 +235,39 @@ func attack_coroutine(axis_side: bool) -> void:
 # ---------- DAMAGE / ANIMATION ----------
 
 func _on_area_2d_area_entered(hit: Area2D) -> void:
-	if death or is_hurt:
-		return
-
-	var damaged := false
-
-	if hit.is_in_group("Hitbox1"):
-		health -= 1000
-		damaged = true
-	elif hit.is_in_group("Hitbox2"):
-		health -= 40
-		damaged = true
-	elif hit.is_in_group("Projectile1"):
-		health -= 20
-		damaged = true
-	elif hit.is_in_group("Hitbox3"):
-		health -= 30
-		damaged = true
-
-	if damaged:
-		print("Slime hit! Health:", health)
-		if health <= 0 and not death:
-			death = true
-			is_hurt = false
-			can_attack = false
-			can_move = false
-			play_anim("death")
-		else:
-			is_hurt = true
-			can_move = false
-			can_attack = false
-			if animation:
-				animation.play("hurt")
+	#if death or is_hurt:
+		#return
+#
+	#damaged = false
+#
+	#if hit.is_in_group("Hitbox1"):
+		#health -= 1000
+		#damaged = true
+	#elif hit.is_in_group("Hitbox2"):
+		#health -= 40
+		#damaged = true
+	#elif hit.is_in_group("Projectile1"):
+		#health -= 20
+		#damaged = true
+	#elif hit.is_in_group("Hitbox3"):
+		#health -= 30
+		#damaged = true
+#
+	#if damaged:
+		#print("Slime hit! Health:", health)
+		#if health <= 0 and not death:
+			#death = true
+			#is_hurt = false
+			#can_attack = false
+			#can_move = false
+			#play_anim("death")
+		#else:
+			#is_hurt = true
+			#can_move = false
+			#can_attack = false
+			#if animation:
+				#animation.play("hurt")
+				pass
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

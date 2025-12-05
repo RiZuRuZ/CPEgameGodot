@@ -7,6 +7,7 @@ extends Control
 
 var player = 10*numberofplayer
 var tween :Tween
+@export var scroll_time:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,16 +31,16 @@ func _process(delta: float) -> void:
 		player = 10*numberofplayer
 	if player%numberofplayer == 0 and $Camera2D.position.x != $swordman.position.x-173:
 		tween = create_tween()
-		tween.tween_property($Camera2D,"position", Vector2($swordman.position.x-173,320),1)
+		tween.tween_property($Camera2D,"position", Vector2($swordman.position.x-173,320),scroll_time)
 	elif player%numberofplayer == 1 and $Camera2D.position.x != $soldier.position.x-173:
 		tween = create_tween()
-		tween.tween_property($Camera2D,"position", Vector2($soldier.position.x-173,320),1)
+		tween.tween_property($Camera2D,"position", Vector2($soldier.position.x-173,320),scroll_time)
 	elif player%numberofplayer == 2 and $Camera2D.position.x != $axeman.position.x-173:
 		tween = create_tween()
-		tween.tween_property($Camera2D,"position", Vector2($axeman.position.x-173,320),1)
+		tween.tween_property($Camera2D,"position", Vector2($axeman.position.x-173,320),scroll_time)
 	elif player%numberofplayer == 3 and $Camera2D.position.x != $archer.position.x-173:
 		tween = create_tween()
-		tween.tween_property($Camera2D,"position", Vector2($archer.position.x-173,320),1)
+		tween.tween_property($Camera2D,"position", Vector2($archer.position.x-173,320),scroll_time)
 func _on_next_butt_pressed() -> void:
 	player += 1
 

@@ -181,23 +181,6 @@ tracks/0/keys = {
 "values": [36, 37, 38, 39]
 }
 
-[sub_resource type="Animation" id="Animation_nlgr8"]
-resource_name = "idel"
-length = 0.6
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-
 [sub_resource type="Animation" id="Animation_ij1m1"]
 resource_name = "walk"
 length = 0.8
@@ -215,6 +198,23 @@ tracks/0/keys = {
 "values": [9, 10, 11, 12, 13, 14, 15, 16]
 }
 
+[sub_resource type="Animation" id="Animation_nlgr8"]
+resource_name = "idle"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4b1b3"]
 _data = {
 &"Death": SubResource("Animation_sryvc"),
@@ -222,7 +222,7 @@ _data = {
 &"attack1": SubResource("Animation_dprmv"),
 &"attack2": SubResource("Animation_4b1b3"),
 &"hurt": SubResource("Animation_vpcml"),
-&"idel": SubResource("Animation_nlgr8"),
+&"idle": SubResource("Animation_nlgr8"),
 &"walk": SubResource("Animation_ij1m1")
 }
 

@@ -98,11 +98,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("m1"):
 		_start_attack("attack1", false)
 
-	if Input.is_action_just_pressed("q"):
+	if Input.is_action_just_pressed("m2"):
 		_start_attack("attack2", true)
 		return
 
-	if Input.is_action_just_pressed("m2") and not is_attacking:
+	if Input.is_action_just_pressed("q") and not is_attacking:
 		_start_attack("attack3", true)
 		#_delayed_shoot()
 
@@ -299,4 +299,4 @@ func _on_atk_2_area_entered(area: Area2D) -> void:
 
 func _on_atk_3_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= 30
+		area.get_parent().health -= 15

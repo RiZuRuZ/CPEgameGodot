@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var ATTACK_DELAY: float = 0.5          # หน่วงก่อนฟัน
 @export var DETECT_RADIUS: float = 220.0       # ระยะที่เริ่มเห็นผู้เล่น
 @export var IDLE_CHANGE_TIME: float = 1.5      # เปลี่ยนทิศเดินมั่วทุกกี่วิ
-var PreHelth = 0
+var PreHealth = 0
 var damaged := false
 # --- Exposed NodePaths ---
 @export var gfx_path: NodePath
@@ -40,7 +40,7 @@ var idle_timer := 0.0
 func _ready() -> void:
 	randomize()
 	$CharacterBody2D/Slime/Area2D/CollisionShape2D.set_deferred("disabled",true)
-	PreHelth = health
+	PreHealth = health
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
 	else:
@@ -56,10 +56,10 @@ func _ready() -> void:
 	else:
 		push_warning("Slime: 'area_path' not assigned.")
 
-	if area:
-		area.area_entered.connect(_on_area_2d_area_entered)
-	if animation:
-		animation.animation_finished.connect(_on_animation_player_animation_finished)
+	#if area:
+		#area.area_entered.connect(_on_area_2d_area_entered)
+	#if animation:
+		#animation.animation_finished.connect(_on_animation_player_animation_finished)
 
 	await get_tree().process_frame
 	var players := get_tree().get_nodes_in_group("player")
@@ -73,10 +73,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
-	damaged= true
-	if PreHelth != health:
+	damaged= false
+	if PreHealth != health:
 		damaged= true
-		PreHelth=health
+		PreHealth=health
 		if damaged:
 			print("Slime hit! Health:", health)
 			if health <= 0 and not death:

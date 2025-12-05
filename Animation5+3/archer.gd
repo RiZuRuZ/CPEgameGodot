@@ -6,7 +6,9 @@ var motion := Vector2.ZERO
 #monter,position
 #var SlimeScene = preload("res://Animation5+3/Slime.tscn")
 #var SkeletonScene = preload("res://Animation5+3/Skeleton.tscn")
-
+#Arrow damage
+@export var atk1 = 20
+@export var atk2 = 50
 
 # Exposed NodePaths (set in the Inspector)
 @export var gfx_path: NodePath
@@ -97,12 +99,12 @@ func _physics_process(delta: float) -> void:
 
 
 	# --- attack inputs ---
-	if Input.is_action_just_pressed("m1"):
+	if Input.is_action_just_pressed("m1")and not is_attacking:
 		_start_attack("attack1", false)
-		_delayed_shoot()
-	if Input.is_action_just_pressed("m2"):
+		_delayed_shoot(atk1,0)
+	if Input.is_action_just_pressed("m2")and not is_attacking:
 		_start_attack("attack2", true)
-		_delayed_shoot()
+		_delayed_shoot(atk2,1)
 
 	#if Input.is_action_just_pressed("q") and not is_attacking:
 		#_start_attack("attack3", true)
@@ -249,21 +251,23 @@ func _start_invincibility() -> void:
 	is_invincible = false
 	_disable_collision()
 
-func _delayed_shoot() -> void:
+func _delayed_shoot(dmg,which) -> void:
 	await get_tree().create_timer(0.7).timeout
 
 	# เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
 	if death or is_hurt:
 		return
 
-	shoot_arrow()
+	shoot_arrow(dmg,which)
 	
-func shoot_arrow():
+func shoot_arrow(dmg,which):
 	var arrow := arrow_scene.instantiate() as Area2D
 	var mouse_pos: Vector2 = get_global_mouse_position()
 
 	# ใส่ลูกศรเข้า scene ก่อน
 	get_parent().add_child(arrow)
+	arrow.damage = dmg
+	arrow.check = which
 
 	# เลือกจุด spawn ซ้าย/ขวา
 	var spawn_pos: Vector2
