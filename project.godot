@@ -40,6 +40,7 @@ Hitbox2=""
 Hitbox3=""
 Projectile1=""
 Projectile2=""
+PlayerBody=""
 
 [input]
 

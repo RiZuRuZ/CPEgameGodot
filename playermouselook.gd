@@ -280,7 +280,7 @@ func shoot_arrow():
 
 	
 func _disable_collision():
-	$CharacterBody2D/Soldier/Area2D/CollisionPolygon2D.disabled = true
-	$CharacterBody2D/Soldier/Area2D2/CollisionShape2D.disabled = true
+	$CharacterBody2D/Soldier/Area2D/CollisionPolygon2D.set_deferred("disabled",true)
+	$CharacterBody2D/Soldier/Area2D2/CollisionShape2D.set_deferred("disabled",true)
 	
 	

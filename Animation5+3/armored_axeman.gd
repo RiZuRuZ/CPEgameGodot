@@ -131,7 +131,7 @@ func _update_facing_to_mouse() -> void:
 		return
 
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	var sx: float = abs(gfx.scale.x)
+	var sx: float = abs(gfx.scaaaaaaaaaaaaaaale.x)
 
 	if mouse_pos.x < global_position.x:
 		gfx.scale.x = -sx
@@ -281,8 +281,8 @@ func _start_invincibility() -> void:
 
 	
 func _disable_collision():
-	$Sprite2D/ATK1/atk1.disabled = true
-	$Sprite2D/ATK2/atk2.disabled = true
+	$Sprite2D/ATK1/atk1.set_deferred("disabled",true)
+	$Sprite2D/ATK2/atk2.set_deferred("disabled",true)
 	$Sprite2D/ATK3/atk3_1.disabled=true
 	$Sprite2D/ATK3/atk3_2.disabled=true
 	

@@ -169,7 +169,7 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 	if death or is_invincible:
 		return
 
-	
+	damaged = false
 
 	if hit.is_in_group("Enemy10DMG"):
 		health -= 10
@@ -279,15 +279,24 @@ func _start_invincibility() -> void:
 
 	
 func _disable_collision():
-	$Sprite2D/ATK1/atk1.disabled = true
-	$Sprite2D/ATK2/atk2_1.disabled = true
-	$Sprite2D/ATK2/atk2_2.disabled = true
-	$Sprite2D/ATK2/atk2_3.disabled = true
-	$Sprite2D/ATK3/atk3.disabled=true
-	
+	$Sprite2D/ATK1/atk1.set_deferred("disabled",true)
+	$Sprite2D/ATK2/atk2_1.set_deferred("disabled",true)
+	$Sprite2D/ATK2/atk2_2.set_deferred("disabled",true)
+	$Sprite2D/ATK2/atk2_3.set_deferred("disabled",true)
+	$Sprite2D/ATK3/atk3.set_deferred("disabled",true)
+	$Sprite2D/ATK1/atk1.set_deferred("disabled",true)
 
 
 func _on_atk_1_area_entered(area: Area2D) -> void:
-	if area.is_in_group("EnemyBody") and damaged == false :
-		area.get_parent().health -=10
-		damaged = true
+	if area.is_in_group("EnemyBody") :
+		area.get_parent().health -= 20
+
+
+func _on_atk_2_area_entered(area: Area2D) -> void:
+	if area.is_in_group("EnemyBody") :
+		area.get_parent().health -= 25
+
+
+func _on_atk_3_area_entered(area: Area2D) -> void:
+	if area.is_in_group("EnemyBody") :
+		area.get_parent().health -= 30
