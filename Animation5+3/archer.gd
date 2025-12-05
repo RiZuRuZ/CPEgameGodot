@@ -268,6 +268,8 @@ func shoot_arrow(dmg,which):
 	get_parent().add_child(arrow)
 	arrow.damage = dmg
 	arrow.check = which
+	if which == 1:
+		arrow.scale *=2.5
 
 	# เลือกจุด spawn ซ้าย/ขวา
 	var spawn_pos: Vector2

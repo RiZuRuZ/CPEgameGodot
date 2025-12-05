@@ -58,11 +58,7 @@ func _ready() -> void:
 	else:
 		push_warning("Orc: 'area_path' not assigned.")
 
-	if area:
-		area.area_entered.connect(_on_area_2d_area_entered)
-	if animation:
-		animation.animation_finished.connect(_on_animation_player_animation_finished)
-
+	
 	await get_tree().process_frame
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -78,6 +74,16 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	damaged= false
+	if health <= 0:
+			death = true
+			is_hurt = false
+			can_attack = false
+			can_move = false
+			play_anim("death")
+	if death:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 	if PreHealth != health:
 		damaged= true
 		PreHealth=health
@@ -95,16 +101,7 @@ func _physics_process(delta: float) -> void:
 				can_attack = false
 				if animation:
 					animation.play("hurt")
-	if health <= 0:
-			death = true
-			is_hurt = false
-			can_attack = false
-			can_move = false
-			play_anim("death")
-	if death:
-		velocity = Vector2.ZERO
-		move_and_slide()
-		return
+	
 
 	if is_hurt or not can_move:
 		velocity = Vector2.ZERO

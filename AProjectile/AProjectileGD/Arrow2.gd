@@ -10,13 +10,12 @@ var check = 0
 func _ready():
 	# เริ่มตัวจับเวลา auto delete
 	_start_lifetime_timer()
-	if check ==1:
-		scale *=2.5
 
 
 func _process(delta):
 	if direction != Vector2.ZERO:
 		position += direction * speed * delta
+		
 
 
 func _on_area_entered(area: Area2D) -> void:

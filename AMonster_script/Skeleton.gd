@@ -40,8 +40,8 @@ var idle_timer := 0.0
 func _ready() -> void:
 	randomize()
 	PreHealth = health
-	$CharacterBody2D/Sprite2D/Area2D/atk2.set_deferred("disabled",true)
-	$CharacterBody2D/Sprite2D/HBArea2D/atk1.set_deferred("disabled",true)
+	$CharacterBody2D/Sprite2D/atk2/atk2.set_deferred("disabled",true)
+	$CharacterBody2D/Sprite2D/atk1/atk1.set_deferred("disabled",true)
 
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
@@ -58,11 +58,7 @@ func _ready() -> void:
 	else:
 		push_warning("Skeleton: 'area_path' not assigned.")
 
-	if area:
-		area.area_entered.connect(_on_area_2d_area_entered)
-	if animation:
-		animation.animation_finished.connect(_on_animation_player_animation_finished)
-
+	
 	await get_tree().process_frame
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -78,6 +74,16 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	damaged= false
+	if health <= 0:
+			death = true
+			is_hurt = false
+			can_attack = false
+			can_move = false
+			play_anim("death")
+	if death:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 	if PreHealth != health:
 		damaged= true
 		PreHealth=health
@@ -95,12 +101,6 @@ func _physics_process(delta: float) -> void:
 				can_attack = false
 				if animation:
 					animation.play("hurt")
-	if health <= 0:
-			death = true
-			is_hurt = false
-			can_attack = false
-			can_move = false
-			play_anim("death")
 	if death:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -267,7 +267,8 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 			#can_attack = false
 			#if animation:
 				#animation.play("hurt")
-				pass
+	if area.is_in_group("PlayerBody"):
+		area.get_parent().health -= 20
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -283,3 +284,13 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func play_anim(name: String) -> void:
 	if animation and animation.current_animation != name:
 		animation.play(name)
+
+
+func _on_atk_1_area_entered(area: Area2D) -> void:
+	if area.is_in_group("PlayerBody"):
+		area.get_parent().health -= 20
+
+
+func _on_atk_2_area_entered(area: Area2D) -> void:
+	if area.is_in_group("PlayerBody"):
+		area.get_parent().health -= 20

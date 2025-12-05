@@ -13,7 +13,9 @@ func _ready() -> void:
 	elif $"/root/Wave".selection == 2:
 		PlayerScene = preload("res://Animation5+3/Armored Axeman.tscn")
 		print($"/root/Wave".selection)
-
+	elif $"/root/Wave".selection == 3:
+		PlayerScene = preload("res://Animation5+3/Archer.tscn")
+		print($"/root/Wave".selection)
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	var player_nodes = get_tree().get_nodes_in_group("player")

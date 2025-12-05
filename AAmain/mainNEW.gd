@@ -44,7 +44,7 @@ func _ready():
 	#player.add_to_group("player")
 	player.position = Vector2(250, 150)
 	$"/root/Wave/CanvasLayer".visible = true
-	$"/root/Wave".wave = current_wave
+	$"/root/Wave".wave = str(current_wave)
 	start_stage(current_stage)
 		
 
@@ -84,6 +84,7 @@ func _on_next_wave():
 			current_wave += 1
 			#$"/root/Wave".wave = current_wave	
 		else:
+			#$"/root/Wave".wave = "Last wave"
 			get_tree().quit()
 #func Next_state():
 	
@@ -118,7 +119,6 @@ func random_spawn_position() -> Vector2:
 
 	var angle = randf() * TAU
 	var radius = randf_range(safe_radius, spawn_radius)
-
 	return player.global_position + Vector2(
 		cos(angle) * radius,
 		sin(angle) * radius
@@ -128,10 +128,13 @@ func _physics_process(delta: float) -> void:
 	var monster = get_tree().get_node_count_in_group("EnemyBody")
 	if is_instance_valid(wave_timer) and monster != 0:
 		$"/root/Wave".nextwave = wave_timer.time_left
-		$"/root/Wave".wave = current_wave-1
-		
+		$"/root/Wave".wave = str(current_wave-1)
 	else:
 		pass
+	var player = get_tree().get_first_node_in_group("player")
+	if player.health <= 0:
+		$"/root/Wave/CanvasLayer/Label".visible = false
+		$"/root/Wave/CanvasLayer/time".visible = false
 		
 	
 	if monster == 0 and current_stage == 1 and current_wave > 3:

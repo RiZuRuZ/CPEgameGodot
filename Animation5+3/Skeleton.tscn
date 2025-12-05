@@ -25,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/HBArea2D/atk1:disabled")
+tracks/1/path = NodePath("Sprite2D/atk1/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -37,7 +37,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/HBArea2D/atk1:visible")
+tracks/2/path = NodePath("Sprite2D/atk1/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -49,7 +49,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/Area2D/atk2:disabled")
+tracks/3/path = NodePath("Sprite2D/atk2/atk2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -61,7 +61,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D/Area2D/atk2:visible")
+tracks/4/path = NodePath("Sprite2D/atk2/atk2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -90,7 +90,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/HBArea2D/atk1:disabled")
+tracks/1/path = NodePath("Sprite2D/atk1/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -102,7 +102,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/HBArea2D/atk1:visible")
+tracks/2/path = NodePath("Sprite2D/atk1/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -131,7 +131,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/Area2D/atk2:disabled")
+tracks/1/path = NodePath("Sprite2D/atk2/atk2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -143,7 +143,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/Area2D/atk2:visible")
+tracks/2/path = NodePath("Sprite2D/atk2/atk2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -266,14 +266,14 @@ texture = ExtResource("1_cn0fg")
 hframes = 8
 vframes = 7
 
-[node name="HBArea2D" type="Area2D" parent="CharacterBody2D/Sprite2D" groups=["Enemy20DMG"]]
+[node name="atk1" type="Area2D" parent="CharacterBody2D/Sprite2D" groups=["Enemy20DMG"]]
 
-[node name="atk1" type="CollisionPolygon2D" parent="CharacterBody2D/Sprite2D/HBArea2D"]
+[node name="atk1" type="CollisionPolygon2D" parent="CharacterBody2D/Sprite2D/atk1"]
 polygon = PackedVector2Array(1, -14, 11, -13, 14, -5, 5, 2, 9, 6, 22, 4, 24, -8, 19, -18, 10, -21)
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D/Sprite2D" groups=["Enemy20DMG"]]
+[node name="atk2" type="Area2D" parent="CharacterBody2D/Sprite2D" groups=["Enemy20DMG"]]
 
-[node name="atk2" type="CollisionPolygon2D" parent="CharacterBody2D/Sprite2D/Area2D"]
+[node name="atk2" type="CollisionPolygon2D" parent="CharacterBody2D/Sprite2D/atk2"]
 polygon = PackedVector2Array(7, -2, 10, 5, -10, 8, 4, 12, 21, 9, 32, 4, 18, -5, 9, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -301,5 +301,7 @@ offset_top = -12.0
 offset_right = 10.375
 offset_bottom = -10.0
 
+[connection signal="area_entered" from="CharacterBody2D/Sprite2D/atk1" to="." method="_on_atk_1_area_entered"]
+[connection signal="area_entered" from="CharacterBody2D/Sprite2D/atk2" to="." method="_on_atk_2_area_entered"]
 [connection signal="animation_finished" from="CharacterBody2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

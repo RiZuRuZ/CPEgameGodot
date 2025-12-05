@@ -39,7 +39,7 @@ var idle_timer := 0.0
 
 func _ready() -> void:
 	randomize()
-	$CharacterBody2D/Slime/Area2D/CollisionShape2D.set_deferred("disabled",true)
+	$CharacterBody2D/Slime/atk1/CollisionShape2D.set_deferred("disabled",true)
 	PreHealth = health
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
@@ -74,6 +74,16 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	damaged= false
+	if health <= 0:
+			death = true
+			is_hurt = false
+			can_attack = false
+			can_move = false
+			play_anim("death")
+	if death:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 	if PreHealth != health:
 		damaged= true
 		PreHealth=health
@@ -91,16 +101,8 @@ func _physics_process(delta: float) -> void:
 				can_attack = false
 				if animation:
 					animation.play("hurt")
-	if health <= 0:
-			death = true
-			is_hurt = false
-			can_attack = false
-			can_move = false
-			play_anim("death")
-	if death:
-		velocity = Vector2.ZERO
-		move_and_slide()
-		return
+	
+	
 
 	if is_hurt or not can_move:
 		velocity = Vector2.ZERO
@@ -231,6 +233,8 @@ func attack_coroutine(axis_side: bool) -> void:
 # ---------- DAMAGE / ANIMATION ----------
 
 func _on_area_2d_area_entered(hit: Area2D) -> void:
+	if area.is_in_group("PlayerBody"):
+		area.get_parent().health -= 20
 	#if death or is_hurt:
 		#return
 	#damaged = false
@@ -261,7 +265,6 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 			#can_attack = false
 			#if animation:
 				#animation.play("hurt")
-				pass
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -277,3 +280,13 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func play_anim(name: String) -> void:
 	if animation and animation.current_animation != name:
 		animation.play(name)
+
+
+func _on_area_2d_2_area_entered(area: Area2D) -> void:
+	if area.is_in_group("PlayerBody"):
+		area.get_parent().health -= 20
+
+
+func _on_atk_1_area_entered(area: Area2D) -> void:
+	if area.is_in_group("PlayerBody"):
+		area.get_parent().health -= 20
