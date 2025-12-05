@@ -6,11 +6,12 @@ extends Area2D
 @export var lifetime: float = range/speed 
 #t=s/v
 var direction: Vector2 = Vector2.ZERO
-
-
+var check = 0
 func _ready():
 	# เริ่มตัวจับเวลา auto delete
 	_start_lifetime_timer()
+	if check ==1:
+		scale *=2.5
 
 
 func _process(delta):
@@ -20,9 +21,11 @@ func _process(delta):
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody"):
-		if area.has_method("take_damage"):
-			area.take_damage(damage)
-		queue_free()
+		if check == 0:
+			area.get_parent().health -= damage
+			queue_free()
+		elif check ==1:
+			area.get_parent().health -= damage
 
 
 func setup(dir: Vector2):

@@ -248,23 +248,6 @@ tracks/0/keys = {
 "values": [60, 61, 62, 63]
 }
 
-[sub_resource type="Animation" id="Animation_mu4sp"]
-resource_name = "idel"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5]
-}
-
 [sub_resource type="Animation" id="Animation_4cm3g"]
 resource_name = "walk"
 length = 0.9
@@ -282,6 +265,23 @@ tracks/0/keys = {
 "values": [12, 13, 14, 15, 16, 17, 18, 19, 20]
 }
 
+[sub_resource type="Animation" id="Animation_mu4sp"]
+resource_name = "idle"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r6dwm"]
 _data = {
 &"RESET": SubResource("Animation_4u3iy"),
@@ -290,7 +290,7 @@ _data = {
 &"attack3": SubResource("Animation_pakk6"),
 &"death": SubResource("Animation_x0moj"),
 &"hurt": SubResource("Animation_r6dwm"),
-&"idel": SubResource("Animation_mu4sp"),
+&"idle": SubResource("Animation_mu4sp"),
 &"walk": SubResource("Animation_4cm3g")
 }
 

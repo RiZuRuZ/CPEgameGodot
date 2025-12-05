@@ -100,11 +100,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("m1"):
 		_start_attack("attack1", false)
 
-	if Input.is_action_just_pressed("q"):
+	if Input.is_action_just_pressed("m2"):
 		_start_attack("attack2", true)
 		return
 
-	if Input.is_action_just_pressed("m2") and not is_attacking:
+	if Input.is_action_just_pressed("q") and not is_attacking:
 		_start_attack("attack3", true)
 		#_delayed_shoot()
 
@@ -131,7 +131,7 @@ func _update_facing_to_mouse() -> void:
 		return
 
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	var sx: float = abs(gfx.scaaaaaaaaaaaaaaale.x)
+	var sx: float = abs(gfx.scale.x)
 
 	if mouse_pos.x < global_position.x:
 		gfx.scale.x = -sx
@@ -286,3 +286,18 @@ func _disable_collision():
 	$Sprite2D/ATK3/atk3_1.disabled=true
 	$Sprite2D/ATK3/atk3_2.disabled=true
 	
+
+
+func _on_atk_1_area_entered(area: Area2D) -> void:
+	if area.is_in_group("EnemyBody"):
+		area.get_parent().health -= 25
+
+
+func _on_atk_2_area_entered(area: Area2D) -> void:
+	if area.is_in_group("EnemyBody"):
+		area.get_parent().health -= 15
+
+
+func _on_atk_3_area_entered(area: Area2D) -> void:
+	if area.is_in_group("EnemyBody"):
+		area.get_parent().health -= 25

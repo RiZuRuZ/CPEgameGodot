@@ -183,10 +183,10 @@ tracks/1/path = NodePath("../ArmoredAxeman/Sprite2D/ATK2/atk2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3856575, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3856575, 0.5, 0.6011264, 0.7154689, 0.79434556, 0.90868807),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [true, false, true, false, true, false, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -195,10 +195,10 @@ tracks/2/path = NodePath("../ArmoredAxeman/Sprite2D/ATK2/atk2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3872316, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3872316, 0.5, 0.6027005, 0.7154689, 0.79591966, 0.90868807),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, true, false]
+"values": [false, true, false, true, false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_jm8oo"]
@@ -405,4 +405,7 @@ zoom = Vector2(2.29, 2.29)
 position = Vector2(1, -1)
 shape = SubResource("CapsuleShape2D_u0vs0")
 
+[connection signal="area_entered" from="Sprite2D/ATK1" to="." method="_on_atk_1_area_entered"]
+[connection signal="area_entered" from="Sprite2D/ATK2" to="." method="_on_atk_2_area_entered"]
+[connection signal="area_entered" from="Sprite2D/ATK3" to="." method="_on_atk_3_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
