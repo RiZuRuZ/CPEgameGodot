@@ -1,9 +1,9 @@
 extends Node2D
-var level :int =0
-var progress :float = 0
+var level =0
+var progress = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	print("found")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

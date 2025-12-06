@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://comujv5sxfpe1"]
+
+[ext_resource type="Script" uid="uid://g8sb5yj1pbo5" path="res://Pickup/button_lv_options.gd" id="1_lur20"]
+[ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="2_ptu2y"]
+
+[node name="Lv_options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button_Lv_options" type="Button" parent="."]
+custom_minimum_size = Vector2(315, 40)
+layout_mode = 0
+offset_left = 327.0
+offset_top = 211.0
+offset_right = 833.0
+offset_bottom = 298.0
+script = ExtResource("1_lur20")
+
+[node name="Label" type="Label" parent="Button_Lv_options"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 97.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("2_ptu2y")
+theme_override_font_sizes/font_size = 30
+text = "Lvl  2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Button_Lv_options"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -138.0
+offset_top = 2.0
+offset_right = 251.0
+offset_bottom = 86.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ptu2y")
+theme_override_font_sizes/font_size = 25
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1

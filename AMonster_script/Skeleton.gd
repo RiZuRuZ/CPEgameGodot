@@ -16,6 +16,9 @@ var damaged := false
 #--- Monster Setup -----
 @export var health := 100
 
+#-------
+#@export var drops : Array[Pickups]
+
 # --- Auto refs ---
 var gfx: Node2D
 var animation: AnimationPlayer
@@ -36,6 +39,7 @@ var state: int = State.IDLE
 var idle_dir := Vector2.ZERO
 var idle_timer := 0.0
 
+#var drop = preload("res://Pickup/pickups.tscn")
 
 func _ready() -> void:
 	randomize()
@@ -294,3 +298,28 @@ func _on_atk_1_area_entered(area: Area2D) -> void:
 func _on_atk_2_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody"):
 		area.get_parent().health -= 20
+func drop_item():
+	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
+	var dropA = scene.instantiate()
+
+	dropA.global_position = global_position  # ดรอปตรงตำแหน่งที่มอนตาย
+
+	get_tree().current_scene.call_deferred("add_child", dropA)
+	print(">>> CALL DROP_ITEM <<<")
+	"""
+	print("drop_item() called, drops size:", drops.size())
+
+	if drops.is_empty():
+		print("drops is EMPTY, no drop")
+		return
+
+	var item: Pickups = drops.pick_random()
+	print("drop item:", item)
+
+	var item_to_drop = drop.instantiate()
+	item_to_drop.type = item
+	item_to_drop.position = global_position
+	item_to_drop.player_reference = player
+
+	get_tree().current_scene.call_deferred("add_child", item_to_drop)
+"""
