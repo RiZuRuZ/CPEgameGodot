@@ -19,16 +19,8 @@ func _ready() -> void:
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	var player_nodes = get_tree().get_nodes_in_group("player")
-	
-	# Check if there is more than one player (i.e., the Swordman and the Soldier)
-	if player_nodes.size() > 1:
-		# Loop through all nodes in the 'player' group
-		for node in player_nodes:
-			# Check if this node is NOT the one we just created (the Swordman)
-			if node != player:
-				# Assuming the redundant node is the Soldier, remove it.
-				node.queue_free()
-				print("Deleted redundant player instance (likely Soldier).")
+	player.XP = $"/root/LevelSave".progress
+	player.level = $"/root/LevelSave".level
 	#player.add_to_group("player")
 	#player.position = Vector2(250, 150)
 

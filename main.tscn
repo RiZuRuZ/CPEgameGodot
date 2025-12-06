@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxxr8ojys2mll"]
+[gd_scene load_steps=11 format=3 uid="uid://bxxr8ojys2mll"]
 
 [ext_resource type="Script" uid="uid://307gh0uberov" path="res://AAmain/mainNEW.gd" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://c7taw5sxo28en" path="res://ExampleAsset/Bocchi Sprite Sheet02-Picsart-BackgroundRemover.png" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bdxdbc5g0btap" path="res://Bocchi.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bj04qq2p1n327" path="res://Ascenes/levels/level1.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://0kagwy22i60j" path="res://PauseMenu/pause_menu.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://bp46t1x8ewyvt" path="res://Animation5+3/Orc.tscn" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://dvqp0l1j5pdck" path="res://Pickup/pickups.tscn" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Slime.tscn" id="7_272bh"]
 
 [sub_resource type="Animation" id="Animation_lquwl"]
 resource_name = "Bocchi"
@@ -88,9 +89,16 @@ wait_time = 60.0
 one_shot = true
 
 [node name="Level1" parent="." instance=ExtResource("5_lquwl")]
-position = Vector2(-32, 13)
+position = Vector2(-1, 98)
 
-[node name="Orc" parent="." instance=ExtResource("6_272bh")]
+[node name="Pickups" parent="." instance=ExtResource("7_5vw27")]
+position = Vector2(149, 60)
+
+[node name="Slime" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(404, 171)
+
+[node name="Slime2" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(401, 141)
 
 [connection signal="timeout" from="first" to="." method="_on_first_timeout"]
 [connection signal="timeout" from="wavetime" to="." method="_on_wavetime_timeout"]

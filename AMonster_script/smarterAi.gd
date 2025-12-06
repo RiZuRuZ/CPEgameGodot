@@ -233,7 +233,7 @@ func attack_coroutine(axis_side: bool) -> void:
 # ---------- DAMAGE / ANIMATION ----------
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody"):
+	if area.is_in_group("PlayerBody")and area.get_parent().is_invincible == false:
 		area.get_parent().health -= 20
 	#if death or is_hurt:
 		#return
@@ -283,10 +283,10 @@ func play_anim(name: String) -> void:
 
 
 func _on_area_2d_2_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody"):
+	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
 		area.get_parent().health -= 20
 
 
 func _on_atk_1_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody"):
+	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
 		area.get_parent().health -= 20

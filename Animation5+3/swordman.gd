@@ -7,7 +7,9 @@ var motion := Vector2.ZERO
 #var SlimeScene = preload("res://Animation5+3/Slime.tscn")
 #var SkeletonScene = preload("res://Animation5+3/Skeleton.tscn")
 var damaged := false
-
+@export var atk1_dmg : int =0
+@export var atk2_dmg : int =0 
+@export var atk3_dmg : int =0  
 # Exposed NodePaths (set in the Inspector)
 @export var gfx_path: NodePath
 @export var anim_path: NodePath
@@ -34,6 +36,24 @@ var is_invincible := false   # อมตะ?
 var arrow_spawnR: Marker2D
 var arrow_spawnL: Marker2D
 var pending_shot := false
+
+# ==========================
+#  XP / LEVEL SYSTEM (FIXED)
+# ==========================
+var XP : int:
+	set(value):
+		XP = value
+		%XP.value = value        # UI bar
+var total_XP : int = 0  # XP สะสมรวมทั้งหมด
+var level : int = 1:
+	set(value):
+		level = value
+		%Level.text = "Lv " + str(value)
+
+		if value >= 7:
+			%XP.max_value = 40
+		elif value >= 3:
+			%XP.max_value = 20
 
 
 func _ready() -> void:
@@ -73,7 +93,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	motion = Vector2.ZERO
-	
+	if is_hurt:
+		return
 	if health <= 0:
 		death = true
 		can_move = false
@@ -123,6 +144,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("left"):  motion.x -= 1
 	if Input.is_action_pressed("down"):  motion.y += 1
 	if Input.is_action_pressed("up"):    motion.y -= 1
+	if Input.is_action_pressed("0"): gain_XP(5)
 
 
 	# --- attack inputs ---
@@ -153,7 +175,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if animation and animation.current_animation not in ["idle", "attack1", "attack2", "attack3", "hurt", "death"]:
 			animation.play("idle")
-
+	check_XP()
 
 func _update_facing_to_mouse() -> void:
 	if not gfx:
@@ -320,14 +342,35 @@ func _disable_collision():
 
 func _on_atk_1_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= 20
-
+		area.get_parent().health -= atk1_dmg
 
 func _on_atk_2_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= 25
+		area.get_parent().health -= atk2_dmg
 
 
 func _on_atk_3_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= 15
+		area.get_parent().health -= atk3_dmg
+# ==========================
+#  XP SYSTEM FUNCTIONS
+# ==========================
+func gain_XP(amount):
+	XP += amount
+	total_XP += amount
+	print("XP:", XP)
+	$"/root/LevelSave".progress = XP
+
+func check_XP() -> void:
+	if XP >= %XP.max_value:
+		XP -= %XP.max_value
+		level += 1
+		$"/root/LevelSave".progress = XP
+		$"/root/LevelSave".level = level
+
+# ==========================
+#  MAGNET PICKUP
+# ==========================
+func _on_magnet_area_entered(area: Area2D) -> void:
+	if area.has_method("follow"):
+		area.follow(self)

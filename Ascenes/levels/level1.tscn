@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bqdbe0w2hunk8" path="res://Scene Asset/forest_/forest_ [resources].png" id="7_cid14"]
 [ext_resource type="Texture2D" uid="uid://ddvgh8wkgppga" path="res://Scene Asset/forest_/forest_.png" id="8_ci7iy"]
 [ext_resource type="Texture2D" uid="uid://dtxnls8otsc1b" path="res://Scene Asset/desert_/desert_ [resources].png" id="9_cnicg"]
-[ext_resource type="Script" uid="uid://dwbip36nbts8p" path="res://Ascenes/levels/area_2d.gd" id="10_akmv7"]
+[ext_resource type="Script" path="res://Ascenes/levels/area_2d.gd" id="10_akmv7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ml4ko"]
 texture = ExtResource("1_ml4ko")

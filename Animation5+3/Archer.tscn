@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bq85v41cdhuh2"]
 
-[ext_resource type="Script" uid="uid://bc0kb7bs5wcs3" path="res://Animation5+3/archer.gd" id="1_5x7qr"]
+[ext_resource type="Script" path="res://Animation5+3/archer.gd" id="1_5x7qr"]
 [ext_resource type="Texture2D" uid="uid://bc4wuocpbn6su" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Archer/Archer with shadows/Archer.png" id="1_od3fw"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_nrx7j"]
 
@@ -176,5 +176,3 @@ position = Vector2(-9, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.29, 2.29)
-
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

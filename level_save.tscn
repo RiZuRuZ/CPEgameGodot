@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bye5863yp4apk"]
+
+[ext_resource type="Script" uid="uid://8lk1pw0vmtmc" path="res://level_save.gd" id="1_7ph4j"]
+
+[node name="level_save" type="Node2D"]
+script = ExtResource("1_7ph4j")
