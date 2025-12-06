@@ -30,7 +30,7 @@ var area: Area2D
 var can_move := true
 var is_attacking := false
 var is_hurt := false
-var health := 100
+var health := 10000
 var death := false
 
 @export var INVINCIBLE_TIME: float = 1.0
@@ -359,5 +359,6 @@ func check_XP() -> void:
 #  MAGNET PICKUP
 # ==========================
 func _on_magnet_area_entered(area: Area2D) -> void:
+	pass
 	if area.has_method("follow"):
 		area.follow(self)

@@ -106,10 +106,6 @@ func _physics_process(delta: float) -> void:
 				can_attack = false
 				if animation:
 					animation.play("hurt")
-	if death:
-		velocity = Vector2.ZERO
-		move_and_slide()
-		return
 
 	if is_hurt or not can_move:
 		velocity = Vector2.ZERO
@@ -304,7 +300,8 @@ func _on_atk_2_area_entered(area: Area2D) -> void:
 func drop_item():
 	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
 	var dropA = scene.instantiate()
-	dropA.global_position = $Area2D.global_position  # ดรอปตรงตำแหน่งที่มอนตาย
+	# ปรับตัวเลข Vector2(x, y) จนกว่าจะตรงใจ
+	dropA.global_position = global_position + Vector2(-30, 20)
 
 	get_tree().current_scene.call_deferred("add_child", dropA)
 	print(">>> CALL DROP_ITEM <<<")

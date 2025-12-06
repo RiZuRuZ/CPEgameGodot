@@ -255,6 +255,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+visible = false
 position = Vector2(0, 2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_oor1w")
