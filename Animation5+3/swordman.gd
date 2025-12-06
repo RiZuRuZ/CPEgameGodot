@@ -196,6 +196,7 @@ func _on_anim_finished(anim_name: String) -> void:
 			
 
 func _on_area_2d_area_entered(hit: Area2D) -> void:
+	pass
 	# ตายหรืออมตะ → ไม่โดนดาเมจ
 	#if death or is_invincible:
 		#return
@@ -226,7 +227,7 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 	#elif hit.is_in_group("EnemyBody"):
 		#health -= 10
 		#damaged = true
-	#elif hit.is_in_group("slow"):
+	#if hit.is_in_group("slow"):
 		#SPEED = 50
 		#return   # ไม่ต้องไปเช็คดาเมจต่อ (ถ้า slow เป็นโซนสิ่งแวดล้อมธรรมดา)
 #
@@ -252,7 +253,6 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 				#animation.play("hurt")
 				#
 			#_start_invincibility()
-	pass
 func _on_area_2d_area_exited(hit: Area2D) -> void:
 	SPEED = 100
 			

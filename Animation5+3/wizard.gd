@@ -6,8 +6,9 @@ var motion := Vector2.ZERO
 #monter,position
 #var SlimeScene = preload("res://Animation5+3/Slime.tscn")
 #var SkeletonScene = preload("res://Animation5+3/Skeleton.tscn")
-var PreHealth = 0
-var damaged := false	
+#Arrow damage
+@export var atk1 = 20
+@export var atk2 = 50
 
 # Exposed NodePaths (set in the Inspector)
 @export var gfx_path: NodePath
@@ -15,6 +16,9 @@ var damaged := false
 @export var area_path: NodePath
 @export var arrow_spawnR_path: NodePath
 @export var arrow_spawnL_path: NodePath
+
+var PreHealth = 0
+var damaged:=false
 
 # Auto-assigned references
 var gfx: Node2D
@@ -31,15 +35,15 @@ var death := false
 @export var INVINCIBLE_TIME: float = 1.0
 var is_invincible := false   # อมตะ?
 
-@onready var arrow_scene = preload("res://AProjectile/Arrow1.tscn")
+@onready var arrow_scene = preload("res://AProjectile/Ice.tscn")
 var arrow_spawnR: Marker2D
 var arrow_spawnL: Marker2D
 var pending_shot := false
 
 
 func _ready() -> void:
-	PreHealth = health
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
+	PreHealth = health
 	await get_tree().process_frame
 	_disable_collision()
 	
@@ -60,7 +64,6 @@ func _ready() -> void:
 	# --- player hurtbox ---
 	if area_path != NodePath():
 		area = get_node(area_path) as Area2D
-		area.area_entered.connect(_on_area_2d_area_entered)
 	else:
 		push_warning("⚠️ 'area_path' not assigned for player hurtbox.")
 
@@ -68,13 +71,14 @@ func _ready() -> void:
 	arrow_spawnL = get_node(arrow_spawnL_path)
 
 	$Bar.max_value = health
+	$Bar.size = Vector2(20.375,2.0)
+	$Bar.position = Vector2(-10.0,-12.0)
 	
 
 
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	motion = Vector2.ZERO
-
 	if health <= 0:
 		death = true
 		can_move = false
@@ -111,7 +115,6 @@ func _physics_process(delta: float) -> void:
 					animation.play("hurt")
 					
 				_start_invincibility()
-
 	if not can_move:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -128,16 +131,16 @@ func _physics_process(delta: float) -> void:
 
 
 	# --- attack inputs ---
-	if Input.is_action_just_pressed("m1"):
+	if Input.is_action_just_pressed("m1")and not is_attacking:
 		_start_attack("attack1", false)
+		_delayed_shoot(atk1,0)
+	#if Input.is_action_just_pressed("m2")and not is_attacking:
+		#_start_attack("attack2", true)
+		#_delayed_shoot(atk2,1)
 
-	if Input.is_action_just_pressed("q"):
-		_start_attack("attack2", true)
-		return
-
-	if Input.is_action_just_pressed("m2") and not is_attacking:
-		_start_attack("attack3", true)
-		_delayed_shoot()
+	#if Input.is_action_just_pressed("q") and not is_attacking:
+		#_start_attack("attack3", true)
+		#_delayed_shoot()
 
 	# --- movement (ใช้ velocity + move_and_slide) ---
 	if motion != Vector2.ZERO:
@@ -182,7 +185,7 @@ func _start_attack(anim_name: String, lock_movement: bool) -> void:
 
 
 func _on_anim_finished(anim_name: String) -> void:
-	if anim_name in ["attack1", "attack2", "attack3"]:
+	if anim_name in ["attack1", "attack2","attack3"]:
 		is_attacking = false
 		can_move = true
 		_disable_collision()
@@ -198,7 +201,8 @@ func _on_anim_finished(anim_name: String) -> void:
 			
 
 func _on_area_2d_area_entered(hit: Area2D) -> void:
-	# ตายหรืออมตะ → ไม่โดนดาเมจ
+	pass
+	## ตายหรืออมตะ → ไม่โดนดาเมจ
 	#if death or is_invincible:
 		#return
 #
@@ -242,7 +246,6 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 			#
 			#if animation:
 				#animation.play("death")
-				#$"/root/Wave/CanvasLayer".visible = false
 				#get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
 #
 		#else:
@@ -255,7 +258,7 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 				#animation.play("hurt")
 				#
 			#_start_invincibility()
-	pass
+
 func _on_area_2d_area_exited(hit: Area2D) -> void:
 	SPEED = 100
 			
@@ -281,22 +284,28 @@ func _start_invincibility() -> void:
 	is_invincible = false
 	_disable_collision()
 
-func _delayed_shoot() -> void:
-	await get_tree().create_timer(0.7).timeout
-
+func _delayed_shoot(dmg,which) -> void:
+	if which == 0:
+		await await get_tree().create_timer(0.8).timeout
+	elif which == 1:
+		await await get_tree().create_timer(1).timeout
 	# เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
 	if death or is_hurt:
 		return
 
-	shoot_arrow()
+	shoot_arrow(dmg,which)
 	
-func shoot_arrow():
+func shoot_arrow(dmg,which):
 	var arrow := arrow_scene.instantiate() as Area2D
 	var mouse_pos: Vector2 = get_global_mouse_position()
 
 	# ใส่ลูกศรเข้า scene ก่อน
 	get_parent().add_child(arrow)
-
+	arrow.damage = dmg
+	arrow.check = which
+	if which == 1:
+		arrow.scale *=2.5
+		
 	# เลือกจุด spawn ซ้าย/ขวา
 	var spawn_pos: Vector2
 	if mouse_pos.x < global_position.x:
@@ -313,17 +322,5 @@ func shoot_arrow():
 
 	
 func _disable_collision():
-	$CharacterBody2D/Soldier/atk1/CollisionPolygon2D.set_deferred("disabled",true)
-	$CharacterBody2D/Soldier/Area2D2/CollisionShape2D.set_deferred("disabled",true)
+	pass
 	
-	
-
-
-func _on_atk_1_area_entered(area: Area2D) -> void:
-	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= 20
-
-
-func _on_area_2d_2_area_entered(area: Area2D) -> void:
-	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= 30

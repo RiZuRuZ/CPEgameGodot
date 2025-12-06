@@ -17,6 +17,9 @@ var motion := Vector2.ZERO
 @export var arrow_spawnR_path: NodePath
 @export var arrow_spawnL_path: NodePath
 
+var PreHealth = 0
+var damaged:=false
+
 # Auto-assigned references
 var gfx: Node2D
 var animation: AnimationPlayer
@@ -40,6 +43,7 @@ var pending_shot := false
 
 func _ready() -> void:
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
+	PreHealth = health
 	await get_tree().process_frame
 	_disable_collision()
 	
@@ -76,13 +80,42 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	motion = Vector2.ZERO
+	if health <= 0:
+		death = true
+		can_move = false
+		is_hurt = false
+				
+		if animation:
+				animation.play("death")
+				get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
+	#if is_hurt:
+		#return
+	damaged= false
+	if PreHealth != health:
+		damaged= true
+		PreHealth=health
+		if damaged:
+			print("Player hit! Health:", health)
 
-	if death:
-		return
+			if health <= 0 and not death:
+				death = true
+				can_move = false
+				is_hurt = false
+				
+				if animation:
+					animation.play("death")
+					get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
 
-	if is_hurt:
-		return
-
+			elif not death:
+				is_hurt = true
+				can_move = false
+				is_attacking = false
+				_disable_collision()
+				
+				if animation:
+					animation.play("hurt")
+					
+				_start_invincibility()
 	if not can_move:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -169,62 +202,63 @@ func _on_anim_finished(anim_name: String) -> void:
 			
 
 func _on_area_2d_area_entered(hit: Area2D) -> void:
-	# ตายหรืออมตะ → ไม่โดนดาเมจ
-	if death or is_invincible:
-		return
-
-	var damaged := false
-
-	if hit.is_in_group("Enemy10DMG"):
-		health -= 10
-		damaged = true
-	elif hit.is_in_group("Enemy15DMG"):
-		health -= 15
-		damaged = true
-	elif hit.is_in_group("Enemy20DMG"):
-		health -= 20
-		damaged = true
-	elif hit.is_in_group("Enemy25DMG"):
-		health -= 25
-		damaged = true
-	elif hit.is_in_group("Enemy30DMG"):
-		health -= 30
-		damaged = true
-	elif hit.is_in_group("Enemy35DMG"):
-		health -= 35
-		damaged = true
-	elif hit.is_in_group("Enemy40DMG"):
-		health -= 40
-		damaged = true
-	elif hit.is_in_group("EnemyBody"):
-		health -= 10
-		damaged = true
-	elif hit.is_in_group("slow"):
-		SPEED = 50
-		return   # ไม่ต้องไปเช็คดาเมจต่อ (ถ้า slow เป็นโซนสิ่งแวดล้อมธรรมดา)
-
-	if damaged:
-		print("Player hit! Health:", health)
-
-		if health <= 0 and not death:
-			death = true
-			can_move = false
-			is_hurt = false
-			
-			if animation:
-				animation.play("death")
-				get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
-
-		else:
-			is_hurt = true
-			can_move = false
-			is_attacking = false
-			_disable_collision()
-			
-			if animation:
-				animation.play("hurt")
-				
-			_start_invincibility()
+	pass
+	## ตายหรืออมตะ → ไม่โดนดาเมจ
+	#if death or is_invincible:
+		#return
+#
+	#var damaged := false
+#
+	#if hit.is_in_group("Enemy10DMG"):
+		#health -= 10
+		#damaged = true
+	#elif hit.is_in_group("Enemy15DMG"):
+		#health -= 15
+		#damaged = true
+	#elif hit.is_in_group("Enemy20DMG"):
+		#health -= 20
+		#damaged = true
+	#elif hit.is_in_group("Enemy25DMG"):
+		#health -= 25
+		#damaged = true
+	#elif hit.is_in_group("Enemy30DMG"):
+		#health -= 30
+		#damaged = true
+	#elif hit.is_in_group("Enemy35DMG"):
+		#health -= 35
+		#damaged = true
+	#elif hit.is_in_group("Enemy40DMG"):
+		#health -= 40
+		#damaged = true
+	#elif hit.is_in_group("EnemyBody"):
+		#health -= 10
+		#damaged = true
+	#elif hit.is_in_group("slow"):
+		#SPEED = 50
+		#return   # ไม่ต้องไปเช็คดาเมจต่อ (ถ้า slow เป็นโซนสิ่งแวดล้อมธรรมดา)
+#
+	#if damaged:
+		#print("Player hit! Health:", health)
+#
+		#if health <= 0 and not death:
+			#death = true
+			#can_move = false
+			#is_hurt = false
+			#
+			#if animation:
+				#animation.play("death")
+				#get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
+#
+		#else:
+			#is_hurt = true
+			#can_move = false
+			#is_attacking = false
+			#_disable_collision()
+			#
+			#if animation:
+				#animation.play("hurt")
+				#
+			#_start_invincibility()
 
 func _on_area_2d_area_exited(hit: Area2D) -> void:
 	SPEED = 100
@@ -252,8 +286,10 @@ func _start_invincibility() -> void:
 	_disable_collision()
 
 func _delayed_shoot(dmg,which) -> void:
-	await get_tree().create_timer(0.7).timeout
-
+	if which == 0:
+		await await get_tree().create_timer(0.6).timeout
+	elif which == 1:
+		await await get_tree().create_timer(1).timeout
 	# เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
 	if death or is_hurt:
 		return
@@ -270,7 +306,7 @@ func shoot_arrow(dmg,which):
 	arrow.check = which
 	if which == 1:
 		arrow.scale *=2.5
-
+		
 	# เลือกจุด spawn ซ้าย/ขวา
 	var spawn_pos: Vector2
 	if mouse_pos.x < global_position.x:

@@ -40,8 +40,8 @@ var idle_timer := 0.0
 func _ready() -> void:
 	randomize()
 	PreHealth = health
-	$CharacterBody2D/Sprite2D/atk2/atk2.set_deferred("disabled",true)
-	$CharacterBody2D/Sprite2D/atk1/atk1.set_deferred("disabled",true)
+	$Sprite2D/atk2/atk2.set_deferred("disabled",true)
+	$Sprite2D/atk1/atk1.set_deferred("disabled",true)
 
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
@@ -234,7 +234,7 @@ func attack_coroutine(axis_side: bool) -> void:
 
 # ---------- DAMAGE / ANIMATION ----------
 
-func _on_area_2d_area_entered(hit: Area2D) -> void:
+func _on_area_2d_area_entered(area: Area2D) -> void:
 	#if death or is_hurt:
 		#return
 #

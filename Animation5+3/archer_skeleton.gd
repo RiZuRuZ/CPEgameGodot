@@ -1,20 +1,23 @@
 extends CharacterBody2D
 
-@export var SPEED: float = 40.0
+@export var SPEED: float = 50.0
 @export var STOP_RADIUS: float = 18.0          # ระยะที่หยุด ไม่ยืนทับผู้เล่น
-@export var ATTACK_RADIUS: float = 18.0        # ระยะโจมตี
+@export var ATTACK_RADIUS: float = 100        # ระยะโจมตี
 @export var ATTACK_DELAY: float = 0.5          # หน่วงก่อนฟัน
 @export var DETECT_RADIUS: float = 220.0       # ระยะที่เริ่มเห็นผู้เล่น
 @export var IDLE_CHANGE_TIME: float = 1.5      # เปลี่ยนทิศเดินมั่วทุกกี่วิ
+@onready var arrow_scene = preload("res://AProjectile/Arrow3.tscn")
 var PreHealth = 0
 var damaged := false
 # --- Exposed NodePaths ---
 @export var gfx_path: NodePath
 @export var anim_path: NodePath
 @export var area_path: NodePath
+@export var arrow_spawnR_path: NodePath
+@export var arrow_spawnL_path: NodePath
 
 #--- Monster Setup -----
-@export var health := 120
+@export var health := 100
 
 # --- Auto refs ---
 var gfx: Node2D
@@ -36,29 +39,33 @@ var state: int = State.IDLE
 var idle_dir := Vector2.ZERO
 var idle_timer := 0.0
 
+var arrow_spawnR: Marker2D
+var arrow_spawnL: Marker2D
+var pending_shot := false
 
 func _ready() -> void:
 	randomize()
 	PreHealth = health
-	$Sprite2D/atk1/atk1.set_deferred("disabled",true)
-	$Sprite2D/atk2/atk2.set_deferred("disabled",true)
+	#$Sprite2D/atk2/atk2.set_deferred("disabled",true)
+	#$Sprite2D/atk1/atk1.set_deferred("disabled",true)
 
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
 	else:
-		push_warning("Orc: 'gfx_path' not assigned.")
+		push_warning("Skeleton: 'gfx_path' not assigned.")
 
 	if anim_path != NodePath():
 		animation = get_node(anim_path) as AnimationPlayer
 	else:
-		push_warning("Orc: 'anim_path' not assigned.")
+		push_warning("Skeleton: 'anim_path' not assigned.")
 
 	if area_path != NodePath():
 		area = get_node(area_path) as Area2D
 	else:
-		push_warning("Orc: 'area_path' not assigned.")
+		push_warning("Skeleton: 'area_path' not assigned.")
 
-	
+	arrow_spawnR = get_node(arrow_spawnR_path)
+	arrow_spawnL = get_node(arrow_spawnL_path)
 	await get_tree().process_frame
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -69,7 +76,6 @@ func _ready() -> void:
 	$Bar.position = Vector2(-10.0,-12.0)
 	_set_idle_dir()
 	play_anim("idle")
-	
 
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
@@ -101,7 +107,10 @@ func _physics_process(delta: float) -> void:
 				can_attack = false
 				if animation:
 					animation.play("hurt")
-	
+	if death:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 
 	if is_hurt or not can_move:
 		velocity = Vector2.ZERO
@@ -211,27 +220,19 @@ func attack_coroutine(axis_side: bool) -> void:
 
 	var to_player := player.global_position - global_position
 	if to_player.length() > ATTACK_RADIUS:
+		# หลุดระยะแล้ว เลิกตี
 		can_attack = true
 		can_move = true
 		return
 
-	# --- เลือกท่าโจมตีแบบสุ่ม ---
-	var attack_id = randi_range(1, 2)  # จะได้ 1 หรือ 2
-	if attack_id == 1:
-		play_anim("attack1")
-		print("a1")
-	else:
-		play_anim("attack2")
-		print("a2")
-
-	# รออนิเมชั่นจบ
+	play_anim("attack")
+	_delayed_shoot(30)
 	if animation and is_inside_tree():
 		await animation.animation_finished
 
 	if not death and not is_hurt:
 		can_move = true
 		can_attack = true
-
 
 
 # ---------- DAMAGE / ANIMATION ----------
@@ -281,18 +282,36 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		if not death:
 			can_move = true
 			can_attack = true
+func _delayed_shoot(dmg) -> void:
+	await await get_tree().create_timer(0.6).timeout
+	# เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
+	if death or is_hurt:
+		return
 
+	shoot_arrow(dmg)
+	
+func shoot_arrow(dmg):
+	var arrow := arrow_scene.instantiate() as Area2D
+	#var mouse_pos: Vector2 = get_global_mouse_position()
+
+	# ใส่ลูกศรเข้า scene ก่อน
+	get_parent().add_child(arrow)
+	arrow.damage = dmg
+		
+	# เลือกจุด spawn ซ้าย/ขวา
+	var spawn_pos: Vector2
+	if player.global_position.x < global_position.x:
+		spawn_pos = arrow_spawnL.global_position
+	else:
+		spawn_pos = arrow_spawnR.global_position
+
+	# เซ็ตตำแหน่งเริ่ม
+	arrow.global_position = spawn_pos
+
+	# ให้ทิศทางยิงออกจากจุด spawn จริง ๆ
+	var dir := (player.global_position - spawn_pos).normalized()
+	arrow.setup(dir) 
 
 func play_anim(name: String) -> void:
 	if animation and animation.current_animation != name:
 		animation.play(name)
-
-
-func _on_atk_1_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody"):
-		area.get_parent().health -= 20
-
-
-func _on_atk_2_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody"):
-		area.get_parent().health -= 20

@@ -34,11 +34,13 @@ func _ready():
 	if $"/root/Wave".selection == 0:
 		PlayerScene = preload("res://Animation5+3/Soldier.tscn")
 	elif $"/root/Wave".selection == 1:
-		PlayerScene = preload("res://Animation5+3/Swordman.tscn")
+		PlayerScene = preload("res://Animation5+3/Wizard.tscn")
 	elif $"/root/Wave".selection == 2:
 		PlayerScene = preload("res://Animation5+3/Armored Axeman.tscn")
 	elif $"/root/Wave".selection == 3:
 		PlayerScene = preload("res://Animation5+3/Archer.tscn")
+	elif $"/root/Wave".selection == 4:
+		PlayerScene = preload("res://Animation5+3/Wizard.tscn")
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	#player.add_to_group("player")
@@ -82,6 +84,9 @@ func _on_next_wave():
 			print("Wave", current_wave, "start!")
 			spawn_wave(current_stage, current_wave)
 			current_wave += 1
+			if not wave_data.has(current_wave):
+				wave_timer.stop()
+				$"/root/Wave/CanvasLayer/time".visible = false
 			#$"/root/Wave".wave = current_wave	
 		else:
 			#$"/root/Wave".wave = "Last wave"
