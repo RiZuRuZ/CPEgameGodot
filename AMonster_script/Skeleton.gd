@@ -15,6 +15,9 @@ extends CharacterBody2D
 #--- Monster Setup -----
 @export var health := 100
 
+#-------
+#@export var drops : Array[Pickups]
+
 # --- Auto refs ---
 var gfx: Node2D
 var animation: AnimationPlayer
@@ -35,6 +38,7 @@ var state: int = State.IDLE
 var idle_dir := Vector2.ZERO
 var idle_timer := 0.0
 
+#var drop = preload("res://Pickup/pickups.tscn")
 
 func _ready() -> void:
 	randomize()
@@ -221,7 +225,7 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 		health -= 40
 		damaged = true
 	elif hit.is_in_group("Projectile1"):
-		health -= 20
+		health -= 1000
 		damaged = true
 	elif hit.is_in_group("Hitbox3"):
 		health -= 30
@@ -234,7 +238,9 @@ func _on_area_2d_area_entered(hit: Area2D) -> void:
 			is_hurt = false
 			can_attack = false
 			can_move = false
+			drop_item()
 			play_anim("death")
+
 		else:
 			is_hurt = true
 			can_move = false
@@ -256,3 +262,30 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func play_anim(name: String) -> void:
 	if animation and animation.current_animation != name:
 		animation.play(name)
+
+
+func drop_item():
+	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
+	var dropA = scene.instantiate()
+
+	dropA.global_position = global_position  # ดรอปตรงตำแหน่งที่มอนตาย
+
+	get_tree().current_scene.call_deferred("add_child", dropA)
+	print(">>> CALL DROP_ITEM <<<")
+	"""
+	print("drop_item() called, drops size:", drops.size())
+
+	if drops.is_empty():
+		print("drops is EMPTY, no drop")
+		return
+
+	var item: Pickups = drops.pick_random()
+	print("drop item:", item)
+
+	var item_to_drop = drop.instantiate()
+	item_to_drop.type = item
+	item_to_drop.position = global_position
+	item_to_drop.player_reference = player
+
+	get_tree().current_scene.call_deferred("add_child", item_to_drop)
+"""

@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="2_ekbyn"]
 [ext_resource type="FontFile" uid="uid://bty22o7674q5x" path="res://GrapeSoda.ttf" id="2_jix8l"]
 [ext_resource type="AudioStream" uid="uid://c33gh2j5ek0rg" path="res://Music/Ambient (Loop Room) _ MiSide [vHn_1JZ-3k8].mp3" id="3_fu7sn"]
-[ext_resource type="Script" path="res://audio.gd" id="4_ekbyn"]
+[ext_resource type="Script" uid="uid://biluaio40o2uo" path="res://audio.gd" id="4_ekbyn"]
 [ext_resource type="Script" uid="uid://df6117kbn8al5" path="res://fullscreen_control.gd" id="5_glbon"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
