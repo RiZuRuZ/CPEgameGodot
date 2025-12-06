@@ -7,7 +7,9 @@ var motion := Vector2.ZERO
 #var SlimeScene = preload("res://Animation5+3/Slime.tscn")
 #var SkeletonScene = preload("res://Animation5+3/Skeleton.tscn")
 var damaged := false
-
+@export var atk1_dmg : int =0
+@export var atk2_dmg : int =0 
+@export var atk3_dmg : int =0  
 # Exposed NodePaths (set in the Inspector)
 @export var gfx_path: NodePath
 @export var anim_path: NodePath
@@ -91,7 +93,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	motion = Vector2.ZERO
-	
+	if is_hurt:
+		return
 	if health <= 0:
 		death = true
 		can_move = false
@@ -339,17 +342,16 @@ func _disable_collision():
 
 func _on_atk_1_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= 20
-
+		area.get_parent().health -= atk1_dmg
 
 func _on_atk_2_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= 25
+		area.get_parent().health -= atk2_dmg
 
 
 func _on_atk_3_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= 15
+		area.get_parent().health -= atk3_dmg
 # ==========================
 #  XP SYSTEM FUNCTIONS
 # ==========================

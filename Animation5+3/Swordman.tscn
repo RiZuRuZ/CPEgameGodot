@@ -407,6 +407,9 @@ radius = 50.0
 [node name="Swordman" type="CharacterBody2D" groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_282yd")
+atk1_dmg = 20
+atk2_dmg = 25
+atk3_dmg = 30
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
