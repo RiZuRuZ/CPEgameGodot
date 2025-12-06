@@ -1,17 +1,19 @@
 extends Area2D
 
-@export var range: float = 500.0
-@export var speed: float = 400.0
+@export var range: float = 100
+var speed: float
 @export var damage: int = 30
-@export var lifetime: float = range/speed 
+var lifetime: float = 0.8
 #t=s/v
 var direction: Vector2 = Vector2.ZERO
-
+var check =0
 
 func _ready():
 	# เริ่มตัวจับเวลา auto delete
+	speed = range/lifetime
 	_start_lifetime_timer()
-
+	$AnimationPlayer.play("anim")
+	
 
 func _process(delta):
 	if direction != Vector2.ZERO:
@@ -20,7 +22,7 @@ func _process(delta):
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody"):
-		area.get_parent().health -= 20
+		area.get_parent().health -= damage
 		queue_free()
 
 

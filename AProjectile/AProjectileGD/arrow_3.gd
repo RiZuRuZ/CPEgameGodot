@@ -19,7 +19,7 @@ func _process(delta):
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("EnemyBody"):
+	if area.is_in_group("PlayerBody"):
 		area.get_parent().health -= 20
 		queue_free()
 

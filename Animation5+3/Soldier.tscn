@@ -28,7 +28,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Soldier/Area2D/CollisionPolygon2D:disabled")
+tracks/1/path = NodePath("Soldier/atk1/CollisionPolygon2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -69,7 +69,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Soldier/Area2D/CollisionPolygon2D:disabled")
+tracks/1/path = NodePath("Soldier/atk1/CollisionPolygon2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -247,9 +247,9 @@ texture = ExtResource("1_pytxw")
 hframes = 9
 vframes = 7
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D/Soldier" groups=["Hitbox1"]]
+[node name="atk1" type="Area2D" parent="CharacterBody2D/Soldier" groups=["Hitbox1"]]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D/Soldier/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D/Soldier/atk1"]
 polygon = PackedVector2Array(-12, 2, 0, 9, 15, -1, 5, -12, 21, -10, 21, 6, 11, 12, -7, 10)
 disabled = true
 
@@ -285,3 +285,4 @@ shape = SubResource("CapsuleShape2D_lqgdd")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="CharacterBody2D/Soldier/atk1" to="." method="_on_atk_1_area_entered"]

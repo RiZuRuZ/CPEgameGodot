@@ -11,22 +11,27 @@ var tween :Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	numberofplayer = get_tree().get_node_count_in_group("player")
+	player = 10*numberofplayer
 	var Vboxandspritrlenght = 861.0-423.0
 	$VBoxContainer2/soldier.pivot_offset = Vector2($VBoxContainer2/soldier.size.x/2,$VBoxContainer2/soldier.size.y/2)
 	$VBoxContainer/swordman.pivot_offset = Vector2($VBoxContainer/swordman.size.x/2,$VBoxContainer/swordman.size.y/2)
 	$VBoxContainer3/Axeman.pivot_offset = Vector2($VBoxContainer3/Axeman.size.x/2,$VBoxContainer3/Axeman.size.y/2)
 	$VBoxContainer4/archer.pivot_offset = Vector2($VBoxContainer4/archer.size.x/2,$VBoxContainer4/archer.size.y/2)
-
+	$VBoxContainer5/wizard.pivot_offset = Vector2($VBoxContainer5/wizard.size.x/2,$VBoxContainer5/wizard.size.y/2)
+	
 	$VBoxContainer.position.x = $swordman.position.x-Vboxandspritrlenght
 	$VBoxContainer2.position.x = $soldier.position.x-Vboxandspritrlenght
 	$VBoxContainer3.position.x = $axeman.position.x-Vboxandspritrlenght
 	$VBoxContainer4.position.x = $archer.position.x-Vboxandspritrlenght
+	$VBoxContainer5.position.x = $wizard.position.x-Vboxandspritrlenght
 	$Camera2D.position.x = $swordman.position.x-173
 func _process(delta: float) -> void:
 	$swordman/AnimationPlayer.play("idel")
 	$soldier/AnimationPlayer.play("idel")
 	$axeman/AnimationPlayer.play("idel")
 	$archer/AnimationPlayer.play("idel")
+	$wizard/AnimationPlayer.play("idel")
 	if player == 0:
 		player = 10*numberofplayer
 	if player%numberofplayer == 0 and $Camera2D.position.x != $swordman.position.x-173:
@@ -41,6 +46,9 @@ func _process(delta: float) -> void:
 	elif player%numberofplayer == 3 and $Camera2D.position.x != $archer.position.x-173:
 		tween = create_tween()
 		tween.tween_property($Camera2D,"position", Vector2($archer.position.x-173,320),scroll_time)
+	elif player%numberofplayer == 4 and $Camera2D.position.x != $wizard.position.x-173:
+		tween = create_tween()
+		tween.tween_property($Camera2D,"position", Vector2($wizard.position.x-173,320),scroll_time)
 func _on_next_butt_pressed() -> void:
 	player += 1
 
@@ -58,23 +66,6 @@ func _on_soldier_pressed() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 
 
-func _on_swordman_mouse_entered() -> void:
-	$VBoxContainer/swordman.scale = Vector2(1.2,1.2)
-	#$swordman.visible=true
-
-func _on_soldier_mouse_entered() -> void:
-	$VBoxContainer2/soldier.scale = Vector2(1.2,1.2)
-	#$soldier.visible=true
-
-func _on_soldier_mouse_exited() -> void:
-	$VBoxContainer2/soldier.scale = Vector2(1,1)
-	#$soldier.visible=false
-
-func _on_swordman_mouse_exited() -> void:
-	$VBoxContainer/swordman.scale = Vector2(1,1)
-	#$swordman.visible=false
-
-
 func _on_axeman_pressed() -> void:
 	$"/root/Wave".selection = 2
 	get_tree().change_scene_to_file("res://main.tscn")
@@ -83,3 +74,50 @@ func _on_axeman_pressed() -> void:
 func _on_archer_pressed() -> void:
 	$"/root/Wave".selection = 3
 	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_wizard_pressed() -> void:
+	$"/root/Wave".selection = 4
+	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_wizard_mouse_entered() -> void:
+	$VBoxContainer5/wizard.scale = Vector2(1.2,1.2)
+
+
+func _on_wizard_mouse_exited() -> void:
+	$VBoxContainer5/wizard.scale = Vector2(1,1)
+
+
+func _on_archer_mouse_entered() -> void:
+	$VBoxContainer4/archer.scale = Vector2(1.2,1.2)
+
+
+func _on_archer_mouse_exited() -> void:
+	$VBoxContainer4/archer.scale = Vector2(1,1)
+
+
+func _on_axeman_mouse_entered() -> void:
+	$VBoxContainer3/Axeman.scale = Vector2(1.2,1.2)
+
+
+func _on_axeman_mouse_exited() -> void:
+	$VBoxContainer3/Axeman.scale = Vector2(1,1)
+	
+func _on_swordman_mouse_entered() -> void:
+	$VBoxContainer/swordman.scale = Vector2(1.2,1.2)
+	#$swordman.visible=true
+	
+func _on_soldier_mouse_exited() -> void:
+	$VBoxContainer2/soldier.scale = Vector2(1,1)
+	#$soldier.visible=false
+
+
+func _on_soldier_mouse_entered() -> void:
+	$VBoxContainer2/soldier.scale = Vector2(1.2,1.2)
+	#$soldier.visible=true
+
+
+func _on_swordman_mouse_exited() -> void:
+	$VBoxContainer/swordman.scale = Vector2(1,1)
+	#$swordman.visible=false

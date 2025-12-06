@@ -1,8 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1sj5mhwcmfv4"]
+[gd_scene load_steps=12 format=3 uid="uid://c1sj5mhwcmfv4"]
 
+[ext_resource type="Script" uid="uid://b6fqv08iitjri" path="res://Animation5+3/archer_skeleton.gd" id="1_eug4y"]
 [ext_resource type="Texture2D" uid="uid://ba4q8v5nicvss" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton Archer/Skeleton Archer with shadows/Skeleton Archer.png" id="1_idf1l"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_cj7im"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_el4sk"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_clmhp"]
+radius = 7.0
+height = 20.0
 
 [sub_resource type="Animation" id="Animation_el4sk"]
 length = 0.001
@@ -70,23 +74,6 @@ tracks/0/keys = {
 "values": [27, 28, 29, 30]
 }
 
-[sub_resource type="Animation" id="Animation_y43re"]
-resource_name = "walk"
-length = 0.8
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [9, 10, 11, 12, 13, 14, 15, 16]
-}
-
 [sub_resource type="Animation" id="Animation_idf1l"]
 resource_name = "idle"
 length = 0.5
@@ -104,6 +91,23 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_y43re"]
+resource_name = "walk"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14, 15, 16]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mjl7q"]
 _data = {
 &"RESET": SubResource("Animation_el4sk"),
@@ -114,21 +118,41 @@ _data = {
 &"walk": SubResource("Animation_y43re")
 }
 
-[node name="ArcherSkeleton" type="Node2D"]
+[node name="ArcherSkeleton" type="CharacterBody2D"]
+script = ExtResource("1_eug4y")
+gfx_path = NodePath("Sprite2D")
+anim_path = NodePath("AnimationPlayer")
+area_path = NodePath("Area2D")
+arrow_spawnR_path = NodePath("ArrowSpawnR")
+arrow_spawnL_path = NodePath("ArrowSpawnL")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_idf1l")
 hframes = 9
 vframes = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -2)
-shape = SubResource("RectangleShape2D_el4sk")
+shape = SubResource("CapsuleShape2D_clmhp")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_mjl7q")
 }
+
+[node name="Area2D" type="Area2D" parent="." groups=["EnemyBody"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_clmhp")
+
+[node name="ArrowSpawnL" type="Marker2D" parent="."]
+position = Vector2(-9, 0)
+
+[node name="ArrowSpawnR" type="Marker2D" parent="."]
+position = Vector2(9, 0)
+
+[node name="Bar" parent="." instance=ExtResource("3_cj7im")]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
