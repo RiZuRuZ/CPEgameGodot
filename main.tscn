@@ -5,10 +5,9 @@
 [ext_resource type="Script" uid="uid://bdxdbc5g0btap" path="res://Bocchi.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bj04qq2p1n327" path="res://Ascenes/levels/level1.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://0kagwy22i60j" path="res://PauseMenu/pause_menu.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://bp46t1x8ewyvt" path="res://Animation5+3/Orc.tscn" id="6_272bh"]
-[ext_resource type="PackedScene" uid="uid://ct0tcuxspt3d" path="res://Animation5+3/Armored Axeman.tscn" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://dvqp0l1j5pdck" path="res://Pickup/pickups.tscn" id="7_5vw27"]
-[ext_resource type="Script" path="res://Animation5+3/armored_axeman.gd" id="7_kek77"]
+[ext_resource type="PackedScene" uid="uid://dfijgvchbwh6y" path="res://Animation5+3/Skeleton.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://c1sj5mhwcmfv4" path="res://Animation5+3/Archer Skeleton.tscn" id="8_5vw27"]
 
 [sub_resource type="Animation" id="Animation_lquwl"]
 resource_name = "Bocchi"
@@ -93,16 +92,14 @@ one_shot = true
 [node name="Level1" parent="." instance=ExtResource("5_lquwl")]
 position = Vector2(-1, 98)
 
-[node name="Orc" parent="." instance=ExtResource("6_272bh")]
-[node name="ArmoredAxeman" parent="." groups=["player"] instance=ExtResource("6_272bh")]
-position = Vector2(144, 2)
-script = ExtResource("7_kek77")
-gfx_path = NodePath("Sprite2D")
-anim_path = NodePath("AnimationPlayer")
-area_path = NodePath("Area2D")
-
 [node name="Pickups" parent="." instance=ExtResource("7_5vw27")]
 position = Vector2(149, 60)
+
+[node name="ArcherSkeleton3" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(244, 170)
+
+[node name="ArcherSkeleton" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(186, 275)
 
 [connection signal="timeout" from="first" to="." method="_on_first_timeout"]
 [connection signal="timeout" from="wavetime" to="." method="_on_wavetime_timeout"]

@@ -35,6 +35,24 @@ var arrow_spawnR: Marker2D
 var arrow_spawnL: Marker2D
 var pending_shot := false
 
+# ==========================
+#  XP / LEVEL SYSTEM (FIXED)
+# ==========================
+var XP : int:
+	set(value):
+		XP = value
+		%XP.value = value        # UI bar
+var total_XP : int = 0  # XP สะสมรวมทั้งหมด
+var level : int = 1:
+	set(value):
+		level = value
+		%Level.text = "Lv " + str(value)
+
+		if value >= 7:
+			%XP.max_value = 40
+		elif value >= 3:
+			%XP.max_value = 20
+
 
 func _ready() -> void:
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
@@ -123,6 +141,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("left"):  motion.x -= 1
 	if Input.is_action_pressed("down"):  motion.y += 1
 	if Input.is_action_pressed("up"):    motion.y -= 1
+	if Input.is_action_pressed("0"): gain_XP(5)
 
 
 	# --- attack inputs ---
@@ -153,7 +172,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if animation and animation.current_animation not in ["idle", "attack1", "attack2", "attack3", "hurt", "death"]:
 			animation.play("idle")
-
+	check_XP()
 
 func _update_facing_to_mouse() -> void:
 	if not gfx:
@@ -331,3 +350,25 @@ func _on_atk_2_area_entered(area: Area2D) -> void:
 func _on_atk_3_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
 		area.get_parent().health -= 15
+# ==========================
+#  XP SYSTEM FUNCTIONS
+# ==========================
+func gain_XP(amount):
+	XP += amount
+	total_XP += amount
+	print("XP:", XP)
+	$"/root/LevelSave".progress = XP
+
+func check_XP() -> void:
+	if XP >= %XP.max_value:
+		XP -= %XP.max_value
+		level += 1
+		$"/root/LevelSave".progress = XP
+		$"/root/LevelSave".level = level
+
+# ==========================
+#  MAGNET PICKUP
+# ==========================
+func _on_magnet_area_entered(area: Area2D) -> void:
+	if area.has_method("follow"):
+		area.follow(self)

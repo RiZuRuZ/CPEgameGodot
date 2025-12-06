@@ -338,7 +338,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet"]
 shape = SubResource("CircleShape2D_46swv")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="area_entered" from="CharacterBody2D/Soldier/atk1" to="." method="_on_atk_1_area_entered"]
+[connection signal="area_entered" from="CharacterBody2D/Soldier/Area2D2" to="." method="_on_area_2d_2_area_entered"]
 [connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]

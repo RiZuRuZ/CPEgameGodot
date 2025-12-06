@@ -77,7 +77,6 @@ func _ready() -> void:
 		animation = get_node(anim_path)
 	if area_path != NodePath():
 		area = get_node(area_path)
-		area.area_entered.connect(_on_area_2d_area_entered)
 
 	if animation:
 		animation.animation_finished.connect(_on_anim_finished)
@@ -331,7 +330,7 @@ func _disable_collision():
 
 func _on_atk_1_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= 20
+		area.get_parent().health -= 1000
 
 
 func _on_area_2d_2_area_entered(area: Area2D) -> void:

@@ -79,11 +79,12 @@ func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	damaged= false
 	if health <= 0:
-			death = true
-			is_hurt = false
-			can_attack = false
-			can_move = false
-			play_anim("death")
+		$Area2D.set_deferred("disable",false)
+		death = true
+		is_hurt = false
+		can_attack = false
+		can_move = false
+		play_anim("death")
 	if death:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -271,12 +272,14 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			#can_attack = false
 			#if animation:
 				#animation.play("hurt")
-	if area.is_in_group("PlayerBody"):
+	if area.is_in_group("PlayerBody") and health > 0:
 		area.get_parent().health -= 20
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
+		drop_item()
+		$Area2D.set_deferred("disable",false)
 		queue_free()
 	elif anim_name == "hurt":
 		is_hurt = false
@@ -301,8 +304,7 @@ func _on_atk_2_area_entered(area: Area2D) -> void:
 func drop_item():
 	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
 	var dropA = scene.instantiate()
-
-	dropA.global_position = global_position  # ดรอปตรงตำแหน่งที่มอนตาย
+	dropA.global_position = $Area2D.global_position  # ดรอปตรงตำแหน่งที่มอนตาย
 
 	get_tree().current_scene.call_deferred("add_child", dropA)
 	print(">>> CALL DROP_ITEM <<<")
