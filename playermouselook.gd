@@ -79,7 +79,6 @@ func _ready() -> void:
 	$Bar.max_value = health
 
 
-
 # ==========================
 #  PHYSICS PROCESS
 # ==========================
@@ -270,12 +269,14 @@ func gain_XP(amount):
 	XP += amount
 	total_XP += amount
 	print("XP:", XP)
-
+	$"/root/LevelSave".progress = XP
 
 func check_XP() -> void:
 	if XP >= %XP.max_value:
 		XP -= %XP.max_value
 		level += 1
+		$"/root/LevelSave".progress = XP
+		$"/root/LevelSave".level = level
 
 # ==========================
 #  MAGNET PICKUP
