@@ -53,10 +53,30 @@ var level : int = 1:
 		level = value
 		%Level.text = "Lv " + str(value)
 
+# ==========================
+#  XP / LEVEL SYSTEM (FIXED)
+# ==========================
+var XP : int:
+	set(value):
+		XP = value
+		%XP.value = value        # UI bar
+var total_XP : int = 0  # XP สะสมรวมทั้งหมด
+var level : int = 1:
+	set(value):
+		level = value
+		%Level.text = "Lv " + str(value)
+
 		if value >= 7:
 			%XP.max_value = 40
 		elif value >= 3:
 			%XP.max_value = 20
+# ==========================
+#  SFX
+# ==========================
+@onready var sfx_lv_up: AudioStreamPlayer = $SFX_Lv_up
+@onready var sfx_hurt: AudioStreamPlayer = $SFX_hurt
+@onready var sfx_arrow: AudioStreamPlayer = $SFX_arrow
+@onready var sfx_arrow_m_2: AudioStreamPlayer = $SFX_arrow_m2
 
 func _ready() -> void:
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
@@ -95,6 +115,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	check_XP()
 	$Bar.value = health
 	motion = Vector2.ZERO
 	if health <= 0:
@@ -213,6 +234,7 @@ func _on_anim_finished(anim_name: String) -> void:
 #			pending_shot = false
 
 	if anim_name == "hurt":
+		sfx_hurt.play()
 		is_hurt = false
 		if not death:
 			can_move = true
@@ -249,8 +271,10 @@ func _start_invincibility() -> void:
 func _delayed_shoot(dmg,which) -> void:
 	if which == 0:
 		await await get_tree().create_timer(0.6).timeout
+		sfx_arrow.play()
 	elif which == 1:
 		await await get_tree().create_timer(1).timeout
+		sfx_arrow_m_2.play()
 	# เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
 	if death or is_hurt:
 		return
@@ -285,6 +309,11 @@ func shoot_arrow(dmg,which):
 
 func _disable_collision():
 	pass
+	
+
+# ==========================
+#  XP SYSTEM FUNCTIONS
+# ==========================
 func gain_XP(amount):
 	XP += amount
 	total_XP += amount
@@ -293,14 +322,14 @@ func gain_XP(amount):
 
 func check_XP() -> void:
 	if XP >= %XP.max_value:
+		sfx_lv_up.play()
 		XP -= %XP.max_value
 		level += 1
 		$"/root/LevelSave".progress = XP
 		$"/root/LevelSave".level = level
 
-# ==========================
-#  MAGNET PICKUP
-# ==========================
+
 func _on_magnet_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
 	if area.has_method("follow"):
-		area.follow(self)	
+		area.follow(self)
