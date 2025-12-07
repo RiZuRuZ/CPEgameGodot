@@ -157,13 +157,14 @@ func _physics_process(delta: float) -> void:
 	# --- attack inputs ---
 	if Input.is_action_just_pressed("m1")and not is_attacking:
 		_start_attack("attack1", false)
-
+		sfx_sword_m_1.play()
 	if Input.is_action_just_pressed("m2")and not is_attacking:
 		_start_attack("attack2", true)
-		return
+		sfx_sword_m_2.play()
 
 	if Input.is_action_just_pressed("q") and not is_attacking:
 		_start_attack("attack3", true)
+		sfx_sword_q.play()
 		#_delayed_shoot()
 
 	# --- movement (ใช้ velocity + move_and_slide) ---
@@ -246,36 +247,6 @@ func _start_invincibility() -> void:
 	is_invincible = false
 	_disable_collision()
 
-#func _delayed_shoot() -> void:
-	#await get_tree().create_timer(0.7).timeout
-#
-	## เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
-	#if death or is_hurt:
-		#return
-#
-	#shoot_arrow()
-	
-#func shoot_arrow():
-	#var arrow := arrow_scene.instantiate() as Area2D
-	#var mouse_pos: Vector2 = get_global_mouse_position()
-#
-	## ใส่ลูกศรเข้า scene ก่อน
-	#get_parent().add_child(arrow)
-#
-	## เลือกจุด spawn ซ้าย/ขวา
-	#var spawn_pos: Vector2
-	#if mouse_pos.x < global_position.x:
-		#spawn_pos = arrow_spawnL.global_position
-	#else:
-		#spawn_pos = arrow_spawnR.global_position
-#
-	## เซ็ตตำแหน่งเริ่ม
-	#arrow.global_position = spawn_pos
-#
-	## ให้ทิศทางยิงออกจากจุด spawn จริง ๆ
-	#var dir := (mouse_pos - spawn_pos).normalized()
-	#arrow.setup(dir) 
-
 	
 func _disable_collision():
 	$Sprite2D/ATK1/atk1.set_deferred("disabled",true)
@@ -309,6 +280,7 @@ func gain_XP(amount):
 
 func check_XP() -> void:
 	if XP >= %XP.max_value:
+		sfx_lv_up.play()
 		XP -= %XP.max_value
 		level += 1
 		$"/root/LevelSave".progress = XP
