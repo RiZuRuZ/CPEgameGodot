@@ -7,9 +7,7 @@ var motion := Vector2.ZERO
 #var SlimeScene = preload("res://Animation5+3/Slime.tscn")
 #var SkeletonScene = preload("res://Animation5+3/Skeleton.tscn")
 var damaged := false
-@export var atk1_dmg : int =0
-@export var atk2_dmg : int =0 
-@export var atk3_dmg : int =0  
+
 # Exposed NodePaths (set in the Inspector)
 @export var gfx_path: NodePath
 @export var anim_path: NodePath
@@ -22,11 +20,16 @@ var gfx: Node2D
 var animation: AnimationPlayer
 var area: Area2D
 
+# player setup
+@export var health : int = 100
+@export var atk1dmg : int = 25
+@export var atk2dmg : int = 20
+@export var atk3dmg : int = 10
+
 # Movement / state control
 var can_move := true
 var is_attacking := false
 var is_hurt := false
-var health := 100
 var death := false
 
 @export var INVINCIBLE_TIME: float = 1.0
@@ -79,13 +82,9 @@ func _ready() -> void:
 	# --- player hurtbox ---
 	if area_path != NodePath():
 		area = get_node(area_path) as Area2D
-		area.area_entered.connect(_on_area_2d_area_entered)
 	else:
 		push_warning("⚠️ 'area_path' not assigned for player hurtbox.")
-
-	#arrow_spawnR = get_node(arrow_spawnR_path)
-	#arrow_spawnL = get_node(arrow_spawnL_path)
-
+	#health bar setup
 	$Bar.max_value = health
 	
 
@@ -103,8 +102,6 @@ func _physics_process(delta: float) -> void:
 		if animation:
 				animation.play("death")
 				get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
-	#if is_hurt:
-		#return
 	damaged= false
 	if PreHealth != health:
 		damaged= true
@@ -216,68 +213,7 @@ func _on_anim_finished(anim_name: String) -> void:
 		if not death:
 			can_move = true
 			
-
-func _on_area_2d_area_entered(hit: Area2D) -> void:
-	pass
-	# ตายหรืออมตะ → ไม่โดนดาเมจ
-	#if death or is_invincible:
-		#return
-#
-	#damaged = false
-#
-	#if hit.is_in_group("Enemy10DMG"):
-		#health -= 10
-		#damaged = true
-	#elif hit.is_in_group("Enemy15DMG"):
-		#health -= 15
-		#damaged = true
-	#elif hit.is_in_group("Enemy20DMG"):
-		#health -= 20
-		#damaged = true
-	#elif hit.is_in_group("Enemy25DMG"):
-		#health -= 25
-		#damaged = true
-	#elif hit.is_in_group("Enemy30DMG"):
-		#health -= 30
-		#damaged = true
-	#elif hit.is_in_group("Enemy35DMG"):
-		#health -= 35
-		#damaged = true
-	#elif hit.is_in_group("Enemy40DMG"):
-		#health -= 40
-		#damaged = true
-	#elif hit.is_in_group("EnemyBody"):
-		#health -= 10
-		#damaged = true
-	#if hit.is_in_group("slow"):
-		#SPEED = 50
-		#return   # ไม่ต้องไปเช็คดาเมจต่อ (ถ้า slow เป็นโซนสิ่งแวดล้อมธรรมดา)
-#
-	#if damaged:
-		#print("Player hit! Health:", health)
-#
-		#if health <= 0 and not death:
-			#death = true
-			#can_move = false
-			#is_hurt = false
-			#
-			#if animation:
-				#animation.play("death")
-				#get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
-#
-		#else:
-			#is_hurt = true
-			#can_move = false
-			#is_attacking = false
-			#_disable_collision()
-			#
-			#if animation:
-				#animation.play("hurt")
-				#
-			#_start_invincibility()
-func _on_area_2d_area_exited(hit: Area2D) -> void:
-	SPEED = 100
-			
+	
 func _start_invincibility() -> void:
 	if is_invincible:
 		return
@@ -342,16 +278,16 @@ func _disable_collision():
 
 func _on_atk_1_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= atk1_dmg
+		area.get_parent().health -= atk1dmg
 
 func _on_atk_2_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= atk2_dmg
+		area.get_parent().health -= atk2dmg
 
 
 func _on_atk_3_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody") :
-		area.get_parent().health -= atk3_dmg
+		area.get_parent().health -= atk3dmg
 # ==========================
 #  XP SYSTEM FUNCTIONS
 # ==========================

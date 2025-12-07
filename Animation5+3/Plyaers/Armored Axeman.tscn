@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://ct0tcuxspt3d"]
 
-[ext_resource type="Script" path="res://Animation5+3/armored_axeman.gd" id="1_1keir"]
-[ext_resource type="Texture2D" uid="uid://diog3qwoe5woj" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Axeman/Armored Axeman with shadows/Armored Axeman.png" id="1_u0vs0"]
-[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_1keir"]
+[ext_resource type="Script" uid="uid://dkmhcvpt7mb3x" path="res://Animation5+3/armored_axeman.gd" id="1_uh2wx"]
+[ext_resource type="Texture2D" uid="uid://diog3qwoe5woj" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Axeman/Armored Axeman with shadows/Armored Axeman.png" id="2_k6yv7"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_6jlgv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u0vs0"]
 radius = 7.0
@@ -350,10 +350,12 @@ _data = {
 size = Vector2(51, 21)
 
 [node name="ArmoredAxeman" type="CharacterBody2D" groups=["player"]]
-script = ExtResource("1_1keir")
+script = ExtResource("1_uh2wx")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
+atk2dmg = 15
+atk3dmg = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)
@@ -366,7 +368,7 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_u0vs0")
+texture = ExtResource("2_k6yv7")
 hframes = 12
 vframes = 7
 
@@ -397,7 +399,7 @@ disabled = true
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.29, 2.29)
 
-[node name="Bar" parent="." instance=ExtResource("3_1keir")]
+[node name="Bar" parent="." instance=ExtResource("3_6jlgv")]
 
 [node name="Area2D" type="Area2D" parent="." groups=["PlayerBody"]]
 

@@ -1,8 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://bq85v41cdhuh2"]
+[gd_scene load_steps=18 format=3 uid="uid://bq85v41cdhuh2"]
 
-[ext_resource type="Script" path="res://Animation5+3/archer.gd" id="1_5x7qr"]
+[ext_resource type="Script" uid="uid://bc0kb7bs5wcs3" path="res://Animation5+3/archer.gd" id="1_5x7qr"]
 [ext_resource type="Texture2D" uid="uid://bc4wuocpbn6su" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Archer/Archer with shadows/Archer.png" id="1_od3fw"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_nrx7j"]
+[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_cfsc8"]
+[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_oaerr"]
+[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_qbwkn"]
+[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_7cjio"]
 
 [sub_resource type="Animation" id="Animation_nrx7j"]
 length = 0.001
@@ -136,6 +140,9 @@ _data = {
 radius = 6.0
 height = 17.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jet6f"]
+radius = 50.0
+
 [node name="Archer" type="CharacterBody2D" groups=["player"]]
 collision_mask = 5
 script = ExtResource("1_5x7qr")
@@ -176,3 +183,53 @@ position = Vector2(-9, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.29, 2.29)
+
+[node name="XP" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -213.0
+offset_right = 160.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 10.0
+texture_under = ExtResource("4_cfsc8")
+texture_over = ExtResource("5_oaerr")
+texture_progress = ExtResource("6_qbwkn")
+
+[node name="Level" type="Label" parent="XP"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 327.0
+offset_top = 70.0
+offset_right = 367.0
+offset_bottom = 93.0
+text = "Lv 1"
+
+[node name="Lv_opition" type="VBoxContainer" parent="XP"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.167
+anchor_right = 0.5
+anchor_bottom = 1.167
+offset_left = -19.0
+offset_top = -20.060013
+offset_right = 21.0
+offset_bottom = 19.939987
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_7cjio")
+
+[node name="Magnet" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet"]
+shape = SubResource("CircleShape2D_jet6f")
+
+[connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]
