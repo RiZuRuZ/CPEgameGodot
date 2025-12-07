@@ -1,8 +1,8 @@
 [gd_scene load_steps=25 format=3 uid="uid://ct0tcuxspt3d"]
 
-[ext_resource type="Script" uid="uid://dkmhcvpt7mb3x" path="res://Animation5+3/armored_axeman.gd" id="1_1keir"]
-[ext_resource type="Texture2D" uid="uid://diog3qwoe5woj" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Axeman/Armored Axeman with shadows/Armored Axeman.png" id="1_u0vs0"]
-[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_1keir"]
+[ext_resource type="Script" uid="uid://dkmhcvpt7mb3x" path="res://Animation5+3/armored_axeman.gd" id="1_uh2wx"]
+[ext_resource type="Texture2D" uid="uid://diog3qwoe5woj" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Axeman/Armored Axeman with shadows/Armored Axeman.png" id="2_k6yv7"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_6jlgv"]
 [ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_l87qb"]
 [ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_h1h0c"]
 [ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_v4mtd"]
@@ -363,7 +363,7 @@ radius = 50.0
 
 [node name="ArmoredAxeman" type="CharacterBody2D" groups=["player"]]
 collision_mask = 4
-script = ExtResource("1_1keir")
+script = ExtResource("1_uh2wx")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")

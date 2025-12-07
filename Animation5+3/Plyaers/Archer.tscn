@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://bc0kb7bs5wcs3" path="res://Animation5+3/archer.gd" id="1_5x7qr"]
 [ext_resource type="Texture2D" uid="uid://bc4wuocpbn6su" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Archer/Archer with shadows/Archer.png" id="1_od3fw"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_nrx7j"]
-[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_jet6f"]
-[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_qhysr"]
-[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_o2rff"]
-[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_s8pcq"]
+[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_cfsc8"]
+[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_oaerr"]
+[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_qbwkn"]
+[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_7cjio"]
 [ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="8_qov4n"]
 [ext_resource type="AudioStream" uid="uid://bj1e7vgov0g5l" path="res://Sound SFX game/attack_arrow.mp3" id="9_ysvip"]
 [ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="10_g6c2j"]
@@ -143,9 +143,6 @@ _data = {
 &"idle": SubResource("Animation_5x7qr"),
 &"walk": SubResource("Animation_yvnjr")
 }
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lx8h1"]
-radius = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jet6f"]
 radius = 50.0

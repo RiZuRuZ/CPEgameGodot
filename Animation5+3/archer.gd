@@ -54,23 +54,6 @@ var level : int = 1:
 		%Level.text = "Lv " + str(value)
 
 # ==========================
-#  XP / LEVEL SYSTEM (FIXED)
-# ==========================
-var XP : int:
-	set(value):
-		XP = value
-		%XP.value = value        # UI bar
-var total_XP : int = 0  # XP สะสมรวมทั้งหมด
-var level : int = 1:
-	set(value):
-		level = value
-		%Level.text = "Lv " + str(value)
-
-		if value >= 7:
-			%XP.max_value = 40
-		elif value >= 3:
-			%XP.max_value = 20
-# ==========================
 #  SFX
 # ==========================
 @onready var sfx_lv_up: AudioStreamPlayer = $SFX_Lv_up

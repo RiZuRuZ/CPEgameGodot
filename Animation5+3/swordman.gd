@@ -145,10 +145,10 @@ func _physics_process(delta: float) -> void:
 
 
 	# --- attack inputs ---
-	if Input.is_action_just_pressed("m1"):
+	if Input.is_action_just_pressed("m1")and not is_attacking:
 		_start_attack("attack1", false)
 
-	if Input.is_action_just_pressed("m2"):
+	if Input.is_action_just_pressed("m2")and not is_attacking:
 		_start_attack("attack2", true)
 		return
 
