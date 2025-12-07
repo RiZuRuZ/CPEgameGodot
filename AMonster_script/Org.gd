@@ -15,7 +15,9 @@ var damaged := false
 
 #--- Monster Setup -----
 @export var health := 120
-
+@export var atk1dmg : int = 20
+@export var atk2dmg : int = 20
+@export var bodydmg : int = 10
 # --- Auto refs ---
 var gfx: Node2D
 var animation: AnimationPlayer
@@ -236,45 +238,11 @@ func attack_coroutine(axis_side: bool) -> void:
 
 # ---------- DAMAGE / ANIMATION ----------
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	#if death or is_hurt:
-		#return
-#
-	#damaged = false
-#
-	#if hit.is_in_group("Hitbox1"):
-		#health -= 1000
-		#damaged = true
-	#elif hit.is_in_group("Hitbox2"):
-		#health -= 40
-		#damaged = true
-	#elif hit.is_in_group("Projectile1"):
-		#health -= 20
-		#damaged = true
-	#elif hit.is_in_group("Hitbox3"):
-		#health -= 30
-		#damaged = true
-#
-	#if damaged:
-		#print("Slime hit! Health:", health)
-		#if health <= 0 and not death:
-			#death = true
-			#is_hurt = false
-			#can_attack = false
-			#can_move = false
-			#play_anim("death")
-		#else:
-			#is_hurt = true
-			#can_move = false
-			#can_attack = false
-			#if animation:
-				#animation.play("hurt")
-	if area.is_in_group("PlayerBody"):
-		area.get_parent().health -= 20
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
+		drop_item()
 		queue_free()
 	elif anim_name == "hurt":
 		is_hurt = false
@@ -287,12 +255,24 @@ func play_anim(name: String) -> void:
 	if animation and animation.current_animation != name:
 		animation.play(name)
 
-
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
+		area.get_parent().health -= bodydmg
+		
 func _on_atk_1_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody"):
-		area.get_parent().health -= 20
+	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
+		area.get_parent().health -= atk1dmg
 
 
 func _on_atk_2_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody"):
-		area.get_parent().health -= 20
+	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
+		area.get_parent().health -= atk2dmg
+		
+func drop_item():
+	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
+	var dropA = scene.instantiate()
+	# ปรับตัวเลข Vector2(x, y) จนกว่าจะตรงใจ
+	dropA.global_position = global_position + Vector2(-30, 20)
+
+	get_tree().current_scene.call_deferred("add_child", dropA)
+	print(">>> CALL DROP_ITEM <<<")

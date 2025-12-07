@@ -7,9 +7,6 @@ var motion := Vector2.ZERO
 #var SlimeScene = preload("res://Animation5+3/Slime.tscn")
 #var SkeletonScene = preload("res://Animation5+3/Skeleton.tscn")
 #Arrow damage
-@export var atk1 = 20
-@export var atk2 = 50
-
 # Exposed NodePaths (set in the Inspector)
 @export var gfx_path: NodePath
 @export var anim_path: NodePath
@@ -20,6 +17,11 @@ var motion := Vector2.ZERO
 var PreHealth = 0
 var damaged:=false
 
+# player setup
+@export var health : int = 100
+@export var arrow1dmg : int = 20
+@export var arrow2dmg : int = 50
+
 # Auto-assigned references
 var gfx: Node2D
 var animation: AnimationPlayer
@@ -29,7 +31,6 @@ var area: Area2D
 var can_move := true
 var is_attacking := false
 var is_hurt := false
-var health := 100
 var death := false
 
 @export var INVINCIBLE_TIME: float = 1.0
@@ -39,7 +40,6 @@ var is_invincible := false   # อมตะ?
 var arrow_spawnR: Marker2D
 var arrow_spawnL: Marker2D
 var pending_shot := false
-
 # ==========================
 #  XP / LEVEL SYSTEM (FIXED)
 # ==========================
@@ -53,10 +53,6 @@ var level : int = 1:
 		level = value
 		%Level.text = "Lv " + str(value)
 
-		if value >= 7:
-			%XP.max_value = 40
-		elif value >= 3:
-			%XP.max_value = 20
 # ==========================
 #  SFX
 # ==========================
@@ -157,13 +153,12 @@ func _physics_process(delta: float) -> void:
 
 
 	# --- attack inputs ---
-	if not is_attacking:
-		if Input.is_action_just_pressed("m1"):
-			_start_attack("attack1", false)
-			_delayed_shoot(atk1,0)
-		if Input.is_action_just_pressed("m2"):
-			_start_attack("attack2", true)
-			_delayed_shoot(atk2,1)
+	if Input.is_action_just_pressed("m1")and not is_attacking:
+		_start_attack("attack1", false)
+		_delayed_shoot(arrow1dmg,0)
+	if Input.is_action_just_pressed("m2")and not is_attacking:
+		_start_attack("attack2", true)
+		_delayed_shoot(arrow2dmg,1)
 
 	#if Input.is_action_just_pressed("q") and not is_attacking:
 		#_start_attack("attack3", true)
@@ -230,62 +225,6 @@ func _on_anim_finished(anim_name: String) -> void:
 
 func _on_area_2d_area_entered(hit: Area2D) -> void:
 	pass
-	## ตายหรืออมตะ → ไม่โดนดาเมจ
-	#if death or is_invincible:
-		#return
-#
-	#var damaged := false
-#
-	#if hit.is_in_group("Enemy10DMG"):
-		#health -= 10
-		#damaged = true
-	#elif hit.is_in_group("Enemy15DMG"):
-		#health -= 15
-		#damaged = true
-	#elif hit.is_in_group("Enemy20DMG"):
-		#health -= 20
-		#damaged = true
-	#elif hit.is_in_group("Enemy25DMG"):
-		#health -= 25
-		#damaged = true
-	#elif hit.is_in_group("Enemy30DMG"):
-		#health -= 30
-		#damaged = true
-	#elif hit.is_in_group("Enemy35DMG"):
-		#health -= 35
-		#damaged = true
-	#elif hit.is_in_group("Enemy40DMG"):
-		#health -= 40
-		#damaged = true
-	#elif hit.is_in_group("EnemyBody"):
-		#health -= 10
-		#damaged = true
-	#elif hit.is_in_group("slow"):
-		#SPEED = 50
-		#return   # ไม่ต้องไปเช็คดาเมจต่อ (ถ้า slow เป็นโซนสิ่งแวดล้อมธรรมดา)
-#
-	#if damaged:
-		#print("Player hit! Health:", health)
-#
-		#if health <= 0 and not death:
-			#death = true
-			#can_move = false
-			#is_hurt = false
-			#
-			#if animation:
-				#animation.play("death")
-				#get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
-#
-		#else:
-			#is_hurt = true
-			#can_move = false
-			#is_attacking = false
-			#_disable_collision()
-			#
-			#if animation:
-				#animation.play("hurt")
-				#
-			#_start_invincibility()
 
 func _on_area_2d_area_exited(hit: Area2D) -> void:
 	SPEED = 100
@@ -350,7 +289,7 @@ func shoot_arrow(dmg,which):
 	var dir := (mouse_pos - spawn_pos).normalized()
 	arrow.setup(dir) 
 
-	
+
 func _disable_collision():
 	pass
 	

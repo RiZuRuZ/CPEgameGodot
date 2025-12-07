@@ -2,25 +2,15 @@ extends Node
 
 var wave_timer: Timer = null
 var state_time: Timer = null
-
+@export var SLIME : PackedScene
+@export var SKELETON : PackedScene
+@export var ORC : PackedScene
 # โหลดมอน
 var PlayerScene
-const SLIME     = preload("res://Animation5+3/Slime.tscn")
-const SKELETON  = preload("res://Animation5+3/Skeleton.tscn")
-const ORC		= preload("res://Animation5+3/Orc.tscn")
-# --- เก็บข้อมูล Stage → Waves --
-var stages := {
-	1: {
-		1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2] ],
-		2: [ [SLIME, 3], [SKELETON, 3] ],
-		3: [ [SLIME, 4], [SKELETON, 5] ],
-	},
-	2: {
-		1: [ [SLIME, 5], [SKELETON, 3] ],
-		2: [ [SLIME, 7], [SKELETON, 6] ],
-		3: [ [SLIME, 10], [SKELETON, 12] ],
-	}
-}
+#var SLIME
+#var SKELETON 
+#var ORC		
+var stages := {}
 
 var current_stage := 1
 var current_wave := 1
@@ -31,16 +21,30 @@ var current_wave := 1
 
 
 func _ready():
+	# --- เก็บข้อมูล Stage → Waves --
+	stages = {
+		1: {
+			1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2] ],
+			2: [ [SLIME, 3], [SKELETON, 3] ],
+			3: [ [SLIME, 4], [SKELETON, 5] ],
+		},
+		2: {
+			1: [ [SLIME, 5], [SKELETON, 3] ],
+			2: [ [SLIME, 7], [SKELETON, 6] ],
+			3: [ [SLIME, 10], [SKELETON, 12] ],
+		}
+	}
+	#SLIME = preload(slime_paht)
 	if $"/root/Wave".selection == 0:
-		PlayerScene = preload("res://Animation5+3/Soldier.tscn")
+		PlayerScene = preload("res://Animation5+3/Plyaers/Soldier.tscn")
 	elif $"/root/Wave".selection == 1:
-		PlayerScene = preload("res://Animation5+3/Swordman.tscn")
+		PlayerScene = preload("res://Animation5+3/Plyaers/Swordman.tscn")
 	elif $"/root/Wave".selection == 2:
-		PlayerScene = preload("res://Animation5+3/Armored Axeman.tscn")
+		PlayerScene = preload("res://Animation5+3/Plyaers/Armored Axeman.tscn")
 	elif $"/root/Wave".selection == 3:
-		PlayerScene = preload("res://Animation5+3/Archer.tscn")
+		PlayerScene = preload("res://Animation5+3/Plyaers/Archer.tscn")
 	elif $"/root/Wave".selection == 4:
-		PlayerScene = preload("res://Animation5+3/Wizard.tscn")
+		PlayerScene = preload("res://Animation5+3/Plyaers/Wizard.tscn")
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	#player.add_to_group("player")
@@ -57,7 +61,7 @@ func start_stage(stage_number:int):
 	current_stage = stage_number
 	current_wave = 1
 	print("Start Stage:", stage_number)
-	start_wave_loop()
+	#start_wave_loop()
 
 
 # ------------------------------

@@ -2,24 +2,22 @@ extends CharacterBody2D
 
 @export var SPEED: float = 50.0
 @export var STOP_RADIUS: float = 18.0          # ระยะที่หยุด ไม่ยืนทับผู้เล่น
-@export var ATTACK_RADIUS: float = 18.0        # ระยะโจมตี
+@export var ATTACK_RADIUS: float = 100        # ระยะโจมตี
 @export var ATTACK_DELAY: float = 0.5          # หน่วงก่อนฟัน
 @export var DETECT_RADIUS: float = 220.0       # ระยะที่เริ่มเห็นผู้เล่น
 @export var IDLE_CHANGE_TIME: float = 1.5      # เปลี่ยนทิศเดินมั่วทุกกี่วิ
+@onready var arrow_scene = preload("res://AProjectile/Arrow3.tscn")
 var PreHealth = 0
 var damaged := false
 # --- Exposed NodePaths ---
 @export var gfx_path: NodePath
 @export var anim_path: NodePath
 @export var area_path: NodePath
+@export var arrow_spawnR_path: NodePath
+@export var arrow_spawnL_path: NodePath
 
 #--- Monster Setup -----
 @export var health := 100
-@export var atk1dmg : int = 20
-@export var atk2dmg : int = 20
-@export var bodydmg : int = 10
-#-------
-#@export var drops : Array[Pickups]
 
 # --- Auto refs ---
 var gfx: Node2D
@@ -41,13 +39,15 @@ var state: int = State.IDLE
 var idle_dir := Vector2.ZERO
 var idle_timer := 0.0
 
-#var drop = preload("res://Pickup/pickups.tscn")
+var arrow_spawnR: Marker2D
+var arrow_spawnL: Marker2D
+var pending_shot := false
 
 func _ready() -> void:
 	randomize()
 	PreHealth = health
-	$Sprite2D/atk2/atk2.set_deferred("disabled",true)
-	$Sprite2D/atk1/atk1.set_deferred("disabled",true)
+	#$Sprite2D/atk2/atk2.set_deferred("disabled",true)
+	#$Sprite2D/atk1/atk1.set_deferred("disabled",true)
 
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
@@ -64,7 +64,8 @@ func _ready() -> void:
 	else:
 		push_warning("Skeleton: 'area_path' not assigned.")
 
-	
+	arrow_spawnR = get_node(arrow_spawnR_path)
+	arrow_spawnL = get_node(arrow_spawnL_path)
 	await get_tree().process_frame
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -76,17 +77,22 @@ func _ready() -> void:
 	_set_idle_dir()
 	play_anim("idle")
 
-
 func _physics_process(delta: float) -> void:
+	
+	if player:
+		var diff := player.global_position - global_position
+		if absf(diff.x) > 0.01 and gfx:
+			var sx = absf(gfx.scale.x)
+			gfx.scale.x = -sx if diff.x < 0 else sx
+		
 	$Bar.value = health
 	damaged= false
 	if health <= 0:
-		$Area2D.set_deferred("disable",false)
-		death = true
-		is_hurt = false
-		can_attack = false
-		can_move = false
-		play_anim("death")
+			death = true
+			is_hurt = false
+			can_attack = false
+			can_move = false
+			play_anim("death")
 	if death:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -95,7 +101,7 @@ func _physics_process(delta: float) -> void:
 		damaged= true
 		PreHealth=health
 		if damaged:
-			print("Slime hit! Health:", health)
+			#print("Slime hit! Health:", health)
 			if health <= 0 and not death:
 				death = true
 				is_hurt = false
@@ -108,6 +114,10 @@ func _physics_process(delta: float) -> void:
 				can_attack = false
 				if animation:
 					animation.play("hurt")
+	if death:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 
 	if is_hurt or not can_move:
 		velocity = Vector2.ZERO
@@ -126,10 +136,7 @@ func _physics_process(delta: float) -> void:
 	var to_player := player.global_position - global_position
 	var dist := to_player.length()
 
-	# flip หันหน้าหาผู้เล่น
-	if absf(to_player.x) > 0.01 and gfx:
-		var sx: float = absf(gfx.scale.x)
-		gfx.scale.x = -sx if to_player.x < 0.0 else sx
+
 
 	# --- เลือก state ตามระยะ ---
 	if dist > DETECT_RADIUS:
@@ -222,11 +229,8 @@ func attack_coroutine(axis_side: bool) -> void:
 		can_move = true
 		return
 
-	if to_player.y < -2:
-		play_anim("attack1")
-	else:
-		play_anim("attack2")
-
+	play_anim("attack")
+	_delayed_shoot(30)
 	if animation and is_inside_tree():
 		await animation.animation_finished
 
@@ -237,56 +241,81 @@ func attack_coroutine(axis_side: bool) -> void:
 
 # ---------- DAMAGE / ANIMATION ----------
 
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	#if death or is_hurt:
+		#return
+#
+	#damaged = false
+#
+	#if hit.is_in_group("Hitbox1"):
+		#health -= 1000
+		#damaged = true
+	#elif hit.is_in_group("Hitbox2"):
+		#health -= 40
+		#damaged = true
+	#elif hit.is_in_group("Projectile1"):
+		#health -= 20
+		#damaged = true
+	#elif hit.is_in_group("Hitbox3"):
+		#health -= 30
+		#damaged = true
+#
+	#if damaged:
+		#print("Slime hit! Health:", health)
+		#if health <= 0 and not death:
+			#death = true
+			#is_hurt = false
+			#can_attack = false
+			#can_move = false
+			#play_anim("death")
+		#else:
+			#is_hurt = true
+			#can_move = false
+			#can_attack = false
+			#if animation:
+				#animation.play("hurt")
+	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
+		area.get_parent().health -= 20
+
+
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
-		drop_item()
-		$Area2D.set_deferred("disable",false)
 		queue_free()
 	elif anim_name == "hurt":
 		is_hurt = false
 		if not death:
 			can_move = true
 			can_attack = true
+func _delayed_shoot(dmg) -> void:
+	await await get_tree().create_timer(1.4).timeout
+	# เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
+	if death or is_hurt:
+		return
 
+	shoot_arrow(dmg)
+	
+func shoot_arrow(dmg):
+	var arrow := arrow_scene.instantiate() as Area2D
+	#var mouse_pos: Vector2 = get_global_mouse_position()
+
+	# ใส่ลูกศรเข้า scene ก่อน
+	get_parent().add_child(arrow)
+	arrow.damage = dmg
+		
+	# เลือกจุด spawn ซ้าย/ขวา
+	var spawn_pos: Vector2
+	if player.global_position.x < global_position.x:
+		spawn_pos = arrow_spawnL.global_position
+	else:
+		spawn_pos = arrow_spawnR.global_position
+
+	# เซ็ตตำแหน่งเริ่ม
+	arrow.global_position = spawn_pos
+
+	# ให้ทิศทางยิงออกจากจุด spawn จริง ๆ
+	var dir := (player.global_position - spawn_pos).normalized()
+	arrow.setup(dir) 
 
 func play_anim(name: String) -> void:
 	if animation and animation.current_animation != name:
 		animation.play(name)
-		
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
-		area.get_parent().health -= bodydmg
-
-func _on_atk_1_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
-		area.get_parent().health -= atk1dmg
-
-
-func _on_atk_2_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
-		area.get_parent().health -= atk2dmg
-func drop_item():
-	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
-	var dropA = scene.instantiate()
-	# ปรับตัวเลข Vector2(x, y) จนกว่าจะตรงใจ
-	dropA.global_position = global_position + Vector2(-30, 20)
-
-	get_tree().current_scene.call_deferred("add_child", dropA)
-	print(">>> CALL DROP_ITEM <<<")
-	"""
-	print("drop_item() called, drops size:", drops.size())
-
-	if drops.is_empty():
-		print("drops is EMPTY, no drop")
-		return
-
-	var item: Pickups = drops.pick_random()
-	print("drop item:", item)
-
-	var item_to_drop = drop.instantiate()
-	item_to_drop.type = item
-	item_to_drop.position = global_position
-	item_to_drop.player_reference = player
-
-	get_tree().current_scene.call_deferred("add_child", item_to_drop)
-"""

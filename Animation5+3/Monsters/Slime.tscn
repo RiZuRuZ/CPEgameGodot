@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c17lha8liaox7"]
+[gd_scene load_steps=15 format=3 uid="uid://oa6rrve84tyk"]
 
 [ext_resource type="Script" uid="uid://cqcdp1upjc0f3" path="res://AMonster_script/smarterAi.gd" id="1_y6xts"]
 [ext_resource type="Texture2D" uid="uid://ddlxqnmgnkiru" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Slime/Slime with shadows/Slime.png" id="2_oor1w"]

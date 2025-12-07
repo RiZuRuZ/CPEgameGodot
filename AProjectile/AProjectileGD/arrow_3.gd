@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var range: float = 500.0
-@export var speed: float = 400.0
+@export var speed: float = 200.0
 @export var damage: int = 30
 @export var lifetime: float = range/speed 
 #t=s/v
@@ -19,7 +19,7 @@ func _process(delta):
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody"):
+	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
 		area.get_parent().health -= 20
 		queue_free()
 
