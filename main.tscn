@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxxr8ojys2mll"]
+[gd_scene load_steps=15 format=3 uid="uid://bxxr8ojys2mll"]
 
 [ext_resource type="Script" uid="uid://307gh0uberov" path="res://AAmain/mainNEW.gd" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://c7taw5sxo28en" path="res://ExampleAsset/Bocchi Sprite Sheet02-Picsart-BackgroundRemover.png" id="4_1bvp3"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c1sj5mhwcmfv4" path="res://Animation5+3/Archer Skeleton.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://otemu1iabpvr" path="res://Animation5+3/Armored Orc.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://daxw1ldvibnfv" path="res://Animation5+3/Armored Skeleton.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://ygkbw58jhurr" path="res://Animation5+3/Elite Orc.tscn" id="11_efxa6"]
 
 [sub_resource type="Animation" id="Animation_lquwl"]
 resource_name = "Bocchi"
@@ -111,6 +112,9 @@ position = Vector2(-69, 150)
 
 [node name="Armored skeleton" parent="." instance=ExtResource("10_4c57u")]
 position = Vector2(-22, -80)
+
+[node name="EliteOrc" parent="." instance=ExtResource("11_efxa6")]
+position = Vector2(109, 154)
 
 [connection signal="timeout" from="first" to="." method="_on_first_timeout"]
 [connection signal="timeout" from="wavetime" to="." method="_on_wavetime_timeout"]
