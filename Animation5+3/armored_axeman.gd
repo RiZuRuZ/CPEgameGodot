@@ -36,6 +36,31 @@ var arrow_spawnR: Marker2D
 var arrow_spawnL: Marker2D
 var pending_shot := false
 
+# ==========================
+#  XP / LEVEL SYSTEM (FIXED)
+# ==========================
+var XP : int:
+	set(value):
+		XP = value
+		%XP.value = value        # UI bar
+var total_XP : int = 0  # XP สะสมรวมทั้งหมด
+var level : int = 1:
+	set(value):
+		level = value
+		%Level.text = "Lv " + str(value)
+
+		if value >= 7:
+			%XP.max_value = 40
+		elif value >= 3:
+			%XP.max_value = 20
+# ==========================
+#  SFX
+# ==========================
+@onready var sfx_lv_up: AudioStreamPlayer = $SFX_Lv_up
+@onready var sfx_hurt: AudioStreamPlayer = $SFX_hurt
+@onready var sfx_axe: AudioStreamPlayer = $SFX_axe
+@onready var sfx_axe_q: AudioStreamPlayer = $SFX_axe_q
+@onready var sfx_axe_m_2: AudioStreamPlayer = $SFX_axe_m2
 
 func _ready() -> void:
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
@@ -74,6 +99,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	check_XP()
 	$Bar.value = health
 	motion = Vector2.ZERO
 
@@ -104,6 +130,7 @@ func _physics_process(delta: float) -> void:
 					get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
 
 			elif not death:
+				sfx_hurt.play()
 				is_hurt = true
 				can_move = false
 				is_attacking = false
@@ -132,13 +159,16 @@ func _physics_process(delta: float) -> void:
 	# --- attack inputs ---
 	if Input.is_action_just_pressed("m1"):
 		_start_attack("attack1", false)
+		sfx_axe.play()
 
 	if Input.is_action_just_pressed("m2"):
 		_start_attack("attack2", true)
+		sfx_axe_m_2.play()
 		return
 
 	if Input.is_action_just_pressed("q") and not is_attacking:
 		_start_attack("attack3", true)
+		sfx_axe_q.play()
 		#_delayed_shoot()
 
 	# --- movement (ใช้ velocity + move_and_slide) ---
@@ -335,3 +365,28 @@ func _on_atk_2_area_entered(area: Area2D) -> void:
 func _on_atk_3_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody"):
 		area.get_parent().health -= 25
+
+# ==========================
+#  XP SYSTEM FUNCTIONS
+# ==========================
+func gain_XP(amount):
+	XP += amount
+	total_XP += amount
+	print("XP:", XP)
+	$"/root/LevelSave".progress = XP
+
+func check_XP() -> void:
+	if XP >= %XP.max_value:
+		sfx_lv_up.play()
+		XP -= %XP.max_value
+		level += 1
+		$"/root/LevelSave".progress = XP
+		$"/root/LevelSave".level = level
+
+# ==========================
+#  MAGNET PICKUP
+# ==========================
+func _on_magnet_area_entered(area: Area2D) -> void:
+	pass
+	if area.has_method("follow"):
+		area.follow(self)
