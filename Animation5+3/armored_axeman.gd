@@ -157,19 +157,20 @@ func _physics_process(delta: float) -> void:
 
 
 	# --- attack inputs ---
-	if Input.is_action_just_pressed("m1"):
-		_start_attack("attack1", false)
-		sfx_axe.play()
+	if not is_attacking:
+		if Input.is_action_just_pressed("m1"):
+			_start_attack("attack1", false)
+			sfx_axe.play()
 
-	if Input.is_action_just_pressed("m2"):
-		_start_attack("attack2", true)
-		sfx_axe_m_2.play()
-		return
+		if Input.is_action_just_pressed("m2"):
+			_start_attack("attack2", true)
+			sfx_axe_m_2.play()
+			return
 
-	if Input.is_action_just_pressed("q") and not is_attacking:
-		_start_attack("attack3", true)
-		sfx_axe_q.play()
-		#_delayed_shoot()
+		if Input.is_action_just_pressed("q"):
+			_start_attack("attack3", true)
+			sfx_axe_q.play()
+			#_delayed_shoot()
 
 	# --- movement (ใช้ velocity + move_and_slide) ---
 	if motion != Vector2.ZERO:

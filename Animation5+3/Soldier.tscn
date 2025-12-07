@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dvjntbls4eaxg"]
+[gd_scene load_steps=26 format=3 uid="uid://dvjntbls4eaxg"]
 
 [ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="1_pytxw"]
 [ext_resource type="Script" uid="uid://c3mhf5q7j70kk" path="res://playermouselook.gd" id="1_t18l3"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bj1e7vgov0g5l" path="res://Sound SFX game/attack_arrow.mp3" id="9_4mq02"]
 [ext_resource type="AudioStream" uid="uid://bpavweymiw6xu" path="res://Sound SFX game/sword-blade-slicing-flesh-352708.mp3" id="10_elf4q"]
 [ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="11_40pes"]
+[ext_resource type="AudioStream" uid="uid://b8vbodotfo3jg" path="res://Sound SFX game/sword-slash-01-266296.mp3" id="12_46swv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lqgdd"]
 radius = 4.0
@@ -359,6 +360,11 @@ bus = &"SFX"
 
 [node name="SFX_hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_40pes")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_sword_q" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_46swv")
 volume_db = -16.0
 bus = &"SFX"
 

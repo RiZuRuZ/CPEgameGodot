@@ -65,6 +65,7 @@ var level : int = 1:
 @onready var sfx_arrow: AudioStreamPlayer = $SFX_Arrow
 @onready var sfx_sword: AudioStreamPlayer = $SFX_sword
 @onready var sfx_hurt: AudioStreamPlayer = $SFX_hurt
+@onready var sfx_sword_q: AudioStreamPlayer = $SFX_sword_q
 
 
 
@@ -151,15 +152,17 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("up"):    motion.y -= 1
 
 	# attacks
-	if Input.is_action_just_pressed("m1"):
-		_start_attack("attack1", false)
-		sfx_sword.play()
-	if Input.is_action_just_pressed("q"):
-		_start_attack("attack2", true)
-		return
-	if Input.is_action_just_pressed("m2") and not is_attacking:
-		_start_attack("attack3", true)
-		_delayed_shoot()
+	if not is_attacking:
+		if Input.is_action_just_pressed("m1"):
+			_start_attack("attack1", false)
+			sfx_sword.play()
+		if Input.is_action_just_pressed("q"):
+			_start_attack("attack2", true)
+			sfx_sword_q.play()
+			return
+		if Input.is_action_just_pressed("m2"):
+			_start_attack("attack3", true)
+			_delayed_shoot()
 		
 
 	# movement apply
