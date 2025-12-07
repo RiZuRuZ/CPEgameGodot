@@ -54,7 +54,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b8hy4")
-numberofplayer = 5
+numberofplayer = 4
 scroll_time = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -493,7 +493,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_7b2rf")
 }
 
-[node name="wizard" type="Sprite2D" parent="." groups=["player"]]
+[node name="wizard" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-6878.975, 331)
 scale = Vector2(8.902885, 8.902885)

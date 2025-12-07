@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dvjntbls4eaxg"]
+[gd_scene load_steps=25 format=3 uid="uid://dvjntbls4eaxg"]
 
 [ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="1_pytxw"]
 [ext_resource type="Script" uid="uid://c3mhf5q7j70kk" path="res://playermouselook.gd" id="1_t18l3"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_o74wx"]
 [ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_kjgep"]
 [ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_o74wx"]
+[ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="8_kjgep"]
+[ext_resource type="AudioStream" uid="uid://bj1e7vgov0g5l" path="res://Sound SFX game/attack_arrow.mp3" id="9_4mq02"]
+[ext_resource type="AudioStream" uid="uid://bpavweymiw6xu" path="res://Sound SFX game/sword-blade-slicing-flesh-352708.mp3" id="10_elf4q"]
+[ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="11_40pes"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lqgdd"]
 radius = 4.0
@@ -239,6 +243,7 @@ anim_path = NodePath("CharacterBody2D/AnimationPlayer")
 area_path = NodePath("Area2D")
 arrow_spawnR_path = NodePath("ArrowSpawnR")
 arrow_spawnL_path = NodePath("ArrowSpawnL")
+atk1dmg = 10000
 
 [node name="Area2D" type="Area2D" parent="." groups=["PlayerBody"]]
 collision_mask = 5
@@ -337,6 +342,26 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet"]
 shape = SubResource("CircleShape2D_46swv")
+
+[node name="SFX_Lv_up" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_kjgep")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_Arrow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_4mq02")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_sword" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_elf4q")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_40pes")
+volume_db = -16.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="CharacterBody2D/Soldier/atk1" to="." method="_on_atk_1_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/Soldier/Area2D2" to="." method="_on_area_2d_2_area_entered"]

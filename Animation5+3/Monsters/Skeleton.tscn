@@ -250,7 +250,7 @@ _data = {
 &"walk": SubResource("Animation_yg5o5")
 }
 
-[node name="ArcherSkeleton3" type="CharacterBody2D"]
+[node name="Skeleton" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_yg5o5")

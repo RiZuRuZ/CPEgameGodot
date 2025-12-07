@@ -7,9 +7,6 @@ var motion := Vector2.ZERO
 #var SlimeScene = preload("res://Animation5+3/Slime.tscn")
 #var SkeletonScene = preload("res://Animation5+3/Skeleton.tscn")
 #Arrow damage
-@export var atk1 = 20
-@export var atk2 = 50
-
 # Exposed NodePaths (set in the Inspector)
 @export var gfx_path: NodePath
 @export var anim_path: NodePath
@@ -20,6 +17,11 @@ var motion := Vector2.ZERO
 var PreHealth = 0
 var damaged:=false
 
+# player setup
+@export var health : int = 100
+@export var arrow1dmg : int = 20
+@export var arrow2dmg : int = 50
+
 # Auto-assigned references
 var gfx: Node2D
 var animation: AnimationPlayer
@@ -29,7 +31,6 @@ var area: Area2D
 var can_move := true
 var is_attacking := false
 var is_hurt := false
-var health := 100
 var death := false
 
 @export var INVINCIBLE_TIME: float = 1.0
@@ -39,7 +40,26 @@ var is_invincible := false   # อมตะ?
 var arrow_spawnR: Marker2D
 var arrow_spawnL: Marker2D
 var pending_shot := false
+# ==========================
+#  XP / LEVEL SYSTEM (FIXED)
+# ==========================
+var XP : int:
+	set(value):
+		XP = value
+		%XP.value = value        # UI bar
+var total_XP : int = 0  # XP สะสมรวมทั้งหมด
+var level : int = 1:
+	set(value):
+		level = value
+		%Level.text = "Lv " + str(value)
 
+# ==========================
+#  SFX
+# ==========================
+@onready var sfx_lv_up: AudioStreamPlayer = $SFX_Lv_up
+@onready var sfx_hurt: AudioStreamPlayer = $SFX_hurt
+@onready var sfx_arrow: AudioStreamPlayer = $SFX_arrow
+@onready var sfx_arrow_m_2: AudioStreamPlayer = $SFX_arrow_m2
 
 func _ready() -> void:
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
@@ -78,6 +98,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	check_XP()
 	$Bar.value = health
 	motion = Vector2.ZERO
 	if health <= 0:
@@ -134,10 +155,10 @@ func _physics_process(delta: float) -> void:
 	# --- attack inputs ---
 	if Input.is_action_just_pressed("m1")and not is_attacking:
 		_start_attack("attack1", false)
-		_delayed_shoot(atk1,0)
+		_delayed_shoot(arrow1dmg,0)
 	if Input.is_action_just_pressed("m2")and not is_attacking:
 		_start_attack("attack2", true)
-		_delayed_shoot(atk2,1)
+		_delayed_shoot(arrow2dmg,1)
 
 	#if Input.is_action_just_pressed("q") and not is_attacking:
 		#_start_attack("attack3", true)
@@ -196,6 +217,7 @@ func _on_anim_finished(anim_name: String) -> void:
 #			pending_shot = false
 
 	if anim_name == "hurt":
+		sfx_hurt.play()
 		is_hurt = false
 		if not death:
 			can_move = true
@@ -203,62 +225,6 @@ func _on_anim_finished(anim_name: String) -> void:
 
 func _on_area_2d_area_entered(hit: Area2D) -> void:
 	pass
-	## ตายหรืออมตะ → ไม่โดนดาเมจ
-	#if death or is_invincible:
-		#return
-#
-	#var damaged := false
-#
-	#if hit.is_in_group("Enemy10DMG"):
-		#health -= 10
-		#damaged = true
-	#elif hit.is_in_group("Enemy15DMG"):
-		#health -= 15
-		#damaged = true
-	#elif hit.is_in_group("Enemy20DMG"):
-		#health -= 20
-		#damaged = true
-	#elif hit.is_in_group("Enemy25DMG"):
-		#health -= 25
-		#damaged = true
-	#elif hit.is_in_group("Enemy30DMG"):
-		#health -= 30
-		#damaged = true
-	#elif hit.is_in_group("Enemy35DMG"):
-		#health -= 35
-		#damaged = true
-	#elif hit.is_in_group("Enemy40DMG"):
-		#health -= 40
-		#damaged = true
-	#elif hit.is_in_group("EnemyBody"):
-		#health -= 10
-		#damaged = true
-	#elif hit.is_in_group("slow"):
-		#SPEED = 50
-		#return   # ไม่ต้องไปเช็คดาเมจต่อ (ถ้า slow เป็นโซนสิ่งแวดล้อมธรรมดา)
-#
-	#if damaged:
-		#print("Player hit! Health:", health)
-#
-		#if health <= 0 and not death:
-			#death = true
-			#can_move = false
-			#is_hurt = false
-			#
-			#if animation:
-				#animation.play("death")
-				#get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
-#
-		#else:
-			#is_hurt = true
-			#can_move = false
-			#is_attacking = false
-			#_disable_collision()
-			#
-			#if animation:
-				#animation.play("hurt")
-				#
-			#_start_invincibility()
 
 func _on_area_2d_area_exited(hit: Area2D) -> void:
 	SPEED = 100
@@ -288,8 +254,10 @@ func _start_invincibility() -> void:
 func _delayed_shoot(dmg,which) -> void:
 	if which == 0:
 		await await get_tree().create_timer(0.6).timeout
+		sfx_arrow.play()
 	elif which == 1:
 		await await get_tree().create_timer(1).timeout
+		sfx_arrow_m_2.play()
 	# เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
 	if death or is_hurt:
 		return
@@ -321,7 +289,30 @@ func shoot_arrow(dmg,which):
 	var dir := (mouse_pos - spawn_pos).normalized()
 	arrow.setup(dir) 
 
-	
+
 func _disable_collision():
 	pass
 	
+
+# ==========================
+#  XP SYSTEM FUNCTIONS
+# ==========================
+func gain_XP(amount):
+	XP += amount
+	total_XP += amount
+	print("XP:", XP)
+	$"/root/LevelSave".progress = XP
+
+func check_XP() -> void:
+	if XP >= %XP.max_value:
+		sfx_lv_up.play()
+		XP -= %XP.max_value
+		level += 1
+		$"/root/LevelSave".progress = XP
+		$"/root/LevelSave".level = level
+
+
+func _on_magnet_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+	if area.has_method("follow"):
+		area.follow(self)

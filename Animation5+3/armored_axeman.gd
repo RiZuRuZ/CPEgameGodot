@@ -12,10 +12,15 @@ var motion := Vector2.ZERO
 @export var gfx_path: NodePath
 @export var anim_path: NodePath
 @export var area_path: NodePath
-#@export var arrow_spawnR_path: NodePath
-#@export var arrow_spawnL_path: NodePath
 var PreHealth = 0
 var damaged :=false
+
+# player setup
+@export var health : int = 100
+@export var atk1dmg : int = 25
+@export var atk2dmg : int = 20
+@export var atk3dmg : int = 10
+
 # Auto-assigned references
 var gfx: Node2D
 var animation: AnimationPlayer
@@ -25,7 +30,6 @@ var area: Area2D
 var can_move := true
 var is_attacking := false
 var is_hurt := false
-var health := 100
 var death := false
 
 @export var INVINCIBLE_TIME: float = 1.0
@@ -36,6 +40,31 @@ var arrow_spawnR: Marker2D
 var arrow_spawnL: Marker2D
 var pending_shot := false
 
+# ==========================
+#  XP / LEVEL SYSTEM (FIXED)
+# ==========================
+var XP : int:
+	set(value):
+		XP = value
+		%XP.value = value        # UI bar
+var total_XP : int = 0  # XP สะสมรวมทั้งหมด
+var level : int = 1:
+	set(value):
+		level = value
+		%Level.text = "Lv " + str(value)
+
+		if value >= 7:
+			%XP.max_value = 40
+		elif value >= 3:
+			%XP.max_value = 20
+# ==========================
+#  SFX
+# ==========================
+@onready var sfx_lv_up: AudioStreamPlayer = $SFX_Lv_up
+@onready var sfx_hurt: AudioStreamPlayer = $SFX_hurt
+@onready var sfx_axe: AudioStreamPlayer = $SFX_axe
+@onready var sfx_axe_q: AudioStreamPlayer = $SFX_axe_q
+@onready var sfx_axe_m_2: AudioStreamPlayer = $SFX_axe_m2
 
 func _ready() -> void:
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
@@ -74,6 +103,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	check_XP()
 	$Bar.value = health
 	motion = Vector2.ZERO
 
@@ -104,6 +134,7 @@ func _physics_process(delta: float) -> void:
 					get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
 
 			elif not death:
+				sfx_hurt.play()
 				is_hurt = true
 				can_move = false
 				is_attacking = false
@@ -130,15 +161,18 @@ func _physics_process(delta: float) -> void:
 
 
 	# --- attack inputs ---
-	if Input.is_action_just_pressed("m1"):
+	if Input.is_action_just_pressed("m1")and not is_attacking:
 		_start_attack("attack1", false)
+		sfx_axe.play()
 
-	if Input.is_action_just_pressed("m2"):
+	if Input.is_action_just_pressed("m2")and not is_attacking:
 		_start_attack("attack2", true)
+		sfx_axe_m_2.play()
 		return
 
 	if Input.is_action_just_pressed("q") and not is_attacking:
 		_start_attack("attack3", true)
+		sfx_axe_q.play()
 		#_delayed_shoot()
 
 	# --- movement (ใช้ velocity + move_and_slide) ---
@@ -201,62 +235,6 @@ func _on_anim_finished(anim_name: String) -> void:
 
 func _on_area_2d_area_entered(hit: Area2D) -> void:
 	pass
-	# ตายหรืออมตะ → ไม่โดนดาเมจ
-	#if death or is_invincible:
-		#return
-#
-	#var damaged := false
-#
-	#if hit.is_in_group("Enemy10DMG"):
-		#health -= 10
-		#damaged = true
-	#elif hit.is_in_group("Enemy15DMG"):
-		#health -= 15
-		#damaged = true
-	#elif hit.is_in_group("Enemy20DMG"):
-		#health -= 20
-		#damaged = true
-	#elif hit.is_in_group("Enemy25DMG"):
-		#health -= 25
-		#damaged = true
-	#elif hit.is_in_group("Enemy30DMG"):
-		#health -= 30
-		#damaged = true
-	#elif hit.is_in_group("Enemy35DMG"):
-		#health -= 35
-		#damaged = true
-	#elif hit.is_in_group("Enemy40DMG"):
-		#health -= 40
-		#damaged = true
-	#elif hit.is_in_group("EnemyBody"):
-		#health -= 10
-		#damaged = true
-	#elif hit.is_in_group("slow"):
-		#SPEED = 50
-		#return   # ไม่ต้องไปเช็คดาเมจต่อ (ถ้า slow เป็นโซนสิ่งแวดล้อมธรรมดา)
-#
-	#if damaged:
-		#print("Player hit! Health:", health)
-#
-		#if health <= 0 and not death:
-			#death = true
-			#can_move = false
-			#is_hurt = false
-			#
-			#if animation:
-				#animation.play("death")
-				#get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
-#
-		#else:
-			#is_hurt = true
-			#can_move = false
-			#is_attacking = false
-			#_disable_collision()
-			#
-			#if animation:
-				#animation.play("hurt")
-				#
-			#_start_invincibility()
 
 func _on_area_2d_area_exited(hit: Area2D) -> void:
 	SPEED = 100
@@ -282,37 +260,6 @@ func _start_invincibility() -> void:
 
 	is_invincible = false
 	_disable_collision()
-
-#func _delayed_shoot() -> void:
-	#await get_tree().create_timer(0.7).timeout
-#
-	## เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
-	#if death or is_hurt:
-		#return
-#
-	#shoot_arrow()
-	
-#func shoot_arrow():
-	#var arrow := arrow_scene.instantiate() as Area2D
-	#var mouse_pos: Vector2 = get_global_mouse_position()
-#
-	## ใส่ลูกศรเข้า scene ก่อน
-	#get_parent().add_child(arrow)
-#
-	## เลือกจุด spawn ซ้าย/ขวา
-	#var spawn_pos: Vector2
-	#if mouse_pos.x < global_position.x:
-		#spawn_pos = arrow_spawnL.global_position
-	#else:
-		#spawn_pos = arrow_spawnR.global_position
-#
-	## เซ็ตตำแหน่งเริ่ม
-	#arrow.global_position = spawn_pos
-#
-	## ให้ทิศทางยิงออกจากจุด spawn จริง ๆ
-	#var dir := (mouse_pos - spawn_pos).normalized()
-	#arrow.setup(dir) 
-
 	
 func _disable_collision():
 	$Sprite2D/ATK1/atk1.set_deferred("disabled",true)
@@ -324,14 +271,39 @@ func _disable_collision():
 
 func _on_atk_1_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody"):
-		area.get_parent().health -= 25
+		area.get_parent().health -= atk1dmg
 
 
 func _on_atk_2_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody"):
-		area.get_parent().health -= 15
+		area.get_parent().health -= atk2dmg
 
 
 func _on_atk_3_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EnemyBody"):
-		area.get_parent().health -= 25
+		area.get_parent().health -= atk3dmg
+
+# ==========================
+#  XP SYSTEM FUNCTIONS
+# ==========================
+func gain_XP(amount):
+	XP += amount
+	total_XP += amount
+	print("XP:", XP)
+	$"/root/LevelSave".progress = XP
+
+func check_XP() -> void:
+	if XP >= %XP.max_value:
+		sfx_lv_up.play()
+		XP -= %XP.max_value
+		level += 1
+		$"/root/LevelSave".progress = XP
+		$"/root/LevelSave".level = level
+
+# ==========================
+#  MAGNET PICKUP
+# ==========================
+func _on_magnet_area_entered(area: Area2D) -> void:
+	pass
+	if area.has_method("follow"):
+		area.follow(self)

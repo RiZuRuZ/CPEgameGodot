@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bo1td367khvwb"
+path="res://.godot/imported/ice-clear-1-394508.mp3-d955c73b090c40f28cc2f536e7438b81.mp3str"
+
+[deps]
+
+source_file="res://Sound SFX game/ice-clear-1-394508.mp3"
+dest_files=["res://.godot/imported/ice-clear-1-394508.mp3-d955c73b090c40f28cc2f536e7438b81.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
