@@ -1,12 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdgyqrmvu0vpm"]
+[gd_scene load_steps=23 format=3 uid="uid://bdgyqrmvu0vpm"]
 
 [ext_resource type="Script" uid="uid://dwlwertpm3gl1" path="res://Animation5+3/wizard.gd" id="1_ggyro"]
 [ext_resource type="Texture2D" uid="uid://boiwlx85o5db1" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Wizard/Wizard with shadows/Wizard.png" id="1_i6fqq"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_pmtk4"]
+[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_mrsok"]
+[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_wv7sm"]
+[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_yit8f"]
+[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_1q56t"]
+[ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="8_q8udw"]
+[ext_resource type="AudioStream" uid="uid://bo1td367khvwb" path="res://Sound SFX game/ice-clear-1-394508.mp3" id="10_mrsok"]
+[ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="11_barp1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i6fqq"]
-radius = 9.0
-height = 24.0
+radius = 6.0
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_pmtk4"]
 length = 0.001
@@ -172,7 +179,11 @@ _data = {
 &"walk": SubResource("Animation_s50wk")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8a1md"]
+radius = 50.0
+
 [node name="Wizard" type="CharacterBody2D" groups=["player"]]
+collision_mask = 4
 script = ExtResource("1_ggyro")
 atk1 = 30
 gfx_path = NodePath("Sprite2D")
@@ -212,3 +223,68 @@ shape = SubResource("CapsuleShape2D_i6fqq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.29, 2.29)
+
+[node name="XP" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -213.0
+offset_right = 160.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 10.0
+texture_under = ExtResource("4_mrsok")
+texture_over = ExtResource("5_wv7sm")
+texture_progress = ExtResource("6_yit8f")
+
+[node name="Level" type="Label" parent="XP"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 327.0
+offset_top = 70.0
+offset_right = 367.0
+offset_bottom = 93.0
+text = "Lv 1"
+
+[node name="Lv_opition" type="VBoxContainer" parent="XP"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.167
+anchor_right = 0.5
+anchor_bottom = 1.167
+offset_left = -19.0
+offset_top = -20.060013
+offset_right = 21.0
+offset_bottom = 19.939987
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_1q56t")
+
+[node name="Magnet" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet"]
+shape = SubResource("CircleShape2D_8a1md")
+
+[node name="SFX_Lv_up" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_q8udw")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_iceball" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_mrsok")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_barp1")
+volume_db = -16.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]

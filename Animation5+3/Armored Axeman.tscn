@@ -1,12 +1,21 @@
-[gd_scene load_steps=15 format=3 uid="uid://ct0tcuxspt3d"]
+[gd_scene load_steps=25 format=3 uid="uid://ct0tcuxspt3d"]
 
-[ext_resource type="Script" path="res://Animation5+3/armored_axeman.gd" id="1_1keir"]
+[ext_resource type="Script" uid="uid://dkmhcvpt7mb3x" path="res://Animation5+3/armored_axeman.gd" id="1_1keir"]
 [ext_resource type="Texture2D" uid="uid://diog3qwoe5woj" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Axeman/Armored Axeman with shadows/Armored Axeman.png" id="1_u0vs0"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_1keir"]
+[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_l87qb"]
+[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_h1h0c"]
+[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_v4mtd"]
+[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_f0joa"]
+[ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="8_r4520"]
+[ext_resource type="AudioStream" uid="uid://dvquvju8l8bvw" path="res://Sound SFX game/axe-hit-flesh-02-266299.mp3" id="9_vwj0k"]
+[ext_resource type="AudioStream" uid="uid://ci6lbgyhcmx11" path="res://Sound SFX game/hitting-stalactites-with-axe-212652.mp3" id="10_dq1i3"]
+[ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="11_bolfq"]
+[ext_resource type="AudioStream" uid="uid://c4xb5u87qgimy" path="res://Sound SFX game/axe-slash-1-106748.mp3" id="12_cwtmr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u0vs0"]
-radius = 7.0
-height = 20.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njhpw"]
+radius = 6.0
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_r4xxk"]
 length = 0.001
@@ -349,7 +358,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0vs0"]
 size = Vector2(51, 21)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_274kv"]
+radius = 50.0
+
 [node name="ArmoredAxeman" type="CharacterBody2D" groups=["player"]]
+collision_mask = 4
 script = ExtResource("1_1keir")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
@@ -357,7 +370,7 @@ area_path = NodePath("Area2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)
-shape = SubResource("CapsuleShape2D_u0vs0")
+shape = SubResource("CapsuleShape2D_njhpw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -403,8 +416,82 @@ zoom = Vector2(2.29, 2.29)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, -1)
-shape = SubResource("CapsuleShape2D_u0vs0")
+shape = SubResource("CapsuleShape2D_njhpw")
+
+[node name="XP" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -213.0
+offset_right = 160.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 10.0
+texture_under = ExtResource("4_l87qb")
+texture_over = ExtResource("5_h1h0c")
+texture_progress = ExtResource("6_v4mtd")
+
+[node name="Level" type="Label" parent="XP"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 327.0
+offset_top = 70.0
+offset_right = 367.0
+offset_bottom = 93.0
+text = "Lv 1"
+
+[node name="Lv_opition" type="VBoxContainer" parent="XP"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.167
+anchor_right = 0.5
+anchor_bottom = 1.167
+offset_left = -19.0
+offset_top = -20.060013
+offset_right = 21.0
+offset_bottom = 19.939987
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_f0joa")
+
+[node name="Magnet" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet"]
+shape = SubResource("CircleShape2D_274kv")
+
+[node name="SFX_Lv_up" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_r4520")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_axe_q" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_vwj0k")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_axe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_dq1i3")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_bolfq")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_axe_m2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_cwtmr")
+volume_db = -16.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="Sprite2D/ATK1" to="." method="_on_atk_1_area_entered"]
 [connection signal="area_entered" from="Sprite2D/ATK2" to="." method="_on_atk_2_area_entered"]
 [connection signal="area_entered" from="Sprite2D/ATK3" to="." method="_on_atk_3_area_entered"]
+[connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]
