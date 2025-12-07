@@ -58,7 +58,13 @@ var level : int = 1:
 			%XP.max_value = 40
 		elif value >= 3:
 			%XP.max_value = 20
-
+# ==========================
+#  SFX
+# ==========================
+@onready var sfx_lv_up: AudioStreamPlayer = $SFX_Lv_up
+@onready var sfx_arrow: AudioStreamPlayer = $SFX_Arrow
+@onready var sfx_sword: AudioStreamPlayer = $SFX_sword
+@onready var sfx_hurt: AudioStreamPlayer = $SFX_hurt
 
 
 
@@ -147,12 +153,14 @@ func _physics_process(delta: float) -> void:
 	# attacks
 	if Input.is_action_just_pressed("m1"):
 		_start_attack("attack1", false)
+		sfx_sword.play()
 	if Input.is_action_just_pressed("q"):
 		_start_attack("attack2", true)
 		return
 	if Input.is_action_just_pressed("m2") and not is_attacking:
 		_start_attack("attack3", true)
 		_delayed_shoot()
+		
 
 	# movement apply
 	if motion != Vector2.ZERO:
@@ -191,8 +199,9 @@ func _update_facing_to_mouse() -> void:
 func _start_attack(anim_name: String, lock_movement: bool) -> void:
 	is_attacking = true
 	can_move = not lock_movement
+	
 
-	if animation:
+	if animation and not is_hurt:
 		animation.play(anim_name)
 
 
@@ -278,7 +287,7 @@ func _on_area_2d_area_exited(hit: Area2D) -> void:
 func _start_invincibility() -> void:
 	if is_invincible:
 		return
-
+	sfx_hurt.play()
 	is_invincible = true
 
 	if gfx:
@@ -303,6 +312,7 @@ func _delayed_shoot() -> void:
 	if death or is_hurt:
 		return
 	shoot_arrow()
+	sfx_arrow.play()
 
 
 func shoot_arrow():
@@ -350,6 +360,7 @@ func gain_XP(amount):
 
 func check_XP() -> void:
 	if XP >= %XP.max_value:
+		sfx_lv_up.play()
 		XP -= %XP.max_value
 		level += 1
 		$"/root/LevelSave".progress = XP

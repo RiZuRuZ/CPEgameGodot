@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djpa5x3ywnuhq"
+path="res://.godot/imported/clear-state.mp3-a19ea679a0d79a648b480ae2913e0437.mp3str"
+
+[deps]
+
+source_file="res://Sound SFX game/clear-state.mp3"
+dest_files=["res://.godot/imported/clear-state.mp3-a19ea679a0d79a648b480ae2913e0437.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
