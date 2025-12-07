@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://u3hikhbuu8cv"]
+[gd_scene load_steps=25 format=3 uid="uid://dpcr50t48un4x"]
 
 [ext_resource type="Script" uid="uid://d4hsqcdu6ymyu" path="res://Animation5+3/swordman.gd" id="1_282yd"]
 [ext_resource type="Texture2D" uid="uid://b8oyk65xvxkau" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Swordsman/Swordsman with shadows/Swordsman.png" id="1_au8vn"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_tvbty"]
 [ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_ljq4g"]
 [ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_sy2je"]
+[ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="8_popv0"]
+[ext_resource type="AudioStream" uid="uid://ca4rb4fkvvxth" path="res://Sound SFX game/arrow-impact-87260.mp3" id="9_j6s4a"]
+[ext_resource type="AudioStream" uid="uid://bpavweymiw6xu" path="res://Sound SFX game/sword-blade-slicing-flesh-352708.mp3" id="10_gvt7t"]
+[ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="11_1qvhd"]
+[ext_resource type="AudioStream" uid="uid://b8vbodotfo3jg" path="res://Sound SFX game/sword-slash-01-266296.mp3" id="12_56gbo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_au8vn"]
 radius = 4.0
@@ -512,6 +517,31 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet"]
 shape = SubResource("CircleShape2D_reykc")
+
+[node name="SFX_Lv_up" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_popv0")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_sword_m1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_j6s4a")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_sword_q" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_gvt7t")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_1qvhd")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_sword_m2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_56gbo")
+volume_db = -16.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="Sprite2D/ATK1" to="." method="_on_atk_1_area_entered"]
 [connection signal="area_entered" from="Sprite2D/ATK2" to="." method="_on_atk_2_area_entered"]

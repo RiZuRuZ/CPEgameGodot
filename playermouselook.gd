@@ -71,6 +71,7 @@ var level : int = 1:
 @onready var sfx_arrow: AudioStreamPlayer = $SFX_Arrow
 @onready var sfx_sword: AudioStreamPlayer = $SFX_sword
 @onready var sfx_hurt: AudioStreamPlayer = $SFX_hurt
+@onready var sfx_sword_q: AudioStreamPlayer = $SFX_sword_q
 
 
 

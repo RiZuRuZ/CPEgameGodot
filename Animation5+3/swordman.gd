@@ -58,6 +58,15 @@ var level : int = 1:
 		elif value >= 3:
 			%XP.max_value = 20
 
+# ==========================
+#  SFX
+# ==========================
+@onready var sfx_lv_up: AudioStreamPlayer = $SFX_Lv_up
+@onready var sfx_hurt: AudioStreamPlayer = $SFX_hurt
+@onready var sfx_sword_m_1: AudioStreamPlayer = $SFX_sword_m1
+@onready var sfx_sword_q: AudioStreamPlayer = $SFX_sword_q
+@onready var sfx_sword_m_2: AudioStreamPlayer = $SFX_sword_m2
+
 
 func _ready() -> void:
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
@@ -119,6 +128,7 @@ func _physics_process(delta: float) -> void:
 					get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
 
 			elif not death:
+				sfx_hurt.play()
 				is_hurt = true
 				can_move = false
 				is_attacking = false
