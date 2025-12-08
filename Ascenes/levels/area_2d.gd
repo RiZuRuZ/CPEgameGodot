@@ -13,9 +13,9 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody"):
-		area.get_parent().SPEED = 50
+		area.get_parent().SPEED -= 50
 
 
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody"):
-		area.get_parent().SPEED = 100
+		area.get_parent().SPEED += 50

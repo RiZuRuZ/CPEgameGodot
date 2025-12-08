@@ -25,6 +25,9 @@ var area: Area2D
 @export var atk1dmg : int = 25
 @export var atk2dmg : int = 20
 @export var atk3dmg : int = 10
+var MaxHealth :int = 0
+#data from level
+@onready var lvlstat = $"/root/LevelSave"
 
 # Movement / state control
 var can_move := true
@@ -68,7 +71,11 @@ var level : int = 1:
 @onready var sfx_sword_m_2: AudioStreamPlayer = $SFX_sword_m2
 
 
+var preupheal
+var preupspd
+var preupdmg
 func _ready() -> void:
+	#load stat
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
 	PreHealth = health
 	await get_tree().process_frame
@@ -94,12 +101,31 @@ func _ready() -> void:
 	else:
 		push_warning("⚠️ 'area_path' not assigned for player hurtbox.")
 	#health bar setup
-	$Bar.max_value = health
-	
-
+	MaxHealth = health
+	$Bar.max_value = MaxHealth
+	preupheal =lvlstat.Mutihealth
+	preupspd=lvlstat.Mutispeed
+	preupdmg=lvlstat.Mutidam
 
 func _physics_process(delta: float) -> void:
+	check_XP()
+	$"/root/LevelSave".progress = XP
+	$"/root/LevelSave".level = level
+#	check when stat is change ==============================
+	if preupdmg != lvlstat.Mutidam:
+		atk1dmg += 0.6
+		atk2dmg += 0.6
+		atk3dmg += 0.6
+		preupdmg = lvlstat.Mutidam
+#		==================================================
+	if preupheal != lvlstat.Mutihealth:
+		MaxHealth += 20
+		preupheal = lvlstat.Mutihealth
+	if preupspd != lvlstat.Mutispeed:
+		SPEED += 5
+		preupspd = lvlstat.Mutispeed
 	$Bar.value = health
+	$Bar.max_value = MaxHealth
 	motion = Vector2.ZERO
 	if is_hurt:
 		return
@@ -151,7 +177,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("left"):  motion.x -= 1
 	if Input.is_action_pressed("down"):  motion.y += 1
 	if Input.is_action_pressed("up"):    motion.y -= 1
-	if Input.is_action_pressed("0"): gain_XP(5)
+	if Input.is_action_pressed("0"): gain_XP(1)
 
 
 	# --- attack inputs ---
@@ -183,8 +209,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		if animation and animation.current_animation not in ["idle", "attack1", "attack2", "attack3", "hurt", "death"]:
 			animation.play("idle")
-	check_XP()
-
+	
+	
 func _update_facing_to_mouse() -> void:
 	if not gfx:
 		return
@@ -276,15 +302,13 @@ func gain_XP(amount):
 	XP += amount
 	total_XP += amount
 	print("XP:", XP)
-	$"/root/LevelSave".progress = XP
 
 func check_XP() -> void:
 	if XP >= %XP.max_value:
 		sfx_lv_up.play()
 		XP -= %XP.max_value
 		level += 1
-		$"/root/LevelSave".progress = XP
-		$"/root/LevelSave".level = level
+		
 
 # ==========================
 #  MAGNET PICKUP

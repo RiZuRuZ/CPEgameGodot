@@ -1,11 +1,37 @@
-extends Node2D
-var level =0
+extends Control
+var level =1
 var progress = 0
+var Mutihealth =1 
+var Mutidam = 1
+var Mutispeed=1
+var prelvl
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("found")
-
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	$CanvasLayer.hide()
+	prelvl = level
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if prelvl != level and level != 1:
+		$CanvasLayer.show()
+		prelvl = level
+		await get_tree().process_frame
+		get_tree().paused = true
+
+
+func _on_health_pressed() -> void:
+	Mutihealth +=1
+	$CanvasLayer.hide()
+	print(Mutihealth)
+	get_tree().paused = false
+func _on_speed_pressed() -> void:
+	Mutispeed +=1
+	$CanvasLayer.hide()
+	print(Mutispeed)
+	get_tree().paused = false
+func _on_damage_pressed() -> void:
+	Mutidam +=1
+	$CanvasLayer.hide()
+	print(Mutidam)
+	get_tree().paused = false
