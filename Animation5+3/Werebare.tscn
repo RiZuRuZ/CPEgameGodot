@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b25lq5i4p6a5v"]
+[gd_scene load_steps=16 format=3 uid="uid://bmsfme3fl4725"]
 
 [ext_resource type="Texture2D" uid="uid://cmnm8l6ln6ma4" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Werebear/Werebear with shadows/Werebear.png" id="1_iwejh"]
+[ext_resource type="Script" uid="uid://b64mvwiuv5rl" path="res://AMonster_script/Werebare.gd" id="1_vkng1"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_c8ryb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iwejh"]
 
@@ -388,6 +390,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_iwejh"]
 resource_name = "walk"
 length = 0.8
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -421,8 +424,14 @@ size = Vector2(20, 23)
 size = Vector2(17.107605, 19.7047)
 
 [node name="Werebare" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_vkng1")
+gfx_path = NodePath("Sprite2D")
+anim_path = NodePath("AnimationPlayer")
+area_path = NodePath("Area2D")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["EnemyBody"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(3, -1)
@@ -433,7 +442,6 @@ position = Vector2(3, -1)
 shape = SubResource("RectangleShape2D_iwejh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("")
 libraries = {
 &"": SubResource("AnimationLibrary_vcqns")
 }
@@ -465,3 +473,11 @@ polygon = PackedVector2Array(-11, -16, -11, 7, -38, 7, -29, -4, -11, -17, -11, -
 [node name="atk3_2" type="CollisionPolygon2D" parent="Sprite2D/atk3"]
 position = Vector2(2, 0)
 polygon = PackedVector2Array(6, -14, 6, 7, 35, 7, 35, 3, 24, -8, 16, -14)
+
+[node name="Bar" parent="." instance=ExtResource("3_c8ryb")]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Sprite2D/atk1" to="." method="_on_atk_1_area_entered"]
+[connection signal="area_entered" from="Sprite2D/atk2" to="." method="_on_atk_2_area_entered"]
+[connection signal="area_entered" from="Sprite2D/atk3" to="." method="_on_atk_3_area_entered"]
