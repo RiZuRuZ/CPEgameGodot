@@ -14,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_8asc4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 7.0
