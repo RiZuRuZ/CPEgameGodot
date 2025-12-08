@@ -292,7 +292,7 @@ func drop_item():
 	print(">>> CALL DROP_ITEM <<<")
 	
 func _disable_collision():
-	$Sprite2D/HBArea2D/atk1.set_deferred("disabled",true)
-	$Sprite2D/Area2D/atk2.set_deferred("disabled",true)
-	$Sprite2D/Area2D2/atk3_1.set_deferred("disabled",true)
-	$Sprite2D/Area2D2/atk3_2.set_deferred("disabled",true)
+	$Sprite2D/atk1/atk1.set_deferred("disabled",true)
+	$Sprite2D/atk2/atk2.set_deferred("disabled",true)
+	$Sprite2D/atk3/atk3_1.set_deferred("disabled",true)
+	$Sprite2D/atk3/atk3_2.set_deferred("disabled",true)
