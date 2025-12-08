@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dpcr50t48un4x"]
+[gd_scene load_steps=24 format=3 uid="uid://dpcr50t48un4x"]
 
 [ext_resource type="Script" uid="uid://d4hsqcdu6ymyu" path="res://1Player_script/swordman.gd" id="1_37ep1"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="2_scilc"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="8_6un6y"]
 [ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="9_d7p73"]
 [ext_resource type="AudioStream" uid="uid://b8vbodotfo3jg" path="res://Sound SFX game/sword-slash-01-266296.mp3" id="10_rncbh"]
+[ext_resource type="AudioStream" uid="uid://bpavweymiw6xu" path="res://Sound SFX game/sword-blade-slicing-flesh-352708.mp3" id="10_scilc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_au8vn"]
 radius = 4.0
@@ -528,7 +529,7 @@ volume_db = -16.0
 bus = &"SFX"
 
 [node name="SFX_sword_m1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_rncbh")
+stream = ExtResource("10_scilc")
 
 [node name="SFX_sword_m2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_rncbh")
