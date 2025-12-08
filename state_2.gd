@@ -5,16 +5,16 @@ var PlayerScene
 func _ready() -> void:
 	#print($"/root/Wave".selection)
 	if $"/root/Wave".selection == 0:
-		PlayerScene = preload("res://Animation5+3/Soldier.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/Soldier.tscn")
 		print("sol")
 	if $"/root/Wave".selection == 1:
-		PlayerScene = preload("res://Animation5+3/Swordman.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/Swordman.tscn")
 		print("sword")
 	elif $"/root/Wave".selection == 2:
-		PlayerScene = preload("res://Animation5+3/Armored Axeman.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/Armored Axeman.tscn")
 		print($"/root/Wave".selection)
 	elif $"/root/Wave".selection == 3:
-		PlayerScene = preload("res://Animation5+3/Archer.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/Archer.tscn")
 		print($"/root/Wave".selection)
 	var player = PlayerScene.instantiate()
 	add_child(player)

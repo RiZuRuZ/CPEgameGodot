@@ -36,15 +36,15 @@ func _ready():
 	}
 	#SLIME = preload(slime_paht)
 	if $"/root/Wave".selection == 0:
-		PlayerScene = preload("res://Animation5+3/Plyaers/Soldier.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/Soldier.tscn")
 	elif $"/root/Wave".selection == 1:
-		PlayerScene = preload("res://Animation5+3/Plyaers/Swordman.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/Swordman.tscn")
 	elif $"/root/Wave".selection == 2:
-		PlayerScene = preload("res://Animation5+3/Plyaers/Armored Axeman.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/Armored Axeman.tscn")
 	elif $"/root/Wave".selection == 3:
-		PlayerScene = preload("res://Animation5+3/Plyaers/Archer.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/Archer.tscn")
 	elif $"/root/Wave".selection == 4:
-		PlayerScene = preload("res://Animation5+3/Plyaers/Wizard.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/Wizard.tscn")
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	#player.add_to_group("player")
