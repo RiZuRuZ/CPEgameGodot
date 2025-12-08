@@ -163,6 +163,7 @@ func _physics_process(delta: float) -> void:
 		sfx_sword.play()
 	if Input.is_action_just_pressed("q")and not is_attacking:
 		_start_attack("attack2", true)
+		sfx_sword_q.play()
 		return
 	if Input.is_action_just_pressed("m2") and not is_attacking:
 		_start_attack("attack3", true)

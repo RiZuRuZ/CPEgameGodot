@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://iagdsij26rmw"]
+[gd_scene load_steps=15 format=3 uid="uid://iagdsij26rmw"]
 
 [ext_resource type="Script" uid="uid://ck2jde4vwhbgy" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://ddjh3n8i1ul7x" path="res://Scene Asset/bc.png" id="2_a7uoo"]
 [ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="2_ekbyn"]
 [ext_resource type="FontFile" uid="uid://bty22o7674q5x" path="res://GrapeSoda.ttf" id="2_jix8l"]
 [ext_resource type="AudioStream" uid="uid://c33gh2j5ek0rg" path="res://Music/Ambient (Loop Room) _ MiSide [vHn_1JZ-3k8].mp3" id="3_fu7sn"]
@@ -8,6 +9,7 @@
 [ext_resource type="Script" uid="uid://df6117kbn8al5" path="res://fullscreen_control.gd" id="5_glbon"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
+texture = ExtResource("2_a7uoo")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
 bg_color = Color(1, 1, 1, 1)

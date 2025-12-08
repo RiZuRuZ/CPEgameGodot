@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b5dyy2oqltcg7"
+path="res://.godot/imported/Pufino - Metal Is Trash (freetouse.com).mp3-2b84764f1565f8a071da7713907ba4a1.mp3str"
+
+[deps]
+
+source_file="res://Background music/Pufino - Metal Is Trash (freetouse.com).mp3"
+dest_files=["res://.godot/imported/Pufino - Metal Is Trash (freetouse.com).mp3-2b84764f1565f8a071da7713907ba4a1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

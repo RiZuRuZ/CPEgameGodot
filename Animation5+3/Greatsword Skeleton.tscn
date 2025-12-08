@@ -1,6 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://spod8r75d0uy"]
+[gd_scene load_steps=14 format=3 uid="uid://spod8r75d0uy"]
 
+[ext_resource type="Script" uid="uid://bdwem8od3txh" path="res://AMonster_script/GreatswordSkeleton.gd" id="1_4u3iy"]
 [ext_resource type="Texture2D" uid="uid://du60eenk4tqe7" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Greatsword Skeleton/Greatsword Skeleton with shadows/Greatsword Skeleton.png" id="1_mu4sp"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_4cm3g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mu4sp"]
 radius = 7.0
@@ -23,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/atk4/atk1:visible")
+tracks/1/path = NodePath("Sprite2D/atk1/atk1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,7 +37,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/atk4/atk1:disabled")
+tracks/2/path = NodePath("Sprite2D/atk1/atk1:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -112,7 +114,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/atk4/atk1:visible")
+tracks/1/path = NodePath("Sprite2D/atk1/atk1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -124,7 +126,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/atk4/atk1:disabled")
+tracks/2/path = NodePath("Sprite2D/atk1/atk1:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -297,6 +299,12 @@ _data = {
 }
 
 [node name="GreatswordSkeleton" type="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("1_4u3iy")
+gfx_path = NodePath("Sprite2D")
+anim_path = NodePath("AnimationPlayer")
+area_path = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -304,9 +312,9 @@ texture = ExtResource("1_mu4sp")
 hframes = 12
 vframes = 7
 
-[node name="atk4" type="Area2D" parent="Sprite2D"]
+[node name="atk1" type="Area2D" parent="Sprite2D"]
 
-[node name="atk1" type="CollisionPolygon2D" parent="Sprite2D/atk4"]
+[node name="atk1" type="CollisionPolygon2D" parent="Sprite2D/atk1"]
 visible = false
 polygon = PackedVector2Array(-3, 18, 8, 17, 18, 19, 30, 12, 41, 4, 38, -6, 29, -13, 13, -6, 11, -5, 11, 8, -15, 8)
 disabled = true
@@ -332,8 +340,16 @@ libraries = {
 &"": SubResource("AnimationLibrary_r6dwm")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["EnemyBody"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, -2)
 shape = SubResource("CapsuleShape2D_mu4sp")
+
+[node name="Bar" parent="." instance=ExtResource("3_4cm3g")]
+
+[connection signal="area_entered" from="Sprite2D/atk1" to="." method="_on_atk_1_area_entered"]
+[connection signal="area_entered" from="Sprite2D/atk2" to="." method="_on_atk_2_area_entered"]
+[connection signal="area_entered" from="Sprite2D/atk3" to="." method="_on_atk_3_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

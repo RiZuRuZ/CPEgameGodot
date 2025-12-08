@@ -1,10 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7v4fvrdd2awr"]
+[gd_scene load_steps=8 format=3 uid="uid://c7v4fvrdd2awr"]
 
 [ext_resource type="Script" uid="uid://cejc315wmffay" path="res://Gameover/gameover.gd" id="1_oyopb"]
+[ext_resource type="Texture2D" uid="uid://b5lvw8c6i4yg4" path="res://Gameover/black-solid-background-2920-x-1642-jk98dr7udfcq3hqj.jpg" id="2_kyugy"]
 [ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="2_um0ba"]
+[ext_resource type="AudioStream" uid="uid://peqve0qwkj7i" path="res://Sound SFX game/baka-voice-over-139457.mp3" id="3_um0ba"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_um0ba"]
+texture = ExtResource("2_kyugy")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ievr"]
+bg_color = Color(0.36282945, 0.36282948, 0.36282933, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1hxi"]
+bg_color = Color(0.3647059, 0.3647059, 0.3647059, 1)
 
 [node name="Gameover" type="CanvasLayer"]
 script = ExtResource("1_oyopb")
+
+[node name="Background" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_um0ba")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -29,19 +48,27 @@ text = "Game Over"
 
 [node name="Retry" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_horizontal = 5
+size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_um0ba")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_5ievr")
 text = "Retry"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_horizontal = 5
+size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_um0ba")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_x1hxi")
 text = "Exit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_um0ba")
+volume_db = -10.0
+autoplay = true
+bus = &"SFX"
 
 [connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

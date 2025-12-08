@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bi3h254bodls5"
+path="res://.godot/imported/Dagored - Wall Of Sound (freetouse.com).mp3-935a3f781042a59c09aa313e8ba86c46.mp3str"
+
+[deps]
+
+source_file="res://Background music/Dagored - Wall Of Sound (freetouse.com).mp3"
+dest_files=["res://.godot/imported/Dagored - Wall Of Sound (freetouse.com).mp3-935a3f781042a59c09aa313e8ba86c46.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

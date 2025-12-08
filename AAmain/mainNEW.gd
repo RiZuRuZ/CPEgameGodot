@@ -51,7 +51,7 @@ func _ready():
 	player.position = Vector2(250, 150)
 	$"/root/Wave/CanvasLayer".visible = true
 	$"/root/Wave".wave = str(current_wave)
-	start_stage(current_stage)
+	#start_stage(current_stage)
 		
 
 # ------------------------------

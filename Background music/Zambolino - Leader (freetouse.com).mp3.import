@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dvav3g1gu8ar6"
+path="res://.godot/imported/Zambolino - Leader (freetouse.com).mp3-13559a4f47a01ef62046cc7189301e43.mp3str"
+
+[deps]
+
+source_file="res://Background music/Zambolino - Leader (freetouse.com).mp3"
+dest_files=["res://.godot/imported/Zambolino - Leader (freetouse.com).mp3-13559a4f47a01ef62046cc7189301e43.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
