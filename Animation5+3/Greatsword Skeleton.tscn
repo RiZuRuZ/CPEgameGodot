@@ -2,7 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://du60eenk4tqe7" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Greatsword Skeleton/Greatsword Skeleton with shadows/Greatsword Skeleton.png" id="1_mu4sp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_57jlr"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mu4sp"]
+radius = 7.0
+height = 20.0
 
 [sub_resource type="Animation" id="Animation_4u3iy"]
 length = 0.001
@@ -21,7 +23,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk1:visible")
+tracks/1/path = NodePath("Sprite2D/atk4/atk1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -33,7 +35,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk1:disabled")
+tracks/2/path = NodePath("Sprite2D/atk4/atk1:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -45,7 +47,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../HBArea2D/atk2:visible")
+tracks/3/path = NodePath("Sprite2D/atk2/atk2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -57,7 +59,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../HBArea2D/atk2:disabled")
+tracks/4/path = NodePath("Sprite2D/atk2/atk2:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -69,7 +71,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../HBArea2D/atk3:disabled")
+tracks/5/path = NodePath("Sprite2D/atk3/atk3:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -81,7 +83,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../HBArea2D/atk3:visible")
+tracks/6/path = NodePath("Sprite2D/atk3/atk3:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -110,7 +112,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk1:visible")
+tracks/1/path = NodePath("Sprite2D/atk4/atk1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -122,7 +124,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk1:disabled")
+tracks/2/path = NodePath("Sprite2D/atk4/atk1:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -151,7 +153,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk2:visible")
+tracks/1/path = NodePath("Sprite2D/atk2/atk2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -163,7 +165,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk2:disabled")
+tracks/2/path = NodePath("Sprite2D/atk2/atk2:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -192,7 +194,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk3:disabled")
+tracks/1/path = NodePath("Sprite2D/atk3/atk3:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -204,7 +206,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk3:visible")
+tracks/2/path = NodePath("Sprite2D/atk3/atk3:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -248,23 +250,6 @@ tracks/0/keys = {
 "values": [60, 61, 62, 63]
 }
 
-[sub_resource type="Animation" id="Animation_4cm3g"]
-resource_name = "walk"
-length = 0.9
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [12, 13, 14, 15, 16, 17, 18, 19, 20]
-}
-
 [sub_resource type="Animation" id="Animation_mu4sp"]
 resource_name = "idle"
 length = 0.5
@@ -282,6 +267,23 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_4cm3g"]
+resource_name = "walk"
+length = 0.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17, 18, 19, 20]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r6dwm"]
 _data = {
 &"RESET": SubResource("Animation_4u3iy"),
@@ -294,37 +296,44 @@ _data = {
 &"walk": SubResource("Animation_4cm3g")
 }
 
-[node name="GreatswordSkeleton" type="Node2D"]
+[node name="GreatswordSkeleton" type="CharacterBody2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_mu4sp")
 hframes = 12
 vframes = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-visible = false
-position = Vector2(1, -2)
-shape = SubResource("RectangleShape2D_57jlr")
+[node name="atk4" type="Area2D" parent="Sprite2D"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_r6dwm")
-}
-
-[node name="HBArea2D" type="Area2D" parent="."]
-
-[node name="atk1" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk1" type="CollisionPolygon2D" parent="Sprite2D/atk4"]
 visible = false
 polygon = PackedVector2Array(-3, 18, 8, 17, 18, 19, 30, 12, 41, 4, 38, -6, 29, -13, 13, -6, 11, -5, 11, 8, -15, 8)
 disabled = true
 
-[node name="atk2" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk2" type="Area2D" parent="Sprite2D"]
+
+[node name="atk2" type="CollisionPolygon2D" parent="Sprite2D/atk2"]
 polygon = PackedVector2Array(11, -15, 11, -1, 12, 8, 48, 8, 41, -1, 40, -12, 31, -23, 17, -29)
 
-[node name="atk3" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk3" type="Area2D" parent="Sprite2D"]
+
+[node name="atk3" type="CollisionPolygon2D" parent="Sprite2D/atk3"]
 visible = false
 polygon = PackedVector2Array(7, 1, 22, -2, 39, 3, 22, 7, 7, 6)
 disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_mu4sp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_r6dwm")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_mu4sp")

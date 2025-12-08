@@ -21,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk1:disabled")
+tracks/1/path = NodePath("Sprite2D/atk1/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -33,7 +33,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk1:visible")
+tracks/2/path = NodePath("Sprite2D/atk1/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -45,7 +45,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../HBArea2D/atk2:disabled")
+tracks/3/path = NodePath("Sprite2D/atk2/atk2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -57,7 +57,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../HBArea2D/atk2:visible")
+tracks/4/path = NodePath("Sprite2D/atk2/atk2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -69,7 +69,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../HBArea2D/atk2:position")
+tracks/5/path = NodePath("Sprite2D/atk2/atk2:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -81,7 +81,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../HBArea2D/atk2:rotation")
+tracks/6/path = NodePath("Sprite2D/atk2/atk2:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -93,7 +93,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../HBArea2D/atk2:scale")
+tracks/7/path = NodePath("Sprite2D/atk2/atk2:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -105,7 +105,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../HBArea2D/atk3_1:disabled")
+tracks/8/path = NodePath("Sprite2D/atk3/atk3_1:disabled")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -117,7 +117,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../HBArea2D/atk3_2:disabled")
+tracks/9/path = NodePath("Sprite2D/atk3/atk3_2:disabled")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -129,7 +129,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../HBArea2D/atk3_1:visible")
+tracks/10/path = NodePath("Sprite2D/atk3/atk3_1:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -141,7 +141,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../HBArea2D/atk3_2:visible")
+tracks/11/path = NodePath("Sprite2D/atk3/atk3_2:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -170,7 +170,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk1:disabled")
+tracks/1/path = NodePath("Sprite2D/atk1/atk1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -182,7 +182,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk1:visible")
+tracks/2/path = NodePath("Sprite2D/atk1/atk1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -211,7 +211,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk2:disabled")
+tracks/1/path = NodePath("Sprite2D/atk2/atk2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -223,7 +223,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk2:visible")
+tracks/2/path = NodePath("Sprite2D/atk2/atk2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -235,7 +235,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../HBArea2D/atk2:position")
+tracks/3/path = NodePath("Sprite2D/atk2/atk2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -247,7 +247,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../HBArea2D/atk2:rotation")
+tracks/4/path = NodePath("Sprite2D/atk2/atk2:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -259,7 +259,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../HBArea2D/atk2:scale")
+tracks/5/path = NodePath("Sprite2D/atk2/atk2:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -288,7 +288,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBArea2D/atk3_1:disabled")
+tracks/1/path = NodePath("Sprite2D/atk3/atk3_1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -300,7 +300,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBArea2D/atk3_2:disabled")
+tracks/2/path = NodePath("Sprite2D/atk3/atk3_2:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -312,7 +312,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../HBArea2D/atk3_1:visible")
+tracks/3/path = NodePath("Sprite2D/atk3/atk3_1:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -324,7 +324,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../HBArea2D/atk3_2:visible")
+tracks/4/path = NodePath("Sprite2D/atk3/atk3_2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -368,23 +368,6 @@ tracks/0/keys = {
 "values": [65, 66, 67, 68]
 }
 
-[sub_resource type="Animation" id="Animation_iwejh"]
-resource_name = "walk"
-length = 0.8
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [13, 14, 15, 16, 17, 18, 19, 20]
-}
-
 [sub_resource type="Animation" id="Animation_vkng1"]
 resource_name = "idle"
 length = 0.5
@@ -400,6 +383,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_iwejh"]
+resource_name = "walk"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [13, 14, 15, 16, 17, 18, 19, 20]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vcqns"]
@@ -420,39 +420,48 @@ size = Vector2(20, 23)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8ryb"]
 size = Vector2(17.107605, 19.7047)
 
-[node name="Werebare" type="Node2D"]
+[node name="Werebare" type="CharacterBody2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(3, -1)
 shape = SubResource("RectangleShape2D_iwejh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -1)
+shape = SubResource("RectangleShape2D_iwejh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
 libraries = {
 &"": SubResource("AnimationLibrary_vcqns")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_iwejh")
 hframes = 13
 vframes = 7
 
-[node name="HBArea2D" type="Area2D" parent="."]
+[node name="atk1" type="Area2D" parent="Sprite2D"]
 
-[node name="atk1" type="CollisionShape2D" parent="HBArea2D"]
+[node name="atk1" type="CollisionShape2D" parent="Sprite2D/atk1"]
 position = Vector2(22, -2.5)
 shape = SubResource("RectangleShape2D_vkng1")
 
-[node name="atk2" type="CollisionShape2D" parent="HBArea2D"]
+[node name="atk2" type="Area2D" parent="Sprite2D"]
+
+[node name="atk2" type="CollisionShape2D" parent="Sprite2D/atk2"]
 position = Vector2(21, -1.5)
 shape = SubResource("RectangleShape2D_c8ryb")
 
-[node name="atk3_1" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk3" type="Area2D" parent="Sprite2D"]
+
+[node name="atk3_1" type="CollisionPolygon2D" parent="Sprite2D/atk3"]
 position = Vector2(12, 0)
 polygon = PackedVector2Array(-11, -16, -11, 7, -38, 7, -29, -4, -11, -17, -11, -15)
 
-[node name="atk3_2" type="CollisionPolygon2D" parent="HBArea2D"]
+[node name="atk3_2" type="CollisionPolygon2D" parent="Sprite2D/atk3"]
 position = Vector2(2, 0)
 polygon = PackedVector2Array(6, -14, 6, 7, 35, 7, 35, 3, 24, -8, 16, -14)
