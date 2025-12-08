@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bxxr8ojys2mll"]
+[gd_scene load_steps=20 format=3 uid="uid://bxxr8ojys2mll"]
 
 [ext_resource type="Script" uid="uid://307gh0uberov" path="res://AAmain/mainNEW.gd" id="1_272bh"]
 [ext_resource type="PackedScene" uid="uid://dfijgvchbwh6y" path="res://Animation5+3/Monsters/Skeleton.tscn" id="3_kek77"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://otemu1iabpvr" path="res://Animation5+3/Monsters/Armored Orc.tscn" id="12_w48qg"]
 [ext_resource type="PackedScene" uid="uid://ygkbw58jhurr" path="res://Animation5+3/Monsters/Elite Orc.tscn" id="13_vivmo"]
 [ext_resource type="PackedScene" uid="uid://spod8r75d0uy" path="res://Animation5+3/Greatsword Skeleton.tscn" id="14_w48qg"]
+[ext_resource type="PackedScene" uid="uid://bmsfme3fl4725" path="res://Animation5+3/Werebare.tscn" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://ggcf242hhykj" path="res://Animation5+3/Werewolf.tscn" id="16_2cqfq"]
 
 [sub_resource type="Animation" id="Animation_lquwl"]
 resource_name = "Bocchi"
@@ -130,6 +132,11 @@ position = Vector2(289, 230)
 
 [node name="GreatswordSkeleton" parent="." instance=ExtResource("14_w48qg")]
 position = Vector2(141, 218)
+
+[node name="Werebare" parent="." instance=ExtResource("15_vivmo")]
+
+[node name="Werewolf" parent="." instance=ExtResource("16_2cqfq")]
+position = Vector2(254, 85)
 
 [connection signal="timeout" from="first" to="." method="_on_first_timeout"]
 [connection signal="timeout" from="wavetime" to="." method="_on_wavetime_timeout"]
