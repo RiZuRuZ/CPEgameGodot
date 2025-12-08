@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bkc6xxwlagnqa"
+path="res://.godot/imported/Zambolino - Dark Star (freetouse.com).mp3-ba558c81491ace34e1c9b45b40cacd90.mp3str"
+
+[deps]
+
+source_file="res://Background music/Zambolino - Dark Star (freetouse.com).mp3"
+dest_files=["res://.godot/imported/Zambolino - Dark Star (freetouse.com).mp3-ba558c81491ace34e1c9b45b40cacd90.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

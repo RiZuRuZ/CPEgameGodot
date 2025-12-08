@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctrmyjf1mxd6b"
+path="res://.godot/imported/Aylex - Energizer (freetouse.com).mp3-e1fe35f15792b93d75f8899b162176f0.mp3str"
+
+[deps]
+
+source_file="res://Background music/Aylex - Energizer (freetouse.com).mp3"
+dest_files=["res://.godot/imported/Aylex - Energizer (freetouse.com).mp3-e1fe35f15792b93d75f8899b162176f0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
