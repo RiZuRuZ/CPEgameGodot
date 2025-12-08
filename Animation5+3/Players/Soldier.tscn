@@ -1,16 +1,16 @@
 [gd_scene load_steps=25 format=3 uid="uid://dvjntbls4eaxg"]
 
-[ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="1_pytxw"]
-[ext_resource type="Script" uid="uid://c3mhf5q7j70kk" path="res://playermouselook.gd" id="1_t18l3"]
-[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="2_t18l3"]
-[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_laokc"]
-[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_o74wx"]
-[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_kjgep"]
-[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_o74wx"]
-[ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="8_kjgep"]
-[ext_resource type="AudioStream" uid="uid://bj1e7vgov0g5l" path="res://Sound SFX game/attack_arrow.mp3" id="9_4mq02"]
-[ext_resource type="AudioStream" uid="uid://bpavweymiw6xu" path="res://Sound SFX game/sword-blade-slicing-flesh-352708.mp3" id="10_elf4q"]
-[ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="11_40pes"]
+[ext_resource type="Script" uid="uid://c3mhf5q7j70kk" path="res://1Player_script/soldier.gd" id="1_5gbn8"]
+[ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="2_is0py"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_pmh3q"]
+[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_dcm5i"]
+[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_tmquy"]
+[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_egm3l"]
+[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_c5hg6"]
+[ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="8_paofh"]
+[ext_resource type="AudioStream" uid="uid://bj1e7vgov0g5l" path="res://Sound SFX game/attack_arrow.mp3" id="9_qk125"]
+[ext_resource type="AudioStream" uid="uid://bpavweymiw6xu" path="res://Sound SFX game/sword-blade-slicing-flesh-352708.mp3" id="10_wr3gu"]
+[ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="11_mm12e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lqgdd"]
 radius = 4.0
@@ -237,7 +237,7 @@ radius = 50.0
 [node name="Soldier" type="CharacterBody2D" groups=["player"]]
 disable_mode = 2
 collision_mask = 4
-script = ExtResource("1_t18l3")
+script = ExtResource("1_5gbn8")
 gfx_path = NodePath("CharacterBody2D/Soldier")
 anim_path = NodePath("CharacterBody2D/AnimationPlayer")
 area_path = NodePath("Area2D")
@@ -255,7 +255,7 @@ shape = SubResource("CapsuleShape2D_lqgdd")
 
 [node name="Soldier" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-texture = ExtResource("1_pytxw")
+texture = ExtResource("2_is0py")
 hframes = 9
 vframes = 7
 
@@ -279,7 +279,7 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(2.29, 2.29)
 
-[node name="Bar" parent="." instance=ExtResource("2_t18l3")]
+[node name="Bar" parent="." instance=ExtResource("3_pmh3q")]
 offset_left = -12.0
 offset_top = -15.0
 offset_right = 69.78955
@@ -307,9 +307,9 @@ offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 10.0
-texture_under = ExtResource("4_laokc")
-texture_over = ExtResource("5_o74wx")
-texture_progress = ExtResource("6_kjgep")
+texture_under = ExtResource("4_dcm5i")
+texture_over = ExtResource("5_tmquy")
+texture_progress = ExtResource("6_egm3l")
 
 [node name="Level" type="Label" parent="XP"]
 unique_name_in_owner = true
@@ -334,7 +334,7 @@ offset_right = 21.0
 offset_bottom = 19.939987
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("7_o74wx")
+script = ExtResource("7_c5hg6")
 
 [node name="Magnet" type="Area2D" parent="."]
 collision_layer = 0
@@ -344,22 +344,22 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_46swv")
 
 [node name="SFX_Lv_up" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_kjgep")
+stream = ExtResource("8_paofh")
 volume_db = -16.0
 bus = &"SFX"
 
 [node name="SFX_Arrow" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_4mq02")
+stream = ExtResource("9_qk125")
 volume_db = -16.0
 bus = &"SFX"
 
 [node name="SFX_sword" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_elf4q")
+stream = ExtResource("10_wr3gu")
 volume_db = -16.0
 bus = &"SFX"
 
 [node name="SFX_hurt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_40pes")
+stream = ExtResource("11_mm12e")
 volume_db = -16.0
 bus = &"SFX"
 

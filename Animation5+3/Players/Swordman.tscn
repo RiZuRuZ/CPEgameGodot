@@ -1,15 +1,15 @@
 [gd_scene load_steps=23 format=3 uid="uid://dpcr50t48un4x"]
 
-[ext_resource type="Script" uid="uid://d4hsqcdu6ymyu" path="res://Animation5+3/swordman.gd" id="1_282yd"]
-[ext_resource type="Texture2D" uid="uid://b8oyk65xvxkau" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Swordsman/Swordsman with shadows/Swordsman.png" id="1_au8vn"]
-[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_wmx7i"]
-[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_reykc"]
-[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_tvbty"]
-[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_ljq4g"]
-[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_sy2je"]
-[ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="8_ont5c"]
-[ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="9_0e4mp"]
-[ext_resource type="AudioStream" uid="uid://b8vbodotfo3jg" path="res://Sound SFX game/sword-slash-01-266296.mp3" id="10_ont5c"]
+[ext_resource type="Script" uid="uid://d4hsqcdu6ymyu" path="res://1Player_script/swordman.gd" id="1_37ep1"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="2_scilc"]
+[ext_resource type="Texture2D" uid="uid://b8oyk65xvxkau" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Swordsman/Swordsman with shadows/Swordsman.png" id="3_3rlge"]
+[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_inghg"]
+[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_6yimy"]
+[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_nn4lu"]
+[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_inbja"]
+[ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="8_6un6y"]
+[ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="9_d7p73"]
+[ext_resource type="AudioStream" uid="uid://b8vbodotfo3jg" path="res://Sound SFX game/sword-slash-01-266296.mp3" id="10_rncbh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_au8vn"]
 radius = 4.0
@@ -409,7 +409,7 @@ radius = 50.0
 
 [node name="Swordman" type="CharacterBody2D" groups=["player"]]
 collision_mask = 4
-script = ExtResource("1_282yd")
+script = ExtResource("1_37ep1")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
@@ -426,7 +426,7 @@ collision_mask = 5
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_au8vn")
 
-[node name="Bar" parent="." instance=ExtResource("3_wmx7i")]
+[node name="Bar" parent="." instance=ExtResource("2_scilc")]
 offset_left = -12.0
 offset_top = -15.0
 offset_right = 69.78955
@@ -443,7 +443,7 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_au8vn")
+texture = ExtResource("3_3rlge")
 hframes = 15
 vframes = 7
 
@@ -481,9 +481,9 @@ offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 10.0
-texture_under = ExtResource("4_reykc")
-texture_over = ExtResource("5_tvbty")
-texture_progress = ExtResource("6_ljq4g")
+texture_under = ExtResource("4_inghg")
+texture_over = ExtResource("5_6yimy")
+texture_progress = ExtResource("6_nn4lu")
 
 [node name="Level" type="Label" parent="XP"]
 unique_name_in_owner = true
@@ -508,7 +508,7 @@ offset_right = 21.0
 offset_bottom = 19.939987
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("7_sy2je")
+script = ExtResource("7_inbja")
 
 [node name="Magnet" type="Area2D" parent="."]
 collision_layer = 0
@@ -518,23 +518,23 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_reykc")
 
 [node name="SFX_hurt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_0e4mp")
+stream = ExtResource("8_6un6y")
 volume_db = -16.0
 bus = &"SFX"
 
 [node name="SFX_Lv_up" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_ont5c")
+stream = ExtResource("9_d7p73")
 volume_db = -16.0
 bus = &"SFX"
 
 [node name="SFX_sword_m1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_ont5c")
+stream = ExtResource("10_rncbh")
 
 [node name="SFX_sword_m2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_ont5c")
+stream = ExtResource("10_rncbh")
 
 [node name="SFX_sword_q" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_ont5c")
+stream = ExtResource("10_rncbh")
 
 [connection signal="area_entered" from="Sprite2D/ATK1" to="." method="_on_atk_1_area_entered"]
 [connection signal="area_entered" from="Sprite2D/ATK2" to="." method="_on_atk_2_area_entered"]
