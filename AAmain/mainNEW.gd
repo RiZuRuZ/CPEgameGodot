@@ -61,7 +61,7 @@ func start_stage(stage_number:int):
 	current_stage = stage_number
 	current_wave = 1
 	print("Start Stage:", stage_number)
-	#start_wave_loop()
+	start_wave_loop()
 
 
 # ------------------------------

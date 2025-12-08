@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxm3620kjgnt5"]
+[gd_scene load_steps=4 format=3 uid="uid://bxm3620kjgnt5"]
 
 [ext_resource type="Script" uid="uid://casmjpw38smig" path="res://wave.gd" id="1_8asc4"]
+[ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="2_sj2kr"]
+[ext_resource type="AudioStream" uid="uid://ilvwble7vg6p" path="res://Sound SFX game/yay-6120.mp3" id="3_j10k6"]
 
 [node name="wave" type="Control"]
 layout_mode = 3
@@ -14,35 +16,39 @@ script = ExtResource("1_8asc4")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-texture_filter = 1
-offset_right = 40.0
-offset_bottom = 23.0
-scale = Vector2(6.1002865, 4.7343383)
-text = "hjkl"
+offset_left = 7.0
+offset_top = 71.0
+offset_right = 87.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("2_sj2kr")
+theme_override_font_sizes/font_size = 50
+text = "wave "
 
 [node name="time" type="Label" parent="CanvasLayer"]
-texture_filter = 1
-layout_direction = 3
-offset_left = 339.0
-offset_top = 24.0
-offset_right = 446.0
-offset_bottom = 47.0
-scale = Vector2(3.9709148, 3.9709148)
+offset_left = 891.0
+offset_top = 82.0
+offset_right = 1151.0
+offset_bottom = 132.0
+theme_override_fonts/font = ExtResource("2_sj2kr")
+theme_override_font_sizes/font_size = 50
 text = "Nextwave: 3 s"
-horizontal_alignment = 2
-text_direction = 2
 
 [node name="victory" type="Label" parent="CanvasLayer"]
 visible = false
-texture_filter = 1
-layout_direction = 2
-offset_left = 191.00003
-offset_top = 286.0
-offset_right = 231.00003
-offset_bottom = 309.0
-scale = Vector2(6.1002865, 4.7343383)
-theme_override_font_sizes/font_size = 10
-text = "hjkl"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -25.0
+offset_right = 130.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_sj2kr")
+theme_override_font_sizes/font_size = 50
+text = "Win"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -53,5 +59,9 @@ offset_top = 525.0
 offset_right = 1104.0
 offset_bottom = 625.0
 text = "click"
+
+[node name="SFX_Victiory" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_j10k6")
+volume_db = -15.0
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

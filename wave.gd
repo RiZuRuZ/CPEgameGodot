@@ -3,6 +3,7 @@ var wave:String = "0"
 var nextwave: int = 0
 var state = "he;;p"
 var selection = -1
+@onready var sfx_victiory: AudioStreamPlayer = $SFX_Victiory
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer.visible = false
@@ -19,6 +20,7 @@ func _process(delta: float) -> void:
 	$CanvasLayer/time.text = "Next Wave: " + str(nextwave) + " s"
 	
 	if $CanvasLayer/victory.visible == true:
+		sfx_victiory.play()
 		$CanvasLayer/victory.text = "Stage" +str(state)+ "Complete!"
 		await get_tree().create_timer(2).timeout
 		var tweem = create_tween()

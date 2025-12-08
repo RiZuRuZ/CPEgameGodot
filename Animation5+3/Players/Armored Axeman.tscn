@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ct0tcuxspt3d"]
+[gd_scene load_steps=26 format=3 uid="uid://ct0tcuxspt3d"]
 
 [ext_resource type="Script" uid="uid://dkmhcvpt7mb3x" path="res://1Player_script/armored_axeman.gd" id="1_sqt8h"]
 [ext_resource type="Texture2D" uid="uid://diog3qwoe5woj" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Axeman/Armored Axeman with shadows/Armored Axeman.png" id="2_07hpi"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="4_pclln"]
 [ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="5_3hyv2"]
 [ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_v12sy"]
+[ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="7_07hpi"]
 [ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_nqpad"]
 [ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="8_co0t1"]
 [ext_resource type="AudioStream" uid="uid://dvquvju8l8bvw" path="res://Sound SFX game/axe-hit-flesh-02-266299.mp3" id="9_e2ii2"]
@@ -438,11 +439,13 @@ texture_progress = ExtResource("6_v12sy")
 
 [node name="Level" type="Label" parent="XP"]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 0
-offset_left = 327.0
-offset_top = 70.0
-offset_right = 367.0
-offset_bottom = 93.0
+offset_left = 317.0
+offset_top = 71.0
+offset_right = 357.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("7_07hpi")
 text = "Lv 1"
 
 [node name="Lv_opition" type="VBoxContainer" parent="XP"]
