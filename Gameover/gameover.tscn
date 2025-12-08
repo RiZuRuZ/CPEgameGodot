@@ -48,8 +48,8 @@ text = "Game Over"
 
 [node name="Retry" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_horizontal = 5
+size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_um0ba")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_5ievr")
@@ -57,8 +57,8 @@ text = "Retry"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_horizontal = 5
+size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_um0ba")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_x1hxi")

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dcdhlkj8qsyev" path="res://Scene Asset/cave_/cave_ [resources].png" id="6_d743c"]
 [ext_resource type="Texture2D" uid="uid://ctshlyfw58yyt" path="res://Scene Asset/cave_/cave_.png" id="7_0h7ut"]
 [ext_resource type="Texture2D" uid="uid://dop4ay5vgyxca" path="res://Scene Asset/cave_/railway_.png" id="8_7uija"]
-[ext_resource type="Texture2D" uid="uid://caowlmrnn7utp" path="res://Scene Asset/x-mark-16.png" id="9_ybbx5"]
+[ext_resource type="Texture2D" uid="uid://bykrheldlrey7" path="res://Scene Asset/x-mark-16.png" id="9_ybbx5"]
 [ext_resource type="PackedScene" uid="uid://0kagwy22i60j" path="res://PauseMenu/pause_menu.tscn" id="10_6aive"]
 [ext_resource type="AudioStream" uid="uid://dvav3g1gu8ar6" path="res://Background music/Zambolino - Leader (freetouse.com).mp3" id="11_s56te"]
 
@@ -1882,3 +1882,4 @@ stream = ExtResource("11_s56te")
 volume_db = -16.0
 autoplay = true
 bus = &"Music"
+parameters/looping = true

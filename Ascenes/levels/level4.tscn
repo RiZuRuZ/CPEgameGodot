@@ -31,7 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://cfxdnwc3lxe6y" path="res://Scene Asset/forest_/forest_ [fountain].png" id="29_8ieis"]
 [ext_resource type="Texture2D" uid="uid://bqdbe0w2hunk8" path="res://Scene Asset/forest_/forest_ [resources].png" id="30_ibagn"]
 [ext_resource type="Texture2D" uid="uid://ddvgh8wkgppga" path="res://Scene Asset/forest_/forest_.png" id="31_kdcbv"]
-[ext_resource type="Texture2D" uid="uid://caowlmrnn7utp" path="res://Scene Asset/x-mark-16.png" id="32_yfhtj"]
+[ext_resource type="Texture2D" uid="uid://bykrheldlrey7" path="res://Scene Asset/x-mark-16.png" id="32_yfhtj"]
 [ext_resource type="PackedScene" uid="uid://0kagwy22i60j" path="res://PauseMenu/pause_menu.tscn" id="33_3mm6o"]
 [ext_resource type="AudioStream" uid="uid://b5dyy2oqltcg7" path="res://Background music/Pufino - Metal Is Trash (freetouse.com).mp3" id="34_najc8"]
 
@@ -3042,3 +3042,4 @@ stream = ExtResource("34_najc8")
 volume_db = -16.0
 autoplay = true
 bus = &"Music"
+parameters/looping = true

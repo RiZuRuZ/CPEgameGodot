@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ddvgh8wkgppga" path="res://Scene Asset/forest_/forest_.png" id="8_ci7iy"]
 [ext_resource type="Texture2D" uid="uid://dtxnls8otsc1b" path="res://Scene Asset/desert_/desert_ [resources].png" id="9_cnicg"]
 [ext_resource type="Script" uid="uid://dwbip36nbts8p" path="res://Ascenes/levels/area_2d.gd" id="10_akmv7"]
-[ext_resource type="Texture2D" uid="uid://caowlmrnn7utp" path="res://Scene Asset/x-mark-16.png" id="10_khylw"]
+[ext_resource type="Texture2D" uid="uid://bykrheldlrey7" path="res://Scene Asset/x-mark-16.png" id="10_khylw"]
 [ext_resource type="AudioStream" uid="uid://bi3h254bodls5" path="res://Background music/Dagored - Wall Of Sound (freetouse.com).mp3" id="12_sraco"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ml4ko"]
@@ -2451,6 +2451,7 @@ stream = ExtResource("12_sraco")
 volume_db = -16.0
 autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [connection signal="area_entered" from="Node2D/Area2D" to="Node2D/Area2D" method="_on_area_entered"]
 [connection signal="area_exited" from="Node2D/Area2D" to="Node2D/Area2D" method="_on_area_exited"]

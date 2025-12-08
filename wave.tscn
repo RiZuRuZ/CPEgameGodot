@@ -62,6 +62,5 @@ text = "click"
 
 [node name="SFX_Victiory" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_j10k6")
-volume_db = -15.0
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

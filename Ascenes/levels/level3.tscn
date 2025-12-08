@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dtxnls8otsc1b" path="res://Scene Asset/desert_/desert_ [resources].png" id="7_6ubm1"]
 [ext_resource type="Texture2D" uid="uid://b00on6tpt0g6o" path="res://Scene Asset/desert_/desert_.png" id="8_3yu8h"]
 [ext_resource type="Texture2D" uid="uid://bbhhbawmt4wpq" path="res://Scene Asset/desert_/quickSand_.png" id="9_m8aeo"]
-[ext_resource type="Texture2D" uid="uid://caowlmrnn7utp" path="res://Scene Asset/x-mark-16.png" id="10_tjksy"]
+[ext_resource type="Texture2D" uid="uid://bykrheldlrey7" path="res://Scene Asset/x-mark-16.png" id="10_tjksy"]
 [ext_resource type="PackedScene" uid="uid://0kagwy22i60j" path="res://PauseMenu/pause_menu.tscn" id="11_tcc0g"]
 [ext_resource type="AudioStream" uid="uid://cnyghcfa6b75k" path="res://Background music/Pufino - Digital Mayham (freetouse.com).mp3" id="12_upu3d"]
 
@@ -1872,3 +1872,4 @@ stream = ExtResource("12_upu3d")
 volume_db = -16.0
 autoplay = true
 bus = &"Music"
+parameters/looping = true
