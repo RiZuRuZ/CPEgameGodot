@@ -252,7 +252,7 @@ func play_anim(name: String) -> void:
 		animation.play(name)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody")and area.get_parent().is_invincible == false:
+	if area.is_in_group("PlayerBody")and area.get_parent().is_invincible == false and health > 0:
 		area.get_parent().health -= bodydmg
 
 func _on_area_2d_2_area_entered(area: Area2D) -> void:
