@@ -1,15 +1,26 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxxr8ojys2mll"]
+[gd_scene load_steps=24 format=3 uid="uid://bxxr8ojys2mll"]
 
 [ext_resource type="Script" uid="uid://307gh0uberov" path="res://AAmain/mainNEW.gd" id="1_272bh"]
-[ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Monsters/Slime.tscn" id="2_4c57u"]
-[ext_resource type="PackedScene" uid="uid://dfijgvchbwh6y" path="res://Animation5+3/Monsters/Skeleton.tscn" id="3_efxa6"]
+[ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Monsters/Slime.tscn" id="2_dg77c"]
+[ext_resource type="PackedScene" uid="uid://dfijgvchbwh6y" path="res://Animation5+3/Monsters/Skeleton.tscn" id="3_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://c7taw5sxo28en" path="res://ExampleAsset/Bocchi Sprite Sheet02-Picsart-BackgroundRemover.png" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bp46t1x8ewyvt" path="res://Animation5+3/Monsters/Orc.tscn" id="4_dg77c"]
 [ext_resource type="Script" uid="uid://bdxdbc5g0btap" path="res://Bocchi.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bp46t1x8ewyvt" path="res://Animation5+3/Monsters/Orc.tscn" id="4_w48qg"]
+[ext_resource type="PackedScene" uid="uid://c1sj5mhwcmfv4" path="res://Animation5+3/Monsters/Archer Skeleton.tscn" id="5_82xsv"]
 [ext_resource type="PackedScene" uid="uid://bj04qq2p1n327" path="res://Ascenes/levels/level1.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://0kagwy22i60j" path="res://PauseMenu/pause_menu.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://otemu1iabpvr" path="res://Animation5+3/Monsters/Armored Orc.tscn" id="6_getpj"]
 [ext_resource type="PackedScene" uid="uid://dvqp0l1j5pdck" path="res://Pickup/pickups.tscn" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bhwvf70ju7fen" path="res://Animation5+3/Orc Raider.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://daxw1ldvibnfv" path="res://Animation5+3/Monsters/Armored Skeleton.tscn" id="7_ryguw"]
+[ext_resource type="PackedScene" uid="uid://ygkbw58jhurr" path="res://Animation5+3/Monsters/Elite Orc.tscn" id="8_d13ii"]
+[ext_resource type="PackedScene" uid="uid://ggcf242hhykj" path="res://Animation5+3/Werewolf.tscn" id="8_kek77"]
+[ext_resource type="PackedScene" uid="uid://bbx47wgn1ntmr" path="res://Animation5+3/Monsters/Greatsword Skeleton.tscn" id="9_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://bmsfme3fl4725" path="res://Animation5+3/Werebare.tscn" id="9_4c57u"]
+[ext_resource type="PackedScene" uid="uid://gupkyg6y11g3" path="res://Animation5+3/Monsters/Orc Raider.tscn" id="10_0odxb"]
+[ext_resource type="PackedScene" uid="uid://by70vibh1snao" path="res://Animation5+3/Monsters/Werebare.tscn" id="11_lswn8"]
+[ext_resource type="PackedScene" uid="uid://1cmyky6uanl1" path="res://Animation5+3/Monsters/Werewolf.tscn" id="12_a6jrf"]
 
 [sub_resource type="Animation" id="Animation_lquwl"]
 resource_name = "Bocchi"
@@ -53,9 +64,17 @@ _data = {
 [node name="Node2D" type="Node2D"]
 position = Vector2(31, -15)
 script = ExtResource("1_272bh")
-SLIME = ExtResource("2_4c57u")
-SKELETON = ExtResource("3_efxa6")
-ORC = ExtResource("4_dg77c")
+SLIME = ExtResource("2_dg77c")
+SKELETON = ExtResource("3_ycdy4")
+ORC = ExtResource("4_w48qg")
+ARCHERSKELETON = ExtResource("5_82xsv")
+ARMOREDORC = ExtResource("6_getpj")
+ARMOREDSKELETON = ExtResource("7_ryguw")
+ELITEORC = ExtResource("8_d13ii")
+GREATSWORDSKELETON = ExtResource("9_1u8w0")
+ORCRIDER = ExtResource("10_0odxb")
+WEREBARE = ExtResource("11_lswn8")
+WEREWOLF = ExtResource("12_a6jrf")
 metadata/_edit_vertical_guides_ = [-299.0]
 
 [node name="BOCCHI" type="CharacterBody2D" parent="."]
@@ -100,8 +119,17 @@ position = Vector2(-1, 98)
 [node name="Pickups" parent="." instance=ExtResource("7_5vw27")]
 position = Vector2(149, 60)
 
+[node name="Pickups11" parent="." instance=ExtResource("7_5vw27")]
+position = Vector2(149, 60)
+
 [node name="OrcRaider2" parent="." instance=ExtResource("7_272bh")]
 position = Vector2(107, 207)
+
+[node name="Werewolf" parent="." instance=ExtResource("8_kek77")]
+position = Vector2(-16, 192)
+
+[node name="Werebare" parent="." instance=ExtResource("9_4c57u")]
+position = Vector2(7, 244)
 
 [connection signal="timeout" from="first" to="." method="_on_first_timeout"]
 [connection signal="timeout" from="wavetime" to="." method="_on_wavetime_timeout"]
