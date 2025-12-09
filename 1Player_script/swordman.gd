@@ -110,6 +110,7 @@ func _ready() -> void:
 	%XP.value = lvlstat.progress
 
 func _physics_process(delta: float) -> void:
+	print(SPEED)
 	if level >= 7:
 			%XP.max_value = 40
 	elif level >= 3:
@@ -119,9 +120,9 @@ func _physics_process(delta: float) -> void:
 	$"/root/LevelSave".level = level
 #	check when stat is change ==============================
 	if preupdmg != lvlstat.Mutidam:
-		atk1dmg += 0.6
-		atk2dmg += 0.6
-		atk3dmg += 0.6
+		atk1dmg += 1
+		atk2dmg += 1
+		atk3dmg += 1
 		preupdmg = lvlstat.Mutidam
 #		==================================================
 	if preupheal != lvlstat.Mutihealth:
