@@ -163,4 +163,3 @@ func _physics_process(delta: float) -> void:
 		$"/root/Wave/CanvasLayer/victory".visible = true
 		$"/root/Wave/CanvasLayer/Button".visible = true
 		current_stage +=1
-	print("current stage",current_stage)
