@@ -62,8 +62,6 @@ func start_stage(stage_number:int):
 	current_wave = 1
 	print("Start Stage:", stage_number)
 	start_wave_loop()
-
-
 # ------------------------------
 # วน Wave ทุก 10 วิ หรือจนมอนตายหมด
 # ------------------------------
@@ -74,8 +72,6 @@ func start_wave_loop():
 	wave_timer.one_shot = false
 	add_child(wave_timer)
 	wave_timer.timeout.connect(_on_next_wave)
-
-
 func _on_next_wave():
 	$"/root/Wave/CanvasLayer/Label".visible = true
 	$"/root/Wave/CanvasLayer/time".visible = true
@@ -90,34 +86,21 @@ func _on_next_wave():
 			current_wave += 1
 			if not wave_data.has(current_wave):
 				wave_timer.stop()
-				$"/root/Wave/CanvasLayer/time".visible = false
-			#$"/root/Wave".wave = current_wave	
+				$"/root/Wave/CanvasLayer/time".visible = false	
 		else:
-			#$"/root/Wave".wave = "Last wave"
 			get_tree().quit()
-#func Next_state():
-	
-		
-
 # ------------------------------
 # spawn wave
 # ------------------------------
 func spawn_wave(stage:int, wave:int):
 	var wave_info = stages[stage][wave]
-
 	for enemy_data in wave_info:
 		var enemy_scene = enemy_data[0]
 		var amount = enemy_data[1]
-
 		for i in range(amount):
 			var enemy = enemy_scene.instantiate()
-
 			enemy.global_position = random_spawn_position()
-
 			add_child(enemy)
-			print("Spawned:", enemy.name)
-			
-
 # ------------------------------
 # สุ่มตำแหน่งรอบ safe zone (spawn ring)
 # ------------------------------
@@ -132,7 +115,6 @@ func random_spawn_position() -> Vector2:
 		cos(angle) * radius,
 		sin(angle) * radius
 	)
-	
 func _physics_process(delta: float) -> void:
 	var monster = get_tree().get_node_count_in_group("EnemyBody")
 	if is_instance_valid(wave_timer) and monster != 0:
@@ -144,8 +126,6 @@ func _physics_process(delta: float) -> void:
 	if player.health <= 0:
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
-		
-	
 	if monster == 0 and current_stage == 1 and current_wave > 3:
 		print("Stage", current_stage, "Complete!")
 		$"/root/Wave".state = current_stage

@@ -51,7 +51,6 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(31, -15)
 script = ExtResource("1_272bh")
 SLIME = ExtResource("2_4c57u")
 SKELETON = ExtResource("3_efxa6")
@@ -95,7 +94,6 @@ wait_time = 60.0
 one_shot = true
 
 [node name="Level1" parent="." instance=ExtResource("5_lquwl")]
-position = Vector2(-1, 98)
 
 [node name="Pickups" parent="." instance=ExtResource("7_5vw27")]
 position = Vector2(149, 60)
