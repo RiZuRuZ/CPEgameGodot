@@ -29,5 +29,5 @@ func _process(delta: float) -> void:
 		$CanvasLayer/victory.visible = false
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://state2.tscn")
+	get_tree().change_scene_to_file("res://Ascenes/cutscene/cutsceneLV1.tscn")
 	$CanvasLayer/Button.visible = false

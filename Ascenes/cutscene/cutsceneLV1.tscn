@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://bx06rhi3flqhn"]
+
+[ext_resource type="Script" uid="uid://bvuhfsva0t35f" path="res://Ascenes/cutscene/lv1.gd" id="1_bgsdu"]
+[ext_resource type="Texture2D" uid="uid://ci4pxwd8ddrcy" path="res://Ascenes/cutscene/foresttttt.webp" id="2_bgsdu"]
+[ext_resource type="Texture2D" uid="uid://pv2njv5x3s5j" path="res://Ascenes/cutscene/p2.png" id="3_bgsdu"]
+[ext_resource type="Texture2D" uid="uid://w28qidkemd3w" path="res://Ascenes/cutscene/d1.png" id="4_gjlxf"]
+
+[sub_resource type="Animation" id="Animation_li4wx"]
+resource_name = "ct"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jbfw6"]
+_data = {
+&"ct": SubResource("Animation_li4wx")
+}
+
+[node name="CutScene" type="Node2D"]
+position = Vector2(138, 115)
+script = ExtResource("1_bgsdu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jbfw6")
+}
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="UI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 193.0
+offset_top = -214.0
+offset_right = -209.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 736.0
+offset_bottom = 50.0
+
+[node name="Label" type="Label" parent="UI/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = ".      PRINCESS"
+autowrap_trim_flags = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 28
+text = ".       SOS!!!"
+fit_content = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(435.4999, 237.5)
+scale = Vector2(2.2288463, 2.5464284)
+texture = ExtResource("2_bgsdu")
+
+[node name="character" type="Node2D" parent="."]
+
+[node name="PRINCESS" type="Sprite2D" parent="character"]
+position = Vector2(60, 379)
+scale = Vector2(1.5648439, 1.5944444)
+texture = ExtResource("3_bgsdu")
+
+[node name="DEMON_LORD" type="Sprite2D" parent="character"]
+position = Vector2(796, 370)
+scale = Vector2(1.6546874, 1.6999999)
+texture = ExtResource("4_gjlxf")
+
+[node name="HERO" type="Sprite2D" parent="character"]
+visible = false
