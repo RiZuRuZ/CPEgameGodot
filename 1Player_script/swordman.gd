@@ -110,7 +110,6 @@ func _ready() -> void:
 	%XP.value = lvlstat.progress
 
 func _physics_process(delta: float) -> void:
-	
 	if level >= 7:
 			%XP.max_value = 40
 	elif level >= 3:

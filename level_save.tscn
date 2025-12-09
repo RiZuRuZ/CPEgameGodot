@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://bye5863yp4apk"]
+[gd_scene load_steps=11 format=3 uid="uid://bye5863yp4apk"]
 
 [ext_resource type="Script" uid="uid://8lk1pw0vmtmc" path="res://level_save.gd" id="1_7ph4j"]
+[ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="2_n55sm"]
+[ext_resource type="Texture2D" uid="uid://cha0ixfvgww6i" path="res://Scene Asset/Speed.png" id="3_ni33v"]
+[ext_resource type="Texture2D" uid="uid://chxmb2r2vm7sx" path="res://Scene Asset/Heart.png" id="4_uogvy"]
+[ext_resource type="Texture2D" uid="uid://n4gk2tnbcqig" path="res://Scene Asset/Attack.png" id="5_ltd8l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n55sm"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ni33v"]
+bg_color = Color(0.16924527, 0.16924533, 0.16924518, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxxhi"]
+bg_color = Color(0.74299467, 0, 0.22386727, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uogvy"]
+bg_color = Color(0.16093504, 0.35294548, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ltd8l"]
+bg_color = Color(0.908903, 0.48685074, 0, 1)
 
 [node name="level_save" type="Control"]
 process_mode = 3
@@ -17,6 +36,20 @@ size_flags_vertical = 4
 script = ExtResource("1_7ph4j")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = 229.0
+offset_top = 163.0
+offset_right = 920.0
+offset_bottom = 515.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n55sm")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+offset_left = 241.0
+offset_top = 180.0
+offset_right = 906.0
+offset_bottom = 493.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ni33v")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 8
@@ -38,6 +71,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/MarginContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n55sm")
 theme_override_font_sizes/font_size = 46
 text = "CHOOSE"
 horizontal_alignment = 1
@@ -51,20 +85,41 @@ theme_override_constants/separation = 10
 [node name="Health" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_n55sm")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_xxxhi")
 text = "Health"
 
 [node name="Speed" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_n55sm")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_uogvy")
 text = "Speed"
 
 [node name="Damage" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_n55sm")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ltd8l")
 text = "Damage"
+
+[node name="Speed" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(566.00006, 423)
+scale = Vector2(0.45703125, 0.45703125)
+texture = ExtResource("3_ni33v")
+
+[node name="Heart" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(360, 422)
+scale = Vector2(0.30273435, 0.30273435)
+texture = ExtResource("4_uogvy")
+
+[node name="Attack" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(787.99994, 422.99997)
+scale = Vector2(0.33789042, 0.33789042)
+texture = ExtResource("5_ltd8l")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/Health" to="." method="_on_health_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/Speed" to="." method="_on_speed_pressed"]
