@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx06rhi3flqhn"]
+[gd_scene load_steps=8 format=3 uid="uid://bhcffhb6j67nr"]
 
-[ext_resource type="Script" uid="uid://bvuhfsva0t35f" path="res://Ascenes/cutscene/lv1.gd" id="1_bgsdu"]
-[ext_resource type="Texture2D" uid="uid://ci4pxwd8ddrcy" path="res://Ascenes/cutscene/foresttttt.webp" id="2_bgsdu"]
-[ext_resource type="Texture2D" uid="uid://pv2njv5x3s5j" path="res://Ascenes/cutscene/p2.png" id="3_bgsdu"]
-[ext_resource type="Texture2D" uid="uid://w28qidkemd3w" path="res://Ascenes/cutscene/d1.png" id="4_gjlxf"]
+[ext_resource type="Script" uid="uid://dc6w8ai7djsq8" path="res://Ascenes/cutscene/lv4.gd" id="1_twwqj"]
+[ext_resource type="Texture2D" uid="uid://bvabdyvkvi5dc" path="res://Ascenes/cutscene/demoncastle.jpg" id="2_ahybf"]
+[ext_resource type="Texture2D" uid="uid://pv2njv5x3s5j" path="res://Ascenes/cutscene/p2.png" id="3_gevmb"]
+[ext_resource type="Texture2D" uid="uid://w28qidkemd3w" path="res://Ascenes/cutscene/d1.png" id="4_06y3c"]
+[ext_resource type="Texture2D" uid="uid://c0dctyhdmepu5" path="res://Ascenes/cutscene/Hero.png" id="5_ahybf"]
 
 [sub_resource type="Animation" id="Animation_li4wx"]
 resource_name = "ct"
@@ -13,9 +14,9 @@ _data = {
 &"ct": SubResource("Animation_li4wx")
 }
 
-[node name="CutSceneLV1" type="Node2D"]
+[node name="CutSceneLV4" type="Node2D"]
 position = Vector2(138, 115)
-script = ExtResource("1_bgsdu")
+script = ExtResource("1_twwqj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -55,21 +56,23 @@ text = ".       SOS!!!"
 fit_content = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(435.4999, 237.5)
-scale = Vector2(2.2288463, 2.5464284)
-texture = ExtResource("2_bgsdu")
+position = Vector2(479.00006, 200.50006)
+scale = Vector2(0.6697916, 0.5172969)
+texture = ExtResource("2_ahybf")
 
 [node name="character" type="Node2D" parent="."]
 
 [node name="PRINCESS" type="Sprite2D" parent="character"]
 position = Vector2(60, 379)
 scale = Vector2(1.5648439, 1.5944444)
-texture = ExtResource("3_bgsdu")
+texture = ExtResource("3_gevmb")
 
-[node name="DEMON_LORD" type="Sprite2D" parent="character"]
+[node name="DEMON" type="Sprite2D" parent="character"]
 position = Vector2(796, 370)
 scale = Vector2(1.6546874, 1.6999999)
-texture = ExtResource("4_gjlxf")
+texture = ExtResource("4_06y3c")
 
 [node name="HERO" type="Sprite2D" parent="character"]
-visible = false
+position = Vector2(-61, 396)
+scale = Vector2(0.77327937, 0.73762375)
+texture = ExtResource("5_ahybf")
