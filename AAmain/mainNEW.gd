@@ -5,6 +5,14 @@ var state_time: Timer = null
 @export var SLIME : PackedScene
 @export var SKELETON : PackedScene
 @export var ORC : PackedScene
+@export var ARCHERSKELETON : PackedScene
+@export var ARMOREDORC : PackedScene
+@export var ARMOREDSKELETON : PackedScene
+@export var ELITEORC : PackedScene
+@export var GREATSWORDSKELETON : PackedScene
+@export var ORCRIDER : PackedScene
+@export var WEREBARE : PackedScene
+@export var WEREWOLF : PackedScene
 # โหลดมอน
 var PlayerScene
 #var SLIME
@@ -24,7 +32,7 @@ func _ready():
 	# --- เก็บข้อมูล Stage → Waves --
 	stages = {
 		1: {
-			1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2] ],
+			1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2], [WEREWOLF, 1] ],
 			2: [ [SLIME, 3], [SKELETON, 3] ],
 			3: [ [SLIME, 4], [SKELETON, 5] ],
 		},
@@ -51,7 +59,7 @@ func _ready():
 	player.position = Vector2(250, 150)
 	$"/root/Wave/CanvasLayer".visible = true
 	$"/root/Wave".wave = str(current_wave)
-	#start_stage(current_stage)
+	start_stage(current_stage)
 		
 
 # ------------------------------
@@ -95,6 +103,7 @@ func _on_next_wave():
 		else:
 			#$"/root/Wave".wave = "Last wave"
 			get_tree().quit()
+
 #func Next_state():
 	
 		
@@ -154,3 +163,4 @@ func _physics_process(delta: float) -> void:
 		$"/root/Wave/CanvasLayer/victory".visible = true
 		$"/root/Wave/CanvasLayer/Button".visible = true
 		current_stage +=1
+	print("current stage",current_stage)
