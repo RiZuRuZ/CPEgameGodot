@@ -49,7 +49,8 @@ var pending_shot := false
 var XP : int:
 	set(value):
 		XP = value
-		%XP.value = value        # UI bar
+		%XP.value = value 
+		print(value)       # UI bar
 var total_XP : int = 0  # XP สะสมรวมทั้งหมด
 var level : int = 1:
 	set(value):
@@ -106,8 +107,14 @@ func _ready() -> void:
 	preupheal =lvlstat.Mutihealth
 	preupspd=lvlstat.Mutispeed
 	preupdmg=lvlstat.Mutidam
+	%XP.value = lvlstat.progress
 
 func _physics_process(delta: float) -> void:
+	
+	if level >= 7:
+			%XP.max_value = 40
+	elif level >= 3:
+			%XP.max_value = 20
 	check_XP()
 	$"/root/LevelSave".progress = XP
 	$"/root/LevelSave".level = level
