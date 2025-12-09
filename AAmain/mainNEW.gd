@@ -35,11 +35,6 @@ func _ready():
 			1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2], [WEREWOLF, 1] ],
 			2: [ [SLIME, 3], [SKELETON, 3] ],
 			3: [ [SLIME, 4], [SKELETON, 5] ],
-		},
-		2: {
-			1: [ [SLIME, 5], [SKELETON, 3] ],
-			2: [ [SLIME, 7], [SKELETON, 6] ],
-			3: [ [SLIME, 10], [SKELETON, 12] ],
 		}
 	}
 	#SLIME = preload(slime_paht)
@@ -141,6 +136,5 @@ func _physics_process(delta: float) -> void:
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
 		$"/root/Wave/CanvasLayer/victory".visible = true
-		$"/root/Wave/CanvasLayer/Button".visible = true
 		
 	print("current stage",current_stage)
