@@ -82,27 +82,26 @@ func _physics_process(delta: float) -> void:
 			can_attack = false
 			can_move = false
 			play_anim("death")
-	if death:
-		velocity = Vector2.ZERO
-		move_and_slide()
-		return
 	if PreHealth != health:
-		damaged= true
-		PreHealth=health
-		if damaged:
-			print("Slime hit! Health:", health)
-			if health <= 0 and not death:
-				death = true
-				is_hurt = false
-				can_attack = false
-				can_move = false
-				play_anim("death")
-			else:
-				is_hurt = true
-				can_move = false
-				can_attack = false
-				if animation:
-					animation.play("hurt")
+		damaged = true
+		show_damage(PreHealth - health)
+		PreHealth = health
+
+		# ตอนนี้ถ้ามอนตาย ให้โชว์ damage แล้วค่อยเข้าสู่ death state
+		if health <= 0 and not death:
+			death = true
+			is_hurt = false
+			can_attack = false
+			can_move = false
+			play_anim("death")
+			return   # <<< ออกจากฟังก์ชันหลังตาย
+		else:
+			# ยังไม่ตาย → เล่นท่า hurt
+			is_hurt = true
+			can_move = false
+			can_attack = false
+			if animation:
+				animation.play("hurt")
 	
 
 	if is_hurt or not can_move:
@@ -276,3 +275,14 @@ func drop_item():
 
 	get_tree().current_scene.call_deferred("add_child", dropA)
 	print(">>> CALL DROP_ITEM <<<")
+
+func show_damage(amount: int):
+	var DamagePopup = preload("res://Animation5+3/DamagePopUp.tscn")
+	var popup = DamagePopup.instantiate()
+	get_tree().current_scene.add_child(popup)
+
+	popup.global_position = global_position + Vector2(10, 10)
+	if damaged:
+		popup.set_text(str(amount), Color.WHITE) 
+	else:
+		popup.set_text(str(amount), Color.RED) 
