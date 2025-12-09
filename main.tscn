@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Monsters/Slime.tscn" id="2_dg77c"]
 [ext_resource type="PackedScene" uid="uid://dfijgvchbwh6y" path="res://Animation5+3/Monsters/Skeleton.tscn" id="3_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://c7taw5sxo28en" path="res://ExampleAsset/Bocchi Sprite Sheet02-Picsart-BackgroundRemover.png" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bp46t1x8ewyvt" path="res://Animation5+3/Monsters/Orc.tscn" id="4_dg77c"]
 [ext_resource type="Script" uid="uid://bdxdbc5g0btap" path="res://Bocchi.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bp46t1x8ewyvt" path="res://Animation5+3/Monsters/Orc.tscn" id="4_w48qg"]
 [ext_resource type="PackedScene" uid="uid://c1sj5mhwcmfv4" path="res://Animation5+3/Monsters/Archer Skeleton.tscn" id="5_82xsv"]

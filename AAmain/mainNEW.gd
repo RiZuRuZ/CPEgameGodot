@@ -99,9 +99,9 @@ func _on_next_wave():
 			if not wave_data.has(current_wave):
 				wave_timer.stop()
 				$"/root/Wave/CanvasLayer/time".visible = false
-			#$"/root/Wave".wave = current_wave	
+			$"/root/Wave".wave = current_wave
 		else:
-			#$"/root/Wave".wave = "Last wave"
+			$"/root/Wave".wave = "Last wave"
 			get_tree().quit()
 
 #func Next_state():

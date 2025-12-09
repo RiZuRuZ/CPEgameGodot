@@ -1,5 +1,5 @@
 extends Control
-var wave:String = "0"
+var wave:int = 0
 var nextwave: int = 0
 var state = "he;;p"
 var selection = -1
