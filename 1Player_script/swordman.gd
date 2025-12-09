@@ -108,6 +108,10 @@ func _ready() -> void:
 	preupdmg=lvlstat.Mutidam
 
 func _physics_process(delta: float) -> void:
+	if level >= 7:
+			%XP.max_value = 40
+	elif level >= 3:
+			%XP.max_value = 20
 	check_XP()
 	$"/root/LevelSave".progress = XP
 	$"/root/LevelSave".level = level

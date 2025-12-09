@@ -51,7 +51,7 @@ func _ready():
 	player.position = Vector2(250, 150)
 	$"/root/Wave/CanvasLayer".visible = true
 	$"/root/Wave".wave = str(current_wave)
-	#start_stage(current_stage)
+	start_stage(current_stage)
 		
 
 # ------------------------------
@@ -91,9 +91,9 @@ func _on_next_wave():
 			if not wave_data.has(current_wave):
 				wave_timer.stop()
 				$"/root/Wave/CanvasLayer/time".visible = false
-			#$"/root/Wave".wave = current_wave	
+			$"/root/Wave".wave = current_wave
 		else:
-			#$"/root/Wave".wave = "Last wave"
+			$"/root/Wave".wave = "Last wave"
 			get_tree().quit()
 #func Next_state():
 	
