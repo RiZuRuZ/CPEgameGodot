@@ -58,27 +58,27 @@ func _on_prevbutt_pressed() -> void:
 
 func _on_swordman_pressed() -> void:
 	$"/root/Wave".selection = 1
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://Ascenes/cutscene/cut_scene_intro.tscn")
 
 
 func _on_soldier_pressed() -> void:
 	$"/root/Wave".selection = 0
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://Ascenes/cutscene/cut_scene_intro.tscn")
 
 
 func _on_axeman_pressed() -> void:
 	$"/root/Wave".selection = 2
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://Ascenes/cutscene/cut_scene_intro.tscn")
 
 
 func _on_archer_pressed() -> void:
 	$"/root/Wave".selection = 3
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://Ascenes/cutscene/cut_scene_intro.tscn")
 
 
 func _on_wizard_pressed() -> void:
 	$"/root/Wave".selection = 4
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://Ascenes/cutscene/cut_scene_intro.tscn")
 
 
 func _on_wizard_mouse_entered() -> void:

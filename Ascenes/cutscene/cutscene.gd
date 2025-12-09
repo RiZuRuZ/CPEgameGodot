@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @onready var name_label = $UI/Panel/VBoxContainer/Label
 @onready var dialogue_text = $UI/Panel/VBoxContainer/RichTextLabel
@@ -49,7 +49,7 @@ func type_text():
 	dialogue_text.text = full_text
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") or event.is_action_pressed("m1"):
 		if is_typing:
 			is_typing = false
 			dialogue_text.text = full_text
@@ -58,4 +58,5 @@ func _input(event):
 			if current_index < dialogues.size():
 				show_dialogue()
 			else:
+				get_tree().change_scene_to_file("res://main.tscn")
 				print("Cutscene จบแล้ว")

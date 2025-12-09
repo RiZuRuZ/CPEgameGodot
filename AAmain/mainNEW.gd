@@ -136,10 +136,11 @@ func _physics_process(delta: float) -> void:
 		$"/root/Wave/CanvasLayer/time".visible = false
 	if monster == 0 and current_stage == 1 and current_wave > 3:
 		print("Stage", current_stage, "Complete!")
+		current_stage +=1
 		$"/root/Wave".state = current_stage
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
 		$"/root/Wave/CanvasLayer/victory".visible = true
 		$"/root/Wave/CanvasLayer/Button".visible = true
-		current_stage +=1
+		
 	print("current stage",current_stage)
