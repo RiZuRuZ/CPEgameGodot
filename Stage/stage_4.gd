@@ -20,7 +20,7 @@ var PlayerScene
 #var ORC		
 var stages := {}
 
-var current_stage := 3
+var current_stage := 4
 var current_wave := 1
 
 # ขอบเขตอบ spawn zone
@@ -31,10 +31,10 @@ var current_wave := 1
 func _ready():
 	# --- เก็บข้อมูล Stage → Waves --
 	stages = {
-		3: {
-			1: [ [SKELETON, 2], [ORC, 3], [WEREWOLF,5], [ARCHERSKELETON,1] ],
-			2: [ [ORC, 6],[WEREWOLF,8] , [WEREWOLF,7] ,[ARCHERSKELETON,2] ],
-			3: [ [ORC, 12],[WEREWOLF,10], [WEREWOLF,7],[ORCRIDER,1],[ARCHERSKELETON,3] ],
+		4: {
+			1: [ [WEREWOLF, 2], [WEREBARE, 3], [ARMOREDORC,5], [ARCHERSKELETON,3],[ARMOREDSKELETON, 2] ],
+			2: [ [ORC, 6],[WEREBARE,8] , [WEREWOLF,5], [GREATSWORDSKELETON,3],[ARMOREDSKELETON, 2]  ],
+			3: [ [ORC, 12],[WEREBARE,10], [WEREWOLF,7],[ORCRIDER,2], [ARCHERSKELETON,3],[ARMOREDSKELETON, 2] ],
 		}
 	}
 	#SLIME = preload(slime_paht)

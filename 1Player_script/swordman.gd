@@ -26,6 +26,9 @@ var area: Area2D
 @export var atk2dmg : int = 20
 @export var atk3dmg : int = 10
 var MaxHealth :int = 0
+var preupheal
+var preupspd
+var preupdmg
 #data from level
 @onready var lvlstat = $"/root/LevelSave"
 
@@ -61,7 +64,9 @@ var level : int = 1:
 			%XP.max_value = 40
 		elif value >= 3:
 			%XP.max_value = 20
-
+@export var baseupdmg :int
+@export var baseupspd :int
+@export var baseuphealth :int
 # ==========================
 #  SFX
 # ==========================
@@ -72,9 +77,7 @@ var level : int = 1:
 @onready var sfx_sword_m_2: AudioStreamPlayer = $SFX_sword_m2
 
 
-var preupheal
-var preupspd
-var preupdmg
+
 func _ready() -> void:
 	#load stat
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
@@ -119,17 +122,16 @@ func _physics_process(delta: float) -> void:
 	$"/root/LevelSave".level = level
 #	check when stat is change ==============================
 	if preupdmg != lvlstat.Mutidam and lvlstat.Mutidam !=1:
-		atk1dmg += 1
-		atk2dmg += 1
-		atk3dmg += 1
+		atk1dmg += baseupdmg
+		atk2dmg += baseupdmg
+		atk3dmg += baseupdmg
 		preupdmg = lvlstat.Mutidam
 #		==================================================
 	if preupheal != lvlstat.Mutihealth and lvlstat.Mutihealth !=1:
-		MaxHealth += 20
+		MaxHealth += baseuphealth
 		preupheal = lvlstat.Mutihealth
 	if preupspd != lvlstat.Mutispeed and lvlstat.Mutispeed !=1:
-		print("up speed")
-		SPEED += 5
+		SPEED += baseupspd
 		preupspd = lvlstat.Mutispeed
 	$Control2/Control/Bar.value = health
 	$Control2/Control/Bar.max_value = MaxHealth

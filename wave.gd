@@ -37,4 +37,10 @@ func _on_button_pressed() -> void:
 	elif  state == 3:
 		$CanvasLayer/Button.visible = false
 		get_tree().change_scene_to_file("res://Ascenes/cutscene/cutsceneLV2.tscn")
+	elif  state == 4:
+		$CanvasLayer/Button.visible = false
+		get_tree().change_scene_to_file("res://Ascenes/cutscene/cutsceneLV3.tscn")
+	elif  state == 5:
+		$CanvasLayer/Button.visible = false
+		get_tree().change_scene_to_file("res://Ascenes/cutscene/cutsceneLV4.tscn")
 		

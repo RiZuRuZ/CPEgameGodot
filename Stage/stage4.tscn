@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1kacjgdlayjx"]
+
+[ext_resource type="Script" uid="uid://de6jtww4f1weg" path="res://Stage/stage_4.gd" id="1_lubfe"]
+[ext_resource type="PackedScene" uid="uid://duvyc5y00pmcd" path="res://Ascenes/levels/level4.tscn" id="2_lubfe"]
+
+[node name="stage4" type="Node2D"]
+script = ExtResource("1_lubfe")
+
+[node name="Level4" parent="." instance=ExtResource("2_lubfe")]
+scale = Vector2(0.99842024, 1.0044843)

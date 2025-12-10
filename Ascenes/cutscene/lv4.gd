@@ -139,4 +139,4 @@ func _input(event):
 
 # ------ END CUTSCENE ------
 func cutscene_end():
-	get_tree().change_scene_to_file("res://Scenes/ending_scene.tscn")
+	get_tree().change_scene_to_file("res://main_menu_fixed.tscn")
