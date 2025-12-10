@@ -91,15 +91,13 @@ func _ready() -> void:
 	arrow_spawnR = get_node(arrow_spawnR_path)
 	arrow_spawnL = get_node(arrow_spawnL_path)
 
-	$Bar.max_value = health
-	$Bar.size = Vector2(20.375,2.0)
-	$Bar.position = Vector2(-10.0,-12.0)
+	%Bar.max_value = health
 	
 
 
 func _physics_process(delta: float) -> void:
 	check_XP()
-	$Bar.value = health
+	%Bar.value = health
 	motion = Vector2.ZERO
 	if health <= 0:
 		death = true

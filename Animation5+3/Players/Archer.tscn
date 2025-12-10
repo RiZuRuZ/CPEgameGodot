@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bq85v41cdhuh2"]
+[gd_scene load_steps=24 format=3 uid="uid://bq85v41cdhuh2"]
 
 [ext_resource type="Script" uid="uid://bc0kb7bs5wcs3" path="res://1Player_script/archer.gd" id="1_bp71f"]
 [ext_resource type="Texture2D" uid="uid://bc4wuocpbn6su" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Archer/Archer with shadows/Archer.png" id="2_bt5u3"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bj1e7vgov0g5l" path="res://Sound SFX game/attack_arrow.mp3" id="9_j17hh"]
 [ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="10_rhiif"]
 [ext_resource type="AudioStream" uid="uid://ca4rb4fkvvxth" path="res://Sound SFX game/arrow-impact-87260.mp3" id="11_fbefc"]
+[ext_resource type="Script" uid="uid://7corn8tvr4x5" path="res://Animation5+3/Players/health.gd" id="13_tmupm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqmce"]
 radius = 6.0
@@ -184,54 +185,6 @@ position = Vector2(9, 0)
 [node name="ArrowSpawnL" type="Marker2D" parent="."]
 position = Vector2(-9, 0)
 
-[node name="Bar" parent="." instance=ExtResource("3_tmupm")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.29, 2.29)
-
-[node name="XP" type="TextureProgressBar" parent="."]
-unique_name_in_owner = true
-anchors_preset = -1
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -160.0
-offset_top = -213.0
-offset_right = 160.0
-offset_bottom = -33.0
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 10.0
-texture_under = ExtResource("4_g143p")
-texture_over = ExtResource("5_i50bv")
-texture_progress = ExtResource("6_x2xn7")
-
-[node name="Level" type="Label" parent="XP"]
-unique_name_in_owner = true
-texture_filter = 1
-layout_mode = 0
-offset_left = 317.0
-offset_top = 71.0
-offset_right = 357.0
-offset_bottom = 94.0
-theme_override_fonts/font = ExtResource("7_bt5u3")
-text = "Lv 1"
-
-[node name="Lv_opition" type="VBoxContainer" parent="XP"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.167
-anchor_right = 0.5
-anchor_bottom = 1.167
-offset_left = -19.0
-offset_top = -20.060013
-offset_right = 21.0
-offset_bottom = 19.939987
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("7_lkxed")
-
 [node name="Magnet" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
@@ -257,5 +210,85 @@ bus = &"SFX"
 [node name="SFX_arrow_m2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_fbefc")
 volume_db = -16.0
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Control" type="CanvasLayer" parent="Control2"]
+layer = 0
+
+[node name="XP" type="TextureProgressBar" parent="Control2/Control"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 182.0
+offset_top = -136.0
+offset_right = 182.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.36, 2.36)
+max_value = 10.0
+texture_under = ExtResource("4_g143p")
+texture_over = ExtResource("5_i50bv")
+texture_progress = ExtResource("6_x2xn7")
+
+[node name="Level" type="Label" parent="Control2/Control/XP"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 317.0
+offset_top = 71.0
+offset_right = 357.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("7_bt5u3")
+text = "Lv 1"
+
+[node name="Lv_opition" type="VBoxContainer" parent="Control2/Control/XP"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.167
+anchor_right = 0.5
+anchor_bottom = 1.167
+offset_left = -19.0
+offset_top = -20.060013
+offset_right = 21.0
+offset_bottom = 19.939987
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_lkxed")
+
+[node name="Bar" parent="Control2/Control" instance=ExtResource("3_tmupm")]
+unique_name_in_owner = true
+offset_left = 221.00002
+offset_top = 77.0
+offset_right = 302.78955
+offset_bottom = 87.11185
+scale = Vector2(5.8339357, 2.9139366)
+
+[node name="health" type="Label" parent="Control2/Control"]
+offset_left = 710.0
+offset_top = 68.0
+offset_right = 887.0
+offset_bottom = 110.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("7_bt5u3")
+theme_override_font_sizes/font_size = 30
+text = "dsadsasadw"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_tmupm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.29, 2.29)
+limit_left = -448
+limit_top = -320
+limit_right = 493
+limit_bottom = 320
 
 [connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]
