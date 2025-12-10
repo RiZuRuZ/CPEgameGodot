@@ -136,4 +136,3 @@ func _physics_process(delta: float) -> void:
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
 		$"/root/Wave/CanvasLayer/victory".visible = true
-		$"/root/Wave/CanvasLayer/Button".visible = true
