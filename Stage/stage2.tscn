@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://1cmyky6uanl1" path="res://Animation5+3/Monsters/Werewolf.tscn" id="12_7rv24"]
 [ext_resource type="PackedScene" uid="uid://62pk3llg7rli" path="res://Ascenes/levels/level2.tscn" id="13_dod5r"]
 
-[node name="Node2D" type="Node2D"]
+[node name="stage2" type="Node2D"]
 script = ExtResource("1_026d3")
 SLIME = ExtResource("2_61s07")
 SKELETON = ExtResource("3_5d3uc")

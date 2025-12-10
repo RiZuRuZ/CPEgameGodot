@@ -75,14 +75,16 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	$Bar.value = health
-	damaged= false
 	if health <= 0:
 		death = true
 		is_hurt = false
 		can_attack = false
 		can_move = false
 		play_anim("death")
+		return
+	$Bar.value = health
+	damaged= false
+	
 
 	if PreHealth != health:
 		damaged = true
@@ -231,8 +233,10 @@ func attack_coroutine(anim_name: String) -> void:
 
 	if animation and is_inside_tree():
 		await animation.animation_finished
-		is_attacking = false   # ★★ NEW
 
+		is_attacking = false   # ★★ NEW
+		if death:
+			return
 	if not death and not is_hurt:
 		can_move = true
 		can_attack = true

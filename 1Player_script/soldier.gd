@@ -24,7 +24,11 @@ var damaged := false
 @export var atk1dmg : int = 25
 @export var atk2dmg : int = 20
 @export var arrowdmg : int = 30
-
+@onready var lvlstat = $"/root/LevelSave"
+var MaxHealth :int = 0
+var preupheal
+var preupspd
+var preupdmg
 # Auto refs
 var gfx: Node2D
 var animation: AnimationPlayer
@@ -64,6 +68,9 @@ var level : int = 1:
 			%XP.max_value = 40
 		elif value >= 3:
 			%XP.max_value = 20
+@export var baseupdmg :int
+@export var baseupspd :int
+@export var baseuphealth :int
 # ==========================
 #  SFX
 # ==========================
@@ -97,14 +104,36 @@ func _ready() -> void:
 	arrow_spawnR = get_node(arrow_spawnR_path)
 	arrow_spawnL = get_node(arrow_spawnL_path)
 
-	%Bar.max_value = health
+	%Bar.max_value = MaxHealth
+	preupheal =lvlstat.Mutihealth
+	preupspd=lvlstat.Mutispeed
+	preupdmg=lvlstat.Mutidam
+	%XP.value = lvlstat.progress
 
 
-# ==========================
-#  PHYSICS PROCESS
-# ==========================
 func _physics_process(delta: float) -> void:
+	if level >= 7:
+			%XP.max_value = 40
+	elif level >= 3:
+			%XP.max_value = 20
+	check_XP()
+	$"/root/LevelSave".progress = XP
+	$"/root/LevelSave".level = level
+#	check when stat is change ==============================
+	if preupdmg != lvlstat.Mutidam and lvlstat.Mutidam !=1:
+		atk1dmg += baseupdmg
+		atk2dmg += baseupdmg
+		arrowdmg += baseupdmg
+		preupdmg = lvlstat.Mutidam
+#		==================================================
+	if preupheal != lvlstat.Mutihealth and lvlstat.Mutihealth !=1:
+		MaxHealth += baseuphealth
+		preupheal = lvlstat.Mutihealth
+	if preupspd != lvlstat.Mutispeed and lvlstat.Mutispeed !=1:
+		SPEED += baseupspd
+		preupspd = lvlstat.Mutispeed
 	%Bar.value = health
+	%Bar.max_value = MaxHealth
 	motion = Vector2.ZERO
 
 	if health <= 0:

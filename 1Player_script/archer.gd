@@ -21,7 +21,11 @@ var damaged:=false
 @export var health : int = 100
 @export var arrow1dmg : int = 20
 @export var arrow2dmg : int = 50
-
+@onready var lvlstat = $"/root/LevelSave"
+var MaxHealth :int = 0
+var preupheal
+var preupspd
+var preupdmg
 # Auto-assigned references
 var gfx: Node2D
 var animation: AnimationPlayer
@@ -61,6 +65,7 @@ var level : int = 1:
 @onready var sfx_arrow: AudioStreamPlayer = $SFX_arrow
 @onready var sfx_arrow_m_2: AudioStreamPlayer = $SFX_arrow_m2
 
+
 func _ready() -> void:
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
 	PreHealth = health
@@ -91,13 +96,35 @@ func _ready() -> void:
 	arrow_spawnR = get_node(arrow_spawnR_path)
 	arrow_spawnL = get_node(arrow_spawnL_path)
 
-	%Bar.max_value = health
-	
+	%Bar.max_value = MaxHealth
+	preupheal =lvlstat.Mutihealth
+	preupspd=lvlstat.Mutispeed
+	preupdmg=lvlstat.Mutidam
+	%XP.value = lvlstat.progress
 
 
 func _physics_process(delta: float) -> void:
+	if level >= 7:
+			%XP.max_value = 40
+	elif level >= 3:
+			%XP.max_value = 20
 	check_XP()
+	$"/root/LevelSave".progress = XP
+	$"/root/LevelSave".level = level
+#	check when stat is change ==============================
+	if preupdmg != lvlstat.Mutidam and lvlstat.Mutidam !=1:
+		arrow1dmg += 1
+		arrow2dmg += 1
+		preupdmg = lvlstat.Mutidam
+#		==================================================
+	if preupheal != lvlstat.Mutihealth and lvlstat.Mutihealth !=1:
+		MaxHealth += 20
+		preupheal = lvlstat.Mutihealth
+	if preupspd != lvlstat.Mutispeed and lvlstat.Mutispeed !=1:
+		SPEED += 5
+		preupspd = lvlstat.Mutispeed
 	%Bar.value = health
+	%Bar.max_value = MaxHealth
 	motion = Vector2.ZERO
 	if health <= 0:
 		death = true
