@@ -70,7 +70,7 @@ var displayed_text = ""
 
 func _ready():
 	show_dialogue()
-
+	$"/root/Wave/CanvasLayer".visible = false
 # ------ SWITCH CHARACTER SPRITE ------
 func show_character(name: String):
 	for c in $character.get_children():
@@ -119,4 +119,4 @@ func _input(event):
 # ------ END CUTSCENE ------
 func cutscene_end():
 	# กลับไปด่านผู้เล่น
-	get_tree().change_scene_to_file("res://Scenes/stage1_continue.tscn")
+	get_tree().change_scene_to_file("res://Stage/stage3.tscn")

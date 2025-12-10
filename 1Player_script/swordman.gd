@@ -103,14 +103,13 @@ func _ready() -> void:
 		push_warning("⚠️ 'area_path' not assigned for player hurtbox.")
 	#health bar setup
 	MaxHealth = health
-	$Bar.max_value = MaxHealth
+	$Control2/Control/Bar.max_value = MaxHealth
 	preupheal =lvlstat.Mutihealth
 	preupspd=lvlstat.Mutispeed
 	preupdmg=lvlstat.Mutidam
 	%XP.value = lvlstat.progress
 
 func _physics_process(delta: float) -> void:
-	print(SPEED)
 	if level >= 7:
 			%XP.max_value = 40
 	elif level >= 3:
@@ -119,20 +118,21 @@ func _physics_process(delta: float) -> void:
 	$"/root/LevelSave".progress = XP
 	$"/root/LevelSave".level = level
 #	check when stat is change ==============================
-	if preupdmg != lvlstat.Mutidam:
+	if preupdmg != lvlstat.Mutidam and lvlstat.Mutidam !=1:
 		atk1dmg += 1
 		atk2dmg += 1
 		atk3dmg += 1
 		preupdmg = lvlstat.Mutidam
 #		==================================================
-	if preupheal != lvlstat.Mutihealth:
+	if preupheal != lvlstat.Mutihealth and lvlstat.Mutihealth !=1:
 		MaxHealth += 20
 		preupheal = lvlstat.Mutihealth
-	if preupspd != lvlstat.Mutispeed:
+	if preupspd != lvlstat.Mutispeed and lvlstat.Mutispeed !=1:
+		print("up speed")
 		SPEED += 5
 		preupspd = lvlstat.Mutispeed
-	$Bar.value = health
-	$Bar.max_value = MaxHealth
+	$Control2/Control/Bar.value = health
+	$Control2/Control/Bar.max_value = MaxHealth
 	motion = Vector2.ZERO
 	if is_hurt:
 		return

@@ -28,7 +28,7 @@ var displayed_text = ""
 
 func _ready():
 	show_dialogue()
-
+	$"/root/Wave/CanvasLayer".visible = false
 func show_character(name: String):
 	for c in $character.get_children():
 		c.visible = (c.name == name)
@@ -70,4 +70,4 @@ func _input(event):
 
 func cutscene_end():
 	# หลังจบ cutscene จะกลับไปเกมผู้เล่นที่ป่า
-	get_tree().change_scene_to_file("res://state2.tscn")
+	get_tree().change_scene_to_file("res://Stage/stage2.tscn")

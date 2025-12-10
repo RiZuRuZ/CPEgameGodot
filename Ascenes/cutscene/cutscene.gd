@@ -17,7 +17,7 @@ var displayed_text = ""
 
 func _ready():
 	show_dialogue()
-
+	$"/root/Wave/CanvasLayer".visible = false
 # 🔥 ฟังก์ชันสลับตัวละคร
 func show_character(name: String):
 	var chars = $character.get_children()
@@ -58,5 +58,4 @@ func _input(event):
 			if current_index < dialogues.size():
 				show_dialogue()
 			else:
-				get_tree().change_scene_to_file("res://main.tscn")
-				print("Cutscene จบแล้ว")
+				get_tree().change_scene_to_file("res://Stage/main.tscn")
