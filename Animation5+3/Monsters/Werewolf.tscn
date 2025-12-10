@@ -276,7 +276,6 @@ position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_8s85p")
 
 [node name="Bar" parent="." instance=ExtResource("3_bnvab")]
-visible = false
 
 [connection signal="area_entered" from="Sprite2D/HBArea2D" to="." method="_on_atk_1_area_entered"]
 [connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_on_atk_2_area_entered"]

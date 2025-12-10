@@ -1,0 +1,31 @@
+[gd_scene load_steps=14 format=3 uid="uid://bum00eo8qpkpy"]
+
+[ext_resource type="Script" uid="uid://cbpttglhgrtfs" path="res://Stage/state_2.gd" id="1_026d3"]
+[ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Monsters/Slime.tscn" id="2_61s07"]
+[ext_resource type="PackedScene" uid="uid://dfijgvchbwh6y" path="res://Animation5+3/Monsters/Skeleton.tscn" id="3_5d3uc"]
+[ext_resource type="PackedScene" uid="uid://bp46t1x8ewyvt" path="res://Animation5+3/Monsters/Orc.tscn" id="4_jl2rs"]
+[ext_resource type="PackedScene" uid="uid://c1sj5mhwcmfv4" path="res://Animation5+3/Monsters/Archer Skeleton.tscn" id="5_i0cne"]
+[ext_resource type="PackedScene" uid="uid://otemu1iabpvr" path="res://Animation5+3/Monsters/Armored Orc.tscn" id="6_ayrth"]
+[ext_resource type="PackedScene" uid="uid://daxw1ldvibnfv" path="res://Animation5+3/Monsters/Armored Skeleton.tscn" id="7_j7h8u"]
+[ext_resource type="PackedScene" uid="uid://ygkbw58jhurr" path="res://Animation5+3/Monsters/Elite Orc.tscn" id="8_m1pyq"]
+[ext_resource type="PackedScene" uid="uid://bbx47wgn1ntmr" path="res://Animation5+3/Monsters/Greatsword Skeleton.tscn" id="9_8vnux"]
+[ext_resource type="PackedScene" uid="uid://gupkyg6y11g3" path="res://Animation5+3/Monsters/Orc Raider.tscn" id="10_dfc0g"]
+[ext_resource type="PackedScene" uid="uid://by70vibh1snao" path="res://Animation5+3/Monsters/Werebare.tscn" id="11_2ns8m"]
+[ext_resource type="PackedScene" uid="uid://1cmyky6uanl1" path="res://Animation5+3/Monsters/Werewolf.tscn" id="12_7rv24"]
+[ext_resource type="PackedScene" uid="uid://62pk3llg7rli" path="res://Ascenes/levels/level2.tscn" id="13_dod5r"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_026d3")
+SLIME = ExtResource("2_61s07")
+SKELETON = ExtResource("3_5d3uc")
+ORC = ExtResource("4_jl2rs")
+ARCHERSKELETON = ExtResource("5_i0cne")
+ARMOREDORC = ExtResource("6_ayrth")
+ARMOREDSKELETON = ExtResource("7_j7h8u")
+ELITEORC = ExtResource("8_m1pyq")
+GREATSWORDSKELETON = ExtResource("9_8vnux")
+ORCRIDER = ExtResource("10_dfc0g")
+WEREBARE = ExtResource("11_2ns8m")
+WEREWOLF = ExtResource("12_7rv24")
+
+[node name="Level2" parent="." instance=ExtResource("13_dod5r")]

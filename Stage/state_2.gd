@@ -20,7 +20,7 @@ var PlayerScene
 #var ORC		
 var stages := {}
 
-var current_stage := 1
+var current_stage := 2
 var current_wave := 1
 
 # ขอบเขตอบ spawn zone
@@ -31,10 +31,10 @@ var current_wave := 1
 func _ready():
 	# --- เก็บข้อมูล Stage → Waves --
 	stages = {
-		1: {
-			1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2], [WEREWOLF, 1] ],
-			2: [ [SLIME, 3], [SKELETON, 3] ],
-			3: [ [SLIME, 4], [SKELETON, 5] ],
+		2: {
+			1: [ [SLIME, 2], [SKELETON, 3], [ORC,5], [WEREWOLF,3] ],
+			2: [ [SKELETON, 6],[ORC,8] , [WEREWOLF,5]  ],
+			3: [ [SKELETON, 12],[ORC,10], [WEREWOLF,7],[ORCRIDER,1] ],
 		}
 	}
 	#SLIME = preload(slime_paht)
@@ -53,7 +53,12 @@ func _ready():
 	#player.add_to_group("player")
 	player.position = Vector2(250, 150)
 	$"/root/Wave/CanvasLayer".visible = true
+	$"/root/Wave/CanvasLayer/Button".visible = false
 	$"/root/Wave".wave = str(current_wave)
+	player.XP = $"/root/LevelSave".progress
+	player.level = $"/root/LevelSave".level
+	current_stage = $"/root/Wave".state
+	$"/root/Wave/CanvasLayer/victory".modulate = Color($"/root/Wave/CanvasLayer/victory".modulate.r, $"/root/Wave/CanvasLayer/victory".modulate.g,$"/root/Wave/CanvasLayer/victory".modulate.b, 1)
 	start_stage(current_stage)
 		
 
@@ -129,10 +134,11 @@ func _physics_process(delta: float) -> void:
 	if player.health <= 0:
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
-	if monster == 0 and current_stage == 1 and current_wave > 3:
+	if monster == 0 and current_stage == 2 and current_wave > 3:
 		print("Stage", current_stage, "Complete!")
 		current_stage +=1
 		$"/root/Wave".state = current_stage
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
-		$"/root/Wave/CanvasLayer/victory".visible = true
+		$"/root/Wave/CanvasLayer/victory".visible = true		
+	#print("current stage",current_stage)

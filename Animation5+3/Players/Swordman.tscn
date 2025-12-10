@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dpcr50t48un4x"]
+[gd_scene load_steps=27 format=3 uid="uid://dpcr50t48un4x"]
 
 [ext_resource type="Script" uid="uid://d4hsqcdu6ymyu" path="res://1Player_script/swordman.gd" id="1_37ep1"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="2_scilc"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b8vbodotfo3jg" path="res://Sound SFX game/sword-slash-01-266296.mp3" id="10_rncbh"]
 [ext_resource type="AudioStream" uid="uid://bpavweymiw6xu" path="res://Sound SFX game/sword-blade-slicing-flesh-352708.mp3" id="10_scilc"]
 [ext_resource type="AudioStream" uid="uid://pmpds3ncyoa8" path="res://Sound SFX game/sword-slash-and-swing-185432.mp3" id="12_3rlge"]
+[ext_resource type="Script" uid="uid://7corn8tvr4x5" path="res://Animation5+3/Players/health.gd" id="14_6yimy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_au8vn"]
 radius = 4.0
@@ -429,13 +430,6 @@ collision_mask = 5
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_au8vn")
 
-[node name="Bar" parent="." instance=ExtResource("2_scilc")]
-offset_left = -12.0
-offset_top = -15.0
-offset_right = 69.78955
-offset_bottom = -4.888153
-scale = Vector2(0.30339333, 0.30339333)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.29, 2.29)
 limit_left = -448
@@ -558,6 +552,23 @@ offset_bottom = 19.939987
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_inbja")
+
+[node name="Bar" parent="Control2/Control" instance=ExtResource("2_scilc")]
+offset_left = 221.00002
+offset_top = 77.0
+offset_right = 302.78955
+offset_bottom = 87.11185
+scale = Vector2(5.8339357, 2.9139366)
+
+[node name="health" type="Label" parent="Control2/Control"]
+offset_left = 710.0
+offset_top = 68.0
+offset_right = 887.0
+offset_bottom = 110.0
+theme_override_fonts/font = ExtResource("7_inghg")
+theme_override_font_sizes/font_size = 30
+text = "dsadsasadw"
+script = ExtResource("14_6yimy")
 
 [connection signal="area_entered" from="Sprite2D/ATK1" to="." method="_on_atk_1_area_entered"]
 [connection signal="area_entered" from="Sprite2D/ATK2" to="." method="_on_atk_2_area_entered"]

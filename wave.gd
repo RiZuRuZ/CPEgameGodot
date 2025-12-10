@@ -12,13 +12,13 @@ func _ready() -> void:
 	$CanvasLayer/Button.visible = false
 	$CanvasLayer/Label.text = "wave" + str(wave)
 	$CanvasLayer/time.text = "Next Wave: " + str(nextwave) + " s"
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
 	$CanvasLayer/Label.text = "wave" + str(wave)
 	$CanvasLayer/time.text = "Next Wave: " + str(nextwave) + " s"
-	
 	if $CanvasLayer/victory.visible == true:
 		sfx_victiory.play()
 		$CanvasLayer/victory.text = "Stage" +str(state-1)+ "Complete!"
@@ -31,8 +31,10 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	if state == 2:
+		$CanvasLayer/Button.visible = false
 		get_tree().change_scene_to_file("res://Ascenes/cutscene/cutsceneLV1.tscn")
-		$CanvasLayer/Button.visible = false
+		
 	elif  state == 3:
-		get_tree().change_scene_to_file("res://main_menu_fixed.tscn")
 		$CanvasLayer/Button.visible = false
+		get_tree().change_scene_to_file("res://Ascenes/cutscene/cutsceneLV2.tscn")
+		
