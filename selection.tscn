@@ -1317,6 +1317,8 @@ offset_right = 7604.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.494517, 1.494517)
+pivot_offset = Vector2(7904.5, 0)
 theme_override_styles/panel = SubResource("StyleBoxTexture_noibv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -1499,19 +1501,9 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "m2"
 
-[node name="q" type="HBoxContainer" parent="VBoxContainer4"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="q" type="Button" parent="VBoxContainer4/q"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "q"
-
 [node name="archer" type="Button" parent="VBoxContainer4"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 10
 text = "select
 "
 
@@ -2024,10 +2016,6 @@ text = "swordman"
 [connection signal="mouse_entered" from="VBoxContainer4/m2/m2" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer4/m2/m2" to="." method="_on_m_2_mouse_exited"]
 [connection signal="mouse_exited" from="VBoxContainer4/m2/m2" to="." method="_on_button_mouse_exited"]
-[connection signal="mouse_entered" from="VBoxContainer4/q/q" to="." method="_on_q_mouse_entered"]
-[connection signal="mouse_entered" from="VBoxContainer4/q/q" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer4/q/q" to="." method="_on_q_mouse_exited"]
-[connection signal="mouse_exited" from="VBoxContainer4/q/q" to="." method="_on_button_mouse_exited"]
 [connection signal="mouse_entered" from="VBoxContainer4/archer" to="." method="_on_archer_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer4/archer" to="." method="_on_archer_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer4/archer" to="." method="_on_archer_pressed"]

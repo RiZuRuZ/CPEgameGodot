@@ -568,6 +568,8 @@ offset_bottom = 110.0
 theme_override_fonts/font = ExtResource("7_inghg")
 theme_override_font_sizes/font_size = 30
 text = "dsadsasadw"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("14_6yimy")
 
 [connection signal="area_entered" from="Sprite2D/ATK1" to="." method="_on_atk_1_area_entered"]

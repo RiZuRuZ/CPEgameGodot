@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bdgyqrmvu0vpm"]
+[gd_scene load_steps=25 format=3 uid="uid://bdgyqrmvu0vpm"]
 
 [ext_resource type="Script" uid="uid://dwlwertpm3gl1" path="res://1Player_script/wizard.gd" id="1_rw55f"]
 [ext_resource type="Texture2D" uid="uid://boiwlx85o5db1" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Wizard/Wizard with shadows/Wizard.png" id="2_0ajh0"]
@@ -8,8 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="6_nmmk2"]
 [ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="7_hiubl"]
 [ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="8_0ooub"]
+[ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="9_geri0"]
 [ext_resource type="AudioStream" uid="uid://bo1td367khvwb" path="res://Sound SFX game/ice-clear-1-394508.mp3" id="9_vx3tk"]
 [ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="10_x1jgy"]
+[ext_resource type="Script" uid="uid://7corn8tvr4x5" path="res://Animation5+3/Players/health.gd" id="12_r5i1j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i6fqq"]
 radius = 6.0
@@ -219,52 +221,6 @@ vframes = 10
 position = Vector2(1, -1)
 shape = SubResource("CapsuleShape2D_i6fqq")
 
-[node name="Bar" parent="." instance=ExtResource("3_geri0")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.29, 2.29)
-
-[node name="XP" type="TextureProgressBar" parent="."]
-unique_name_in_owner = true
-anchors_preset = -1
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -160.0
-offset_top = -213.0
-offset_right = 160.0
-offset_bottom = -33.0
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 10.0
-texture_under = ExtResource("4_r5i1j")
-texture_over = ExtResource("5_w62m0")
-texture_progress = ExtResource("6_nmmk2")
-
-[node name="Level" type="Label" parent="XP"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 327.0
-offset_top = 70.0
-offset_right = 367.0
-offset_bottom = 93.0
-text = "Lv 1"
-
-[node name="Lv_opition" type="VBoxContainer" parent="XP"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.167
-anchor_right = 0.5
-anchor_bottom = 1.167
-offset_left = -19.0
-offset_top = -20.060013
-offset_right = 21.0
-offset_bottom = 19.939987
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("7_hiubl")
-
 [node name="Magnet" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
@@ -286,5 +242,85 @@ bus = &"SFX"
 stream = ExtResource("10_x1jgy")
 volume_db = -16.0
 bus = &"SFX"
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Control" type="CanvasLayer" parent="Control2"]
+layer = 0
+
+[node name="XP" type="TextureProgressBar" parent="Control2/Control"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 182.0
+offset_top = -136.0
+offset_right = 182.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.36, 2.36)
+max_value = 10.0
+texture_under = ExtResource("4_r5i1j")
+texture_over = ExtResource("5_w62m0")
+texture_progress = ExtResource("6_nmmk2")
+
+[node name="Level" type="Label" parent="Control2/Control/XP"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 317.0
+offset_top = 71.0
+offset_right = 357.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("9_geri0")
+text = "Lv 1"
+
+[node name="Lv_opition" type="VBoxContainer" parent="Control2/Control/XP"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.167
+anchor_right = 0.5
+anchor_bottom = 1.167
+offset_left = -19.0
+offset_top = -20.060013
+offset_right = 21.0
+offset_bottom = 19.939987
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_hiubl")
+
+[node name="Bar" parent="Control2/Control" instance=ExtResource("3_geri0")]
+unique_name_in_owner = true
+offset_left = 221.00002
+offset_top = 77.0
+offset_right = 302.78955
+offset_bottom = 87.11185
+scale = Vector2(5.8339357, 2.9139366)
+
+[node name="health" type="Label" parent="Control2/Control"]
+offset_left = 710.0
+offset_top = 68.0
+offset_right = 887.0
+offset_bottom = 110.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("9_geri0")
+theme_override_font_sizes/font_size = 30
+text = "dsadsasadw"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("12_r5i1j")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.29, 2.29)
+limit_left = -448
+limit_top = -320
+limit_right = 493
+limit_bottom = 320
 
 [connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]
