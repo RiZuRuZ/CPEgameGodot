@@ -1,10 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1kacjgdlayjx"]
+[gd_scene load_steps=14 format=3 uid="uid://d1kacjgdlayjx"]
 
 [ext_resource type="Script" uid="uid://de6jtww4f1weg" path="res://Stage/stage_4.gd" id="1_lubfe"]
 [ext_resource type="PackedScene" uid="uid://duvyc5y00pmcd" path="res://Ascenes/levels/level4.tscn" id="2_lubfe"]
+[ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Monsters/Slime.tscn" id="2_mxukc"]
+[ext_resource type="PackedScene" uid="uid://dfijgvchbwh6y" path="res://Animation5+3/Monsters/Skeleton.tscn" id="3_fcqc6"]
+[ext_resource type="PackedScene" uid="uid://bp46t1x8ewyvt" path="res://Animation5+3/Monsters/Orc.tscn" id="4_btpnf"]
+[ext_resource type="PackedScene" uid="uid://c1sj5mhwcmfv4" path="res://Animation5+3/Monsters/Archer Skeleton.tscn" id="5_cr7qo"]
+[ext_resource type="PackedScene" uid="uid://otemu1iabpvr" path="res://Animation5+3/Monsters/Armored Orc.tscn" id="6_byyuw"]
+[ext_resource type="PackedScene" uid="uid://daxw1ldvibnfv" path="res://Animation5+3/Monsters/Armored Skeleton.tscn" id="7_xre1m"]
+[ext_resource type="PackedScene" uid="uid://ygkbw58jhurr" path="res://Animation5+3/Monsters/Elite Orc.tscn" id="8_xe3jy"]
+[ext_resource type="PackedScene" uid="uid://bbx47wgn1ntmr" path="res://Animation5+3/Monsters/Greatsword Skeleton.tscn" id="9_4xqay"]
+[ext_resource type="PackedScene" uid="uid://gupkyg6y11g3" path="res://Animation5+3/Monsters/Orc Raider.tscn" id="10_w46f3"]
+[ext_resource type="PackedScene" uid="uid://by70vibh1snao" path="res://Animation5+3/Monsters/Werebare.tscn" id="11_hxs7h"]
+[ext_resource type="PackedScene" uid="uid://1cmyky6uanl1" path="res://Animation5+3/Monsters/Werewolf.tscn" id="12_pk7wh"]
 
 [node name="stage4" type="Node2D"]
 script = ExtResource("1_lubfe")
+SLIME = ExtResource("2_mxukc")
+SKELETON = ExtResource("3_fcqc6")
+ORC = ExtResource("4_btpnf")
+ARCHERSKELETON = ExtResource("5_cr7qo")
+ARMOREDORC = ExtResource("6_byyuw")
+ARMOREDSKELETON = ExtResource("7_xre1m")
+ELITEORC = ExtResource("8_xe3jy")
+GREATSWORDSKELETON = ExtResource("9_4xqay")
+ORCRIDER = ExtResource("10_w46f3")
+WEREBARE = ExtResource("11_hxs7h")
+WEREWOLF = ExtResource("12_pk7wh")
 
 [node name="Level4" parent="." instance=ExtResource("2_lubfe")]
 scale = Vector2(0.99842024, 1.0044843)

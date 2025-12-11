@@ -26,7 +26,6 @@ func _ready() -> void:
 	$VBoxContainer5.position.x = $wizard.position.x-Vboxandspritrlenght
 	$Camera2D.position.x = $swordman.position.x-100
 func _process(delta: float) -> void:
-	print(skill)
 	if skill ==0 :
 		$swordman/AnimatedSprite2D.play("idle")
 		$soldier/AnimatedSprite2D.play("idle")
@@ -155,7 +154,6 @@ func _on_swordman_mouse_exited() -> void:
 
 func _on_m_1_mouse_entered() -> void:
 	skill= 1
-	print(skill)
 
 
 func _on_m_1_mouse_exited() -> void:

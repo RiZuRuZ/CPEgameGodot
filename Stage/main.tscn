@@ -1,14 +1,14 @@
 [gd_scene load_steps=21 format=3 uid="uid://bxxr8ojys2mll"]
 
 [ext_resource type="Script" uid="uid://307gh0uberov" path="res://AAmain/mainNEW.gd" id="1_2snri"]
-[ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Monsters/Slime.tscn" id="2_u6dhb"]
-[ext_resource type="PackedScene" uid="uid://dfijgvchbwh6y" path="res://Animation5+3/Monsters/Skeleton.tscn" id="3_nq4m5"]
-[ext_resource type="PackedScene" uid="uid://bp46t1x8ewyvt" path="res://Animation5+3/Monsters/Orc.tscn" id="4_l8015"]
-[ext_resource type="PackedScene" uid="uid://c1sj5mhwcmfv4" path="res://Animation5+3/Monsters/Archer Skeleton.tscn" id="5_yrdp2"]
-[ext_resource type="PackedScene" uid="uid://otemu1iabpvr" path="res://Animation5+3/Monsters/Armored Orc.tscn" id="6_jp3sw"]
-[ext_resource type="PackedScene" uid="uid://daxw1ldvibnfv" path="res://Animation5+3/Monsters/Armored Skeleton.tscn" id="7_ik1ae"]
-[ext_resource type="PackedScene" uid="uid://ygkbw58jhurr" path="res://Animation5+3/Monsters/Elite Orc.tscn" id="8_da16m"]
-[ext_resource type="PackedScene" uid="uid://bbx47wgn1ntmr" path="res://Animation5+3/Monsters/Greatsword Skeleton.tscn" id="9_xlkxf"]
+[ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Monsters/Slime.tscn" id="2_eaihk"]
+[ext_resource type="PackedScene" uid="uid://dfijgvchbwh6y" path="res://Animation5+3/Monsters/Skeleton.tscn" id="3_55gos"]
+[ext_resource type="PackedScene" uid="uid://bp46t1x8ewyvt" path="res://Animation5+3/Monsters/Orc.tscn" id="4_2snri"]
+[ext_resource type="PackedScene" uid="uid://c1sj5mhwcmfv4" path="res://Animation5+3/Monsters/Archer Skeleton.tscn" id="5_u6dhb"]
+[ext_resource type="PackedScene" uid="uid://otemu1iabpvr" path="res://Animation5+3/Monsters/Armored Orc.tscn" id="6_nq4m5"]
+[ext_resource type="PackedScene" uid="uid://daxw1ldvibnfv" path="res://Animation5+3/Monsters/Armored Skeleton.tscn" id="7_l8015"]
+[ext_resource type="PackedScene" uid="uid://ygkbw58jhurr" path="res://Animation5+3/Monsters/Elite Orc.tscn" id="8_yrdp2"]
+[ext_resource type="PackedScene" uid="uid://bbx47wgn1ntmr" path="res://Animation5+3/Monsters/Greatsword Skeleton.tscn" id="9_jp3sw"]
 [ext_resource type="PackedScene" uid="uid://gupkyg6y11g3" path="res://Animation5+3/Monsters/Orc Raider.tscn" id="10_apc65"]
 [ext_resource type="PackedScene" uid="uid://by70vibh1snao" path="res://Animation5+3/Monsters/Werebare.tscn" id="11_f61o4"]
 [ext_resource type="PackedScene" uid="uid://1cmyky6uanl1" path="res://Animation5+3/Monsters/Werewolf.tscn" id="12_dl741"]
@@ -59,14 +59,14 @@ _data = {
 
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_2snri")
-SLIME = ExtResource("2_u6dhb")
-SKELETON = ExtResource("3_nq4m5")
-ORC = ExtResource("4_l8015")
-ARCHERSKELETON = ExtResource("5_yrdp2")
-ARMOREDORC = ExtResource("6_jp3sw")
-ARMOREDSKELETON = ExtResource("7_ik1ae")
-ELITEORC = ExtResource("8_da16m")
-GREATSWORDSKELETON = ExtResource("9_xlkxf")
+SLIME = ExtResource("2_eaihk")
+SKELETON = ExtResource("3_55gos")
+ORC = ExtResource("4_2snri")
+ARCHERSKELETON = ExtResource("5_u6dhb")
+ARMOREDORC = ExtResource("6_nq4m5")
+ARMOREDSKELETON = ExtResource("7_l8015")
+ELITEORC = ExtResource("8_yrdp2")
+GREATSWORDSKELETON = ExtResource("9_jp3sw")
 ORCRIDER = ExtResource("10_apc65")
 WEREBARE = ExtResource("11_f61o4")
 WEREWOLF = ExtResource("12_dl741")
@@ -99,15 +99,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 metadata/_edit_use_anchors_ = true
 
-[node name="first" type="Timer" parent="."]
-process_callback = 0
-wait_time = 2.0
-one_shot = true
-
-[node name="wavetime" type="Timer" parent="."]
-wait_time = 60.0
-one_shot = true
-
 [node name="Level1" parent="." instance=ExtResource("16_xvrjj")]
 
 [node name="Pickups" parent="." instance=ExtResource("17_n17l6")]
@@ -124,6 +115,3 @@ position = Vector2(-177, 140)
 
 [node name="Werewolf" parent="." instance=ExtResource("12_dl741")]
 position = Vector2(-21, 37)
-
-[connection signal="timeout" from="first" to="." method="_on_first_timeout"]
-[connection signal="timeout" from="wavetime" to="." method="_on_wavetime_timeout"]

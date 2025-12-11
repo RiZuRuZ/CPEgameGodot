@@ -26,7 +26,10 @@ var current_wave := 1
 # ขอบเขตอบ spawn zone
 @export var safe_radius := 140
 @export var spawn_radius := 150
-
+# increase monsters stat more stage more difficle
+@export var Moredmg :int =6
+@export var Morespd :int = 6
+@export var Morehealt :int =6
 
 func _ready():
 	# --- เก็บข้อมูล Stage → Waves --
@@ -108,6 +111,19 @@ func spawn_wave(stage:int, wave:int):
 		var amount = enemy_data[1]
 		for i in range(amount):
 			var enemy = enemy_scene.instantiate()
+			enemy.health += Morehealt
+			enemy.SPEED += Morespd
+			if enemy.bodydmg:
+				enemy.bodydmg += Moredmg
+				print("increase")
+			if enemy.has_method("atk1dmg"):
+				enemy.atk1dmg += Moredmg
+			if enemy.has_method("atk2dmg"):
+				enemy.atk2dmg += Moredmg
+			if enemy.has_method("atk3dmg"):
+				enemy.atk3dmg += Moredmg
+			if enemy.has_method("arrowdmg"):
+				enemy.arrowdmg += Moredmg
 			enemy.global_position = random_spawn_position()
 			add_child(enemy)
 # ------------------------------

@@ -80,8 +80,23 @@ var level : int = 1:
 
 func _ready() -> void:
 	#load stat
-	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
+	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็
+	
+	
+	preupheal =lvlstat.Mutihealth
+	preupspd=lvlstat.Mutispeed
+	preupdmg=lvlstat.Mutidam
+	MaxHealth += health + (lvlstat.Mutihealth-1)*baseuphealth
+	health = MaxHealth
+	
 	PreHealth = health
+	atk1dmg += baseupdmg*(lvlstat.Mutidam-1)
+	atk2dmg += baseupdmg*(lvlstat.Mutidam-1)
+	atk3dmg += baseupdmg*(lvlstat.Mutidam-1)
+	SPEED += baseupspd*(lvlstat.Mutispeed-1)
+	$Control2/Control/Bar.value = health
+	$Control2/Control/Bar.max_value = MaxHealth
+	%XP.value = lvlstat.progress
 	await get_tree().process_frame
 	_disable_collision()
 	
@@ -105,12 +120,7 @@ func _ready() -> void:
 	else:
 		push_warning("⚠️ 'area_path' not assigned for player hurtbox.")
 	#health bar setup
-	MaxHealth = health
-	$Control2/Control/Bar.max_value = MaxHealth
-	preupheal =lvlstat.Mutihealth
-	preupspd=lvlstat.Mutispeed
-	preupdmg=lvlstat.Mutidam
-	%XP.value = lvlstat.progress
+	
 
 func _physics_process(delta: float) -> void:
 	if level >= 7:
@@ -147,7 +157,7 @@ func _physics_process(delta: float) -> void:
 				animation.play("death")
 				get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
 	damaged= false
-	if PreHealth != health:
+	if PreHealth != health and PreHealth != 0:
 		damaged= true
 		PreHealth=health
 		if damaged:

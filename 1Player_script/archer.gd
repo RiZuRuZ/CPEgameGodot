@@ -56,7 +56,9 @@ var level : int = 1:
 	set(value):
 		level = value
 		%Level.text = "Lv " + str(value)
-
+@export var baseupdmg :int
+@export var baseupspd :int
+@export var baseuphealth :int
 # ==========================
 #  SFX
 # ==========================
@@ -95,7 +97,11 @@ func _ready() -> void:
 
 	arrow_spawnR = get_node(arrow_spawnR_path)
 	arrow_spawnL = get_node(arrow_spawnL_path)
-
+	
+	MaxHealth += lvlstat.Mutihealth * baseuphealth
+	health = MaxHealth
+	PreHealth = health
+	%Bar.value = health
 	%Bar.max_value = MaxHealth
 	preupheal =lvlstat.Mutihealth
 	preupspd=lvlstat.Mutispeed
@@ -113,8 +119,8 @@ func _physics_process(delta: float) -> void:
 	$"/root/LevelSave".level = level
 #	check when stat is change ==============================
 	if preupdmg != lvlstat.Mutidam and lvlstat.Mutidam !=1:
-		arrow1dmg += 1
-		arrow2dmg += 1
+		arrow1dmg += 5
+		arrow2dmg += 5
 		preupdmg = lvlstat.Mutidam
 #		==================================================
 	if preupheal != lvlstat.Mutihealth and lvlstat.Mutihealth !=1:

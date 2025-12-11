@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c1sj5mhwcmfv4"]
 
-[ext_resource type="Script" path="res://AMonster_script/archer_skeleton.gd" id="1_cj7im"]
+[ext_resource type="Script" uid="uid://b6fqv08iitjri" path="res://AMonster_script/archer_skeleton.gd" id="1_cj7im"]
 [ext_resource type="Texture2D" uid="uid://ba4q8v5nicvss" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Skeleton Archer/Skeleton Archer with shadows/Skeleton Archer.png" id="1_idf1l"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="3_cj7im"]
 

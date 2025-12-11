@@ -418,6 +418,9 @@ gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
 atk1dmg = 1000
+baseupdmg = 5
+baseupspd = 2
+baseuphealth = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
