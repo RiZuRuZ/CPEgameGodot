@@ -17,12 +17,14 @@ func _on_retry_pressed() -> void:
 		lvl.Mutispeed=1
 		lvl.Mutidam=1
 		lvl.level = 1
+		lvl.prelvl = 1
 		get_tree().change_scene_to_file("res://Stage/main.tscn")
 	elif  state == 2:
 		lvl.Mutihealth =lvl.SaveMutihealth
 		lvl.Mutispeed=lvl.SaveMutispeed
 		lvl.Mutidam=lvl.SaveMutidam
 		lvl.level =lvl.SaveLevel
+		lvl.prelvl = lvl.SaveLevel
 		get_tree().change_scene_to_file("res://Stage/stage2.tscn")
 		
 	elif  state == 3:
@@ -30,12 +32,14 @@ func _on_retry_pressed() -> void:
 		lvl.Mutispeed=lvl.SaveMutispeed
 		lvl.Mutidam=lvl.SaveMutidam
 		lvl.level =lvl.SaveLevel
+		lvl.prelvl = lvl.SaveLevel
 		get_tree().change_scene_to_file("res://Stage/stage3.tscn")
 	elif  state == 4:
 		lvl.Mutihealth =lvl.SaveMutihealth
 		lvl.Mutispeed=lvl.SaveMutispeed
 		lvl.Mutidam=lvl.SaveMutidam
 		lvl.level =lvl.SaveLevel
+		lvl.prelvl = lvl.SaveLevel
 		get_tree().change_scene_to_file("res://Stage/stage4.tscn")
 
 
