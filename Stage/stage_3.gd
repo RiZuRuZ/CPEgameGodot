@@ -54,7 +54,7 @@ func _ready():
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	#player.add_to_group("player")
-	player.position = Vector2(250, 150)
+	player.position = Vector2(0, -30)
 	$"/root/Wave/CanvasLayer".visible = true
 	$"/root/Wave/CanvasLayer/Button".visible = false
 	$"/root/Wave".wave = str(current_wave)
@@ -132,14 +132,26 @@ func spawn_wave(stage:int, wave:int):
 func random_spawn_position() -> Vector2:
 	var player = get_tree().get_first_node_in_group("player")
 	if player == null:
-		return Vector2.ZERO
-
-	var angle = randf() * TAU
-	var radius = randf_range(safe_radius, spawn_radius)
-	return player.global_position + Vector2(
-		cos(angle) * radius,
-		sin(angle) * radius
-	)
+		return Vector2.ZERO # หรือตำแหน่งเริ่มต้นที่คุณกำหนด
+		
+	var player_pos = player.global_position
+	var min_x = -448.0
+	var max_x = 493.0
+	var min_y = -320.0
+	var max_y = 320.0
+	var spawn_pos: Vector2
+	
+	# วนซ้ำจนกว่าจะได้ตำแหน่งที่อยู่ในฉาก และห่างจากผู้เล่นเกิน safe_radius
+	while true:
+		var rand_x = randf_range(min_x, max_x)
+		var rand_y = randf_range(min_y, max_y)
+		spawn_pos = Vector2(rand_x, rand_y)
+		
+		# ตรวจสอบระยะห่าง
+		if player_pos.distance_to(spawn_pos) >= safe_radius and player_pos.distance_to(spawn_pos) <=spawn_radius:
+			break
+			
+	return spawn_pos
 func _physics_process(delta: float) -> void:
 	var monster = get_tree().get_node_count_in_group("EnemyBody")
 	if is_instance_valid(wave_timer) and monster != 0:
