@@ -54,7 +54,7 @@ func _ready():
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	#player.add_to_group("player")
-	player.position = Vector2(250, 150)
+	player.position = Vector2(0, 0)
 	$"/root/Wave/CanvasLayer".visible = true
 	$"/root/Wave/CanvasLayer/Button".visible = false
 	$"/root/Wave".wave = str(current_wave)
