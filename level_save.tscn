@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bye5863yp4apk"]
+[gd_scene load_steps=13 format=3 uid="uid://bye5863yp4apk"]
 
 [ext_resource type="Script" uid="uid://8lk1pw0vmtmc" path="res://level_save.gd" id="1_7ph4j"]
 [ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="2_n55sm"]
 [ext_resource type="Texture2D" uid="uid://cha0ixfvgww6i" path="res://Scene Asset/Speed.png" id="3_ni33v"]
 [ext_resource type="Texture2D" uid="uid://chxmb2r2vm7sx" path="res://Scene Asset/Heart.png" id="4_uogvy"]
 [ext_resource type="Texture2D" uid="uid://n4gk2tnbcqig" path="res://Scene Asset/Attack.png" id="5_ltd8l"]
+[ext_resource type="Texture2D" uid="uid://ch5qh6pne1cpw" path="res://Scene Asset/Regen.png" id="6_ltd8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n55sm"]
 bg_color = Color(0, 0, 0, 1)
@@ -20,6 +21,9 @@ bg_color = Color(0.16093504, 0.35294548, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ltd8l"]
 bg_color = Color(0.908903, 0.48685074, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tj1yy"]
+bg_color = Color(0, 0.6576569, 0.037231445, 1)
 
 [node name="level_save" type="Control"]
 process_mode = 3
@@ -106,21 +110,35 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_ltd8l")
 text = "Damage"
 
+[node name="Regen" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_n55sm")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_tj1yy")
+text = "Regen"
+
 [node name="Speed" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(566.00006, 423)
+position = Vector2(487, 425.00003)
 scale = Vector2(0.45703125, 0.45703125)
 texture = ExtResource("3_ni33v")
 
 [node name="Heart" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(360, 422)
+position = Vector2(333.00003, 422.00003)
 scale = Vector2(0.30273435, 0.30273435)
 texture = ExtResource("4_uogvy")
 
+[node name="Regen" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(823, 420)
+scale = Vector2(0.28320354, 0.28320354)
+texture = ExtResource("6_ltd8l")
+
 [node name="Attack" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(787.99994, 422.99997)
+position = Vector2(658, 420.99997)
 scale = Vector2(0.33789042, 0.33789042)
 texture = ExtResource("5_ltd8l")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/Health" to="." method="_on_health_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/Speed" to="." method="_on_speed_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/Damage" to="." method="_on_damage_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer/Regen" to="." method="_on_regen_pressed"]

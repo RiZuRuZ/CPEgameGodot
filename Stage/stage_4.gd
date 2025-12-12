@@ -163,7 +163,7 @@ func _physics_process(delta: float) -> void:
 	if player.health <= 0:
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
-	if monster == 0 and current_stage == 3 and current_wave > 3:
+	if monster == 0 and current_stage == 4 and current_wave > 3:
 		print("Stage", current_stage, "Complete!")
 		current_stage +=1
 		$"/root/Wave".state = current_stage

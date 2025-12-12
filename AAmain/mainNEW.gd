@@ -58,8 +58,9 @@ func _ready():
 	player.position = Vector2(470, 170)
 	$"/root/Wave/CanvasLayer".visible = true
 	$"/root/Wave".wave = str(current_wave)
+	await get_tree().create_timer(10).timeout
 	start_stage(current_stage)
-		
+	start_wave_loop()
 
 # ------------------------------
 # เริ่ม Stage
@@ -68,7 +69,7 @@ func start_stage(stage_number:int):
 	current_stage = stage_number
 	current_wave = 1
 	print("Start Stage:", stage_number)
-	start_wave_loop()
+	_on_next_wave()
 # ------------------------------
 # วน Wave ทุก 10 วิ หรือจนมอนตายหมด
 # ------------------------------
