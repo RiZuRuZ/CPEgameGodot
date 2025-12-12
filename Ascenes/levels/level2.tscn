@@ -1970,7 +1970,7 @@ polygon = PackedVector2Array(0, 0, 53, 0, 53, -15, 87, -16, 87, -11, 70, -11, 70
 
 [node name="safe" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="safe" groups=["safe"]]
+[node name="Area2D" type="Area2D" parent="safe"]
 script = ExtResource("13_0h7ut")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="safe/Area2D"]
