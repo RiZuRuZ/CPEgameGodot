@@ -17,7 +17,7 @@ var current_player = null
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody"):
+	if area.is_in_group("foot"):
 		current_player = area.get_parent()
 
 		if not current_player.is_in_group("safe"):
@@ -30,7 +30,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 func _on_area_exited(area: Area2D) -> void:
-	if area.is_in_group("PlayerBody"):
+	if area.is_in_group("foot"):
 		var player = area.get_parent()
 
 		if not player.is_in_group("safe"):
