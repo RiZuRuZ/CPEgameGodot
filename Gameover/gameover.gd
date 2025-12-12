@@ -12,9 +12,6 @@ func _process(delta: float) -> void:
 
 
 func _on_retry_pressed() -> void:
-<<<<<<< HEAD
-	get_tree().change_scene_to_file("res://Stage/main.tscn")
-=======
 	lvl.Mutihealth = 1
 	lvl.Mutispeed=1
 	lvl.Mutidam=1
@@ -26,7 +23,6 @@ func _on_retry_pressed() -> void:
 		get_tree().change_scene_to_file("res://Stage/stage3.tscn")
 	elif  state == 4:
 		get_tree().change_scene_to_file("res://Stage/stage4.tscn")
->>>>>>> b3ec642d977d57aaed56cd8dba9a841aaa2ee28b
 
 
 func _on_exit_pressed() -> void:
