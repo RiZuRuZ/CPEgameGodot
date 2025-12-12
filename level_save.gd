@@ -39,3 +39,10 @@ func _on_damage_pressed() -> void:
 	$CanvasLayer.hide()
 	print(Mutidam)
 	get_tree().paused = false
+
+
+func _on_regen_pressed() -> void:
+	Mutiregen +=1
+	$CanvasLayer.hide()
+	print(Mutiregen)
+	get_tree().paused = false
