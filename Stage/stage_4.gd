@@ -166,6 +166,9 @@ func _physics_process(delta: float) -> void:
 	if monster == 0 and current_stage == 4 and current_wave > 3:
 		print("Stage", current_stage, "Complete!")
 		current_stage +=1
+		$"/root/LevelSave".SaveMutihealth = $"/root/LevelSave".Mutihealth
+		$"/root/LevelSave".SaveMutidam = $"/root/LevelSave".Mutidam
+		$"/root/LevelSave".SaveMutispeed = $"/root/LevelSave".Mutispeed
 		$"/root/Wave".state = current_stage
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
