@@ -42,6 +42,8 @@ Hitbox3=""
 Projectile1=""
 Projectile2=""
 PlayerBody=""
+lava=""
+safe=""
 
 [input]
 

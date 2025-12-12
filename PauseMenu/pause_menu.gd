@@ -46,3 +46,11 @@ func _process(delta):
 func _on_back_pressed() -> void:
 	pause_button.visible = true
 	options.visible = false
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	pass # Replace with function body.
