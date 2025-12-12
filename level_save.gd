@@ -9,6 +9,7 @@ var SaveMutidam = 1
 var SaveMutispeed=1
 var SaveLevel = 1
 var prelvl
+var Mutiregen = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
