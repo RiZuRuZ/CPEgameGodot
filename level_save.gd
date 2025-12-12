@@ -4,7 +4,10 @@ var progress = 0
 var Mutihealth =1 
 var Mutidam = 1
 var Mutispeed=1
-var Mutiregen=1
+var SaveMutihealth =1 
+var SaveMutidam = 1
+var SaveMutispeed=1
+var SaveLevel = 1
 var prelvl
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

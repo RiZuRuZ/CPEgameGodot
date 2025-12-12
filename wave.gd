@@ -1,7 +1,7 @@
 extends Control
 var wave:int = 0
 var nextwave: int = 0
-var state = 2
+var state = 1
 var selection = -1
 @onready var sfx_victiory: AudioStreamPlayer = $SFX_Victiory
 # Called when the node enters the scene tree for the first time.
