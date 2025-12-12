@@ -371,9 +371,9 @@ anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
 atk2dmg = 15
 atk3dmg = 25
-baseupdmg = 1
-baseupspd = 5
-baseuphealth = 20
+baseupdmg = 5
+baseupspd = 2
+baseuphealth = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)

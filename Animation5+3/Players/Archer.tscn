@@ -157,6 +157,9 @@ anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
 arrow_spawnR_path = NodePath("ArrowSpawnR")
 arrow_spawnL_path = NodePath("ArrowSpawnL")
+baseupdmg = 2
+baseupspd = 5
+baseuphealth = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)
