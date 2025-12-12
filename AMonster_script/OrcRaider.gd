@@ -75,6 +75,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	$Bar.value = health
 	if health <= 0:
 		death = true
 		is_hurt = false
@@ -82,7 +83,7 @@ func _physics_process(delta: float) -> void:
 		can_move = false
 		play_anim("death")
 		return
-	$Bar.value = health
+	
 	damaged= false
 	
 

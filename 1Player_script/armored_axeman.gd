@@ -21,6 +21,8 @@ var damaged :=false
 @export var atk2dmg : int = 20
 @export var atk3dmg : int = 10
 @onready var lvlstat = $"/root/LevelSave"
+@export var Heal_time :int = 15
+var time =0
 var MaxHealth :int = 0
 var preupheal
 var preupspd
@@ -76,7 +78,20 @@ var level : int = 1:
 
 func _ready() -> void:
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
+	preupheal =lvlstat.Mutihealth
+	preupspd=lvlstat.Mutispeed
+	preupdmg=lvlstat.Mutidam
+	MaxHealth += health + (lvlstat.Mutihealth-1)*baseuphealth
+	health = MaxHealth
+	
 	PreHealth = health
+	atk1dmg += baseupdmg*(lvlstat.Mutidam-1)
+	atk2dmg += baseupdmg*(lvlstat.Mutidam-1)
+	atk3dmg += baseupdmg*(lvlstat.Mutidam-1)
+	SPEED += baseupspd*(lvlstat.Mutispeed-1)
+	%Bar.value = health
+	%Bar.max_value = MaxHealth
+	%XP.value = lvlstat.progress
 	await get_tree().process_frame
 	_disable_collision()
 	
@@ -104,14 +119,16 @@ func _ready() -> void:
 	#arrow_spawnR = get_node(arrow_spawnR_path)
 	#arrow_spawnL = get_node(arrow_spawnL_path)
 
-	%Bar.max_value = MaxHealth
-	preupheal =lvlstat.Mutihealth
-	preupspd=lvlstat.Mutispeed
-	preupdmg=lvlstat.Mutidam
-	%XP.value = lvlstat.progress
+	
 
 
 func _physics_process(delta: float) -> void:
+	time += delta
+	if health != MaxHealth and time >= Heal_time:
+		health += 10
+		PreHealth = health
+		show_damage(10)
+		time-=Heal_time
 	if level >= 7:
 			%XP.max_value = 40
 	elif level >= 3:
@@ -147,7 +164,7 @@ func _physics_process(delta: float) -> void:
 	#if is_hurt:
 		#return
 	damaged= false
-	if PreHealth != health:
+	if PreHealth != health and PreHealth != 0:
 		damaged= true
 		PreHealth=health
 		if damaged:
@@ -336,3 +353,11 @@ func _on_magnet_area_entered(area: Area2D) -> void:
 	pass
 	if area.has_method("follow"):
 		area.follow(self)
+
+func show_damage(amount: int):
+	var DamagePopup = preload("res://Animation5+3/DamagePopUp.tscn")
+	var popup = DamagePopup.instantiate()
+	get_tree().current_scene.add_child(popup)
+
+	popup.global_position = global_position + Vector2(10, 10)
+	popup.set_text(str(amount), Color.GREEN)

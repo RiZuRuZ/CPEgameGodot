@@ -21,6 +21,8 @@ var damaged:=false
 @export var health : int = 100
 @export var arrow1dmg : int = 20
 @export var arrow2dmg : int = 50
+@export var Heal_time :int = 15
+var time =0
 @onready var lvlstat = $"/root/LevelSave"
 var MaxHealth :int = 0
 var preupheal
@@ -70,7 +72,18 @@ var level : int = 1:
 
 func _ready() -> void:
 	# รอ 1 เฟรม ให้ Animation / Scene ทุกอย่างโหลดเสร็จ
+	preupheal =lvlstat.Mutihealth
+	preupspd=lvlstat.Mutispeed
+	preupdmg=lvlstat.Mutidam
+	MaxHealth += health + (lvlstat.Mutihealth-1)*baseuphealth
+	health = MaxHealth
 	PreHealth = health
+	arrow1dmg += baseupdmg*(lvlstat.Mutidam-1)
+	arrow2dmg += baseupdmg*(lvlstat.Mutidam-1)
+	SPEED += baseupspd*(lvlstat.Mutispeed-1)
+	%Bar.value = health
+	%Bar.max_value = MaxHealth
+	%XP.value = lvlstat.progress
 	await get_tree().process_frame
 	_disable_collision()
 	
@@ -110,6 +123,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	time += delta
+	if health != MaxHealth and time >= Heal_time:
+		health += 10
+		PreHealth = health
+		show_damage(10)
+		time-=Heal_time
 	if level >= 7:
 			%XP.max_value = 40
 	elif level >= 3:
@@ -347,3 +366,11 @@ func _on_magnet_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.
 	if area.has_method("follow"):
 		area.follow(self)
+		
+func show_damage(amount: int):
+	var DamagePopup = preload("res://Animation5+3/DamagePopUp.tscn")
+	var popup = DamagePopup.instantiate()
+	get_tree().current_scene.add_child(popup)
+
+	popup.global_position = global_position + Vector2(10, 10)
+	popup.set_text(str(amount), Color.GREEN)

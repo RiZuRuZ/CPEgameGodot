@@ -25,6 +25,8 @@ var area: Area2D
 @export var atk1dmg : int = 25
 @export var atk2dmg : int = 20
 @export var atk3dmg : int = 10
+@export var Heal_time :int = 15
+var time =0
 var MaxHealth :int = 0
 var preupheal
 var preupspd
@@ -123,6 +125,12 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	time += delta
+	if health != MaxHealth and time >= Heal_time:
+		health += 10
+		PreHealth = health
+		show_damage(10)
+		time-=Heal_time
 	if level >= 7:
 			%XP.max_value = 40
 	elif level >= 3:
@@ -335,3 +343,12 @@ func check_XP() -> void:
 func _on_magnet_area_entered(area: Area2D) -> void:
 	if area.has_method("follow"):
 		area.follow(self)
+		
+		
+func show_damage(amount: int):
+	var DamagePopup = preload("res://Animation5+3/DamagePopUp.tscn")
+	var popup = DamagePopup.instantiate()
+	get_tree().current_scene.add_child(popup)
+
+	popup.global_position = global_position + Vector2(10, 10)
+	popup.set_text(str(amount), Color.GREEN)  

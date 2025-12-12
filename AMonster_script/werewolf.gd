@@ -259,16 +259,16 @@ func play_anim(name: String) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false and health > 0:
 		area.get_parent().health -= bodydmg
-
+		show_damage(bodydmg)
 func _on_atk_1_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
 		area.get_parent().health -= atk1dmg
-
+		show_damage(atk1dmg)
 
 func _on_atk_2_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
 		area.get_parent().health -= atk2dmg
-	
+		show_damage(atk2dmg)
 func drop_item():
 	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
 	var dropA = scene.instantiate()

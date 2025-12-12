@@ -135,7 +135,7 @@ var displayed_text = ""
 
 func _ready():
 	show_dialogue()
-
+	$"/root/Wave/CanvasLayer".visible = false
 # ------ SWITCH CHARACTER SPRITE ------
 func show_character(name: String):
 	for c in $character.get_children():
