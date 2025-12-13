@@ -294,11 +294,16 @@ func _on_atk_1_area_entered(area: Area2D) -> void:
 # ===============================
 # DROP
 # ===============================
+
 func drop_item():
-	var scene := preload("res://Pickup/pickups.tscn")
-	var drop := scene.instantiate()
-	drop.global_position = global_position
-	get_tree().current_scene.call_deferred("add_child", drop)
+	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
+	
+	# 1. แก้ range 2 เป็น range(2)
+	for i in range(15):
+		var dropA = scene.instantiate()
+		var offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+		dropA.global_position = global_position + offset
+		get_tree().current_scene.call_deferred("add_child", dropA)
 
 # ===============================
 # DAMAGE POPUP

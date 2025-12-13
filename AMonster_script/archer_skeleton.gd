@@ -299,12 +299,15 @@ func play_anim(name: String) -> void:
 
 func drop_item():
 	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
-	var dropA = scene.instantiate()
-	dropA.global_position = global_position + Vector2(0, 0)
-
-	get_tree().current_scene.call_deferred("add_child", dropA)
+	
+	# 1. แก้ range 2 เป็น range(2)
+	for i in range(3):
+		var dropA = scene.instantiate()
+		var offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+		dropA.global_position = global_position + offset
+		get_tree().current_scene.call_deferred("add_child", dropA)
+		
 	print(">>> CALL DROP_ITEM <<<")
-
 func show_damage(amount: int):
 	var DamagePopup = preload("res://Animation5+3/DamagePopUp.tscn")
 	var popup = DamagePopup.instantiate()
