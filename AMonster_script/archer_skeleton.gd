@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @export var SPEED: float = 50.0
 @export var STOP_RADIUS: float = 18.0          # ระยะที่หยุด ไม่ยืนทับผู้เล่น
-@export var ATTACK_RADIUS: float = 100        # ระยะโจมตี
-@export var ATTACK_DELAY: float = 0.5          # หน่วงก่อนฟัน
+@export var ATTACK_RADIUS: float = 100         # ระยะโจมตี
+@export var ATTACK_DELAY: float = 0.5          # หน่วงก่อนเริ่มท่าโจมตี
 @export var DETECT_RADIUS: float = 220.0       # ระยะที่เริ่มเห็นผู้เล่น
 @export var IDLE_CHANGE_TIME: float = 1.5      # เปลี่ยนทิศเดินมั่วทุกกี่วิ
 @onready var arrow_scene = preload("res://AProjectile/Arrow3.tscn")
@@ -18,13 +18,12 @@ var damaged := false
 
 #--- Monster Setup -----
 @export var health := 100
-@export var arrowdmg :=30
+@export var arrowdmg := 30
 @export var bodydmg : int = 10
 # --- Auto refs ---
 var gfx: Node2D
 var animation: AnimationPlayer
 var area: Area2D
-
 
 var player: Node2D = null
 var last_dir := Vector2.RIGHT
@@ -42,13 +41,21 @@ var idle_timer := 0.0
 
 var arrow_spawnR: Marker2D
 var arrow_spawnL: Marker2D
-var pending_shot := false
+
+# --- NEW: Timer สำหรับการยิง ---
+var shoot_timer: Timer 
 
 func _ready() -> void:
 	randomize()
 	PreHealth = health
-	#$Sprite2D/atk2/atk2.set_deferred("disabled",true)
-	#$Sprite2D/atk1/atk1.set_deferred("disabled",true)
+	
+	# --- สร้างและตั้งค่า Timer ---
+	shoot_timer = Timer.new()
+	shoot_timer.wait_time = 1.4   # เวลาหน่วงก่อนลูกธนูออก (ตามที่คุณตั้งไว้เดิม)
+	shoot_timer.one_shot = true   # ทำงานทีเดียวแล้วหยุด
+	shoot_timer.timeout.connect(_on_shoot_timer_timeout) # เมื่อเวลาหมดให้ไปเรียกฟังก์ชันยิง
+	add_child(shoot_timer)        # เอาเข้า Scene
+	# -------------------------
 
 	if gfx_path != NodePath():
 		gfx = get_node(gfx_path) as Node2D
@@ -67,6 +74,7 @@ func _ready() -> void:
 
 	arrow_spawnR = get_node(arrow_spawnR_path)
 	arrow_spawnL = get_node(arrow_spawnL_path)
+	
 	await get_tree().process_frame
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -99,6 +107,10 @@ func _physics_process(delta: float) -> void:
 		damaged = true
 		show_damage(PreHealth - health)
 		PreHealth = health
+		
+		# >>>>>> จุดสำคัญ: สั่งหยุด Timer ทันทีที่โดนตี <<<<<<
+		shoot_timer.stop()
+		# ===============================================
 
 		# ตอนนี้ถ้ามอนตาย ให้โชว์ damage แล้วค่อยเข้าสู่ death state
 		if health <= 0 and not death:
@@ -132,8 +144,6 @@ func _physics_process(delta: float) -> void:
 
 	var to_player := player.global_position - global_position
 	var dist := to_player.length()
-
-
 
 	# --- เลือก state ตามระยะ ---
 	if dist > DETECT_RADIUS:
@@ -227,7 +237,10 @@ func attack_coroutine(axis_side: bool) -> void:
 		return
 
 	play_anim("attack")
-	_delayed_shoot(arrowdmg)
+	
+	# >>> สั่งเริ่มจับเวลา 1.4 วิ <<<
+	shoot_timer.start()
+	
 	if animation and is_inside_tree():
 		await animation.animation_finished
 
@@ -235,6 +248,13 @@ func attack_coroutine(axis_side: bool) -> void:
 		can_move = true
 		can_attack = true
 
+# --- NEW: ฟังก์ชันนี้จะทำงานเมื่อ Timer ครบ 1.4 วิ ---
+func _on_shoot_timer_timeout() -> void:
+	if death or is_hurt: 
+		return # เช็ค Safety อีกรอบ
+	
+	shoot_arrow(arrowdmg)
+# -----------------------------------------------
 
 # ---------- DAMAGE / ANIMATION ----------
 
@@ -252,18 +272,9 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		if not death:
 			can_move = true
 			can_attack = true
-func _delayed_shoot(dmg) -> void:
-	await await get_tree().create_timer(1.4).timeout
-	# เช็คเผื่อถูกขัด เช่น โดนโจมตี หรือตายก่อน
-	if death or is_hurt:
-		return
 
-	shoot_arrow(dmg)
-	
 func shoot_arrow(dmg):
 	var arrow := arrow_scene.instantiate() as Area2D
-	#var mouse_pos: Vector2 = get_global_mouse_position()
-
 	# ใส่ลูกศรเข้า scene ก่อน
 	get_parent().add_child(arrow)
 	arrow.damage = dmg
@@ -289,8 +300,7 @@ func play_anim(name: String) -> void:
 func drop_item():
 	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
 	var dropA = scene.instantiate()
-	# ปรับตัวเลข Vector2(x, y) จนกว่าจะตรงใจ
-	dropA.global_position = global_position + Vector2(-30, 20)
+	dropA.global_position = global_position + Vector2(0, 0)
 
 	get_tree().current_scene.call_deferred("add_child", dropA)
 	print(">>> CALL DROP_ITEM <<<")
@@ -304,4 +314,4 @@ func show_damage(amount: int):
 	if damaged:
 		popup.set_text(str(amount), Color.WHITE) 
 	else:
-		popup.set_text(str(amount), Color.RED) 
+		popup.set_text(str(amount), Color.RED)

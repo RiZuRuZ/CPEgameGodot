@@ -16,6 +16,7 @@ func _on_retry_pressed() -> void:
 		lvl.Mutihealth = 1
 		lvl.Mutispeed=1
 		lvl.Mutidam=1
+		lvl.Mutiregen=1
 		lvl.level = 1
 		lvl.prelvl = 1
 		get_tree().change_scene_to_file("res://Stage/main.tscn")
@@ -25,6 +26,7 @@ func _on_retry_pressed() -> void:
 		lvl.Mutidam=lvl.SaveMutidam
 		lvl.level =lvl.SaveLevel
 		lvl.prelvl = lvl.SaveLevel
+		lvl.Mutiregen = lvl.SaveMutiregen
 		get_tree().change_scene_to_file("res://Stage/stage2.tscn")
 		
 	elif  state == 3:
@@ -33,14 +35,16 @@ func _on_retry_pressed() -> void:
 		lvl.Mutidam=lvl.SaveMutidam
 		lvl.level =lvl.SaveLevel
 		lvl.prelvl = lvl.SaveLevel
+		lvl.Mutiregen = lvl.SaveMutiregen
 		get_tree().change_scene_to_file("res://Stage/stage3.tscn")
 	elif  state == 4:
-		lvl.Mutihealth =lvl.SaveMutihealth
-		lvl.Mutispeed=lvl.SaveMutispeed
-		lvl.Mutidam=lvl.SaveMutidam
-		lvl.level =lvl.SaveLevel
-		lvl.prelvl = lvl.SaveLevel
-		get_tree().change_scene_to_file("res://Stage/stage4.tscn")
+		lvl.Mutihealth = 1
+		lvl.Mutispeed=1
+		lvl.Mutidam=1
+		lvl.Mutiregen=1
+		lvl.level = 1
+		lvl.prelvl = 1
+		get_tree().change_scene_to_file("res://Ascenes/cutscene/ED2(bad).tscn")
 
 
 func _on_exit_pressed() -> void:

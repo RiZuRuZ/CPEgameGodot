@@ -425,7 +425,7 @@ size = Vector2(17.107605, 19.7047)
 
 [node name="Werebare" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 34
 script = ExtResource("1_e7xdx")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")

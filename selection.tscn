@@ -1,9 +1,10 @@
-[gd_scene load_steps=181 format=3 uid="uid://chrkclcsr7163"]
+[gd_scene load_steps=182 format=3 uid="uid://chrkclcsr7163"]
 
 [ext_resource type="Script" uid="uid://cagxt68g5p6j7" path="res://selection.gd" id="1_b8hy4"]
 [ext_resource type="Texture2D" uid="uid://duidiypmpqlaq" path="res://Scene Asset/color bg.png" id="2_c0xta"]
 [ext_resource type="Texture2D" uid="uid://b8oyk65xvxkau" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Swordsman/Swordsman with shadows/Swordsman.png" id="2_lcv4y"]
 [ext_resource type="Texture2D" uid="uid://diog3qwoe5woj" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Axeman/Armored Axeman with shadows/Armored Axeman.png" id="3_7b2rf"]
+[ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="3_noibv"]
 [ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="3_umr4q"]
 [ext_resource type="Texture2D" uid="uid://bc4wuocpbn6su" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Archer/Archer with shadows/Archer.png" id="3_y36no"]
 [ext_resource type="AudioStream" uid="uid://cnuutn1i12aup" path="res://Background music/Limujii - November (freetouse.com).mp3" id="8_c0xta"]
@@ -1331,27 +1332,36 @@ scale = Vector2(1.8420074, 1.7125356)
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 20
 text = "Skill"
 
 [node name="m1" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="m1" type="Button" parent="VBoxContainer/m1"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "m1"
 
 [node name="m2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="m2" type="Button" parent="VBoxContainer/m2"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "m2"
 
 [node name="q" type="HBoxContainer" parent="VBoxContainer"]
@@ -1359,14 +1369,20 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="q" type="Button" parent="VBoxContainer/q"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "q"
 
 [node name="swordman" type="Button" parent="VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "select
 "
 
@@ -1380,27 +1396,36 @@ scale = Vector2(1.8420074, 1.7125356)
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer2"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 20
 text = "Skill"
 
 [node name="m1" type="HBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
 
 [node name="m1" type="Button" parent="VBoxContainer2/m1"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "m1"
 
 [node name="m2" type="HBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
 
 [node name="m2" type="Button" parent="VBoxContainer2/m2"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "m2"
 
 [node name="q" type="HBoxContainer" parent="VBoxContainer2"]
@@ -1408,14 +1433,20 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="q" type="Button" parent="VBoxContainer2/q"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "q"
 
 [node name="soldier" type="Button" parent="VBoxContainer2"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "select
 "
 
@@ -1429,27 +1460,36 @@ scale = Vector2(1.8420074, 1.7125356)
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer3"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 20
 text = "Skill"
 
 [node name="m1" type="HBoxContainer" parent="VBoxContainer3"]
 layout_mode = 2
 
 [node name="m1" type="Button" parent="VBoxContainer3/m1"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "m1"
 
 [node name="m2" type="HBoxContainer" parent="VBoxContainer3"]
 layout_mode = 2
 
 [node name="m2" type="Button" parent="VBoxContainer3/m2"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "m2"
 
 [node name="q" type="HBoxContainer" parent="VBoxContainer3"]
@@ -1457,14 +1497,20 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="q" type="Button" parent="VBoxContainer3/q"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "q"
 
 [node name="Axeman" type="Button" parent="VBoxContainer3"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "select
 "
 
@@ -1478,32 +1524,44 @@ scale = Vector2(1.8420074, 1.7125356)
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer4"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 20
 text = "Skill"
 
 [node name="m1" type="HBoxContainer" parent="VBoxContainer4"]
 layout_mode = 2
 
 [node name="m1" type="Button" parent="VBoxContainer4/m1"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "m1"
 
 [node name="m2" type="HBoxContainer" parent="VBoxContainer4"]
 layout_mode = 2
 
 [node name="m2" type="Button" parent="VBoxContainer4/m2"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "m2"
 
 [node name="archer" type="Button" parent="VBoxContainer4"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "select
 "
 
@@ -1517,27 +1575,36 @@ scale = Vector2(1.8420074, 1.7125356)
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer5"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 20
 text = "Skill"
 
 [node name="m1" type="HBoxContainer" parent="VBoxContainer5"]
 layout_mode = 2
 
 [node name="m1" type="Button" parent="VBoxContainer5/m1"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "m1"
 
 [node name="m2" type="HBoxContainer" parent="VBoxContainer5"]
 layout_mode = 2
 
 [node name="m2" type="Button" parent="VBoxContainer5/m2"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "m2"
 
 [node name="q" type="HBoxContainer" parent="VBoxContainer5"]
@@ -1545,14 +1612,20 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="q" type="Button" parent="VBoxContainer5/q"]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "q"
 
 [node name="wizard" type="Button" parent="VBoxContainer5"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "select
 "
 
@@ -1852,6 +1925,8 @@ alignment = 1
 
 [node name="nextButt" type="Button" parent="Camera2D/next"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "next
 "
 
@@ -1865,6 +1940,8 @@ alignment = 1
 
 [node name="prevbutt" type="Button" parent="Camera2D/prev"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 25
 text = "prev
 "
 
@@ -1957,6 +2034,7 @@ parameters/looping = true
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [node name="hero" type="Label" parent="CanvasLayer2"]
+texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -1966,7 +2044,8 @@ offset_bottom = 118.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 86
+theme_override_fonts/font = ExtResource("3_noibv")
+theme_override_font_sizes/font_size = 100
 text = "swordman"
 
 [connection signal="mouse_entered" from="VBoxContainer/m1/m1" to="." method="_on_m_1_mouse_entered"]
@@ -1978,8 +2057,8 @@ text = "swordman"
 [connection signal="mouse_entered" from="VBoxContainer/swordman" to="." method="_on_swordman_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/swordman" to="." method="_on_swordman_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/swordman" to="." method="_on_swordman_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer2/m1/m1" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer2/m1/m1" to="." method="_on_m_1_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer2/m1/m1" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer2/m1/m1" to="." method="_on_m_1_mouse_exited"]
 [connection signal="mouse_exited" from="VBoxContainer2/m1/m1" to="." method="_on_button_mouse_exited"]
 [connection signal="mouse_entered" from="VBoxContainer2/m2/m2" to="." method="_on_m_2_mouse_entered"]
@@ -1993,8 +2072,8 @@ text = "swordman"
 [connection signal="mouse_entered" from="VBoxContainer2/soldier" to="." method="_on_soldier_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer2/soldier" to="." method="_on_soldier_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer2/soldier" to="." method="_on_soldier_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer3/m1/m1" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer3/m1/m1" to="." method="_on_m_1_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer3/m1/m1" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer3/m1/m1" to="." method="_on_m_1_mouse_exited"]
 [connection signal="mouse_exited" from="VBoxContainer3/m1/m1" to="." method="_on_button_mouse_exited"]
 [connection signal="mouse_entered" from="VBoxContainer3/m2/m2" to="." method="_on_m_2_mouse_entered"]
@@ -2008,8 +2087,8 @@ text = "swordman"
 [connection signal="mouse_entered" from="VBoxContainer3/Axeman" to="." method="_on_axeman_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer3/Axeman" to="." method="_on_axeman_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer3/Axeman" to="." method="_on_axeman_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer4/m1/m1" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer4/m1/m1" to="." method="_on_m_1_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer4/m1/m1" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer4/m1/m1" to="." method="_on_m_1_mouse_exited"]
 [connection signal="mouse_exited" from="VBoxContainer4/m1/m1" to="." method="_on_button_mouse_exited"]
 [connection signal="mouse_entered" from="VBoxContainer4/m2/m2" to="." method="_on_m_2_mouse_entered"]
@@ -2019,8 +2098,8 @@ text = "swordman"
 [connection signal="mouse_entered" from="VBoxContainer4/archer" to="." method="_on_archer_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer4/archer" to="." method="_on_archer_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer4/archer" to="." method="_on_archer_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer5/m1/m1" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer5/m1/m1" to="." method="_on_m_1_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer5/m1/m1" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer5/m1/m1" to="." method="_on_m_1_mouse_exited"]
 [connection signal="mouse_exited" from="VBoxContainer5/m1/m1" to="." method="_on_button_mouse_exited"]
 [connection signal="mouse_entered" from="VBoxContainer5/m2/m2" to="." method="_on_m_2_mouse_entered"]

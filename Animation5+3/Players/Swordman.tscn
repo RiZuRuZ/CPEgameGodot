@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dpcr50t48un4x"]
+[gd_scene load_steps=28 format=3 uid="uid://dpcr50t48un4x"]
 
 [ext_resource type="Script" uid="uid://d4hsqcdu6ymyu" path="res://1Player_script/swordman.gd" id="1_37ep1"]
 [ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="2_scilc"]
@@ -411,6 +411,10 @@ size = Vector2(33, 15)
 [sub_resource type="CircleShape2D" id="CircleShape2D_reykc"]
 radius = 50.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6yimy"]
+radius = 3.0
+height = 8.0
+
 [node name="Swordman" type="CharacterBody2D" groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_37ep1")
@@ -575,6 +579,13 @@ text = "dsadsasadw"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("14_6yimy")
+
+[node name="foot" type="Area2D" parent="." groups=["foot"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foot"]
+position = Vector2(1, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_6yimy")
 
 [connection signal="area_entered" from="Sprite2D/ATK1" to="." method="_on_atk_1_area_entered"]
 [connection signal="area_entered" from="Sprite2D/ATK2" to="." method="_on_atk_2_area_entered"]

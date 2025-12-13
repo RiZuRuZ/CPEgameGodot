@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ct0tcuxspt3d"]
+[gd_scene load_steps=28 format=3 uid="uid://ct0tcuxspt3d"]
 
 [ext_resource type="Script" uid="uid://dkmhcvpt7mb3x" path="res://1Player_script/armored_axeman.gd" id="1_sqt8h"]
 [ext_resource type="Texture2D" uid="uid://diog3qwoe5woj" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Armored Axeman/Armored Axeman with shadows/Armored Axeman.png" id="2_07hpi"]
@@ -363,6 +363,10 @@ size = Vector2(51, 21)
 [sub_resource type="CircleShape2D" id="CircleShape2D_274kv"]
 radius = 50.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_71brh"]
+radius = 3.0
+height = 8.0
+
 [node name="ArmoredAxeman" type="CharacterBody2D" groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_sqt8h")
@@ -371,6 +375,7 @@ anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
 atk2dmg = 15
 atk3dmg = 25
+Heal_time = 3
 baseupdmg = 5
 baseupspd = 2
 baseuphealth = 40
@@ -531,6 +536,13 @@ limit_left = -448
 limit_top = -320
 limit_right = 493
 limit_bottom = 320
+
+[node name="foot" type="Area2D" parent="." groups=["foot"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foot"]
+position = Vector2(1, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_71brh")
 
 [connection signal="area_entered" from="Sprite2D/ATK1" to="." method="_on_atk_1_area_entered"]
 [connection signal="area_entered" from="Sprite2D/ATK2" to="." method="_on_atk_2_area_entered"]

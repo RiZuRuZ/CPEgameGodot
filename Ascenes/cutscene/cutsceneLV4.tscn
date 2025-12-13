@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhcffhb6j67nr"]
+[gd_scene load_steps=9 format=3 uid="uid://bhcffhb6j67nr"]
 
-[ext_resource type="Script" uid="uid://dc6w8ai7djsq8" path="res://Ascenes/cutscene/lv4.gd" id="1_twwqj"]
+[ext_resource type="Script" uid="uid://cbcs7wbay222l" path="res://Ascenes/cutscene/lv4.gd" id="1_twwqj"]
 [ext_resource type="Texture2D" uid="uid://bvabdyvkvi5dc" path="res://Ascenes/cutscene/demoncastle.jpg" id="2_ahybf"]
+[ext_resource type="FontFile" uid="uid://61npvewtqc7x" path="res://Font/Kanit-Regular.ttf" id="2_gevmb"]
 [ext_resource type="Texture2D" uid="uid://pv2njv5x3s5j" path="res://Ascenes/cutscene/p2.png" id="3_gevmb"]
 [ext_resource type="Texture2D" uid="uid://w28qidkemd3w" path="res://Ascenes/cutscene/d1.png" id="4_06y3c"]
-[ext_resource type="Texture2D" uid="uid://c0dctyhdmepu5" path="res://Ascenes/cutscene/Hero.png" id="5_ahybf"]
+[ext_resource type="Texture2D" uid="uid://bwmnj0meq7wp0" path="res://Ascenes/cutscene/hero__2_-removebg-preview.png" id="5_ahybf"]
 
 [sub_resource type="Animation" id="Animation_li4wx"]
 resource_name = "ct"
@@ -45,12 +46,14 @@ offset_bottom = 50.0
 
 [node name="Label" type="Label" parent="UI/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gevmb")
 theme_override_font_sizes/font_size = 32
 text = ".      PRINCESS"
 autowrap_trim_flags = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_gevmb")
 theme_override_font_sizes/normal_font_size = 28
 text = ".       SOS!!!"
 fit_content = true
@@ -73,6 +76,6 @@ scale = Vector2(1.6546874, 1.6999999)
 texture = ExtResource("4_06y3c")
 
 [node name="HERO" type="Sprite2D" parent="character"]
-position = Vector2(-61, 396)
-scale = Vector2(0.77327937, 0.73762375)
+position = Vector2(-67, 377)
+scale = Vector2(0.60737526, 0.56826574)
 texture = ExtResource("5_ahybf")

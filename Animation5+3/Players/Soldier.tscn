@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dvjntbls4eaxg"]
+[gd_scene load_steps=29 format=3 uid="uid://dvjntbls4eaxg"]
 
 [ext_resource type="Script" uid="uid://c3mhf5q7j70kk" path="res://1Player_script/soldier.gd" id="1_5gbn8"]
 [ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="2_is0py"]
@@ -237,6 +237,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_46swv"]
 radius = 50.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dcm5i"]
+radius = 3.0
+height = 8.0
+
 [node name="Soldier" type="CharacterBody2D" groups=["player"]]
 disable_mode = 2
 collision_mask = 4
@@ -247,6 +251,7 @@ area_path = NodePath("Area2D")
 arrow_spawnR_path = NodePath("ArrowSpawnR")
 arrow_spawnL_path = NodePath("ArrowSpawnL")
 atk1dmg = 10000
+Heal_time = 3
 baseupdmg = 1
 baseupspd = 5
 baseuphealth = 20
@@ -402,6 +407,13 @@ limit_left = -448
 limit_top = -320
 limit_right = 493
 limit_bottom = 320
+
+[node name="foot" type="Area2D" parent="." groups=["foot"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foot"]
+position = Vector2(1, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_dcm5i")
 
 [connection signal="area_entered" from="CharacterBody2D/Soldier/atk1" to="." method="_on_atk_1_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/Soldier/Area2D2" to="." method="_on_area_2d_2_area_entered"]
