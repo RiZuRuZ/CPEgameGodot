@@ -234,7 +234,7 @@ _data = {
 
 [node name="Orc" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 34
 script = ExtResource("1_y7lo6")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")

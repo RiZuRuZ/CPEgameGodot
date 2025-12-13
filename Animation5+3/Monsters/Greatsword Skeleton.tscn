@@ -300,7 +300,7 @@ _data = {
 
 [node name="GreatswordSkeleton" type="CharacterBody2D"]
 collision_layer = 128
-collision_mask = 128
+collision_mask = 160
 script = ExtResource("1_pjs37")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
