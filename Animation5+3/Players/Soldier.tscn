@@ -247,6 +247,10 @@ area_path = NodePath("Area2D")
 arrow_spawnR_path = NodePath("ArrowSpawnR")
 arrow_spawnL_path = NodePath("ArrowSpawnL")
 atk1dmg = 10000
+<<<<<<< Updated upstream
+=======
+Heal_time = 2
+>>>>>>> Stashed changes
 baseupdmg = 1
 baseupspd = 5
 baseuphealth = 20

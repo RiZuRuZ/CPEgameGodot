@@ -157,6 +157,10 @@ anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
 arrow_spawnR_path = NodePath("ArrowSpawnR")
 arrow_spawnL_path = NodePath("ArrowSpawnL")
+<<<<<<< Updated upstream
+=======
+Heal_time = 2
+>>>>>>> Stashed changes
 baseupdmg = 2
 baseupspd = 5
 baseuphealth = 40

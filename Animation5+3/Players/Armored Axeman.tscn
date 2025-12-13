@@ -371,6 +371,10 @@ anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
 atk2dmg = 15
 atk3dmg = 25
+<<<<<<< Updated upstream
+=======
+Heal_time = 2
+>>>>>>> Stashed changes
 baseupdmg = 5
 baseupspd = 2
 baseuphealth = 40
