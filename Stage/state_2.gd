@@ -92,6 +92,7 @@ func start_wave_loop():
 func _on_next_wave():
 	$"/root/Wave/CanvasLayer/Label".visible = true
 	$"/root/Wave/CanvasLayer/time".visible = true
+	wave_timer.start(15.0)
 	var wave_data = stages[current_stage]
 	if not wave_data.has(current_wave):
 		wave_timer.stop()
@@ -159,11 +160,17 @@ func random_spawn_position() -> Vector2:
 	return spawn_pos
 func _physics_process(delta: float) -> void:
 	var monster = get_tree().get_node_count_in_group("EnemyBody")
-	if is_instance_valid(wave_timer) and monster != 0:
+	if is_instance_valid(wave_timer):
+		# อัปเดตเวลา UI
 		$"/root/Wave".nextwave = wave_timer.time_left
 		$"/root/Wave".wave = str(current_wave-1)
-	else:
-		pass
+		
+		# >>>> จุดสำคัญ: เช็คมอนหมด แล้วเร่งเวลา <<<<
+		# ถ้ามอนสเตอร์หมด (0 ตัว) และเวลายังเหลือมากกว่า 3 วินาที และยังมีเวฟต่อไปรออยู่
+		if monster == 0 and wave_timer.time_left > 3.0 and stages[current_stage].has(current_wave):
+			print("All clear! Next wave in 3 seconds...")
+			wave_timer.start(3.0) # บังคับให้นับถอยหลังใหม่เริ่มที่ 3 วิทันที
+		# =======================================
 	var player = get_tree().get_first_node_in_group("player")
 	if player.health <= 0:
 		$"/root/Wave/CanvasLayer/Label".visible = false
