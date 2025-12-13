@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhcffhb6j67nr"]
+[gd_scene load_steps=9 format=3 uid="uid://ddl6ncmr81dpk"]
 
-[ext_resource type="Script" uid="uid://cbcs7wbay222l" path="res://Ascenes/cutscene/lv4.gd" id="1_twwqj"]
-[ext_resource type="Texture2D" uid="uid://bvabdyvkvi5dc" path="res://Ascenes/cutscene/demoncastle.jpg" id="2_ahybf"]
-[ext_resource type="Texture2D" uid="uid://pv2njv5x3s5j" path="res://Ascenes/cutscene/p2.png" id="3_gevmb"]
-[ext_resource type="Texture2D" uid="uid://w28qidkemd3w" path="res://Ascenes/cutscene/d1.png" id="4_06y3c"]
-[ext_resource type="Texture2D" uid="uid://bwmnj0meq7wp0" path="res://Ascenes/cutscene/hero__2_-removebg-preview.png" id="5_ahybf"]
+[ext_resource type="Script" uid="uid://dwqxrdw7cbdkn" path="res://Ascenes/cutscene/Badend.gd" id="1_yuxg2"]
+[ext_resource type="Texture2D" uid="uid://bvabdyvkvi5dc" path="res://Ascenes/cutscene/demoncastle.jpg" id="2_repmi"]
+[ext_resource type="Texture2D" uid="uid://pv2njv5x3s5j" path="res://Ascenes/cutscene/p2.png" id="3_g8ono"]
+[ext_resource type="Texture2D" uid="uid://w28qidkemd3w" path="res://Ascenes/cutscene/d1.png" id="4_mo2jd"]
+[ext_resource type="Texture2D" uid="uid://bwmnj0meq7wp0" path="res://Ascenes/cutscene/hero__2_-removebg-preview.png" id="5_e5375"]
+[ext_resource type="Texture2D" uid="uid://4vc4lqmk576o" path="res://Ascenes/cutscene/BadED.jpg" id="6_qv32g"]
 
 [sub_resource type="Animation" id="Animation_li4wx"]
 resource_name = "ct"
@@ -14,9 +15,9 @@ _data = {
 &"ct": SubResource("Animation_li4wx")
 }
 
-[node name="CutSceneLV4" type="Node2D"]
+[node name="Ending2" type="Node2D"]
 position = Vector2(138, 115)
-script = ExtResource("1_twwqj")
+script = ExtResource("1_yuxg2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -58,21 +59,34 @@ fit_content = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(479.00006, 200.50006)
 scale = Vector2(0.6697916, 0.5172969)
-texture = ExtResource("2_ahybf")
+texture = ExtResource("2_repmi")
 
 [node name="character" type="Node2D" parent="."]
 
 [node name="PRINCESS" type="Sprite2D" parent="character"]
 position = Vector2(60, 379)
 scale = Vector2(1.5648439, 1.5944444)
-texture = ExtResource("3_gevmb")
+texture = ExtResource("3_g8ono")
 
 [node name="DEMON" type="Sprite2D" parent="character"]
 position = Vector2(796, 370)
 scale = Vector2(1.6546874, 1.6999999)
-texture = ExtResource("4_06y3c")
+texture = ExtResource("4_mo2jd")
 
 [node name="HERO" type="Sprite2D" parent="character"]
-position = Vector2(-67, 377)
-scale = Vector2(0.60737526, 0.56826574)
-texture = ExtResource("5_ahybf")
+position = Vector2(869.34485, 366.987)
+scale = Vector2(0.5798486, 0.54607755)
+texture = ExtResource("5_e5375")
+
+[node name="EndingImage" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -117.0
+offset_right = 1024.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_qv32g")
+expand_mode = 1
