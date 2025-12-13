@@ -184,6 +184,7 @@ func _physics_process(delta: float) -> void:
 		$"/root/LevelSave".SaveMutispeed = $"/root/LevelSave".Mutispeed
 		$"/root/LevelSave".SaveMutiregen = $"/root/LevelSave".Mutiregen
 		$"/root/LevelSave".SaveLevel = $"/root/LevelSave".level
+		$"/root/LevelSave".SaveMutiregen =  $"/root/LevelSave".Mutiregen
 		$"/root/Wave".state = current_stage
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
