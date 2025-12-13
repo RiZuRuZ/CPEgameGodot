@@ -36,7 +36,7 @@ func _process(delta):
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("foot") or area.is_in_group("PlayerBody"):
+	if area.is_in_group("foot"):
 		# รับ reference player (parent ของ collider ที่ชน)
 		current_player = area.get_parent()
 
@@ -55,7 +55,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 func _on_area_exited(area: Area2D) -> void:
-	if area.is_in_group("foot") or area.is_in_group("PlayerBody"):
+	if area.is_in_group("foot"):
 		# ถ้าผู้เล่นออกจาก lava ให้หยุด DOT และคืน speed ถ้าชะลอไว้
 		if current_player != null:
 			if current_player.has_meta("lava_slowed"):

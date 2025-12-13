@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://6cc8ed50ts4a"]
+[gd_scene load_steps=8 format=3 uid="uid://6cc8ed50ts4a"]
 
 [ext_resource type="Script" uid="uid://8wl81t0i1dai" path="res://Ascenes/cutscene/lv2.gd" id="1_j7q4j"]
+[ext_resource type="FontFile" uid="uid://61npvewtqc7x" path="res://Font/Kanit-Regular.ttf" id="2_cxqyp"]
 [ext_resource type="Texture2D" uid="uid://b00dtk64htfaa" path="res://Ascenes/cutscene/helll.jpg" id="2_j7q4j"]
 [ext_resource type="Texture2D" uid="uid://pv2njv5x3s5j" path="res://Ascenes/cutscene/p2.png" id="3_cklvx"]
 [ext_resource type="Texture2D" uid="uid://w28qidkemd3w" path="res://Ascenes/cutscene/d1.png" id="4_77i1q"]
@@ -44,12 +45,14 @@ offset_bottom = 50.0
 
 [node name="Label" type="Label" parent="UI/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cxqyp")
 theme_override_font_sizes/font_size = 32
 text = ".      PRINCESS"
 autowrap_trim_flags = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_cxqyp")
 theme_override_font_sizes/normal_font_size = 28
 text = ".       SOS!!!"
 fit_content = true

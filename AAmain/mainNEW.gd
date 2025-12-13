@@ -36,7 +36,7 @@ func _ready():
 	# --- เก็บข้อมูล Stage → Waves --
 	stages = {
 		1: {
-			1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2], [WEREWOLF, 1] ],
+			1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2], [ORCRIDER, 1] ],
 			2: [ [SLIME, 3], [SKELETON, 3] ],
 			3: [ [SLIME, 4], [SKELETON, 5] ],
 		}
@@ -160,11 +160,12 @@ func _physics_process(delta: float) -> void:
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
 	if monster == 0 and current_stage == 1 and current_wave > 3:
-		print("Stage", current_stage, "Complete!")
+		print("Stage ", current_stage, " Complete!")
 		current_stage +=1
 		$"/root/LevelSave".SaveMutihealth = $"/root/LevelSave".Mutihealth
 		$"/root/LevelSave".SaveMutidam = $"/root/LevelSave".Mutidam
 		$"/root/LevelSave".SaveMutispeed = $"/root/LevelSave".Mutispeed
+		$"/root/LevelSave".SaveMutiregen = $"/root/LevelSave".Mutiregen
 		$"/root/LevelSave".SaveLevel = $"/root/LevelSave".level
 		$"/root/Wave".state = current_stage
 		$"/root/Wave/CanvasLayer/Label".visible = false

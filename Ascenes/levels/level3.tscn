@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://oirqi8jnhm4y"]
+[gd_scene load_steps=48 format=4 uid="uid://oirqi8jnhm4y"]
 
 [ext_resource type="Texture2D" uid="uid://07eh6h80fqap" path="res://Scene Asset/desert_/desertPath_.png" id="1_5byds"]
 [ext_resource type="Texture2D" uid="uid://tcooer4ulkxe" path="res://Scene Asset/desert_/desert_ [bridgeAnimatedTiles].png" id="2_tjksy"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bykrheldlrey7" path="res://Scene Asset/x-mark-16.png" id="10_tjksy"]
 [ext_resource type="PackedScene" uid="uid://0kagwy22i60j" path="res://PauseMenu/pause_menu.tscn" id="11_tcc0g"]
 [ext_resource type="AudioStream" uid="uid://cnyghcfa6b75k" path="res://Background music/Pufino - Digital Mayham (freetouse.com).mp3" id="12_upu3d"]
+[ext_resource type="Script" uid="uid://dwbip36nbts8p" path="res://Ascenes/levels/area_2d.gd" id="13_pi4bo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2s60m"]
 texture = ExtResource("1_5byds")
@@ -1838,6 +1839,16 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_tcc0g")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pi4bo"]
+texture = ExtResource("10_tjksy")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_fdyex"]
+physics_layer_0/collision_layer = 32
+physics_layer_0/collision_mask = 255
+sources/0 = SubResource("TileSetAtlasSource_pi4bo")
+
 [node name="Level3" type="Node2D"]
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
@@ -1873,3 +1884,40 @@ volume_db = -16.0
 autoplay = true
 bus = &"Music"
 parameters/looping = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Node2D" groups=["slow"]]
+script = ExtResource("13_pi4bo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/Area2D"]
+position = Vector2(-431, -5)
+polygon = PackedVector2Array(0, 0, -1, 36, 15, 37, 15, 84, 31, 85, 31, 101, 47, 101, 47, 116, 112, 117, 112, 149, 127, 149, 127, 164, 143, 165, 143, 182, 197, 181, 197, 191, 215, 191, 214, 213, 223, 213, 223, 240, 228, 239, 227, 160, 215, 160, 213, 176, 158, 177, 159, 161, 136, 160, 136, 145, 119, 145, 120, 111, 56, 110, 56, 95, 40, 96, 41, 81, 24, 80, 24, 15, 7, 15, 7, -1)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Node2D/Area2D"]
+position = Vector2(-164, 155)
+polygon = PackedVector2Array(0, 0, 0, 79, 29, 79, 29, 63, 45, 63, 45, 31, 28, 32, 29, 17, 5, 16, 4, -1)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Node2D/Area2D"]
+position = Vector2(264, -52)
+polygon = PackedVector2Array(0, 0, 0, 32, -17, 32, -17, 62, 50, 62, 49, 15, 16, 16, 17, 0)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Node2D/Area2D"]
+position = Vector2(-11, -147)
+polygon = PackedVector2Array(2, 1, 2, -2, 51, -1, 52, 15, 68, 15, 68, 29, 2, 30)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Node2D/Area2D"]
+position = Vector2(-329, -260)
+polygon = PackedVector2Array(-1, 1, -1, 31, 17, 30, 17, 62, 48, 63, 48, 78, 113, 79, 114, 60, 129, 61, 129, 48, 113, 49, 113, 17, 105, 17, 105, 4, 99, 2, 99, 0, 1, 0, 0, -1, 0, -1)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Node2D/Area2D"]
+position = Vector2(480, 41)
+polygon = PackedVector2Array(0, 0, -9, 1, -9, -16, -24, -16, -25, -25, -31, -26, -32, -30, -40, -31, -40, -41, -48, -42, -48, -47, -56, -47, -56, -137, -64, -138, -64, -142, -72, -142, -73, -256, -90, -255, -89, -272, -121, -271, -121, -288, -137, -288, -137, -303, -120, -303, -121, -319, -72, -318, -72, -301, -56, -301, -56, -271, -64, -271, -64, -157, -56, -157, -56, -141, -40, -141, -39, -45, -23, -45, -23, -28, 1, -28)
+
+[node name="TileMapLayer6" type="TileMapLayer" parent="."]
+visible = false
+tile_map_data = PackedByteArray("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AAAaAOv/AAAAAAAAAAAaABQAAAAAAAAAAAAbAOv/AAAAAAAAAAAbABQAAAAAAAAAAAAcAOv/AAAAAAAAAAAcABQAAAAAAAAAAAAdAOv/AAAAAAAAAAAdABQAAAAAAAAAAAAeAOv/AAAAAAAAAAAeABQAAAAAAAAAAAAfAOv/AAAAAAAAAAAfAOz/AAAAAAAAAAAfAO3/AAAAAAAAAAAfAO7/AAAAAAAAAAAfAO//AAAAAAAAAAAfAPD/AAAAAAAAAAAfAPH/AAAAAAAAAAAfAPL/AAAAAAAAAAAfAPP/AAAAAAAAAAAfAPT/AAAAAAAAAAAfAPX/AAAAAAAAAAAfAPb/AAAAAAAAAAAfAPf/AAAAAAAAAAAfAPj/AAAAAAAAAAAfAPn/AAAAAAAAAAAfAPr/AAAAAAAAAAAfAPv/AAAAAAAAAAAfAPz/AAAAAAAAAAAfAP3/AAAAAAAAAAAfAP7/AAAAAAAAAAAfAP//AAAAAAAAAAAfAAAAAAAAAAAAAAAfAAEAAAAAAAAAAAAfAAIAAAAAAAAAAAAfAAMAAAAAAAAAAAAfAAQAAAAAAAAAAAAfAAUAAAAAAAAAAAAfAAYAAAAAAAAAAAAfAAcAAAAAAAAAAAAfAAgAAAAAAAAAAAAfAAkAAAAAAAAAAAAfAAoAAAAAAAAAAAAfAAsAAAAAAAAAAAAfAAwAAAAAAAAAAAAfAA0AAAAAAAAAAAAfAA4AAAAAAAAAAAAfAA8AAAAAAAAAAAAfABAAAAAAAAAAAAAfABEAAAAAAAAAAAAfABIAAAAAAAAAAAAfABMAAAAAAAAAAAAfABQAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_fdyex")
+
+[connection signal="area_entered" from="Node2D/Area2D" to="Node2D/Area2D" method="_on_area_entered"]
+[connection signal="area_exited" from="Node2D/Area2D" to="Node2D/Area2D" method="_on_area_exited"]
