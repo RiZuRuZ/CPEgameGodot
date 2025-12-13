@@ -375,6 +375,7 @@ anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
 atk2dmg = 15
 atk3dmg = 25
+Heal_time = 3
 baseupdmg = 5
 baseupspd = 2
 baseuphealth = 40

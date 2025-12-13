@@ -251,6 +251,7 @@ area_path = NodePath("Area2D")
 arrow_spawnR_path = NodePath("ArrowSpawnR")
 arrow_spawnL_path = NodePath("ArrowSpawnL")
 atk1dmg = 10000
+Heal_time = 3
 baseupdmg = 1
 baseupspd = 5
 baseuphealth = 20
