@@ -13,6 +13,10 @@ var state_time: Timer = null
 @export var ORCRIDER : PackedScene
 @export var WEREBARE : PackedScene
 @export var WEREWOLF : PackedScene
+@export var BOSS1 : PackedScene
+@export var BOSS2 : PackedScene
+@export var BOSS3 : PackedScene
+@export var BOSS4 : PackedScene
 # โหลดมอน
 var PlayerScene
 #var SLIME
@@ -36,9 +40,11 @@ func _ready():
 	# --- เก็บข้อมูล Stage → Waves --
 	stages = {
 		1: {
-			1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2], [ORCRIDER, 1] ],
-			2: [ [SLIME, 3], [SKELETON, 3] ],
-			3: [ [SLIME, 4], [SKELETON, 5] ],
+			1: [ [SLIME, 2], [SKELETON, 2] ],
+			2: [ [SLIME, 1], [SKELETON, 2], [ORC, 1] ],
+			3: [ [SLIME, 4], [SKELETON, 3], [ORC, 2] ],
+			4: [ [ORC, 3], [SLIME, 2], [SKELETON, 4] ],
+			5: [ [BOSS1, 1], [SLIME, 3], [SKELETON, 2] ]
 		}
 	}
 	#SLIME = preload(slime_paht)
@@ -75,7 +81,7 @@ func start_stage(stage_number:int):
 # ------------------------------
 func start_wave_loop():
 	wave_timer = Timer.new()
-	wave_timer.wait_time = 5.0
+	wave_timer.wait_time = 15.0
 	wave_timer.autostart = true
 	wave_timer.one_shot = false
 	add_child(wave_timer)
@@ -159,7 +165,7 @@ func _physics_process(delta: float) -> void:
 	if player.health <= 0:
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
-	if monster == 0 and current_stage == 1 and current_wave > 3:
+	if monster == 0 and current_stage == 1 and current_wave > 5:
 		print("Stage", current_stage, "Complete!")
 		current_stage +=1
 		$"/root/LevelSave".SaveMutihealth = $"/root/LevelSave".Mutihealth
