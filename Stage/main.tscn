@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bxxr8ojys2mll"]
+[gd_scene load_steps=24 format=3 uid="uid://bxxr8ojys2mll"]
 
 [ext_resource type="Script" uid="uid://307gh0uberov" path="res://AAmain/mainNEW.gd" id="1_2snri"]
 [ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Monsters/Slime.tscn" id="2_eaihk"]
@@ -13,9 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://by70vibh1snao" path="res://Animation5+3/Monsters/Werebare.tscn" id="11_f61o4"]
 [ext_resource type="PackedScene" uid="uid://1cmyky6uanl1" path="res://Animation5+3/Monsters/Werewolf.tscn" id="12_dl741"]
 [ext_resource type="Script" uid="uid://bdxdbc5g0btap" path="res://Bocchi.gd" id="13_k7ls7"]
+[ext_resource type="PackedScene" uid="uid://bgopsfhhktmj5" path="res://Animation5+3/Monsters/BOSS1.tscn" id="13_u6dhb"]
 [ext_resource type="Texture2D" uid="uid://c7taw5sxo28en" path="res://ExampleAsset/Bocchi Sprite Sheet02-Picsart-BackgroundRemover.png" id="14_kpt3g"]
+[ext_resource type="PackedScene" uid="uid://dwjsf6fsludh1" path="res://Animation5+3/Monsters/BOSS2.tscn" id="14_nq4m5"]
 [ext_resource type="PackedScene" uid="uid://0kagwy22i60j" path="res://PauseMenu/pause_menu.tscn" id="15_6cra6"]
+[ext_resource type="PackedScene" uid="uid://dnco8nuem55wb" path="res://Animation5+3/Monsters/BOSS3.tscn" id="15_l8015"]
 [ext_resource type="PackedScene" uid="uid://bj04qq2p1n327" path="res://Ascenes/levels/level1.tscn" id="16_xvrjj"]
+[ext_resource type="PackedScene" uid="uid://dwyo3jns2isv" path="res://Animation5+3/Monsters/BOSS4.tscn" id="16_yrdp2"]
 
 [sub_resource type="Animation" id="Animation_lquwl"]
 resource_name = "Bocchi"
@@ -69,9 +73,14 @@ GREATSWORDSKELETON = ExtResource("9_jp3sw")
 ORCRIDER = ExtResource("10_apc65")
 WEREBARE = ExtResource("11_f61o4")
 WEREWOLF = ExtResource("12_dl741")
+BOSS1 = ExtResource("13_u6dhb")
+BOSS2 = ExtResource("14_nq4m5")
+BOSS3 = ExtResource("15_l8015")
+BOSS4 = ExtResource("16_yrdp2")
 metadata/_edit_vertical_guides_ = [-299.0]
 
 [node name="BOCCHI" type="CharacterBody2D" parent="."]
+visible = false
 position = Vector2(974, 787)
 script = ExtResource("13_k7ls7")
 

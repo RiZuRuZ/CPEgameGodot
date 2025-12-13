@@ -281,7 +281,6 @@ func drop_item():
 func _disable_collision():
 	$Sprite2D/HBArea2D/atk1.set_deferred("disabled",true)
 	$Sprite2D/Area2D/atk2.set_deferred("disabled",true)
-
 func show_damage(amount: int):
 	var DamagePopup = preload("res://Animation5+3/DamagePopUp.tscn")
 	var popup = DamagePopup.instantiate()
