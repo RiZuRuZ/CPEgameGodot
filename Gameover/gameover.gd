@@ -40,7 +40,7 @@ func _on_retry_pressed() -> void:
 		lvl.Mutidam=lvl.SaveMutidam
 		lvl.level =lvl.SaveLevel
 		lvl.prelvl = lvl.SaveLevel
-		get_tree().change_scene_to_file("res://Stage/stage4.tscn")
+		get_tree().change_scene_to_file("res://Ascenes/cutscene/ED2(bad).tscn")
 
 
 func _on_exit_pressed() -> void:
