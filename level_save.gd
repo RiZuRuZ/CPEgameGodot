@@ -7,6 +7,7 @@ var Mutispeed=1
 var SaveMutihealth =1 
 var SaveMutidam = 1
 var SaveMutispeed=1
+var SaveMutiregen = 1
 var SaveLevel = 1
 var prelvl
 var Mutiregen = 1
