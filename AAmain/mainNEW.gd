@@ -36,7 +36,7 @@ func _ready():
 	# --- เก็บข้อมูล Stage → Waves --
 	stages = {
 		1: {
-			1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2], [WEREWOLF, 1] ],
+			1: [ [SLIME, 3], [SKELETON, 2], [ORC, 2], [ORCRIDER, 1] ],
 			2: [ [SLIME, 3], [SKELETON, 3] ],
 			3: [ [SLIME, 4], [SKELETON, 5] ],
 		}

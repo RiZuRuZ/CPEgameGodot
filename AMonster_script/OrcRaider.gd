@@ -76,16 +76,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
-	if health <= 0:
-		death = true
-		is_hurt = false
-		can_attack = false
-		can_move = false
-		play_anim("death")
-		return
-	
-	damaged= false
-	
 
 	if PreHealth != health:
 		damaged = true
@@ -100,13 +90,17 @@ func _physics_process(delta: float) -> void:
 			can_move = false
 			play_anim("death")
 			return   # <<< ออกจากฟังก์ชันหลังตาย
-		else:
+		elif not death:  # ★ แก้ไข 1: เปลี่ยนจาก else เป็น elif เพื่อกันไม่ให้เล่นท่า hurt ซ้ำตอนตายแล้ว
 			# ยังไม่ตาย → เล่นท่า hurt
 			is_hurt = true
 			can_move = false
 			can_attack = false
 			if animation:
 				animation.play("hurt")
+
+	# ★ แก้ไข 2 (สำคัญที่สุด): ถ้าตายแล้ว ให้หยุดการทำงานทันที เพื่อไม่ให้ระบบ AI ไปสั่งเปลี่ยน Animation อื่น
+	if death:
+		return
 
 	if is_hurt:
 		velocity = Vector2.ZERO
@@ -283,7 +277,7 @@ func _on_atk_3_area_entered(area: Area2D) -> void:
 func drop_item():
 	var scene: PackedScene = preload("res://Pickup/pickups.tscn")
 	var dropA = scene.instantiate()
-	dropA.global_position = global_position + Vector2(-30, 20)
+	dropA.global_position = global_position + Vector2(0, 0)
 	get_tree().current_scene.call_deferred("add_child", dropA)
 	print(">>> CALL DROP_ITEM <<<")
 	
