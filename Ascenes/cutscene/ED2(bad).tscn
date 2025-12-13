@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://pv2njv5x3s5j" path="res://Ascenes/cutscene/p2.png" id="3_g8ono"]
 [ext_resource type="Texture2D" uid="uid://w28qidkemd3w" path="res://Ascenes/cutscene/d1.png" id="4_mo2jd"]
 [ext_resource type="Texture2D" uid="uid://bwmnj0meq7wp0" path="res://Ascenes/cutscene/hero__2_-removebg-preview.png" id="5_e5375"]
-[ext_resource type="Texture2D" uid="uid://4vc4lqmk576o" path="res://Ascenes/cutscene/BadED.jpg" id="6_qv32g"]
+[ext_resource type="Texture2D" uid="uid://cnrby0hp7b3s1" path="res://Ascenes/cutscene/badend.jpg" id="6_yuxg2"]
 
 [sub_resource type="Animation" id="Animation_li4wx"]
 resource_name = "ct"
@@ -88,5 +88,5 @@ offset_right = 1024.0
 offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_qv32g")
+texture = ExtResource("6_yuxg2")
 expand_mode = 1
