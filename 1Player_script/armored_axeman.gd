@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var SPEED: float = 60.0
+var SPEED: float = 65.0
 
 var motion := Vector2.ZERO
 #monter,position
@@ -126,9 +126,9 @@ func _physics_process(delta: float) -> void:
 	if health != MaxHealth:
 		time += delta
 	if health != MaxHealth and time >= Heal_time:
-		health +=  2 * lvlstat.Mutiregen
+		health +=  2 * lvlstat.Mutiregen+1
 		PreHealth = health
-		show_damage(2 * lvlstat.Mutiregen)
+		show_damage(2 * lvlstat.Mutiregen+1)
 		time = 0
 	if level >= 7:
 			%XP.max_value = 40

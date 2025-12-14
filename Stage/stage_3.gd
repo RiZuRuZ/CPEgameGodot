@@ -85,7 +85,7 @@ func start_stage(stage_number:int):
 # ------------------------------
 func start_wave_loop():
 	wave_timer = Timer.new()
-	wave_timer.wait_time = 5.0
+	wave_timer.wait_time = 20.0
 	wave_timer.autostart = true
 	wave_timer.one_shot = false
 	add_child(wave_timer)
@@ -93,7 +93,7 @@ func start_wave_loop():
 func _on_next_wave():
 	$"/root/Wave/CanvasLayer/Label".visible = true
 	$"/root/Wave/CanvasLayer/time".visible = true
-	wave_timer.start(15.0)
+	wave_timer.start(20.0)
 	var wave_data = stages[current_stage]
 	if not wave_data.has(current_wave):
 		wave_timer.stop()
