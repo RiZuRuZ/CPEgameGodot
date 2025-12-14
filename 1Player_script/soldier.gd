@@ -20,9 +20,9 @@ var damaged := false
 @export var arrow_spawnL_path: NodePath
 
 # player setup
-@export var health : int = 10000
-@export var atk1dmg : int = 25
-@export var atk2dmg : int = 20
+@export var health : int = 120
+@export var atk1dmg : int = 20
+@export var atk2dmg : int = 30
 @export var arrowdmg : int = 30
 @export var Heal_time :int = 15
 var time =0
@@ -122,11 +122,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	time += delta
+	if health != MaxHealth:
+		time += delta
 	if health != MaxHealth and time >= Heal_time:
-		health +=  1 * lvlstat.Mutiregen
+		health +=  1 * lvlstat.Mutiregen+1
 		PreHealth = health
-		show_damage(1 * lvlstat.Mutiregen)
+		show_damage(1 * lvlstat.Mutiregen+1)
 		time = 0
 	if level >= 7:
 			%XP.max_value = 40
@@ -165,6 +166,7 @@ func _physics_process(delta: float) -> void:
 	damaged= false
 	if PreHealth != health and PreHealth != 0:
 		damaged= true
+		show_damage(PreHealth-health)
 		PreHealth=health
 		if damaged:
 			print("Player hit! Health:", health)
@@ -369,9 +371,23 @@ func _on_magnet_area_entered(area: Area2D) -> void:
 	if area.has_method("follow"):
 		area.follow(self)
 func show_damage(amount: int):
+	# 1. เช็คความปลอดภัย ถ้าไม่อยู่ใน Tree (เช่น กำลังเปลี่ยนฉาก) ให้หยุดทำงาน
+	if not is_inside_tree():
+		return
+
 	var DamagePopup = preload("res://Animation5+3/DamagePopUp.tscn")
 	var popup = DamagePopup.instantiate()
-	get_tree().current_scene.add_child(popup)
+	
+	# 2. แก้จุดเกิด Error: เปลี่ยนจาก current_scene เป็น get_tree().root หรือ get_parent()
+	# การใช้ get_tree().root จะปลอดภัยที่สุดเพราะ root มีอยู่เสมอแม้เปลี่ยนฉาก
+	get_tree().root.add_child(popup) 
 
 	popup.global_position = global_position + Vector2(10, 10)
-	popup.set_text(str(amount), Color.GREEN)
+	
+	# 3. ตรรกะสี แดง/เขียว
+	if PreHealth > health:
+		# เลือดเก่า มากกว่า เลือดใหม่ = โดนดาเมจ (สีแดง)
+		popup.set_text(str(amount), Color.RED)  
+	else:
+		# เลือดเก่า น้อยกว่า เลือดใหม่ = ฮีล (สีเขียว)
+		popup.set_text(str(amount), Color.GREEN)

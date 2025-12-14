@@ -102,10 +102,6 @@ func _physics_process(delta: float) -> void:
 		return
 
 
-	# ★ แก้ไข 2 (สำคัญที่สุด): ถ้าตายแล้ว ให้หยุดการทำงานทันที เพื่อไม่ให้ระบบ AI ไปสั่งเปลี่ยน Animation อื่น
-	if death:
-		return
-
 
 	if is_hurt or not can_move:
 		velocity = Vector2.ZERO
@@ -252,6 +248,7 @@ func attack_coroutine(axis_side: bool) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	_disable_collision()
 	if anim_name == "death":
 		drop_item()
 		queue_free()
@@ -260,6 +257,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		if not death:
 			can_move = true
 			can_attack = true
+	
 
 
 func play_anim(name: String) -> void:

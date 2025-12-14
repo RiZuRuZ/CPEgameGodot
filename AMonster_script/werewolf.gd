@@ -239,6 +239,7 @@ func attack_coroutine(axis_side: bool) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	_disable_collision()
 	if anim_name == "death":
 		drop_item()
 		queue_free()
@@ -256,16 +257,16 @@ func play_anim(name: String) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false and health > 0:
 		area.get_parent().health -= bodydmg
-		show_damage(bodydmg)
+		#show_damage(bodydmg)
 func _on_atk_1_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
 		area.get_parent().health -= atk1dmg
-		show_damage(atk1dmg)
+		#show_damage(atk1dmg)
 
 func _on_atk_2_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
 		area.get_parent().health -= atk2dmg
-		show_damage(atk2dmg)
+		#show_damage(atk2dmg)
 
 func drop_item():
 	var scene: PackedScene = preload("res://Pickup/pickups.tscn")

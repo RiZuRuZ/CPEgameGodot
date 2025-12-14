@@ -221,6 +221,9 @@ script = ExtResource("1_y6xts")
 gfx_path = NodePath("CharacterBody2D/Slime")
 anim_path = NodePath("CharacterBody2D/AnimationPlayer")
 area_path = NodePath("Area2D")
+health = 80
+atk1dmg = 12
+atk2dmg = 12
 
 [node name="Area2D" type="Area2D" parent="." groups=["EnemyBody"]]
 

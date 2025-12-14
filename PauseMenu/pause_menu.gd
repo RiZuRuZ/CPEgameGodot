@@ -38,7 +38,7 @@ func _on_option_pressed() -> void:
 	options.visible = true
 
 func _on_quiz_pressed() -> void:
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://main_menu_fixed.tscn")
 
 func _process(delta):
 	testesc()

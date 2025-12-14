@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ddl6ncmr81dpk"]
 
-[ext_resource type="Script" uid="uid://dwqxrdw7cbdkn" path="res://Ascenes/cutscene/Badend.gd" id="1_yuxg2"]
+[ext_resource type="Script" path="res://Ascenes/cutscene/Badend.gd" id="1_yuxg2"]
 [ext_resource type="Texture2D" uid="uid://bvabdyvkvi5dc" path="res://Ascenes/cutscene/demoncastle.jpg" id="2_repmi"]
 [ext_resource type="Texture2D" uid="uid://pv2njv5x3s5j" path="res://Ascenes/cutscene/p2.png" id="3_g8ono"]
 [ext_resource type="Texture2D" uid="uid://w28qidkemd3w" path="res://Ascenes/cutscene/d1.png" id="4_mo2jd"]
@@ -55,6 +55,13 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 28
 text = ".       SOS!!!"
 fit_content = true
+
+[node name="spcace to continue" type="Label" parent="UI"]
+offset_left = 790.0
+offset_top = 581.0
+offset_right = 928.0
+offset_bottom = 604.0
+text = "Space to continue"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(479.00006, 200.50006)

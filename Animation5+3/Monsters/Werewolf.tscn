@@ -236,12 +236,13 @@ _data = {
 }
 
 [node name="Werewolf" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 34
+collision_layer = 16
+collision_mask = 48
 script = ExtResource("1_h3jvg")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
+atk2dmg = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

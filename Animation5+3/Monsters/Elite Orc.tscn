@@ -302,8 +302,8 @@ _data = {
 }
 
 [node name="EliteOrc" type="CharacterBody2D"]
-collision_layer = 130
-collision_mask = 160
+collision_layer = 66
+collision_mask = 96
 script = ExtResource("1_b1aap")
 SPEED = 25.0
 ATTACK_DELAY = 0.3
@@ -311,6 +311,9 @@ gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
 health = 200
+atk1dmg = 25
+atk2dmg = 35
+atk3dmg = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

@@ -277,20 +277,20 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and not area.get_parent().is_invincible:
 		var player := area.get_parent()
 		player.health -= bodydmg
-		show_damage_to_player(bodydmg, player)
+		#show_damage_to_player(bodydmg, player)
 
 func _on_area_2d_2_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and not area.get_parent().is_invincible:
 		var player := area.get_parent()
 		player.health -= atk1dmg
-		show_damage_to_player(atk1dmg, player)
+		#show_damage_to_player(atk1dmg, player)
 
 
 func _on_atk_1_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and not area.get_parent().is_invincible:
 		var player := area.get_parent()
 		player.health -= atk2dmg
-		show_damage_to_player(atk2dmg, player)
+		#show_damage_to_player(atk2dmg, player)
 
 # ===============================
 # DROP
@@ -333,10 +333,21 @@ func _try_summon():
 	for i in range(2):
 		var scene: PackedScene = summon_scenes.pick_random()
 		var minion = scene.instantiate()
+		var min_x = -440.0; var max_x = 490.0
+		var min_y = -310.0; var max_y = 310.0
+		var spawn_pos: Vector2
+		
+		while true:
+			var rand_x = randf_range(min_x, max_x)
+			var rand_y = randf_range(min_y, max_y)
+			spawn_pos = Vector2(rand_x, rand_y)
+			if position.distance_to(spawn_pos) <= summon_radius and position.distance_to(spawn_pos) !=0:
+				minion.global_position = spawn_pos
+				break
 
-		var angle = randf() * TAU
-		var offset = Vector2(cos(angle), sin(angle)) * (summon_radius + randf() * 20.0)
-		minion.global_position = global_position + offset
+		#var angle = randf() * TAU
+		#var offset = Vector2(cos(angle), sin(angle)) * (summon_radius + randf() * 20.0)
+		#minion.global_position = global_position + offset
 
 		get_tree().current_scene.call_deferred("add_child", minion)
 
