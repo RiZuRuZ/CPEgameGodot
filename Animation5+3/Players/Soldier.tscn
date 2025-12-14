@@ -256,7 +256,7 @@ atk2dmg = 25
 arrowdmg = 20
 Heal_time = 3
 baseupdmg = 5
-baseupspd = 10
+baseupspd = 2
 baseuphealth = 40
 
 [node name="Area2D" type="Area2D" parent="." groups=["PlayerBody"]]

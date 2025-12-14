@@ -57,6 +57,13 @@ theme_override_font_sizes/normal_font_size = 28
 text = ".       SOS!!!"
 fit_content = true
 
+[node name="spcace to continue" type="Label" parent="UI"]
+offset_left = 790.0
+offset_top = 581.0
+offset_right = 928.0
+offset_bottom = 604.0
+text = "Space to continue"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(435.50006, 211.99998)
 scale = Vector2(0.61510414, 0.7760843)

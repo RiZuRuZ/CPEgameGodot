@@ -167,6 +167,7 @@ func _physics_process(delta: float) -> void:
 	damaged= false
 	if PreHealth != health and PreHealth != 0:
 		damaged= true
+		
 		PreHealth=health
 		if damaged:
 			print("Player hit! Health:", health)
