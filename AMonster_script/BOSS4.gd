@@ -95,7 +95,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	damaged = false
-	
+	if death:
+		return
 	# --- DEATH CHECK ---
 	if health <= 0 and not death:
 		death = true
@@ -108,7 +109,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# --- DAMAGE CHECK ---
-	if PreHealth != health:
+	if PreHealth != health and not death:
 		damaged = true
 		show_damage(PreHealth - health)
 		PreHealth = health
