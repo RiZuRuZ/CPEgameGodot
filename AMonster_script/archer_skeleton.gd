@@ -255,6 +255,7 @@ func _on_shoot_timer_timeout() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and area.get_parent().is_invincible == false:
 		area.get_parent().health -= bodydmg
+		
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

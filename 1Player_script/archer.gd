@@ -113,7 +113,8 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	time += delta
+	if health != MaxHealth:
+		time += delta
 	if health != MaxHealth and time >= Heal_time:
 		health +=  1 * lvlstat.Mutiregen
 		PreHealth = health
@@ -153,6 +154,7 @@ func _physics_process(delta: float) -> void:
 		#return
 	damaged= false
 	if PreHealth != health:
+		
 		damaged= true
 		PreHealth=health
 		if damaged:
