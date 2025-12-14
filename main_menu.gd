@@ -2,7 +2,7 @@ extends Control
 
 @onready var main_buttons: VBoxContainer = $MainButtons
 @onready var options: Panel = $Options
-
+@onready var lvl = $"/root/LevelSave"
 var tween:Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +16,12 @@ func _ready() -> void:
 	#tween.set_ease(Tween.EASE_IN_OUT) # Recommended for smooth pulsing
 	tween.tween_property($Label, "scale", Vector2(1.0, 1.0), 2)
 	#tween.set_ease(Tween.TRANS_LINEAR)
+	lvl.Mutihealth = 1
+	lvl.Mutispeed=1
+	lvl.Mutidam=1
+	lvl.Mutiregen=1
+	lvl.level = 1
+	lvl.prelvl = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
