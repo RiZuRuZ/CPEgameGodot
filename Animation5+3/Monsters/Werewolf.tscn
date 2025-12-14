@@ -242,6 +242,7 @@ script = ExtResource("1_h3jvg")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
+atk2dmg = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
