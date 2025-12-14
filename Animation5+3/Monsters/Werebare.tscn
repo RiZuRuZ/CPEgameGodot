@@ -430,6 +430,9 @@ script = ExtResource("1_e7xdx")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
+atk1dmg = 25
+atk2dmg = 25
+atk3dmg = 30
 
 [node name="Area2D" type="Area2D" parent="." groups=["EnemyBody"]]
 

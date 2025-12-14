@@ -220,6 +220,7 @@ _data = {
 collision_layer = 130
 collision_mask = 160
 script = ExtResource("1_g68df")
+health = 400
 gfx_path = NodePath("CharacterBody2D/Slime")
 anim_path = NodePath("CharacterBody2D/AnimationPlayer")
 area_path = NodePath("Area2D")
