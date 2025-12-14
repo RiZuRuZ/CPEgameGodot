@@ -102,10 +102,6 @@ func _physics_process(delta: float) -> void:
 		return
 
 
-	# ★ แก้ไข 2 (สำคัญที่สุด): ถ้าตายแล้ว ให้หยุดการทำงานทันที เพื่อไม่ให้ระบบ AI ไปสั่งเปลี่ยน Animation อื่น
-	if death:
-		return
-
 
 	if is_hurt or not can_move:
 		velocity = Vector2.ZERO
