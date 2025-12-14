@@ -144,8 +144,8 @@ func random_spawn_position() -> Vector2:
 		return Vector2.ZERO
 		
 	var player_pos = player.global_position
-	var min_x = -448.0; var max_x = 493.0
-	var min_y = -320.0; var max_y = 320.0
+	var min_x = -440.0; var max_x = 490.0
+	var min_y = -310.0; var max_y = 310.0
 	var spawn_pos: Vector2
 	
 	while true:
@@ -188,6 +188,7 @@ func _physics_process(delta: float) -> void:
 		$"/root/LevelSave".SaveMutiregen = $"/root/LevelSave".Mutiregen
 		$"/root/LevelSave".SaveLevel = $"/root/LevelSave".level
 		$"/root/LevelSave".SaveMutiregen =  $"/root/LevelSave".Mutiregen
+		$"/root/LevelSave".Saveprogress= $"/root/LevelSave".progress
 		$"/root/Wave".state = current_stage
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false

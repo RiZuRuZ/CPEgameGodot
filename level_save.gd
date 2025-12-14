@@ -10,6 +10,7 @@ var SaveMutidam = 1
 var SaveMutispeed=1
 var SaveMutiregen = 1
 var SaveLevel = 1
+var Saveprogress = 0
 var prelvl
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
