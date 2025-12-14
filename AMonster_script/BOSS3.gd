@@ -341,7 +341,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var target_player = area.get_parent()
 		if target_player.is_invincible == false:
 			target_player.health -= bodydmg
-			show_damage_to_player(bodydmg, target_player)
+			#show_damage_to_player(bodydmg, target_player)
 
 # 2. Attack 1
 func _on_atk_1_area_entered(area: Area2D) -> void:
@@ -349,7 +349,7 @@ func _on_atk_1_area_entered(area: Area2D) -> void:
 		var target_player = area.get_parent()
 		if target_player.is_invincible == false:
 			target_player.health -= atk1dmg
-			show_damage_to_player(atk1dmg, target_player)
+			#show_damage_to_player(atk1dmg, target_player)
 
 # 3. Attack 2
 func _on_atk_2_area_entered(area: Area2D) -> void:
@@ -357,7 +357,7 @@ func _on_atk_2_area_entered(area: Area2D) -> void:
 		var target_player = area.get_parent()
 		if target_player.is_invincible == false:
 			target_player.health -= atk2dmg
-			show_damage_to_player(atk2dmg, target_player)
+			#show_damage_to_player(atk2dmg, target_player)
 
 # 4. Attack 3 (เพิ่มใหม่)
 func _on_atk_3_area_entered(area: Area2D) -> void:
@@ -365,7 +365,7 @@ func _on_atk_3_area_entered(area: Area2D) -> void:
 		var target_player = area.get_parent()
 		if target_player.is_invincible == false:
 			target_player.health -= atk3dmg
-			show_damage_to_player(atk3dmg, target_player)
+			#show_damage_to_player(atk3dmg, target_player)
 
 
 func drop_item():

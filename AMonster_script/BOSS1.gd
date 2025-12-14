@@ -277,20 +277,20 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and not area.get_parent().is_invincible:
 		var player := area.get_parent()
 		player.health -= bodydmg
-		show_damage_to_player(bodydmg, player)
+		#show_damage_to_player(bodydmg, player)
 
 func _on_area_2d_2_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and not area.get_parent().is_invincible:
 		var player := area.get_parent()
 		player.health -= atk1dmg
-		show_damage_to_player(atk1dmg, player)
+		#show_damage_to_player(atk1dmg, player)
 
 
 func _on_atk_1_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerBody") and not area.get_parent().is_invincible:
 		var player := area.get_parent()
 		player.health -= atk2dmg
-		show_damage_to_player(atk2dmg, player)
+		#show_damage_to_player(atk2dmg, player)
 
 # ===============================
 # DROP

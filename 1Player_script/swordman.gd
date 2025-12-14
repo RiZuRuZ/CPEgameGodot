@@ -21,7 +21,7 @@ var animation: AnimationPlayer
 var area: Area2D
 
 # player setup
-@export var health : int = 100
+@export var health : int = 85
 @export var atk1dmg : int = 25
 @export var atk2dmg : int = 20
 @export var atk3dmg : int = 10
@@ -94,7 +94,7 @@ func _ready() -> void:
 	PreHealth = health
 	atk1dmg += baseupdmg*(lvlstat.Mutidam-1)
 	atk2dmg += baseupdmg*(lvlstat.Mutidam-1)
-	atk3dmg += baseupdmg*(lvlstat.Mutidam-1)
+	atk3dmg += 3*(lvlstat.Mutidam-1) #baseupdmg*(lvlstat.Mutidam-1)
 	SPEED += baseupspd*(lvlstat.Mutispeed-1)
 	$Control2/Control/Bar.value = health
 	$Control2/Control/Bar.max_value = MaxHealth
@@ -167,6 +167,7 @@ func _physics_process(delta: float) -> void:
 	damaged= false
 	if PreHealth != health and PreHealth != 0:
 		damaged= true
+		show_damage(PreHealth-health)
 		PreHealth=health
 		if damaged:
 			print("Player hit! Health:", health)
@@ -346,9 +347,24 @@ func _on_magnet_area_entered(area: Area2D) -> void:
 		
 		
 func show_damage(amount: int):
+	# 1. เช็คความปลอดภัย ถ้าไม่อยู่ใน Tree (เช่น กำลังเปลี่ยนฉาก) ให้หยุดทำงาน
+	if not is_inside_tree():
+		return
+
 	var DamagePopup = preload("res://Animation5+3/DamagePopUp.tscn")
 	var popup = DamagePopup.instantiate()
-	get_tree().current_scene.add_child(popup)
+	
+	# 2. แก้จุดเกิด Error: เปลี่ยนจาก current_scene เป็น get_tree().root หรือ get_parent()
+	# การใช้ get_tree().root จะปลอดภัยที่สุดเพราะ root มีอยู่เสมอแม้เปลี่ยนฉาก
+	get_tree().root.add_child(popup) 
 
 	popup.global_position = global_position + Vector2(10, 10)
-	popup.set_text(str(amount), Color.GREEN)  
+	
+	# 3. ตรรกะสี แดง/เขียว
+	if PreHealth > health:
+		# เลือดเก่า มากกว่า เลือดใหม่ = โดนดาเมจ (สีแดง)
+		popup.set_text(str(amount), Color.RED)  
+	else:
+		# เลือดเก่า น้อยกว่า เลือดใหม่ = ฮีล (สีเขียว)
+		popup.set_text(str(amount), Color.GREEN)
+		

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var SPEED: float = 100.0
+var SPEED: float = 70.0
 
 var motion := Vector2.ZERO
 #monter,position
@@ -18,9 +18,9 @@ var PreHealth = 0
 var damaged:=false
 
 # player setup
-@export var health : int = 100
+@export var health : int = 80
 @export var arrow1dmg : int = 20
-@export var arrow2dmg : int = 50
+@export var arrow2dmg : int = 35
 @export var Heal_time :int = 15
 var time =0
 @onready var lvlstat = $"/root/LevelSave"
@@ -154,6 +154,7 @@ func _physics_process(delta: float) -> void:
 	damaged= false
 	if PreHealth != health:
 		damaged= true
+		show_damage(PreHealth-health)
 		PreHealth=health
 		if damaged:
 			print("Player hit! Health:", health)
@@ -358,9 +359,23 @@ func _on_magnet_area_entered(area: Area2D) -> void:
 		area.follow(self)
 		
 func show_damage(amount: int):
+	# 1. เช็คความปลอดภัย ถ้าไม่อยู่ใน Tree (เช่น กำลังเปลี่ยนฉาก) ให้หยุดทำงาน
+	if not is_inside_tree():
+		return
+
 	var DamagePopup = preload("res://Animation5+3/DamagePopUp.tscn")
 	var popup = DamagePopup.instantiate()
-	get_tree().current_scene.add_child(popup)
+	
+	# 2. แก้จุดเกิด Error: เปลี่ยนจาก current_scene เป็น get_tree().root หรือ get_parent()
+	# การใช้ get_tree().root จะปลอดภัยที่สุดเพราะ root มีอยู่เสมอแม้เปลี่ยนฉาก
+	get_tree().root.add_child(popup) 
 
 	popup.global_position = global_position + Vector2(10, 10)
-	popup.set_text(str(amount), Color.GREEN)
+	
+	# 3. ตรรกะสี แดง/เขียว
+	if PreHealth > health:
+		# เลือดเก่า มากกว่า เลือดใหม่ = โดนดาเมจ (สีแดง)
+		popup.set_text(str(amount), Color.RED)  
+	else:
+		# เลือดเก่า น้อยกว่า เลือดใหม่ = ฮีล (สีเขียว)
+		popup.set_text(str(amount), Color.GREEN)

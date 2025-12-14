@@ -373,13 +373,12 @@ script = ExtResource("1_sqt8h")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
-atk1dmg = 20
 atk2dmg = 15
-atk3dmg = 30
+atk3dmg = 25
 Heal_time = 3
-baseupdmg = 5
+baseupdmg = 3
 baseupspd = 2
-baseuphealth = 40
+baseuphealth = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)

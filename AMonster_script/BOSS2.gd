@@ -315,7 +315,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if target_player.is_invincible == false:
 			target_player.health -= bodydmg
 			# ⭐ เพิ่มบรรทัดนี้: เรียก popup
-			show_damage_to_player(bodydmg, target_player)
+			#show_damage_to_player(bodydmg, target_player)
 
 # 2. ส่วนท่าโจมตี 1 (Attack 1)
 func _on_atk_1_area_entered(area: Area2D) -> void:
@@ -324,7 +324,7 @@ func _on_atk_1_area_entered(area: Area2D) -> void:
 		if target_player.is_invincible == false:
 			target_player.health -= atk1dmg
 			# ⭐ เพิ่มบรรทัดนี้
-			show_damage_to_player(atk1dmg, target_player)
+			#show_damage_to_player(atk1dmg, target_player)
 
 # 3. ส่วนท่าโจมตี 2 (Attack 2)
 func _on_atk_2_area_entered(area: Area2D) -> void:
@@ -333,7 +333,7 @@ func _on_atk_2_area_entered(area: Area2D) -> void:
 		if target_player.is_invincible == false:
 			target_player.health -= atk2dmg
 			# ⭐ เพิ่มบรรทัดนี้
-			show_damage_to_player(atk2dmg, target_player)
+			#show_damage_to_player(atk2dmg, target_player)
 
 
 func drop_item():
