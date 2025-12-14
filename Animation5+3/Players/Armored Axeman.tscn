@@ -358,7 +358,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0vs0"]
-size = Vector2(51, 21)
+size = Vector2(51, 28)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_274kv"]
 radius = 50.0
@@ -398,13 +398,13 @@ vframes = 7
 [node name="ATK1" type="Area2D" parent="Sprite2D" groups=["Hitbox1"]]
 
 [node name="atk1" type="CollisionPolygon2D" parent="Sprite2D/ATK1"]
-polygon = PackedVector2Array(-9, -12, -1, -16, 8, -12, 13, -3, 14, 7, 11, 11, 21, 11, 27, 7, 24, -3, 17, -12, 8, -18, 0, -21, -14, -19, -14, -16)
+polygon = PackedVector2Array(-8, -10, 1, -11, 7, -7, 9, -2, 10, 7, 11, 11, 21, 11, 27, 7, 24, -3, 17, -12, 8, -18, 0, -21, -14, -19, -14, -16)
 
 [node name="ATK2" type="Area2D" parent="Sprite2D" groups=["Hitbox2"]]
 
 [node name="atk2" type="CollisionShape2D" parent="Sprite2D/ATK2"]
 visible = false
-position = Vector2(2.5, 0.5)
+position = Vector2(2.5, -1)
 shape = SubResource("RectangleShape2D_u0vs0")
 
 [node name="ATK3" type="Area2D" parent="Sprite2D" groups=["Hitbox3"]]

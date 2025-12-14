@@ -232,6 +232,7 @@ func attack_coroutine(axis_side: bool) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	_disable_collision()
 	if anim_name == "Death":
 		drop_item()
 		queue_free()
