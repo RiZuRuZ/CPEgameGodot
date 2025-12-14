@@ -367,8 +367,8 @@ _data = {
 }
 
 [node name="OrcRaider" type="CharacterBody2D"]
-collision_layer = 128
-collision_mask = 160
+collision_layer = 64
+collision_mask = 96
 script = ExtResource("1_i8iq3")
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")

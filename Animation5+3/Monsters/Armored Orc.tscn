@@ -396,6 +396,7 @@ gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")
 health = 150
+atk3dmg = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

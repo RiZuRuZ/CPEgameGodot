@@ -307,9 +307,11 @@ _data = {
 }
 
 [node name="Boss4" type="CharacterBody2D"]
-collision_layer = 128
-collision_mask = 32
+collision_layer = 130
+collision_mask = 160
 script = ExtResource("1_qnbje")
+atk1dmg = 35
+atk3dmg = 40
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
 area_path = NodePath("Area2D")

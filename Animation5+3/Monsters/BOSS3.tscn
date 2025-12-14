@@ -426,13 +426,14 @@ size = Vector2(20, 23)
 size = Vector2(17.107605, 19.7047)
 
 [node name="Boss3" type="CharacterBody2D"]
-collision_layer = 128
-collision_mask = 32
+collision_layer = 130
+collision_mask = 160
 script = ExtResource("1_7ignv")
 SPEED = 70.0
 DETECT_RADIUS = 220.0
-atk1dmg = 20
-atk2dmg = 20
+atk1dmg = 40
+atk2dmg = 40
+atk3dmg = 50
 bodydmg = 10
 gfx_path = NodePath("Sprite2D")
 anim_path = NodePath("AnimationPlayer")
