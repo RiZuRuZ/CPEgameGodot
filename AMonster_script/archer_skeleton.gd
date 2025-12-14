@@ -96,21 +96,10 @@ func _physics_process(delta: float) -> void:
 		
 	$Bar.value = health
 	damaged= false
-	if health <= 0:
-			death = true
-			is_hurt = false
-			can_attack = false
-			can_move = false
-			play_anim("death")
-			
-	if PreHealth != health:
+	if PreHealth != health and not death:
 		damaged = true
 		show_damage(PreHealth - health)
 		PreHealth = health
-		
-		# >>>>>> จุดสำคัญ: สั่งหยุด Timer ทันทีที่โดนตี <<<<<<
-		shoot_timer.stop()
-		# ===============================================
 
 		# ตอนนี้ถ้ามอนตาย ให้โชว์ damage แล้วค่อยเข้าสู่ death state
 		if health <= 0 and not death:
@@ -120,13 +109,18 @@ func _physics_process(delta: float) -> void:
 			can_move = false
 			play_anim("death")
 			return   # <<< ออกจากฟังก์ชันหลังตาย
-		else:
+		elif not death:  # ★ แก้ไข 1: เปลี่ยนจาก else เป็น elif เพื่อกันไม่ให้เล่นท่า hurt ซ้ำตอนตายแล้ว
 			# ยังไม่ตาย → เล่นท่า hurt
 			is_hurt = true
 			can_move = false
 			can_attack = false
 			if animation:
 				animation.play("hurt")
+
+	# ★ แก้ไข 2 (สำคัญที่สุด): ถ้าตายแล้ว ให้หยุดการทำงานทันที เพื่อไม่ให้ระบบ AI ไปสั่งเปลี่ยน Animation อื่น
+	if death:
+		return
+
 
 	if is_hurt or not can_move:
 		velocity = Vector2.ZERO
