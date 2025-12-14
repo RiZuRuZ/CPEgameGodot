@@ -218,7 +218,7 @@ _data = {
 
 [node name="Boss1" type="CharacterBody2D"]
 collision_layer = 128
-collision_mask = 0
+collision_mask = 32
 script = ExtResource("1_g68df")
 gfx_path = NodePath("CharacterBody2D/Slime")
 anim_path = NodePath("CharacterBody2D/AnimationPlayer")

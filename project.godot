@@ -114,4 +114,10 @@ e={
 
 [layer_names]
 
+2d_physics/layer_1="player"
+2d_physics/layer_2="tier1"
 2d_physics/layer_3="walls"
+2d_physics/layer_5="tier2"
+2d_physics/layer_6="border"
+2d_physics/layer_7="tier3"
+2d_physics/layer_8="Boss"
