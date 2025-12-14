@@ -6,6 +6,7 @@ extends Control
 var tween:Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_tree().paused = false
 	main_buttons.visible = true
 	options.visible = false
 	await get_tree().process_frame
@@ -31,6 +32,7 @@ func _process(delta: float) -> void:
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://selection.tscn")
+	queue_free()
 	print("Start pressed")
 
 
