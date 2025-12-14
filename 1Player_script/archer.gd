@@ -111,24 +111,14 @@ func _ready() -> void:
 	arrow_spawnR = get_node(arrow_spawnR_path)
 	arrow_spawnL = get_node(arrow_spawnL_path)
 	
-	MaxHealth += lvlstat.Mutihealth * baseuphealth
-	health = MaxHealth
-	PreHealth = health
-	%Bar.value = health
-	%Bar.max_value = MaxHealth
-	preupheal =lvlstat.Mutihealth
-	preupspd=lvlstat.Mutispeed
-	preupdmg=lvlstat.Mutidam
-	%XP.value = lvlstat.progress
-
 
 func _physics_process(delta: float) -> void:
 	time += delta
 	if health != MaxHealth and time >= Heal_time:
-		health += 1 * lvlstat.Mutiregen
+		health +=  1 * lvlstat.Mutiregen
 		PreHealth = health
 		show_damage(1 * lvlstat.Mutiregen)
-		time-=Heal_time
+		time = 0
 	if level >= 7:
 			%XP.max_value = 40
 	elif level >= 3:
@@ -138,15 +128,15 @@ func _physics_process(delta: float) -> void:
 	$"/root/LevelSave".level = level
 #	check when stat is change ==============================
 	if preupdmg != lvlstat.Mutidam and lvlstat.Mutidam !=1:
-		arrow1dmg += 5
-		arrow2dmg += 5
+		arrow1dmg += baseupdmg
+		arrow2dmg += baseupdmg
 		preupdmg = lvlstat.Mutidam
 #		==================================================
 	if preupheal != lvlstat.Mutihealth and lvlstat.Mutihealth !=1:
-		MaxHealth += 20
+		MaxHealth += baseuphealth
 		preupheal = lvlstat.Mutihealth
 	if preupspd != lvlstat.Mutispeed and lvlstat.Mutispeed !=1:
-		SPEED += 5
+		SPEED += baseupspd
 		preupspd = lvlstat.Mutispeed
 	%Bar.value = health
 	%Bar.max_value = MaxHealth

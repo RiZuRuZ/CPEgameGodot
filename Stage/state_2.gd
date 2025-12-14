@@ -13,6 +13,10 @@ var state_time: Timer = null
 @export var ORCRIDER : PackedScene
 @export var WEREBARE : PackedScene
 @export var WEREWOLF : PackedScene
+@export var BOSS1 : PackedScene
+@export var BOSS2 : PackedScene
+@export var BOSS3 : PackedScene
+@export var BOSS4 : PackedScene
 # โหลดมอน
 var PlayerScene
 #var SLIME
@@ -35,9 +39,11 @@ func _ready():
 	# --- เก็บข้อมูล Stage → Waves --
 	stages = {
 		2: {
-			1: [ [SLIME, 2], [SKELETON, 3], [ORC,5], [WEREWOLF,3] ],
-			2: [ [SKELETON, 6],[ORC,8] , [WEREWOLF,5]  ],
-			3: [ [SKELETON, 12],[ORC,10], [WEREWOLF,7],[ORCRIDER,1] ],
+			1: [ [SLIME, 2], [SKELETON, 3], [ORC,4] ],
+			2: [ [ORC,3] ,[WEREWOLF,2], [ARCHERSKELETON,2], [ARMOREDORC,1]],
+			3: [ [SKELETON, 3],[ARCHERSKELETON,2], [WEREWOLF,2], [WEREBARE,2]],
+			4: [ [ORCRIDER,1],[ARMOREDORC,2] ],
+			5: [ [BOSS2, 1],[ARCHERSKELETON,5], [SKELETON,2], [WEREBARE,1] ]
 		}
 	}
 	#SLIME = preload(slime_paht)
@@ -78,7 +84,7 @@ func start_stage(stage_number:int):
 # ------------------------------
 func start_wave_loop():
 	wave_timer = Timer.new()
-	wave_timer.wait_time = 5.0
+	wave_timer.wait_time = 15.0
 	wave_timer.autostart = true
 	wave_timer.one_shot = false
 	add_child(wave_timer)
@@ -86,6 +92,7 @@ func start_wave_loop():
 func _on_next_wave():
 	$"/root/Wave/CanvasLayer/Label".visible = true
 	$"/root/Wave/CanvasLayer/time".visible = true
+	wave_timer.start(15.0)
 	var wave_data = stages[current_stage]
 	if not wave_data.has(current_wave):
 		wave_timer.stop()
@@ -153,16 +160,22 @@ func random_spawn_position() -> Vector2:
 	return spawn_pos
 func _physics_process(delta: float) -> void:
 	var monster = get_tree().get_node_count_in_group("EnemyBody")
-	if is_instance_valid(wave_timer) and monster != 0:
+	if is_instance_valid(wave_timer):
+		# อัปเดตเวลา UI
 		$"/root/Wave".nextwave = wave_timer.time_left
 		$"/root/Wave".wave = str(current_wave-1)
-	else:
-		pass
+		
+		# >>>> จุดสำคัญ: เช็คมอนหมด แล้วเร่งเวลา <<<<
+		# ถ้ามอนสเตอร์หมด (0 ตัว) และเวลายังเหลือมากกว่า 3 วินาที และยังมีเวฟต่อไปรออยู่
+		if monster == 0 and wave_timer.time_left > 3.0 and stages[current_stage].has(current_wave):
+			print("All clear! Next wave in 3 seconds...")
+			wave_timer.start(3.0) # บังคับให้นับถอยหลังใหม่เริ่มที่ 3 วิทันที
+		# =======================================
 	var player = get_tree().get_first_node_in_group("player")
 	if player.health <= 0:
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false
-	if monster == 0 and current_stage == 2 and current_wave > 3:
+	if monster == 0 and current_stage == 2 and current_wave > 5:
 		print("Stage", current_stage, "Complete!")
 		current_stage +=1
 		$"/root/LevelSave".SaveMutihealth = $"/root/LevelSave".Mutihealth
@@ -170,6 +183,7 @@ func _physics_process(delta: float) -> void:
 		$"/root/LevelSave".SaveMutispeed = $"/root/LevelSave".Mutispeed
 		$"/root/LevelSave".SaveMutiregen = $"/root/LevelSave".Mutiregen
 		$"/root/LevelSave".SaveLevel = $"/root/LevelSave".level
+		$"/root/LevelSave".SaveMutiregen =  $"/root/LevelSave".Mutiregen
 		$"/root/Wave".state = current_stage
 		$"/root/Wave/CanvasLayer/Label".visible = false
 		$"/root/Wave/CanvasLayer/time".visible = false

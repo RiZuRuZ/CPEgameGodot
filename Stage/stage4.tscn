@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1kacjgdlayjx"]
+[gd_scene load_steps=18 format=3 uid="uid://d1kacjgdlayjx"]
 
 [ext_resource type="Script" uid="uid://de6jtww4f1weg" path="res://Stage/stage_4.gd" id="1_lubfe"]
 [ext_resource type="PackedScene" uid="uid://duvyc5y00pmcd" path="res://Ascenes/levels/level4.tscn" id="2_lubfe"]
@@ -13,6 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://gupkyg6y11g3" path="res://Animation5+3/Monsters/Orc Raider.tscn" id="10_w46f3"]
 [ext_resource type="PackedScene" uid="uid://by70vibh1snao" path="res://Animation5+3/Monsters/Werebare.tscn" id="11_hxs7h"]
 [ext_resource type="PackedScene" uid="uid://1cmyky6uanl1" path="res://Animation5+3/Monsters/Werewolf.tscn" id="12_pk7wh"]
+[ext_resource type="PackedScene" uid="uid://bgopsfhhktmj5" path="res://Animation5+3/Monsters/BOSS1.tscn" id="13_byyuw"]
+[ext_resource type="PackedScene" uid="uid://dwjsf6fsludh1" path="res://Animation5+3/Monsters/BOSS2.tscn" id="14_xre1m"]
+[ext_resource type="PackedScene" uid="uid://dnco8nuem55wb" path="res://Animation5+3/Monsters/BOSS3.tscn" id="15_xe3jy"]
+[ext_resource type="PackedScene" uid="uid://dwyo3jns2isv" path="res://Animation5+3/Monsters/BOSS4.tscn" id="16_4xqay"]
 
 [node name="stage4" type="Node2D"]
 script = ExtResource("1_lubfe")
@@ -27,6 +31,10 @@ GREATSWORDSKELETON = ExtResource("9_4xqay")
 ORCRIDER = ExtResource("10_w46f3")
 WEREBARE = ExtResource("11_hxs7h")
 WEREWOLF = ExtResource("12_pk7wh")
+BOSS1 = ExtResource("13_byyuw")
+BOSS2 = ExtResource("14_xre1m")
+BOSS3 = ExtResource("15_xe3jy")
+BOSS4 = ExtResource("16_4xqay")
 
 [node name="Level4" parent="." instance=ExtResource("2_lubfe")]
 scale = Vector2(0.99842024, 1.0044843)
