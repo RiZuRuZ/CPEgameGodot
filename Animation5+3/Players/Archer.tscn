@@ -162,8 +162,8 @@ area_path = NodePath("Area2D")
 arrow_spawnR_path = NodePath("ArrowSpawnR")
 arrow_spawnL_path = NodePath("ArrowSpawnL")
 Heal_time = 3
-baseupdmg = 2
-baseupspd = 5
+baseupdmg = 5
+baseupspd = 2
 baseuphealth = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

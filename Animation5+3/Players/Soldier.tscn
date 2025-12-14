@@ -255,9 +255,9 @@ atk1dmg = 20
 atk2dmg = 25
 arrowdmg = 20
 Heal_time = 3
-baseupdmg = 1
-baseupspd = 5
-baseuphealth = 20
+baseupdmg = 5
+baseupspd = 10
+baseuphealth = 40
 
 [node name="Area2D" type="Area2D" parent="." groups=["PlayerBody"]]
 collision_mask = 5

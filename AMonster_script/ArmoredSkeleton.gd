@@ -76,6 +76,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$Bar.value = health
 	damaged= false
+	if death:
+		return
 	if PreHealth != health and not death:
 		damaged = true
 		show_damage(PreHealth - health)
@@ -98,8 +100,7 @@ func _physics_process(delta: float) -> void:
 				animation.play("hurt")
 
 	# ★ แก้ไข 2 (สำคัญที่สุด): ถ้าตายแล้ว ให้หยุดการทำงานทันที เพื่อไม่ให้ระบบ AI ไปสั่งเปลี่ยน Animation อื่น
-	if death:
-		return
+
 
 
 	if is_hurt or not can_move:
@@ -231,7 +232,7 @@ func attack_coroutine(axis_side: bool) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "Death":
+	if anim_name == "death":
 		drop_item()
 		queue_free()
 	elif anim_name == "hurt":
