@@ -23,6 +23,7 @@ func _ready() -> void:
 	lvl.Mutiregen=1
 	lvl.level = 1
 	lvl.prelvl = 1
+	$"/root/Wave/CanvasLayer".visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
