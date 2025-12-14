@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Wave="*res://wave.tscn"
 LevelSave="*res://level_save.tscn"
+Setting="*res://PauseMenu/Setting.gd"
 
 [display]
 
