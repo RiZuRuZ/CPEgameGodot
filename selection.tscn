@@ -1,4 +1,4 @@
-[gd_scene load_steps=182 format=3 uid="uid://chrkclcsr7163"]
+[gd_scene load_steps=149 format=3 uid="uid://chrkclcsr7163"]
 
 [ext_resource type="Script" uid="uid://cagxt68g5p6j7" path="res://selection.gd" id="1_b8hy4"]
 [ext_resource type="Texture2D" uid="uid://duidiypmpqlaq" path="res://Scene Asset/color bg.png" id="2_c0xta"]
@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dltpklyc3e6es" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Soldier/Soldier with shadows/Soldier.png" id="3_umr4q"]
 [ext_resource type="Texture2D" uid="uid://bc4wuocpbn6su" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Archer/Archer with shadows/Archer.png" id="3_y36no"]
 [ext_resource type="AudioStream" uid="uid://cnuutn1i12aup" path="res://Background music/Limujii - November (freetouse.com).mp3" id="8_c0xta"]
-[ext_resource type="Texture2D" uid="uid://boiwlx85o5db1" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Wizard/Wizard with shadows/Wizard.png" id="8_noibv"]
+[ext_resource type="Texture2D" uid="uid://c0dctyhdmepu5" path="res://Ascenes/cutscene/Hero.png" id="8_noibv"]
+[ext_resource type="Texture2D" uid="uid://b3tf157gd81eo" path="res://smoke-removebg-preview.png" id="9_u4fyf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_noibv"]
 texture = ExtResource("2_c0xta")
@@ -1048,276 +1049,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_25qst"]
-atlas = ExtResource("8_noibv")
-region = Rect2(0, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_15tnt"]
-atlas = ExtResource("8_noibv")
-region = Rect2(100, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tkovq"]
-atlas = ExtResource("8_noibv")
-region = Rect2(200, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hdbud"]
-atlas = ExtResource("8_noibv")
-region = Rect2(300, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yp1j8"]
-atlas = ExtResource("8_noibv")
-region = Rect2(400, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sgbay"]
-atlas = ExtResource("8_noibv")
-region = Rect2(500, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bbsjw"]
-atlas = ExtResource("8_noibv")
-region = Rect2(600, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xiddr"]
-atlas = ExtResource("8_noibv")
-region = Rect2(700, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_memee"]
-atlas = ExtResource("8_noibv")
-region = Rect2(800, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gqwkw"]
-atlas = ExtResource("8_noibv")
-region = Rect2(900, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_80e6s"]
-atlas = ExtResource("8_noibv")
-region = Rect2(1000, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4umxx"]
-atlas = ExtResource("8_noibv")
-region = Rect2(1100, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ck8hy"]
-atlas = ExtResource("8_noibv")
-region = Rect2(1200, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_da2h3"]
-atlas = ExtResource("8_noibv")
-region = Rect2(1300, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j7xh2"]
-atlas = ExtResource("8_noibv")
-region = Rect2(1400, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_45mv0"]
-atlas = ExtResource("8_noibv")
-region = Rect2(0, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_naoet"]
-atlas = ExtResource("8_noibv")
-region = Rect2(100, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nu3ll"]
-atlas = ExtResource("8_noibv")
-region = Rect2(200, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_njv1o"]
-atlas = ExtResource("8_noibv")
-region = Rect2(300, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_seixl"]
-atlas = ExtResource("8_noibv")
-region = Rect2(400, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0llwv"]
-atlas = ExtResource("8_noibv")
-region = Rect2(500, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_upvg8"]
-atlas = ExtResource("8_noibv")
-region = Rect2(600, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lsxa3"]
-atlas = ExtResource("8_noibv")
-region = Rect2(700, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qvo0h"]
-atlas = ExtResource("8_noibv")
-region = Rect2(800, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j1hn5"]
-atlas = ExtResource("8_noibv")
-region = Rect2(900, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ruuge"]
-atlas = ExtResource("8_noibv")
-region = Rect2(1000, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ck428"]
-atlas = ExtResource("8_noibv")
-region = Rect2(1100, 500, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m5fmu"]
-atlas = ExtResource("8_noibv")
-region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vv0co"]
-atlas = ExtResource("8_noibv")
-region = Rect2(100, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hm56l"]
-atlas = ExtResource("8_noibv")
-region = Rect2(200, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dqtd8"]
-atlas = ExtResource("8_noibv")
-region = Rect2(300, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0q2of"]
-atlas = ExtResource("8_noibv")
-region = Rect2(400, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1q2w0"]
-atlas = ExtResource("8_noibv")
-region = Rect2(500, 0, 100, 100)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_oa7gg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_25qst")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_15tnt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tkovq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hdbud")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yp1j8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sgbay")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bbsjw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xiddr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_memee")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gqwkw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_80e6s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4umxx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ck8hy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_da2h3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j7xh2")
-}],
-"loop": true,
-"name": &"attack1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_45mv0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_naoet")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nu3ll")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_njv1o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_seixl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0llwv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_upvg8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lsxa3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qvo0h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j1hn5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ruuge")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ck428")
-}],
-"loop": true,
-"name": &"attack2",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m5fmu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vv0co")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hm56l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dqtd8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0q2of")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1q2w0")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
-
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_b8hy4")
 numberofplayer = 5
 scroll_time = 1
 
 [node name="Background" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -7053.0
-offset_right = 7604.0
-offset_bottom = -30.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -7328.5
+offset_right = 7328.5
+offset_bottom = 1000.0
 grow_horizontal = 2
-grow_vertical = 2
 scale = Vector2(1.494517, 1.494517)
 pivot_offset = Vector2(7904.5, 0)
 theme_override_styles/panel = SubResource("StyleBoxTexture_noibv")
@@ -1574,56 +1324,10 @@ offset_bottom = 323.15
 scale = Vector2(1.8420074, 1.7125356)
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer5"]
+[node name="tawan" type="Button" parent="VBoxContainer5"]
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_noibv")
-theme_override_font_sizes/font_size = 20
-text = "Skill"
-
-[node name="m1" type="HBoxContainer" parent="VBoxContainer5"]
-layout_mode = 2
-
-[node name="m1" type="Button" parent="VBoxContainer5/m1"]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("3_noibv")
-theme_override_font_sizes/font_size = 25
-text = "m1"
-
-[node name="m2" type="HBoxContainer" parent="VBoxContainer5"]
-layout_mode = 2
-
-[node name="m2" type="Button" parent="VBoxContainer5/m2"]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("3_noibv")
-theme_override_font_sizes/font_size = 25
-text = "m2"
-
-[node name="q" type="HBoxContainer" parent="VBoxContainer5"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="q" type="Button" parent="VBoxContainer5/q"]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("3_noibv")
-theme_override_font_sizes/font_size = 25
-text = "q"
-
-[node name="wizard" type="Button" parent="VBoxContainer5"]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("3_noibv")
 theme_override_font_sizes/font_size = 25
 text = "select
@@ -2009,20 +1713,17 @@ libraries = {
 sprite_frames = SubResource("SpriteFrames_25qst")
 animation = &"attack3"
 
-[node name="wizard" type="Sprite2D" parent="." groups=["player"]]
+[node name="tawan" type="Sprite2D" parent="." groups=["player"]]
 texture_filter = 1
-position = Vector2(-6878.975, 331)
-scale = Vector2(8.902885, 8.902885)
-hframes = 6
+position = Vector2(-6800, 331)
+scale = Vector2(0.61, 0.61)
+texture = ExtResource("8_noibv")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="wizard"]
-libraries = {
-&"": SubResource("AnimationLibrary_7b2rf")
-}
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="wizard"]
-sprite_frames = SubResource("SpriteFrames_oa7gg")
-animation = &"idle"
+[node name="smoke" type="Sprite2D" parent="tawan"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-10, -2)
+scale = Vector2(0.023564681, 0.023564681)
+texture = ExtResource("9_u4fyf")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_c0xta")
@@ -2047,6 +1748,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_noibv")
 theme_override_font_sizes/font_size = 100
 text = "swordman"
+
+[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="mouse_entered" from="VBoxContainer/m1/m1" to="." method="_on_m_1_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/m1/m1" to="." method="_on_m_1_mouse_exited"]
@@ -2098,18 +1801,8 @@ text = "swordman"
 [connection signal="mouse_entered" from="VBoxContainer4/archer" to="." method="_on_archer_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer4/archer" to="." method="_on_archer_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer4/archer" to="." method="_on_archer_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer5/m1/m1" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_entered" from="VBoxContainer5/m1/m1" to="." method="_on_m_1_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer5/m1/m1" to="." method="_on_m_1_mouse_exited"]
-[connection signal="mouse_exited" from="VBoxContainer5/m1/m1" to="." method="_on_button_mouse_exited"]
-[connection signal="mouse_entered" from="VBoxContainer5/m2/m2" to="." method="_on_m_2_mouse_entered"]
-[connection signal="mouse_entered" from="VBoxContainer5/m2/m2" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer5/m2/m2" to="." method="_on_m_2_mouse_exited"]
-[connection signal="mouse_exited" from="VBoxContainer5/m2/m2" to="." method="_on_button_mouse_exited"]
-[connection signal="mouse_entered" from="VBoxContainer5/q/q" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer5/q/q" to="." method="_on_button_mouse_exited"]
-[connection signal="mouse_entered" from="VBoxContainer5/wizard" to="." method="_on_wizard_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer5/wizard" to="." method="_on_wizard_mouse_exited"]
-[connection signal="pressed" from="VBoxContainer5/wizard" to="." method="_on_wizard_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer5/tawan" to="." method="_on_tawan_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer5/tawan" to="." method="_on_tawan_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer5/tawan" to="." method="_on_tawan_pressed"]
 [connection signal="pressed" from="Camera2D/next/nextButt" to="." method="_on_next_butt_pressed"]
 [connection signal="pressed" from="Camera2D/prev/prevbutt" to="." method="_on_prevbutt_pressed"]

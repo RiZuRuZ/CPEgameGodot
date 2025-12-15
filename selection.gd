@@ -18,27 +18,26 @@ func _ready() -> void:
 	$VBoxContainer/swordman.pivot_offset = Vector2($VBoxContainer/swordman.size.x/2,$VBoxContainer/swordman.size.y/2)
 	$VBoxContainer3/Axeman.pivot_offset = Vector2($VBoxContainer3/Axeman.size.x/2,$VBoxContainer3/Axeman.size.y/2)
 	$VBoxContainer4/archer.pivot_offset = Vector2($VBoxContainer4/archer.size.x/2,$VBoxContainer4/archer.size.y/2)
-	$VBoxContainer5/wizard.pivot_offset = Vector2($VBoxContainer5/wizard.size.x/2,$VBoxContainer5/wizard.size.y/2)
+	$VBoxContainer5/tawan.pivot_offset = Vector2($VBoxContainer5/tawan.size.x/2,$VBoxContainer5/tawan.size.y/2)
 	$VBoxContainer.position.x = $swordman.position.x-Vboxandspritrlenght
 	$VBoxContainer2.position.x = $soldier.position.x-Vboxandspritrlenght
 	$VBoxContainer3.position.x = $axeman.position.x-Vboxandspritrlenght
 	$VBoxContainer4.position.x = $archer.position.x-Vboxandspritrlenght
-	$VBoxContainer5.position.x = $wizard.position.x-Vboxandspritrlenght
+	$VBoxContainer5.position.x = $tawan.position.x-Vboxandspritrlenght
 	$Camera2D.position.x = $swordman.position.x-100
 func _process(delta: float) -> void:
+	print($tawan.position.x)
 	if skill ==0 :
 		$swordman/AnimatedSprite2D.play("idle")
 		$soldier/AnimatedSprite2D.play("idle")
 		$axeman/AnimatedSprite2D.play("idle")
 		$archer/AnimatedSprite2D.play("idle")
-		$wizard/AnimatedSprite2D.play("idle")
 	elif skill == 1:
 		pass
 		$swordman/AnimatedSprite2D.play("attack1")
 		$soldier/AnimatedSprite2D.play("attack1")
 		$axeman/AnimatedSprite2D.play("attack1")
 		$archer/AnimatedSprite2D.play("attack1")
-		$wizard/AnimatedSprite2D.play("attack1")
 	elif skill == 2:
 		pass
 		$swordman/AnimatedSprite2D.play("attack2")
@@ -73,11 +72,10 @@ func _process(delta: float) -> void:
 		tween = create_tween()
 		tween.tween_property($Camera2D,"position", Vector2($archer.position.x-100,320),scroll_time)
 		$CanvasLayer2/hero.text = "Archer"
-	elif player%numberofplayer == 4 and $Camera2D.position.x != $wizard.position.x-100:
-		
+	elif player%numberofplayer == 4 and $Camera2D.position.x != $tawan.position.x-100:
 		tween = create_tween()
-		tween.tween_property($Camera2D,"position", Vector2($wizard.position.x-100,320),scroll_time)
-		$CanvasLayer2/hero.text = "Wizard"
+		tween.tween_property($Camera2D,"position", Vector2($tawan.position.x-100,320),scroll_time)
+		$CanvasLayer2/hero.text = "P'Tawan"
 func _on_next_butt_pressed() -> void:
 	player += 1
 
@@ -105,17 +103,17 @@ func _on_archer_pressed() -> void:
 	get_tree().change_scene_to_file("res://Ascenes/cutscene/cut_scene_intro.tscn")
 
 
-func _on_wizard_pressed() -> void:
+func _on_tawan_pressed() -> void:
 	$"/root/Wave".selection = 4
 	get_tree().change_scene_to_file("res://Ascenes/cutscene/cut_scene_intro.tscn")
 
 
-func _on_wizard_mouse_entered() -> void:
-	$VBoxContainer5/wizard.scale = Vector2(1.2,1.2)
+func _on_tawan_mouse_entered() -> void:
+	$VBoxContainer5/tawan.scale = Vector2(1.2,1.2)
 
 
-func _on_wizard_mouse_exited() -> void:
-	$VBoxContainer5/wizard.scale = Vector2(1,1)
+func _on_tawan_mouse_exited() -> void:
+	$VBoxContainer5/tawan.scale = Vector2(1,1)
 
 
 func _on_archer_mouse_entered() -> void:

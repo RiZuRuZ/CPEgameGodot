@@ -23,7 +23,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../tawan:scale")
+tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -243,14 +243,13 @@ shape = SubResource("CapsuleShape2D_eookp")
 shape = SubResource("CapsuleShape2D_eookp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.061, 0.061)
+scale = Vector2(0.051274866, 0.051274866)
 texture = ExtResource("2_arsgx")
 
 [node name="smoke" type="Sprite2D" parent="Sprite2D"]
-modulate = Color(1, 1, 1, 0.68474424)
-position = Vector2(-188.87898, -122.107056)
-rotation = 0.13380943
-scale = Vector2(0.599, 1.0131745)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-10, -2)
+scale = Vector2(0.023564681, 0.023564681)
 texture = ExtResource("3_xofwl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
