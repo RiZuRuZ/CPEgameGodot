@@ -48,7 +48,7 @@ func _ready():
 	if $"/root/Wave".selection == 0:
 		PlayerScene = preload("res://Animation5+3/Players/Soldier.tscn")
 	elif $"/root/Wave".selection == 1:
-		PlayerScene = preload("res://Animation5+3/Players/tawan.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/Swordman.tscn")
 	elif $"/root/Wave".selection == 2:
 		PlayerScene = preload("res://Animation5+3/Players/Armored Axeman.tscn")
 	elif $"/root/Wave".selection == 3:
