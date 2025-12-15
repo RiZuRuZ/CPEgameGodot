@@ -299,6 +299,7 @@ func _try_summon():
 # ANIMATION & COLLISIONS
 # ===============================
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	_disable_collision()
 	if anim_name == "death":
 		drop_item()
 		$Area2D.set_deferred("disable", false)
@@ -375,3 +376,6 @@ func show_damage_to_player(amount: int, target: Node2D):
 	
 	# ตั้งค่าสีและตัวเลข (สีแดงเข้มสำหรับผู้เล่นโดนตี)
 	popup.set_text(str(amount), Color.RED)
+func _disable_collision():
+	$Sprite2D/atk1/atk1.set_deferred("disabled",true)
+	$Sprite2D/atk2/atk2.set_deferred("disabled",true)
