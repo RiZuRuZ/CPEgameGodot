@@ -227,7 +227,7 @@ func _physics_process(delta: float) -> void:
 func _update_facing_to_mouse() -> void:
 	if not gfx:
 		return
-
+	
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var sx: float = abs(gfx.scale.x)
 
@@ -235,6 +235,7 @@ func _update_facing_to_mouse() -> void:
 		gfx.scale.x = sx
 	else:
 		gfx.scale.x = -sx
+		print("change")
 
 
 func _start_attack(anim_name: String, lock_movement: bool) -> void:
