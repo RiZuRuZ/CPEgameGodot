@@ -286,7 +286,5 @@ func show_damage(amount: int):
 	else:
 		popup.set_text(str(amount), Color.RED) 
 func _disable_collision():
-	$Sprite2D/atk1/atk1.set_deferred("disabled",true)
-	$Sprite2D/atk2/atk2.set_deferred("disabled",true)
-	$Sprite2D/atk3/atk3_1.set_deferred("disabled",true)
-	$Sprite2D/atk3/atk3_2.set_deferred("disabled",true)
+	$CharacterBody2D/Slime/atk1/CollisionShape2D.set_deferred("disabled",true)
+	$CharacterBody2D/Slime/Area2D2/CollisionPolygon2D.set_deferred("disabled",true)
