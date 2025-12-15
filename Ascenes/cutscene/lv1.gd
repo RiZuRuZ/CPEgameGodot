@@ -56,7 +56,7 @@ func type_text():
 	dialogue_text.text = full_text
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") or event.is_action_pressed("m1"):
+	if event.is_action_pressed("ui_accept"):
 		if is_typing:
 			is_typing = false
 			dialogue_text.text = full_text
