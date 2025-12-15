@@ -1305,7 +1305,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b8hy4")
-numberofplayer = 4
+numberofplayer = 5
 scroll_time = 1
 
 [node name="Background" type="Panel" parent="."]
@@ -2009,7 +2009,7 @@ libraries = {
 sprite_frames = SubResource("SpriteFrames_25qst")
 animation = &"attack3"
 
-[node name="wizard" type="Sprite2D" parent="."]
+[node name="wizard" type="Sprite2D" parent="." groups=["player"]]
 texture_filter = 1
 position = Vector2(-6878.975, 331)
 scale = Vector2(8.902885, 8.902885)
@@ -2057,8 +2057,8 @@ text = "swordman"
 [connection signal="mouse_entered" from="VBoxContainer/swordman" to="." method="_on_swordman_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/swordman" to="." method="_on_swordman_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/swordman" to="." method="_on_swordman_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer2/m1/m1" to="." method="_on_m_1_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer2/m1/m1" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer2/m1/m1" to="." method="_on_m_1_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer2/m1/m1" to="." method="_on_m_1_mouse_exited"]
 [connection signal="mouse_exited" from="VBoxContainer2/m1/m1" to="." method="_on_button_mouse_exited"]
 [connection signal="mouse_entered" from="VBoxContainer2/m2/m2" to="." method="_on_m_2_mouse_entered"]
@@ -2072,8 +2072,8 @@ text = "swordman"
 [connection signal="mouse_entered" from="VBoxContainer2/soldier" to="." method="_on_soldier_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer2/soldier" to="." method="_on_soldier_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer2/soldier" to="." method="_on_soldier_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer3/m1/m1" to="." method="_on_m_1_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer3/m1/m1" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer3/m1/m1" to="." method="_on_m_1_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer3/m1/m1" to="." method="_on_m_1_mouse_exited"]
 [connection signal="mouse_exited" from="VBoxContainer3/m1/m1" to="." method="_on_button_mouse_exited"]
 [connection signal="mouse_entered" from="VBoxContainer3/m2/m2" to="." method="_on_m_2_mouse_entered"]
@@ -2087,8 +2087,8 @@ text = "swordman"
 [connection signal="mouse_entered" from="VBoxContainer3/Axeman" to="." method="_on_axeman_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer3/Axeman" to="." method="_on_axeman_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer3/Axeman" to="." method="_on_axeman_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer4/m1/m1" to="." method="_on_m_1_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer4/m1/m1" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer4/m1/m1" to="." method="_on_m_1_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer4/m1/m1" to="." method="_on_m_1_mouse_exited"]
 [connection signal="mouse_exited" from="VBoxContainer4/m1/m1" to="." method="_on_button_mouse_exited"]
 [connection signal="mouse_entered" from="VBoxContainer4/m2/m2" to="." method="_on_m_2_mouse_entered"]
@@ -2098,8 +2098,8 @@ text = "swordman"
 [connection signal="mouse_entered" from="VBoxContainer4/archer" to="." method="_on_archer_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer4/archer" to="." method="_on_archer_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer4/archer" to="." method="_on_archer_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer5/m1/m1" to="." method="_on_m_1_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer5/m1/m1" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer5/m1/m1" to="." method="_on_m_1_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer5/m1/m1" to="." method="_on_m_1_mouse_exited"]
 [connection signal="mouse_exited" from="VBoxContainer5/m1/m1" to="." method="_on_button_mouse_exited"]
 [connection signal="mouse_entered" from="VBoxContainer5/m2/m2" to="." method="_on_m_2_mouse_entered"]
