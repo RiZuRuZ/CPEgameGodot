@@ -1,9 +1,24 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwlvjpu6pi5c2"]
 
-[ext_resource type="Script" path="res://AProjectile/AProjectileGD/shout.gd" id="1_ti3si"]
+[ext_resource type="Script" uid="uid://xhq56u1mp2i3" path="res://AProjectile/AProjectileGD/shout.gd" id="1_ti3si"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ti3si"]
 size = Vector2(153, 20)
+
+[sub_resource type="Animation" id="Animation_yxa12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ti3si"]
 resource_name = "dmg"
@@ -21,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_yxa12"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c45gm"]
