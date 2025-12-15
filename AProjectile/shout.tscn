@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://58repeaukiy1"]
+[gd_scene load_steps=6 format=3 uid="uid://cwlvjpu6pi5c2"]
 
-[ext_resource type="Script" uid="uid://xhq56u1mp2i3" path="res://AProjectile/AProjectileGD/shout.gd" id="1_ti3si"]
+[ext_resource type="Script" path="res://AProjectile/AProjectileGD/shout.gd" id="1_ti3si"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ti3si"]
 size = Vector2(153, 20)
