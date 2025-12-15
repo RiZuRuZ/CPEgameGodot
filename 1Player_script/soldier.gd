@@ -126,6 +126,8 @@ func _physics_process(delta: float) -> void:
 		time += delta
 	if health != MaxHealth and time >= Heal_time:
 		health +=  1 * lvlstat.Mutiregen+1
+		if health > MaxHealth:
+			health = MaxHealth
 		PreHealth = health
 		show_damage(1 * lvlstat.Mutiregen+1)
 		time = 0
