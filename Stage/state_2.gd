@@ -56,7 +56,7 @@ func _ready():
 	elif $"/root/Wave".selection == 3:
 		PlayerScene = preload("res://Animation5+3/Players/Archer.tscn")
 	elif $"/root/Wave".selection == 4:
-		PlayerScene = preload("res://Animation5+3/Players/Wizard.tscn")
+		PlayerScene = preload("res://Animation5+3/Players/tawan.tscn")
 	var player = PlayerScene.instantiate()
 	add_child(player)
 	#player.add_to_group("player")
