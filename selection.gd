@@ -32,14 +32,12 @@ func _process(delta: float) -> void:
 		$soldier/AnimatedSprite2D.play("idle")
 		$axeman/AnimatedSprite2D.play("idle")
 		$archer/AnimatedSprite2D.play("idle")
-		$tawan/AnimationPlayer.play("idle")
 	elif skill == 1:
 		pass
 		$swordman/AnimatedSprite2D.play("attack1")
 		$soldier/AnimatedSprite2D.play("attack1")
 		$axeman/AnimatedSprite2D.play("attack1")
 		$archer/AnimatedSprite2D.play("attack1")
-		$tawan/AnimationPlayer.play("attack1")
 	elif skill == 2:
 		pass
 		$swordman/AnimatedSprite2D.play("attack2")
