@@ -258,6 +258,7 @@ func _enter_rage():
 # ANIMATION EVENTS
 # ===============================
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	_disable_collision()
 	if anim_name == "death":
 		drop_item()
 		queue_free()
@@ -352,3 +353,8 @@ func _try_summon():
 		get_tree().current_scene.call_deferred("add_child", minion)
 
 	print("BOSS SUMMONED 2 MINIONS (UNLIMITED)")
+func _disable_collision():
+	$Sprite2D/atk1/atk1.set_deferred("disabled",true)
+	$Sprite2D/atk2/atk2.set_deferred("disabled",true)
+	$Sprite2D/atk3/atk3_1.set_deferred("disabled",true)
+	$Sprite2D/atk3/atk3_2.set_deferred("disabled",true)
