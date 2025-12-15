@@ -23,7 +23,8 @@ func _ready() -> void:
 	lvl.Mutiregen=1
 	lvl.level = 1
 	lvl.prelvl = 1
-	lvl.progress = 1
+	lvl.progress = 0
+	$"/root/Wave".state = 1
 	$"/root/Wave/CanvasLayer".visible = false
 
 
