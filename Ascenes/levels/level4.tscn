@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=4 uid="uid://duvyc5y00pmcd"]
+[gd_scene load_steps=90 format=4 uid="uid://duvyc5y00pmcd"]
 
 [ext_resource type="Texture2D" uid="uid://dh82v8fp1hsku" path="res://Scene Asset/fantasy_/forestDesert_.png" id="1_abmol"]
 [ext_resource type="Texture2D" uid="uid://dpg46dpw5d0xc" path="res://Scene Asset/fantasy_/swampDesert_.png" id="2_yfhtj"]
@@ -2972,13 +2972,16 @@ physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_3mm6o")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55r23"]
-size = Vector2(82, 351)
+size = Vector2(82, 274)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b5gxl"]
 size = Vector2(82, 111)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g81jo"]
 size = Vector2(82, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hfaq"]
+size = Vector2(81, 31)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5hfaq"]
 texture = ExtResource("32_yfhtj")
@@ -3036,7 +3039,7 @@ parameters/looping = true
 script = ExtResource("35_5hfaq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(-127, -127.5)
+position = Vector2(-127, -89)
 shape = SubResource("RectangleShape2D_55r23")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/Area2D"]
@@ -3066,6 +3069,10 @@ polygon = PackedVector2Array(-1, 0, 17, 0, 17, 15, 49, 16, 49, 36, 55, 36, 56, 4
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Node2D/Area2D"]
 position = Vector2(343, 60)
 polygon = PackedVector2Array(0, 0, 18, 0, 18, 31, 9, 30, 9, 14, 0, 14)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/Area2D"]
+position = Vector2(-127.5, -287.5)
+shape = SubResource("RectangleShape2D_5hfaq")
 
 [node name="TileMapLayer6" type="TileMapLayer" parent="."]
 visible = false
