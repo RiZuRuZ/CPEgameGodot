@@ -20,7 +20,6 @@ var damaged:=false
 # player setup
 @export var health : int = 80
 @export var arrow1dmg : int = 20
-@export var arrow2dmg : int = 35
 @export var Heal_time :int = 15
 var time =0
 @onready var lvlstat = $"/root/LevelSave"
@@ -79,7 +78,6 @@ func _ready() -> void:
 	health = MaxHealth
 	PreHealth = health
 	arrow1dmg += baseupdmg*(lvlstat.Mutidam-1)
-	arrow2dmg += baseupdmg*(lvlstat.Mutidam-1)
 	SPEED += baseupspd*(lvlstat.Mutispeed-1)
 	%Bar.value = health
 	%Bar.max_value = MaxHealth
@@ -132,7 +130,6 @@ func _physics_process(delta: float) -> void:
 #	check when stat is change ==============================
 	if preupdmg != lvlstat.Mutidam and lvlstat.Mutidam !=1:
 		arrow1dmg += baseupdmg
-		arrow2dmg += baseupdmg
 		preupdmg = lvlstat.Mutidam
 #		==================================================
 	if preupheal != lvlstat.Mutihealth and lvlstat.Mutihealth !=1:
@@ -195,10 +192,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("left"):  motion.x -= 1
 	if Input.is_action_pressed("down"):  motion.y += 1
 	if Input.is_action_pressed("up"):    motion.y -= 1
+	if Input.is_action_pressed("0"): gain_XP(5)
 
 
 	# --- attack inputs ---
-	if Input.is_action_just_pressed("m1")and not is_attacking:
+	if Input.is_action_pressed("m1"):
 		_start_attack("attack1", false)
 		_delayed_shoot(arrow1dmg)
 
@@ -229,13 +227,12 @@ func _update_facing_to_mouse() -> void:
 		return
 	
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	var sx: float = abs(gfx.scale.x)
+	var sx: float = abs($side.scale.x)
 
 	if mouse_pos.x < global_position.x:
-		gfx.scale.x = sx
+		$side.scale.x = sx
 	else:
-		gfx.scale.x = -sx
-		print("change")
+		$side.scale.x = -sx
 
 
 func _start_attack(anim_name: String, lock_movement: bool) -> void:
