@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cg16fec0xpjae"]
+[gd_scene load_steps=22 format=3 uid="uid://cg16fec0xpjae"]
 
 [ext_resource type="Script" uid="uid://307gh0uberov" path="res://AAmain/mainNEW.gd" id="1_272bh"]
 [ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Monsters/Slime.tscn" id="2_dg77c"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://by70vibh1snao" path="res://Animation5+3/Monsters/Werebare.tscn" id="11_lswn8"]
 [ext_resource type="PackedScene" uid="uid://1cmyky6uanl1" path="res://Animation5+3/Monsters/Werewolf.tscn" id="12_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://bgopsfhhktmj5" path="res://Animation5+3/Monsters/BOSS1.tscn" id="13_82xsv"]
+[ext_resource type="PackedScene" uid="uid://btdunpkpnmxg7" path="res://Animation5+3/Players/Lancer.tscn" id="18_074og"]
 
 [sub_resource type="Animation" id="Animation_lquwl"]
 resource_name = "Bocchi"
@@ -110,6 +111,12 @@ wait_time = 60.0
 one_shot = true
 
 [node name="Level1" parent="." instance=ExtResource("5_lquwl")]
+
+[node name="Lancer" parent="." instance=ExtResource("18_074og")]
+position = Vector2(56, 155)
+baseupdmg = 5
+baseupspd = 20
+baseuphealth = 20
 
 [connection signal="timeout" from="first" to="." method="_on_first_timeout"]
 [connection signal="timeout" from="wavetime" to="." method="_on_wavetime_timeout"]
