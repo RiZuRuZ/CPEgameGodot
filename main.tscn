@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cg16fec0xpjae"]
+[gd_scene load_steps=35 format=3 uid="uid://cg16fec0xpjae"]
 
 [ext_resource type="Script" uid="uid://307gh0uberov" path="res://AAmain/mainNEW.gd" id="1_272bh"]
 [ext_resource type="PackedScene" uid="uid://oa6rrve84tyk" path="res://Animation5+3/Monsters/Slime.tscn" id="2_dg77c"]
@@ -17,25 +17,19 @@
 [ext_resource type="PackedScene" uid="uid://by70vibh1snao" path="res://Animation5+3/Monsters/Werebare.tscn" id="11_lswn8"]
 [ext_resource type="PackedScene" uid="uid://1cmyky6uanl1" path="res://Animation5+3/Monsters/Werewolf.tscn" id="12_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://bgopsfhhktmj5" path="res://Animation5+3/Monsters/BOSS1.tscn" id="13_82xsv"]
-[ext_resource type="PackedScene" uid="uid://btdunpkpnmxg7" path="res://Animation5+3/Players/Lancer.tscn" id="18_074og"]
+[ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="16_qsp4k"]
+[ext_resource type="AudioStream" uid="uid://dvquvju8l8bvw" path="res://Sound SFX game/axe-hit-flesh-02-266299.mp3" id="17_kq58d"]
+[ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="19_htxhm"]
+[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="21_4k2k6"]
+[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="22_0rl1p"]
+[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="23_ok6jj"]
+[ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="24_facbu"]
+[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="25_b1qrp"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="26_come4"]
+[ext_resource type="Script" uid="uid://7corn8tvr4x5" path="res://Animation5+3/Players/health.gd" id="27_h8e4i"]
 
-[sub_resource type="Animation" id="Animation_lquwl"]
-resource_name = "Bocchi"
-length = 4.0
-loop_mode = 1
-step = 0.0888
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BOCCHI/Bocchi:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0888, 0.1776, 0.26639998, 0.3552, 0.444, 0.53279996, 0.6216, 0.7104, 0.7992, 0.888, 0.97679996, 1.0655999, 1.1544, 1.2432, 1.332, 1.4208, 1.5095999, 1.5984, 1.6872, 1.776, 1.8648, 1.9535999, 2.0424, 2.1311998, 2.22, 2.3088, 2.3976, 2.4864, 2.5751998, 2.664, 2.7528, 2.8416, 2.9304, 3.0191998, 3.108, 3.1968, 3.2856, 3.3744, 3.4631999, 3.552, 3.6408, 3.7296, 3.8184, 3.9071999),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsp4k"]
+size = Vector2(47.869343, 146)
 
 [sub_resource type="Animation" id="Animation_7mycd"]
 length = 0.001
@@ -51,12 +45,87 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BOCCHI/Bocchi/atk1/atk1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BOCCHI/Bocchi/atk1/atk1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lquwl"]
+resource_name = "attack1"
+length = 1.7
+step = 0.0888
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BOCCHI/Bocchi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0888, 0.1776, 0.26639998, 0.3552, 0.444, 0.53279996, 0.6216, 0.7104, 0.7992, 0.888, 0.97679996, 1.0655999, 1.1544, 1.2432, 1.332, 1.4208, 1.5095999, 1.5984, 1.6872, 1.776, 1.8648, 1.9535999, 2.0424, 2.1311998, 2.22, 2.3088, 2.3976, 2.4864, 2.5751998, 2.664, 2.7528, 2.8416, 2.9304, 3.0191998, 3.108, 3.1968, 3.2856, 3.3744, 3.4631999, 3.552, 3.6408, 3.7296, 3.8184, 3.9071999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BOCCHI/Bocchi/atk1/atk1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9076075, 1.0033642, 1.099121, 1.1948776, 1.300349, 1.3961058, 1.4918625, 1.5876191),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BOCCHI/Bocchi/atk1/atk1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9076075, 1.0033642, 1.099121, 1.1948776, 1.300349, 1.3961058, 1.4918625, 1.5876191),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_272bh"]
 _data = {
-&"Bocchi": SubResource("Animation_lquwl"),
-&"RESET": SubResource("Animation_7mycd")
+&"RESET": SubResource("Animation_7mycd"),
+&"attack1": SubResource("Animation_lquwl")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yaehf"]
+size = Vector2(25.264412, 40.448837)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4lmeg"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0cp0l"]
+radius = 50.0
 
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_272bh")
@@ -74,22 +143,156 @@ WEREWOLF = ExtResource("12_a6jrf")
 BOSS1 = ExtResource("13_82xsv")
 metadata/_edit_vertical_guides_ = [-299.0]
 
-[node name="BOCCHI" type="CharacterBody2D" parent="."]
-position = Vector2(974, 787)
+[node name="BOCCHI" type="CharacterBody2D" parent="." groups=["player"]]
+z_index = 1
 script = ExtResource("4_lquwl")
+gfx_path = NodePath("Bocchi")
+anim_path = NodePath("AnimationBocchi")
+area_path = NodePath("Area2D")
 
 [node name="Bocchi" type="Sprite2D" parent="BOCCHI"]
 texture_filter = 1
-position = Vector2(-469, -693)
 texture = ExtResource("4_1bvp3")
 hframes = 6
 vframes = 8
+
+[node name="atk1" type="Area2D" parent="BOCCHI/Bocchi"]
+
+[node name="atk1" type="CollisionShape2D" parent="BOCCHI/Bocchi/atk1"]
+visible = false
+position = Vector2(47.5, 63)
+scale = Vector2(7.0399976, 1)
+shape = SubResource("RectangleShape2D_qsp4k")
+disabled = true
 
 [node name="AnimationBocchi" type="AnimationPlayer" parent="BOCCHI"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_272bh")
 }
+
+[node name="Area2D" type="Area2D" parent="BOCCHI" groups=["PlayerBody"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BOCCHI/Area2D"]
+position = Vector2(5, 12)
+scale = Vector2(5.303906, -5.389523)
+shape = SubResource("RectangleShape2D_yaehf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BOCCHI"]
+position = Vector2(5, 12)
+scale = Vector2(5.303906, -5.389523)
+shape = SubResource("RectangleShape2D_yaehf")
+
+[node name="SFX_Lv_up" type="AudioStreamPlayer" parent="BOCCHI"]
+stream = ExtResource("16_qsp4k")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_axe_q" type="AudioStreamPlayer" parent="BOCCHI"]
+stream = ExtResource("17_kq58d")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_hurt" type="AudioStreamPlayer" parent="BOCCHI"]
+stream = ExtResource("19_htxhm")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="Control2" type="Control" parent="BOCCHI"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Control" type="CanvasLayer" parent="BOCCHI/Control2"]
+layer = 0
+
+[node name="XP" type="TextureProgressBar" parent="BOCCHI/Control2/Control"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 182.0
+offset_top = -136.0
+offset_right = 182.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.36, 2.36)
+max_value = 10.0
+texture_under = ExtResource("21_4k2k6")
+texture_over = ExtResource("22_0rl1p")
+texture_progress = ExtResource("23_ok6jj")
+
+[node name="Level" type="Label" parent="BOCCHI/Control2/Control/XP"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 317.0
+offset_top = 71.0
+offset_right = 357.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("24_facbu")
+text = "Lv 1"
+
+[node name="Lv_opition" type="VBoxContainer" parent="BOCCHI/Control2/Control/XP"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.167
+anchor_right = 0.5
+anchor_bottom = 1.167
+offset_left = -19.0
+offset_top = -20.060013
+offset_right = 21.0
+offset_bottom = 19.939987
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("25_b1qrp")
+
+[node name="Bar" parent="BOCCHI/Control2/Control" instance=ExtResource("26_come4")]
+unique_name_in_owner = true
+offset_left = 221.00002
+offset_top = 77.0
+offset_right = 302.78955
+offset_bottom = 87.11185
+scale = Vector2(5.8339357, 2.9139366)
+
+[node name="health" type="Label" parent="BOCCHI/Control2/Control"]
+offset_left = 710.0
+offset_top = 68.0
+offset_right = 887.0
+offset_bottom = 110.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("24_facbu")
+theme_override_font_sizes/font_size = 30
+text = "dsadsasadw"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("27_h8e4i")
+
+[node name="Camera2D" type="Camera2D" parent="BOCCHI"]
+zoom = Vector2(1.285, 1.285)
+limit_left = -448
+limit_top = -320
+limit_right = 493
+limit_bottom = 320
+
+[node name="foot" type="Area2D" parent="BOCCHI" groups=["foot"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BOCCHI/foot"]
+position = Vector2(1, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4lmeg")
+
+[node name="Magnet" type="Area2D" parent="BOCCHI"]
+visible = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BOCCHI/Magnet"]
+shape = SubResource("CircleShape2D_0cp0l")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -112,11 +315,8 @@ one_shot = true
 
 [node name="Level1" parent="." instance=ExtResource("5_lquwl")]
 
-[node name="Lancer" parent="." instance=ExtResource("18_074og")]
-position = Vector2(56, 155)
-baseupdmg = 5
-baseupspd = 20
-baseuphealth = 20
-
+[connection signal="area_entered" from="BOCCHI/Bocchi/atk1" to="BOCCHI" method="_on_atk_1_area_entered"]
+[connection signal="area_entered" from="BOCCHI/foot" to="BOCCHI" method="_on_foot_area_entered"]
+[connection signal="area_entered" from="BOCCHI/Magnet" to="BOCCHI" method="_on_magnet_area_entered"]
 [connection signal="timeout" from="first" to="." method="_on_first_timeout"]
 [connection signal="timeout" from="wavetime" to="." method="_on_wavetime_timeout"]
