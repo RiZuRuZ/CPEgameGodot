@@ -184,6 +184,8 @@ func _physics_process(delta: float) -> void:
 					get_tree().change_scene_to_file("res://Gameover/gameover.tscn")
 
 			elif not death:
+				if is_attacking and animation.current_animation == "attack3":
+					SPEED -= 200
 				sfx_hurt.play()
 				is_hurt = true
 				can_move = false
@@ -209,7 +211,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("down"):  motion.y += 1
 	if Input.is_action_pressed("up"):    motion.y -= 1
 
-	var mouse_pos: Vector2 = get_global_mouse_position()
+	
 
 	# --- attack inputs ---
 	if Input.is_action_just_pressed("m1")and not is_attacking:
@@ -217,18 +219,20 @@ func _physics_process(delta: float) -> void:
 		sfx_axe.play()
 
 	if Input.is_action_just_pressed("m2")and not is_attacking:
-		if mouse_pos.x < global_position.x:
-			motion.x -= 20000
-		else:
-			motion.x += 20000
-		_start_attack("attack2", false)
+		var mouse_pos: Vector2 = get_global_mouse_position()
+		var direaction:Vector2 = (mouse_pos-global_position).normalized()
+		var tween :Tween
+		tween = create_tween()
+		tween.tween_property(self,"global_position",global_position+(direaction*200),0.9)
+		_start_invincibility(0.9)
+		_start_attack("attack2", true)
 		
 		sfx_axe_m_2.play()
 
 	if Input.is_action_just_pressed("q") and not is_attacking:
 		_start_attack("attack3", false)
 		sfx_axe_q.play()
-		_start_invincibility(1.5)
+		_start_invincibility(0.8)
 		#_delayed_shoot()
 
 	# --- movement (ใช้ velocity + move_and_slide) ---
@@ -272,6 +276,7 @@ func _start_attack(anim_name: String, lock_movement: bool) -> void:
 	if animation:
 		animation.play(anim_name)
 		if anim_name == "attack3":
+			is_hurt = false
 			SPEED += 200
 
 
@@ -281,6 +286,7 @@ func _on_anim_finished(anim_name: String) -> void:
 		can_move = true
 		if anim_name == "attack3":
 			SPEED -=200
+			is_hurt = false
 		_disable_collision()
 
 #		if anim_name == "attack3" and pending_shot:
@@ -300,7 +306,7 @@ func _on_area_2d_area_exited(hit: Area2D) -> void:
 	SPEED = 100
 			
 func _start_invincibility(time:float) -> void:
-	if is_invincible:
+	if is_invincible and animation.current_animation not in ["attack2","attack3"]:
 		return
 
 	is_invincible = true
