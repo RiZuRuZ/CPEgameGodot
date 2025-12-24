@@ -1,9 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://btdunpkpnmxg7"]
+[gd_scene load_steps=27 format=3 uid="uid://btdunpkpnmxg7"]
 
 [ext_resource type="Texture2D" uid="uid://qeabvw5sponb" path="res://FULL RPG ASSET/Tiny RPG Character Asset Pack v1.03 -Full 20 Characters/Characters(100x100)/Lancer/Lancer with shadows/Lancer.png" id="1_5drtp"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5drtp"]
-size = Vector2(29, 30)
+[ext_resource type="Script" uid="uid://dahlin6dtt452" path="res://1Player_script/lancer.gd" id="1_a8t5b"]
+[ext_resource type="AudioStream" uid="uid://ub36p72o7skq" path="res://Sound SFX game/level-up-2.mp3" id="2_un2sn"]
+[ext_resource type="AudioStream" uid="uid://dvquvju8l8bvw" path="res://Sound SFX game/axe-hit-flesh-02-266299.mp3" id="3_a8t5b"]
+[ext_resource type="AudioStream" uid="uid://ci6lbgyhcmx11" path="res://Sound SFX game/hitting-stalactites-with-axe-212652.mp3" id="4_og4kr"]
+[ext_resource type="AudioStream" uid="uid://clsfxbkmx0k0s" path="res://Sound SFX game/hurt-self.mp3" id="5_0l5xp"]
+[ext_resource type="AudioStream" uid="uid://c4xb5u87qgimy" path="res://Sound SFX game/axe-slash-1-106748.mp3" id="6_ds2q5"]
+[ext_resource type="Texture2D" uid="uid://bkoy3wq2vosgy" path="res://Pic Level/Under-Photoroom.png" id="7_w0qnf"]
+[ext_resource type="Texture2D" uid="uid://cm5kfx6r0bkps" path="res://Pic Level/Over-Photoroom.png" id="8_pbdb8"]
+[ext_resource type="Texture2D" uid="uid://dx08dcu3hstps" path="res://Pic Level/Process-Photoroom.png" id="9_11ty2"]
+[ext_resource type="FontFile" uid="uid://61ecrjsbu6b1" path="res://Font/VT323-Regular.ttf" id="10_7vfup"]
+[ext_resource type="Script" uid="uid://dle88wu7u6lgq" path="res://Pickup/lv_opition.gd" id="11_wytv8"]
+[ext_resource type="PackedScene" uid="uid://dsdcsdvv2063l" path="res://Animation5+3/bar.tscn" id="12_by6sf"]
+[ext_resource type="Script" uid="uid://7corn8tvr4x5" path="res://Animation5+3/Players/health.gd" id="13_xjgda"]
 
 [sub_resource type="Animation" id="Animation_ggu7x"]
 length = 0.001
@@ -89,7 +99,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_np5cm"]
@@ -197,10 +207,10 @@ tracks/1/path = NodePath("Sprite2D/atk3/atk3:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.099920094, 0.20400351, 0.3039236, 0.40106815, 0.50098825, 0.5981328, 0.6980529, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false, true, false, true, false, true, false, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -209,10 +219,10 @@ tracks/2/path = NodePath("Sprite2D/atk3/atk3:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.099920094, 0.20400351, 0.3039236, 0.40106815, 0.50098825, 0.5981328, 0.6980529, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true, false, true, false, true, false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_r3c2v"]
@@ -313,14 +323,24 @@ _data = {
 &"walk2": SubResource("Animation_ubjmb")
 }
 
-[node name="Lancer" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r75tw"]
+radius = 3.0
+height = 8.0
 
-[node name="Area2D" type="Area2D" parent="."]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7y51u"]
+radius = 50.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2(2, -7)
-shape = SubResource("RectangleShape2D_5drtp")
+[node name="Lancer" type="CharacterBody2D" groups=["player"]]
+collision_mask = 4
+script = ExtResource("1_a8t5b")
+gfx_path = NodePath("Sprite2D")
+anim_path = NodePath("AnimationPlayer")
+area_path = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="." groups=["PlayerBody"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-8, -19, -5, -17, -5, -14, -3, -10, -4, -8, -7, -5, -9, -3, -10, 0, -9, 3, -10, 6, -5, 5, 6, 7, 14, 6, 13, 2, 9, -2, 13, -1, 17, 0, 18, -3, 17, -8, 15, -9, 15, -14, 13, -13, 9, -12, 6, -10, 4, -10, 4, -13, 4, -16, 4, -19, 1, -20, -1, -21, -3, -22, -7, -21, -8, -20)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -336,20 +356,145 @@ polygon = PackedVector2Array(4, -2, 23, 0, 42, -6, 25, -10, 13, -9, 6, -6)
 [node name="atk2" type="Area2D" parent="Sprite2D"]
 
 [node name="atk2" type="CollisionPolygon2D" parent="Sprite2D/atk2"]
-polygon = PackedVector2Array(2, -2, 24, -1, 19, 9, 32, -2, 34, 3, 35, -3, 38, -7, 35, -9, 34, -17, 31, -12, 19, -21, 25, -13, 2, -8)
+polygon = PackedVector2Array(-9, -22, 6, -17, 17, -11, 29, -9, 36, -9, 40, -1, 31, 2, 19, 7, 6, 9, -8, 6, -16, 5, -16, -6, -13, -18)
 
 [node name="atk3" type="Area2D" parent="Sprite2D"]
 
 [node name="atk3" type="CollisionPolygon2D" parent="Sprite2D/atk3"]
-polygon = PackedVector2Array(21, -13, 31, -12, 37, -6, 31, 0, 21, 1, 24, -3, 7, -4, 7, -8, 24, -8)
+visible = false
+polygon = PackedVector2Array(-16, -27, -16, 16, 16, 14, 41, 3, 50, -6, 37, -19, 17, -28)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("")
 libraries = {
 &"": SubResource("AnimationLibrary_np5cm")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="SFX_Lv_up" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_un2sn")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_axe_q" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_a8t5b")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_axe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_og4kr")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_0l5xp")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="SFX_axe_m2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ds2q5")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Control" type="CanvasLayer" parent="Control2"]
+layer = 0
+
+[node name="XP" type="TextureProgressBar" parent="Control2/Control"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 182.0
+offset_top = -136.0
+offset_right = 182.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.36, 2.36)
+max_value = 10.0
+texture_under = ExtResource("7_w0qnf")
+texture_over = ExtResource("8_pbdb8")
+texture_progress = ExtResource("9_11ty2")
+
+[node name="Level" type="Label" parent="Control2/Control/XP"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 317.0
+offset_top = 71.0
+offset_right = 357.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("10_7vfup")
+text = "Lv 1"
+
+[node name="Lv_opition" type="VBoxContainer" parent="Control2/Control/XP"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.167
+anchor_right = 0.5
+anchor_bottom = 1.167
+offset_left = -19.0
+offset_top = -20.060013
+offset_right = 21.0
+offset_bottom = 19.939987
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_wytv8")
+
+[node name="Bar" parent="Control2/Control" instance=ExtResource("12_by6sf")]
+unique_name_in_owner = true
+offset_left = 221.00002
+offset_top = 77.0
+offset_right = 302.78955
+offset_bottom = 87.11185
+scale = Vector2(5.8339357, 2.9139366)
+
+[node name="health" type="Label" parent="Control2/Control"]
+offset_left = 710.0
+offset_top = 68.0
+offset_right = 887.0
+offset_bottom = 110.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("10_7vfup")
+theme_override_font_sizes/font_size = 30
+text = "dsadsasadw"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_xjgda")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.29, 2.29)
+limit_left = -448
+limit_top = -320
+limit_right = 493
+limit_bottom = 320
+
+[node name="foot" type="Area2D" parent="." groups=["foot"]]
 visible = false
-position = Vector2(2, -7)
-shape = SubResource("RectangleShape2D_5drtp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foot"]
+position = Vector2(1, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_r75tw")
+
+[node name="Magnet" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet"]
+shape = SubResource("CircleShape2D_7y51u")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-8, -19, -5, -17, -5, -14, -3, -10, -4, -8, -7, -5, -9, -3, -10, 0, -9, 3, -10, 6, -5, 5, 6, 7, 14, 6, 13, 2, 9, -2, 13, -1, 17, 0, 18, -3, 17, -8, 15, -9, 15, -14, 13, -13, 9, -12, 6, -10, 4, -10, 4, -13, 4, -16, 4, -19, 1, -20, -1, -21, -3, -22, -7, -21, -8, -20)
+
+[connection signal="area_entered" from="Sprite2D/atk1" to="." method="_on_atk_1_area_entered"]
+[connection signal="area_entered" from="Sprite2D/atk2" to="." method="_on_atk_2_area_entered"]
+[connection signal="area_entered" from="Sprite2D/atk3" to="." method="_on_atk_3_area_entered"]
+[connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]

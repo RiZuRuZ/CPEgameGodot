@@ -55,10 +55,11 @@ func _ready():
 		PlayerScene = preload("res://Animation5+3/Players/Archer.tscn")
 	elif $"/root/Wave".selection == 4:
 		PlayerScene = preload("res://Animation5+3/Players/tawan.tscn")
-		
-	var player = PlayerScene.instantiate()
-	add_child(player)
-	player.position = Vector2(470, 170)
+	
+	if $"/root/Wave".selection >-1:
+		var player = PlayerScene.instantiate()
+		add_child(player)
+		player.position = Vector2(470, 170)
 	
 	$"/root/Wave/CanvasLayer".visible = true
 	$"/root/Wave".wave = str(current_wave)
